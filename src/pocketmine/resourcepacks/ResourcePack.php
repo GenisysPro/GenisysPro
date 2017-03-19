@@ -30,27 +30,18 @@
 
 namespace pocketmine\resourcepacks;
 
-class ResourcePackInfoEntry{
-	protected $packId; //UUID
-	protected $version;
-	protected $packSize;
 
-	public function __construct(string $packId, string $version, $packSize = 0){
-		$this->packId = $packId;
-		$this->version = $version;
-		$this->packSize = $packSize;
-	}
+interface ResourcePack{
 
-	public function getPackId() : string{
-		return $this->packId;
-	}
+	public function getPackName() : string;
 
-	public function getVersion() : string{
-		return $this->version;
-	}
+	public function getPackId() : string;
 
-	public function getPackSize(){
-		return $this->packSize;
-	}
+	public function getPackSize() : int;
 
+	public function getPackVersion() : string;
+
+	public function getSha256() : string;
+
+	public function getPackChunk(int $start, int $length) : string;
 }
