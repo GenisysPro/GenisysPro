@@ -33,22 +33,22 @@ use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\StringTag;
 
 abstract class Tile extends Position{
-
+	
 	const BREWING_STAND = "BrewingStand";
-	const CAULDRON = "Cauldron";
 	const CHEST = "Chest";
-	const DISPENSER = "Dispenser";
-	const DAY_LIGHT_DETECTOR = "DLDetector";
-	const DROPPER = "Dropper";
 	const ENCHANT_TABLE = "EnchantTable";
-	const ENDER_CHEST = "EnderChest";
 	const FLOWER_POT = "FlowerPot";
 	const FURNACE = "Furnace";
-	const HOPPER = "Hopper";
-	const ITEM_FRAME = "ItemFrame";
 	const MOB_SPAWNER = "MobSpawner";
 	const SIGN = "Sign";
 	const SKULL = "Skull";
+	const ITEM_FRAME = "ItemFrame";
+	const DISPENSER = "Dispenser";
+	const DROPPER = "Dropper";
+	const CAULDRON = "Cauldron";
+	const HOPPER = "Hopper";
+	const BEACON = "Beacon";
+	const ENDER_CHEST = "EnderChest";
 
 	public static $tileCount = 1;
 
@@ -59,6 +59,9 @@ abstract class Tile extends Position{
 	public $chunk;
 	public $name;
 	public $id;
+	public $x;
+	public $y;
+	public $z;
 	public $attach;
 	public $metadata;
 	public $closed = false;
@@ -69,13 +72,14 @@ abstract class Tile extends Position{
 
 	/** @var \pocketmine\event\TimingsHandler */
 	public $tickTimer;
-
+	
 	public static function init(){
+		self::registerTile(Beacon::class);
+		self::registerTile(BeaconDelayedCheckTask::class);
 		self::registerTile(BrewingStand::class);
 		self::registerTile(Cauldron::class);
 		self::registerTile(Chest::class);
 		self::registerTile(Dispenser::class);
-		self::registerTile(DLDetector::class);
 		self::registerTile(Dropper::class);
 		self::registerTile(EnchantTable::class);
 		self::registerTile(EnderChest::class);
@@ -89,12 +93,12 @@ abstract class Tile extends Position{
 	}
 
 	/**
-	 * @param string      $type
-	 * @param Level       $level
-	 * @param CompoundTag $nbt
-	 * @param array ...$args
+	 * @param string    $type
+	 * @param Level     $level
+	 * @param CompoundTag  $nbt
+	 * @param array $args
 	 *
-	 * @return null
+	 * @return Tile
 	 */
 	public static function createTile($type, Level $level, CompoundTag $nbt, ...$args){
 		if(isset(self::$knownTiles[$type])){
@@ -134,10 +138,10 @@ abstract class Tile extends Position{
 		$this->timings = Timings::getTileEntityTimings($this);
 
 		$this->namedtag = $nbt;
-		$this->server = $level->getServer();
-		$this->setLevel($level);
-		$this->chunk = $level->getChunk($this->namedtag["x"] >> 4, $this->namedtag["z"] >> 4, false);
-		assert($this->chunk !== null);
+        $this->server = $level->getServer();
+        $this->setLevel($level);
+        $this->chunk = $level->getChunk($this->namedtag["x"] >> 4, $this->namedtag["z"] >> 4, false);
+        assert($this->chunk !== null);
 
 		$this->name = "";
 		$this->lastUpdate = microtime(true);
