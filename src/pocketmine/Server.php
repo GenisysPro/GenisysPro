@@ -89,6 +89,7 @@ use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginLoadOrder;
 use pocketmine\plugin\PluginManager;
 use pocketmine\plugin\ScriptPluginLoader;
+use pocketmine\resourcepacks\ResourcePackManager;
 use pocketmine\scheduler\CallbackTask;
 use pocketmine\scheduler\DServerTask;
 use pocketmine\scheduler\FileWriteTask;
@@ -182,6 +183,8 @@ class Server{
 
 	/** @var CraftingManager */
 	private $craftingManager;
+
+ private $resourceManager;
 
 	/** @var ConsoleCommandSender */
 	private $consoleSender;
@@ -683,6 +686,13 @@ class Server{
 	 */
 	public function getCraftingManager(){
 		return $this->craftingManager;
+	}
+
+	/**
+	 * @return ResourcePackManager
+	 */
+	public function getResourceManager() : ResourcePackManager{
+		return $this->resourceManager;
 	}
 
 	/**
@@ -1444,12 +1454,20 @@ class Server{
 	}
 
 	public function about(){
-		$string = '
+		$string = "
 
-	§3Genisys§f is a custom version of §bPocketMine-MP§f, modified by §5iTX Technologies LLC§f
-	Version: §6' . $this->getPocketMineVersion() . '§f
-	Target client version: §b' . ProtocolInfo::MINECRAFT_VERSION . '§f
-	Source code: §dhttps://github.com/iTXTech/Genisys§f
+ _____     _ 
+/ ____|   (_) 
+| | __ ___ _ __ _ ___ _    _   ___ 
+| | |_ |/ _ \ '_ \| / __| | | / __|
+| |__| | __/ | | | \__ \ |_| \__ \
+ \_____|\___|_| |_|_|___/\__, |___/
+                       __/ | 
+                       |___/ 
+	版本: §6" . $this->getPocketMineVersion() . '§f
+	客户端版本: §b' . ProtocolInfo::MINECRAFT_VERSION . '§f
+	本核心由 §dSuperXingKong插件组 §f维护
+	QQ群: §a559301590
 	';
 	
 		$this->getLogger()->info($string);
@@ -1655,13 +1673,10 @@ class Server{
 
 			$onlineMode = $this->getConfigBoolean("online-mode", false);
 			if(!extension_loaded("openssl")){
-				$this->logger->warning("The OpenSSL extension is not loaded, and this is required for XBOX authentication to work. If you want to use Xbox Live auth, please update your PHP binaries at itxtech.org/genisys/get/, or recompile PHP with the OpenSSL extension.");
+				$this->logger->warning("找不到 OpenSSL 扩展,请重新安装PHP,否则无法使用XBox验证 && 材质包功能.");
 				$this->setConfigBool("online-mode", false);
 			}elseif(!$onlineMode){
-				$this->logger->warning("SERVER IS RUNNING IN OFFLINE/INSECURE MODE!");
-				$this->logger->warning("The server will make no attempt to authenticate usernames. Beware.");
-				$this->logger->warning("While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.");
-				$this->logger->warning("To change this, set \"online-mode\" to \"true\" in the server.properties file.");
+				$this->logger->notice("服务器处在离线模式!");
 			}
 
 			$this->forceLanguage = $this->getProperty("settings.force-language", false);
@@ -1770,6 +1785,8 @@ class Server{
 			EnchantmentLevelTable::init();
 			Color::init();
 			$this->craftingManager = new CraftingManager();
+
+  $this->resourceManager = new ResourcePackManager($this, \pocketmine\PATH . "resource_packs" . DIRECTORY_SEPARATOR);
 
 			$this->pluginManager = new PluginManager($this, $this->commandMap);
 			$this->pluginManager->subscribeToPermission(Server::BROADCAST_CHANNEL_ADMINISTRATIVE, $this->consoleSender);
