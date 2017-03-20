@@ -20,7 +20,12 @@ Help & Support
 
 Get GenisysPro
 -------------
-https://raw.githubusercontent.com/Rex-Tech/GenisysPro/master/phar/GenisysPro_starry.phar
+* Download the [latest build](https://raw.githubusercontent.com/Rex-Tech/GenisysPro/master/phar/GenisysPro_starry.phar
+).
+* Installation instructions can be found in the [wiki](https://github.com/iTXTech/Genisys/wiki).
+* PHP Binaries and other on [here](https://itxtech.org/genisys/get/).
+
+
 NOTE: **The master branch is the only officially supported branch.**
 _All other branches are in testing and may be unstable. Do not use builds from other branches unless you are sure you understand the risks._
 
