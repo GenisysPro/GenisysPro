@@ -29,7 +29,7 @@ Help & Support
 
 Get GenisysPro
 -------------
-
+https://raw.githubusercontent.com/Rex-Tech/GenisysPro/master/phar/GenisysPro_starry.phar
 NOTE: **The master branch is the only officially supported branch.**
 _All other branches are in testing and may be unstable. Do not use builds from other branches unless you are sure you understand the risks._
 
