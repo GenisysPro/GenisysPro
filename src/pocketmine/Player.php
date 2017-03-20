@@ -8,13 +8,22 @@
  * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
  * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
+ *  _____            _               _____           
+ * / ____|          (_)             |  __ \          
+ *| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
+ *| | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \ 
+ *| |__| |  __/ | | | \__ \ |_| \__ \ |   | | | (_) |
+ * \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/ 
+ *                         __/ |                    
+ *                        |___/                     
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
+ * @author Rex-Tech
+ * @link https://gihub.com/Rex-Tech/GenisysPro
  *
  *
 */
@@ -326,6 +335,56 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		return new TranslationContainer(TextFormat::YELLOW . "%multiplayer.player.left", [
 			$this->getDisplayName()
 		]);
+	}
+
+	public function setExperienceAndLevel(int $exp, int $level){
+		return $this->setTotalXp(self::getTotalXpRequirement($level) + $exp);
+	}
+
+	public function setExp(int $exp){
+		return $this->setTotalXp($exp);
+	}
+
+	public function setExpLevel(int $level){
+		return $this->setXpLevel($level);
+	}
+
+	public function getExpectedExperience(){
+		return self::getTotalXpRequirement($this->getXpLevel() + 1);
+	}
+
+	public function getLevelUpExpectedExperience(){
+		return self::getLevelXpRequirement($this->getXpLevel() + 1);
+	}
+
+	public function calcExpLevel(){
+	}
+
+	public function addExperience(int $exp){
+		return $this->addXp($exp);
+	}
+
+	public function addExpLevel(int $level){
+		return $this->addXpLevel($level);
+	}
+
+	public function getExp(){
+		return $this->getTotalXp();
+	}
+
+	public function getExpLevel(){
+		return $this->getXpLevel();
+	}
+
+	public function canPickupExp(): bool{
+		return $this->canPickupXp();
+	}
+
+	public function resetExpCooldown(){
+		$this->resetXpCooldown();
+	}
+
+	public function updateExperience(){
 	}
 
 	/**
