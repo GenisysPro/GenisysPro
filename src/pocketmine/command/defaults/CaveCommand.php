@@ -2,22 +2,31 @@
 
 /*
  *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
+ * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
+ *
+ *  _____            _               _____           
+ * / ____|          (_)             |  __ \          
+ *| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
+ *| | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \ 
+ *| |__| |  __/ | | | \__ \ |_| \__ \ |   | | | (_) |
+ * \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/ 
+ *                         __/ |                    
+ *                        |___/                     
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author iTX Technologies
- * @link https://itxtech.org
+ * @author GenisysProTeam
+ * @link Not yet
  *
- */
+ *
+*/
 
 namespace pocketmine\command\defaults;
 
@@ -57,17 +66,28 @@ class CaveCommand extends VanillaCommand{
 		}
 
 		//0:旋转角度 1:洞穴长度 2:分叉数 3:洞穴强度
-		if(count($args) != 8){
+		if(count($args) != 8 && count($args) != 4){
 			$sender->sendMessage(new TranslationContainer("commands.generic.usage", [$this->usageMessage]));
 
 			return false;
 		}
-		$level = $sender->getServer()->getLevelByName($args[7]);
-		if(!$level instanceof Level){
-			$sender->sendMessage(TextFormat::RED ."Wrong LevelName");
-			return false;
-		}
-		$pos = new Position($args[4], $args[5], $args[6], $level);
+		//是否自动获取玩家位置
+		if(count($args) === 8){
+		 $level = $sender->getServer()->getLevelByName($args[7]);
+		 if(!$level instanceof Level){
+			 $sender->sendMessage(TextFormat::RED ."Wrong LevelName");
+			 return false;
+		  }
+		 $x = $args[4];
+		 $y = $args[5];
+		 $z = $args[6];
+		 }elseif(count($args) === 4){
+		 $level = $sender->getLevel();
+		 $x = $sender->getX();
+		 $y = $sender->getY();
+		 $z = $sender->getZ();
+		 }
+		$pos = new Position($x, $y, $z, $level);
 		$caves[0] = isset($args[0]) ? $args[0] : mt_rand(1, 360);
 		$caves[1] = isset($args[1]) ? $args[1] : mt_rand(10, 300);
 		$caves[2] = isset($args[2]) ? $args[2] : mt_rand(1, 6);
