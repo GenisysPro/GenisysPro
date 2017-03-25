@@ -22,8 +22,8 @@
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author Rex-Tech
- * @link https://gihub.com/Rex-Tech/GenisysPro
+ * @author GenisysPro
+ * @link https://github.com/GenisysPro/GenisysPro
  *
  *
 */
@@ -2196,7 +2196,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					break;
 				}
 
-				if($packet->protocol !== ProtocolInfo::CURRENT_PROTOCOL){
+				if(!in_array($packet->protocol, ProtocolInfo::CURRENT_PROTOCOL)){
 					if($packet->protocol < ProtocolInfo::CURRENT_PROTOCOL){
 						$message = "disconnectionScreen.outdatedClient";
 
