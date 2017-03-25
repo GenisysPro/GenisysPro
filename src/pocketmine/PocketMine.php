@@ -7,22 +7,23 @@
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
  * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
  * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
- * 
- *  _____            _               _____
- * / ____|          (_)             |  __ \
- *| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___
- *| | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \
+ *
+ *  _____            _               _____           
+ * / ____|          (_)             |  __ \          
+ *| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
+ *| | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \ 
  *| |__| |  __/ | | | \__ \ |_| \__ \ |   | | | (_) |
- * \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/
- *                         __/ |
- *                        |___/
+ * \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/ 
+ *                         __/ |                    
+ *                        |___/                     
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
+ * @author GenisysPro
+ * @link https://github.com/GenisysPro/GenisysPro
  *
  *
 */
@@ -80,9 +81,9 @@ namespace pocketmine {
 	use pocketmine\utils\Utils;
 	use pocketmine\wizard\Installer;
 
-	const VERSION = "Starry";
+	const VERSION = "";
 	const API_VERSION = "3.0.0-ALPHA4";
-	const CODENAME = "Enopoio";
+	const CODENAME = "Starry";
 	const GENISYS_API_VERSION = '2.0.0';
 
 	/*
