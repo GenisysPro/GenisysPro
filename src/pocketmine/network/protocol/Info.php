@@ -22,8 +22,8 @@
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author Rex-Tech
- * @link https://github.com/Rex-Tech/GenisysPro
+ * @author GenisysPro
+ * @link https://github.com/GenisysPro/GenisysPro
  *
  *
 */
@@ -40,8 +40,8 @@ interface Info{
 	 * Actual Minecraft: PE protocol version
 	 */
 	const CURRENT_PROTOCOL = 102;
-  const ACCEPTED_PROTOCOLS = [100,101,102,105]
-	const MINECRAFT_VERSION = "v1.0.x";
+    const ACCEPTED_PROTOCOLS = [100,101,102,105];	
+    const MINECRAFT_VERSION = "v1.0.x";
 	const MINECRAFT_VERSION_NETWORK = "1.0";
 
 	const LOGIN_PACKET = 0x01;
