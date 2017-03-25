@@ -40,8 +40,8 @@ interface Info{
 	 * Actual Minecraft: PE protocol version
 	 */
 	const CURRENT_PROTOCOL = 102;
-  const ACCPETED_PROTOCOLS = [100,101,102,105]
-	const MINECRAFT_VERSION = "v1.0.x";
+    const ACCPETED_PROTOCOLS = [100,101,102,105];	
+    const MINECRAFT_VERSION = "v1.0.x";
 	const MINECRAFT_VERSION_NETWORK = "1.0";
 
 	const LOGIN_PACKET = 0x01;
