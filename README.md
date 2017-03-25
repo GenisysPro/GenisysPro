@@ -5,6 +5,7 @@ __Feature-rich server software for Minecraft: Pocket Edition & Windows 10 Editio
 __多功能服务器软件For Minecraft: Pocket Edition & Windows 10 Edition Beta__
 
 [![Build Status](https://travis-ci.org/GenisysPro/GenisysPro.svg?branch=master)](https://travis-ci.org/GenisysPro/GenisysPro)
+[![build status](https://gitlab.com/GenisysPro/GenisysPro/badges/master/build.svg)](https://gitlab.com/GenisysPro/GenisysPro/commits/master)
 
 Introduction
 -------------
