@@ -4,6 +4,8 @@ GenisysPro
 __Feature-rich server software for Minecraft: Pocket Edition & Windows 10 Edition Beta__<br>
 __多功能服务器软件For Minecraft: Pocket Edition & Windows 10 Edition Beta__
 
+[![Build Status](https://travis-ci.org/GenisysPro/GenisysPro.svg?branch=master)](https://travis-ci.org/GenisysPro/GenisysPro)
+
 Introduction
 -------------
 GenisysPro is a server software based on **[Genisys](https://github.com/iTXTech/Genisys)** with extended functionality. Most of the original code was written by **iTXTech**.<br>
