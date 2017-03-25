@@ -26,7 +26,7 @@ Help & Support
 
 Get GenisysPro
 -------------
-* Download the [latest build](https://raw.githubusercontent.com/GenisysPro/GenisysPro/master/phar/GenisysPro_starry.phar).
+* Download the [latest build](https://raw.githubusercontent.com/GenisysPro/GenisysPro/master/phar/GenisysPro_Starry.phar).
 * 下载最新稳定版本
 * Installation instructions can be found in the [wiki](https://github.com/iTXTech/Genisys/wiki).
 * 安装介绍Wiki
