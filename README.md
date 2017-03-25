@@ -1,7 +1,7 @@
 GenisysPro
 ===================
 
-__Feature-rich server software for Minecraft: Pocket Edition & Windows 10 Edition Beta__
+__Feature-rich server software for Minecraft: Pocket Edition & Windows 10 Edition Beta__<br>
 __多功能服务器软件For Minecraft: Pocket Edition & Windows 10 Edition Beta__
 
 Introduction
@@ -11,17 +11,14 @@ GenisysPro是一个基于Genisys的服务器软件.大多数功能由iTXTech编�
 Some of the extended functionality that Genisys offers:
 一些特色功能:
 
-* Extended API for plugins (GeniAPI)
-* 继承API
-* Optional Xbox Live authentication
-* XBox登录验证
-* Support for Windows 10 Edition Beta
-* Windows 10 Edition Beta支持
-* Beacon!
-* 信标!
-
+* Extended API for plugins (GeniAPI) / 继承API
+* Optional Xbox Live authentication / XBox登录验证
+* Support for Windows 10 Edition Beta / Windows 10 Edition Beta支持
+* Beacon! / 信标!
+* FolderPluginLoader / 文件夹插件加载器
+* Animal AI /
 However, Genisys still has a long way to go. We welcome contributions.
-然而,Genisys还有很长的一段路要走.我们欢迎贡献者![Help!!!]
+然而,Genisys还有很长的一段路要走.我们欢迎贡献者![Need Help!!!]
 
 Help & Support
 -------------
@@ -29,7 +26,7 @@ Help & Support
 
 Get GenisysPro
 -------------
-* Download the [latest build](https://raw.githubusercontent.com/Rex-Tech/GenisysPro/master/phar/GenisysPro_starry.phar
+* Download the [latest build](https://raw.githubusercontent.com/GenisysPro//GenisysPro/master/phar/GenisysPro_starry.phar)
 * 下载最新稳定版本
 ).
 * Installation instructions can be found in the [wiki](https://github.com/iTXTech/Genisys/wiki).
@@ -40,11 +37,10 @@ Get GenisysPro
 
 NOTE: **The master branch is the only officially supported branch.**
 注意: **master分支是唯一支持的分支**
-_All other branches are in testing and may be unstable. Do not use builds from other branches unless you are sure you understand the risks._
+_All other branches are in testing and may be unstable. Do not use builds from other branches unless you are sure you understand the risks.
 
-Tools
+Tool
 -------------
-* [DevTools](https://github.com/pmmp/PocketMine-DevTools) - Plugin and server development tools plugin
 * [Pocket Server](https://github.com/fengberd/MinecraftPEServer) - Run PocketMine-MP/Nukkit on Android devices
 
 
