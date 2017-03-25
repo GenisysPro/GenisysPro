@@ -39,6 +39,7 @@ use pocketmine\command\SimpleCommandMap;
 use pocketmine\entity\Attribute;
 use pocketmine\entity\Effect;
 use pocketmine\entity\Entity;
+use pocketmine\entity\ai\AIHolder;
 use pocketmine\event\HandlerList;
 use pocketmine\event\level\LevelInitEvent;
 use pocketmine\event\level\LevelLoadEvent;
@@ -288,6 +289,9 @@ class Server{
 	public $weatherRandomDurationMax = 12000;
 	public $lightningTime = 200;
 	public $lightningFire = false;
+	public $aiConfig = [];
+	public $aiEnabled = false;
+	public $aiHolder = null;
 	public $version;
 	public $allowSnowGolem;
 	public $allowIronGolem;
@@ -1499,6 +1503,21 @@ class Server{
 		$this->weatherRandomDurationMax = $this->getAdvancedProperty("level.weather-random-duration-max", 12000);
 		$this->lightningTime = $this->getAdvancedProperty("level.lightning-time", 200);
 		$this->lightningFire = $this->getAdvancedProperty("level.lightning-fire", false);
+		$this->aiEnabled = $this->getAdvancedProperty("ai.enable", false);
+		$this->aiConfig = [
+			"cow" => $this->getAdvancedProperty("ai.cow", true),
+			"chicken" => $this->getAdvancedProperty("ai.chicken", true),
+			"zombie" => $this->getAdvancedProperty("ai.zombie", 1),
+			"skeleton" => $this->getAdvancedProperty("ai.skeleton", true),
+			"pig" => $this->getAdvancedProperty("ai.pig", true),
+			"sheep" => $this->getAdvancedProperty("ai.sheep", true),
+			"creeper" => $this->getAdvancedProperty("ai.creeper", true),
+			"irongolem" => $this->getAdvancedProperty("ai.iron-golem", true),
+			"snowgolem" => $this->getAdvancedProperty("ai.snow-golem", true),
+			"pigzombie" => $this->getAdvancedProperty("ai.pigzombie", true),
+			"creeperexplode" => $this->getAdvancedProperty("ai.creeper-explode-destroy-block", false),
+			"mobgenerate" => $this->getAdvancedProperty("ai.mobgenerate", false),
+		];
 		$this->allowSnowGolem = $this->getAdvancedProperty("server.allow-snow-golem", false);
 		$this->allowIronGolem = $this->getAdvancedProperty("server.allow-iron-golem", false);
 		$this->autoClearInv = $this->getAdvancedProperty("player.auto-clear-inventory", true);
@@ -1888,6 +1907,7 @@ class Server{
 
 			$this->enablePlugins(PluginLoadOrder::POSTWORLD);
 
+  if($this->aiEnabled) $this->aiHolder = new AIHolder($this);
 			if($this->dserverConfig["enable"] and ($this->getAdvancedProperty("dserver.server-list", "") != "")) $this->scheduler->scheduleRepeatingTask(new CallbackTask([
 				$this,
 				"updateDServerInfo"
@@ -2293,6 +2313,9 @@ class Server{
 		$this->logger->info($this->getLanguage()->translateString("pocketmine.server.defaultGameMode", [self::getGamemodeString($this->getGamemode())]));
 
 		$this->logger->info($this->getLanguage()->translateString("pocketmine.server.startFinished", [round(microtime(true) - \pocketmine\START_TIME, 3)]));
+
+		if(!file_exists($this->getPluginPath() . DIRECTORY_SEPARATOR . "GenisysPro"))
+			@mkdir($this->getPluginPath() . DIRECTORY_SEPARATOR . "GenisysPro");
 
 		$this->tickProcessor();
 		$this->forceShutdown();
