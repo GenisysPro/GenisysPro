@@ -22,8 +22,8 @@
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
+ * @author GenisysPro
+ * @link https://github.com/GenisysPro/GenisysPro
  *
  *
 */
@@ -92,7 +92,7 @@ class InventoryType{
 			static::DROPPER =>       new InventoryType(9,       "Dropper",      InventoryNetworkIds::DROPPER), //9 CONTAINER
 			static::HOPPER =>        new InventoryType(5,       "Hopper",       InventoryNetworkIds::HOPPER), //5 CONTAINER
 			static::ENDER_CHEST =>   new InventoryType(27,      "Ender Chest",  InventoryNetworkIds::CONTAINER),
-			static::$default[static::BEACON] = new InventoryType(0, "Beacon", 13), //信标
+			static::BEACON =>        new InventoryType(0,       "Beacon",       InventoryNetworkIds::BEACON), //信标
 
 			static::PLAYER_FLOATING => new InventoryType(36, "Floating", null) //Mirror all slots of main inventory (needed for large item pickups)
 		];
