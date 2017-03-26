@@ -19,8 +19,7 @@ Some of the extended functionality that Genisys offers:
 * Support for Windows 10 Edition Beta / Windows 10 Edition Beta支持
 * Beacon! / 信标!
 * FolderPluginLoader / 文件夹插件加载器
-* Animal AI / 生物AI
-However, Genisys still has a long way to go. We welcome contributions.
+However, Genisys still has a long way to go. We welcome contributions.<br>
 然而,Genisys还有很长的一段路要走.我们欢迎贡献者![Need Help!!!]
 
 Help & Support
@@ -65,4 +64,3 @@ Licence
 
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
