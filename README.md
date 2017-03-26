@@ -18,7 +18,7 @@ Some of the extended functionality that Genisys offers:
 * Optional Xbox Live authentication / XBox登录验证
 * Support for Windows 10 Edition Beta / Windows 10 Edition Beta支持
 * Beacon! / 信标!
-* FolderPluginLoader / 文件夹插件加载器
+* FolderPluginLoader / 文件夹插件加载器
 However, Genisys still has a long way to go. We welcome contributions.<br>
 然而,Genisys还有很长的一段路要走.我们欢迎贡献者![Need Help!!!]
 
