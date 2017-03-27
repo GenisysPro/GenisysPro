@@ -2,7 +2,7 @@
 
 #配置文件版本
 config:
- version: 24
+ version: 25
  
 level:
  #设置是否变换天气
@@ -62,6 +62,8 @@ server:
  allow-splash-potion: true
  #是否启用高级指令选择器
  advanced-command-selector: false
+ #是否加载ResourcePackManager
+ enable-resource: false
 
 enchantment:
  #是否允许使用铁砧

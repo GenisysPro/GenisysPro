@@ -2,7 +2,7 @@
 
 #Version of this file
 config:
- version: 24
+ version: 25
 
 level:
  #Set if weather is enabled (rain may cause lag to older devices)
@@ -55,6 +55,8 @@ server:
  allow-splash-potion: true
  #Set if Advanced Command Selector is enabled
  advanced-command-selector: false
+ #Set if enable ResourcePackManager
+ enable-resource: false
 
 enchantment:
  #Choose if anvils are enabled

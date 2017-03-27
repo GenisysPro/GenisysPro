@@ -289,9 +289,6 @@ class Server{
 	public $weatherRandomDurationMax = 12000;
 	public $lightningTime = 200;
 	public $lightningFire = false;
-	public $aiConfig = [];
-	public $aiEnabled = false;
-	public $aiHolder = null;
 	public $version;
 	public $allowSnowGolem;
 	public $allowIronGolem;
@@ -313,6 +310,7 @@ class Server{
 	public $allowSplashPotion = true;
 	public $fireSpread = false;
 	public $advancedCommandSelector = false;
+	public $resourceEnabled = false;
 	public $enchantingTableEnabled = true;
 	public $countBookshelf = false;
 	public $allowInventoryCheats = false;
@@ -1504,21 +1502,6 @@ class Server{
 		$this->weatherRandomDurationMax = $this->getAdvancedProperty("level.weather-random-duration-max", 12000);
 		$this->lightningTime = $this->getAdvancedProperty("level.lightning-time", 200);
 		$this->lightningFire = $this->getAdvancedProperty("level.lightning-fire", false);
-		$this->aiEnabled = $this->getAdvancedProperty("ai.enable", false);
-		$this->aiConfig = [
-			"cow" => $this->getAdvancedProperty("ai.cow", true),
-			"chicken" => $this->getAdvancedProperty("ai.chicken", true),
-			"zombie" => $this->getAdvancedProperty("ai.zombie", 1),
-			"skeleton" => $this->getAdvancedProperty("ai.skeleton", true),
-			"pig" => $this->getAdvancedProperty("ai.pig", true),
-			"sheep" => $this->getAdvancedProperty("ai.sheep", true),
-			"creeper" => $this->getAdvancedProperty("ai.creeper", true),
-			"irongolem" => $this->getAdvancedProperty("ai.iron-golem", true),
-			"snowgolem" => $this->getAdvancedProperty("ai.snow-golem", true),
-			"pigzombie" => $this->getAdvancedProperty("ai.pigzombie", true),
-			"creeperexplode" => $this->getAdvancedProperty("ai.creeper-explode-destroy-block", false),
-			"mobgenerate" => $this->getAdvancedProperty("ai.mobgenerate", false),
-		];
 		$this->allowSnowGolem = $this->getAdvancedProperty("server.allow-snow-golem", false);
 		$this->allowIronGolem = $this->getAdvancedProperty("server.allow-iron-golem", false);
 		$this->autoClearInv = $this->getAdvancedProperty("player.auto-clear-inventory", true);
@@ -1546,6 +1529,7 @@ class Server{
 		$this->allowSplashPotion = $this->getAdvancedProperty("server.allow-splash-potion", true);
 		$this->fireSpread = $this->getAdvancedProperty("level.fire-spread", false);
 		$this->advancedCommandSelector = $this->getAdvancedProperty("server.advanced-command-selector", false);
+		$this->resourceEnabled = $this->getAdvancedProperty("server.enable-resource", false);
 		$this->anvilEnabled = $this->getAdvancedProperty("enchantment.enable-anvil", true);
 		$this->enchantingTableEnabled = $this->getAdvancedProperty("enchantment.enable-enchanting-table", true);
 		$this->countBookshelf = $this->getAdvancedProperty("enchantment.count-bookshelf", false);
@@ -1817,7 +1801,9 @@ class Server{
 			Color::init();
 			$this->craftingManager = new CraftingManager();
 
-  $this->resourceManager = new ResourcePackManager($this, \pocketmine\PATH . "resource_packs" . DIRECTORY_SEPARATOR);
+			if($this->resourceEnabled){
+   $this->resourceManager = new ResourcePackManager($this, \pocketmine\PATH . "resource_packs" . DIRECTORY_SEPARATOR);
+			}
 
 			$this->pluginManager = new PluginManager($this, $this->commandMap);
 			$this->pluginManager->subscribeToPermission(Server::BROADCAST_CHANNEL_ADMINISTRATIVE, $this->consoleSender);
