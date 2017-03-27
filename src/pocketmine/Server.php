@@ -1484,6 +1484,7 @@ class Server{
 	客户端版本: §b' . ProtocolInfo::MINECRAFT_VERSION . '§f
 	本核心由 §dSuperXingKong插件组 §f维护
 	QQ群: §a559301590
+	欢迎捐赠QQ: §c1912003473
 	';
 	
 		$this->getLogger()->info($string);

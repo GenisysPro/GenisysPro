@@ -2,6 +2,7 @@
 namespace pocketmine\command\defaults;
 
 use pocketmine\command\CommandSender;
+use pocketmine\event\TranslationContainer;
 use pocketmine\plugin\FolderPluginLoader;
 use pocketmine\plugin\Plugin;
 use pocketmine\Server;
@@ -31,6 +32,7 @@ class MakePluginCommand extends VanillaCommand{
 		$pluginName = trim(implode(" ", $args));
 		if($pluginName === "" or !(($plugin = Server::getInstance()->getPluginManager()->getPlugin($pluginName)) instanceof Plugin)){
 			$sender->sendMessage(TextFormat::RED . "Invalid plugin name, check the name case.");
+			$this->sendPluginList($sender);
 			return true;
 		}
 		$description = $plugin->getDescription();
@@ -85,7 +87,31 @@ class MakePluginCommand extends VanillaCommand{
 		}
 		$phar->compressFiles(\Phar::GZ);
 		$phar->stopBuffering();
+		$license = "
+  _____            _               _____           
+ / ____|          (_)             |  __ \          
+| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
+| | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \ 
+| |__| |  __/ | | | \__ \ |_| \__ \ |   | | | (_) |
+ \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/ 
+                         __/ |                    
+                        |___/         
+ ";
+  $sender->sendMessage($license);
 		$sender->sendMessage("Phar plugin ".$description->getName() ." v".$description->getVersion()." has been created on ".$pharPath);
 		return true;
+	}
+
+	private function sendPluginList(CommandSender $sender){
+		$list = "";
+		foreach(($plugins = $sender->getServer()->getPluginManager()->getPlugins()) as $plugin){
+			if(strlen($list) > 0){
+				$list .= TextFormat::WHITE . ", ";
+			}
+			$list .= $plugin->isEnabled() ? TextFormat::GREEN : TextFormat::RED;
+			$list .= $plugin->getDescription()->getFullName();
+		}
+
+		$sender->sendMessage(new TranslationContainer("pocketmine.command.plugins.success", [count($plugins), $list]));
 	}
 }
