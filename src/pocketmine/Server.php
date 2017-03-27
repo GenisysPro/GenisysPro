@@ -39,7 +39,6 @@ use pocketmine\command\SimpleCommandMap;
 use pocketmine\entity\Attribute;
 use pocketmine\entity\Effect;
 use pocketmine\entity\Entity;
-use pocketmine\entity\ai\AIHolder;
 use pocketmine\event\HandlerList;
 use pocketmine\event\level\LevelInitEvent;
 use pocketmine\event\level\LevelLoadEvent;
@@ -1917,7 +1916,6 @@ class Server{
 
 			$this->enablePlugins(PluginLoadOrder::POSTWORLD);
 
-  if($this->aiEnabled) $this->aiHolder = new AIHolder($this);
 			if($this->dserverConfig["enable"] and ($this->getAdvancedProperty("dserver.server-list", "") != "")) $this->scheduler->scheduleRepeatingTask(new CallbackTask([
 				$this,
 				"updateDServerInfo"
