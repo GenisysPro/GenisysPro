@@ -32,7 +32,7 @@ class SaveOnCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"%pocketmine.command.saveon.description",
-			"%commands.save-on.usage"
+			"%pocketmine.command.saveon.usage"
 		);
 		$this->setPermission("pocketmine.command.save.enable");
 	}

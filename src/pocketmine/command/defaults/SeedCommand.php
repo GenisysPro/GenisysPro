@@ -32,7 +32,7 @@ class SeedCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"%pocketmine.command.seed.description",
-			"%commands.seed.usage"
+			"%pocketmine.command.seed.usage"
 		);
 		$this->setPermission("pocketmine.command.seed");
 	}

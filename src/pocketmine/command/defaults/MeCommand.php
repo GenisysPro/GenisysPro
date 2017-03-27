@@ -32,7 +32,7 @@ class MeCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"%pocketmine.command.me.description",
-			"%commands.me.usage"
+			"%pocketmine.command.me.usage"
 		);
 		$this->setPermission("pocketmine.command.me");
 	}

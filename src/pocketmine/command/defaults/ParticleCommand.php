@@ -26,8 +26,8 @@ use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
 use pocketmine\item\Item;
 use pocketmine\level\particle\AngryVillagerParticle;
-use pocketmine\level\particle\BlockForceFieldParticle;
 use pocketmine\level\particle\BubbleParticle;
+use pocketmine\level\particle\BlockForceFieldParticle;
 use pocketmine\level\particle\CriticalParticle;
 use pocketmine\level\particle\DustParticle;
 use pocketmine\level\particle\EnchantmentTableParticle;
@@ -130,9 +130,8 @@ class ParticleCommand extends VanillaCommand{
 	 * @param         $yd
 	 * @param         $zd
 	 * @param         $data
-	 *
-	 * @return Particle|null
-	 */
+	 * @return Particle
+     */
 	private function getParticle($name, Vector3 $pos, $xd, $yd, $zd, $data){
 		switch($name){
 			case "explode":

@@ -34,7 +34,7 @@ class GamemodeCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"%pocketmine.command.gamemode.description",
-			"%commands.gamemode.usage",
+			"%pocketmine.command.gamemode.usage",
 			["gm"]
 		);
 		$this->setPermission("pocketmine.command.gamemode");
@@ -77,13 +77,12 @@ class GamemodeCommand extends VanillaCommand{
 			$sender->sendMessage(TextFormat::RED . "Game mode change for " . $target->getName() . " failed!");
 		}else{
 			if($target === $sender){
-				Command::broadcastCommandMessage($sender, new TranslationContainer("commands.gamemode.success.self", [Server::getGamemodeString($gameMode)]));
+				Command::broadcastCommandMessage($sender, new TranslationContainer("commands.gamemode.success.self", [' ', ' ', Server::getGamemodeString($gameMode)]));
 			}else{
 				$target->sendMessage(new TranslationContainer("gameMode.changed"));
 				Command::broadcastCommandMessage($sender, new TranslationContainer("commands.gamemode.success.other", [$target->getName(), Server::getGamemodeString($gameMode)]));
 			}
 		}
-
 		return true;
 	}
 }

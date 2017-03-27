@@ -8,13 +8,22 @@
  * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
  * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
+ *  _____            _               _____           
+ * / ____|          (_)             |  __ \          
+ *| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
+ *| | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \ 
+ *| |__| |  __/ | | | \__ \ |_| \__ \ |   | | | (_) |
+ * \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/ 
+ *                         __/ |                    
+ *                        |___/                     
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
+ * @author GenisysPro
+ * @link https://github.com/GenisysPro/GenisysPro
  *
  *
 */
@@ -33,7 +42,7 @@ class BanCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"%pocketmine.command.ban.player.description",
-			"%commands.ban.usage"
+			"%pocketmine.command.ban.player.ban.usage"
 		);
 		$this->setPermission("pocketmine.command.ban.player");
 	}
@@ -51,22 +60,20 @@ class BanCommand extends VanillaCommand{
 
 		$name = array_shift($args);
 		if(isset($args[0]) and isset($args[1])){
-			$reason = $args[0];
-			if($args[1] != null and is_numeric($args[1])){
-				$until = new \DateTime('@' . ($args[1] * 86400 + time()));
+			$reason = implode(" ", $args);
+			if(is_numeric(end($args))){
+				$reason = str_replace(end($args), " ", $reason);
+				$until = new \DateTime('@' . (end($args) * 86400 + time()));
+				$sender->getServer()->getNameBans()->addBan($name, $reason, $until, $sender->getName());
 			}else{
 				$until = null;
-			}
-
-			$sender->getServer()->getNameBans()->addBan($name, $reason, $until, $sender->getName());
-		}else{
-			$sender->getServer()->getNameBans()->addBan($name, $reason = implode(" ", $args), null, $sender->getName());
+				$sender->getServer()->getNameBans()->addBan($name, $reason = implode(" ", $args), $until, $sender->getName());
+			}	
+		} else {
+			$sender->getServer()->getNameBans()->addBan($name);
 		}
 
-
-		if(($player = $sender->getServer()->getPlayerExact($name)) instanceof Player){
-			$player->kick($reason !== "" ? "Banned by admin. Reason: " . $reason : "Banned by admin." . "Banned Until:" . date('r'), $until = "Forever");
-		}
+        $player = $sender->getServer()->getPlayerExact($name);
 
 		Command::broadcastCommandMessage($sender, new TranslationContainer("%commands.ban.success", [$player !== null ? $player->getName() : $name]));
 

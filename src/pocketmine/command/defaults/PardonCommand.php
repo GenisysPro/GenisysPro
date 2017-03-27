@@ -32,7 +32,7 @@ class PardonCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"%pocketmine.command.unban.player.description",
-			"%commands.unban.usage"
+			"%pocketmine.command.unban.player.usage"
 		);
 		$this->setPermission("pocketmine.command.unban.player");
 	}

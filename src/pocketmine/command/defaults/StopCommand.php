@@ -32,7 +32,7 @@ class StopCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"%pocketmine.command.stop.description",
-			"%commands.stop.usage"
+			"%pocketmine.command.stop.usage"
 		);
 		$this->setPermission("pocketmine.command.stop");
 	}

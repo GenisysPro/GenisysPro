@@ -23,11 +23,13 @@ namespace pocketmine\command\defaults;
 
 use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
-use pocketmine\item\Item;
-use pocketmine\item\ItemBlock;
-use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
+use pocketmine\math\Vector3;
+
+use pocketmine\item\ItemBlock;
+use pocketmine\item\Item;
+
 
 class SetBlockCommand extends VanillaCommand{
 
@@ -35,7 +37,7 @@ class SetBlockCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"%pocketmine.command.setblock.description",
-			"%commands.setblock.usage"
+			"%pocketmine.command.setblock.usage"
 		);
 		$this->setPermission("pocketmine.command.setblock");
 	}
@@ -69,7 +71,7 @@ class SetBlockCommand extends VanillaCommand{
 			}
 			if($y{0} === "~"){
 				if((is_numeric(trim($y, "~")) or trim($y, "~") === "") and ($sender instanceof Player)) $y = (int)round(trim($y, "~") + $sender->y);
-				if($y < 0 or $y > 128) return false;
+				if($y < 0 or $y > 256) return false;
 			}elseif(is_numeric($y)){
 				$y = (int)round($y);
 			}else{

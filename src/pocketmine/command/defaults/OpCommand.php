@@ -33,7 +33,7 @@ class OpCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"%pocketmine.command.op.description",
-			"%commands.op.usage"
+			"%pocketmine.command.op.usage"
 		);
 		$this->setPermission("pocketmine.command.op.give");
 	}
