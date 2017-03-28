@@ -59,41 +59,39 @@ class CaveCommand extends VanillaCommand{
 			return true;
 		}
 		
-		//TODO: Get rid of this and add support for relative coordinaties
-		if($sender instanceof Player and $args[0] == "getmypos"){
+		if(!$sender instanceof Player){
+		 $sender->sendMessage(TextFormat::RED."Please run this command in-game!");
+		 return true;
+		}
+		
+		if($args[0] == "getmypos"){
 			$sender->sendMessage("Your position: ({$sender->getX()}, {$sender->getY()}, {$sender->getZ()}, {$sender->getLevel()->getFolderName()})");
 			return true;
 		}
 
 		//0:旋转角度 1:洞穴长度 2:分叉数 3:洞穴强度
-		if(count($args) != 8 && count($args) != 4){
+		if(count($args) > 8){
 			$sender->sendMessage(new TranslationContainer("commands.generic.usage", [$this->usageMessage]));
 
 			return false;
 		}
 		//是否自动获取玩家位置
-		if(count($args) === 8){
-		 $level = $sender->getServer()->getLevelByName($args[7]);
+		 $level = isset($args[7]) ? $sender->getServer()->getLevelByName($args[7]) : $sender->getLevel();
 		 if(!$level instanceof Level){
 			 $sender->sendMessage(TextFormat::RED ."Wrong LevelName");
 			 return false;
 		  }
-		 $x = $args[4];
-		 $y = $args[5];
-		 $z = $args[6];
-		 }elseif(count($args) === 4){
-		 $level = $sender->getLevel();
-		 $x = $sender->getX();
-		 $y = $sender->getY();
-		 $z = $sender->getZ();
-		 }
+		 $x = isset($args[4]) ? $args[4] : $sender->getX();
+		 $y = isset($args[5]) ? $args[5] : $sender->getY();
+		 $z = isset($args[6]) ? $args[6] : $sender->getZ();
+
 		$pos = new Position($x, $y, $z, $level);
 		$caves[0] = isset($args[0]) ? $args[0] : mt_rand(1, 360);
 		$caves[1] = isset($args[1]) ? $args[1] : mt_rand(10, 300);
 		$caves[2] = isset($args[2]) ? $args[2] : mt_rand(1, 6);
 		$caves[4] = isset($args[3]) ? $args[3] : mt_rand(1, 10);
 		$caves[3] = [false, true, true];
-		$sender->sendMessage(new TranslationContainer("pocketmine.commands.cave.info", [$caves[0], $caves[1], $caves[2], $caves[3]]));
+		$sender->sendMessage(new TranslationContainer("pocketmine.commands.cave.info", [$caves[0], $caves[1], $caves[2], $caves[4]]));
 		$sender->sendMessage(new TranslationContainer(TextFormat::YELLOW . "%pocketmine.commands.cave.start"));
 		$sender->sendMessage($pos->x . " " . $pos->y . " " . $pos->z);
 		$this->caves($pos, $caves);
