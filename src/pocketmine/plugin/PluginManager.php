@@ -22,8 +22,8 @@
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author Rex-Tech
- * @link https://github.com/Rex-Tech/GenisysPro
+ * @author GenisysPro
+ * @link https://github.com/GenisysPro/GenisysPro
  *
  *
 */
@@ -276,7 +276,12 @@ class PluginManager{
 							}
 
 							if($compatible === false){
-			    $this->server->getLogger()->debug("插件{$name}的API与服务器不符,但GenisysPro仍然加载了它");
+							 if($this->server->loadIncompatibleAPI === true){
+			     $this->server->getLogger()->debug("插件{$name}的API与服务器不符,但GenisysPro仍然加载了它");
+			    }else{
+			     $this->server->getLogger()->error($this->server->getLanguage()->translateString("pocketmine.plugin.loadError", [$name, "%pocketmine.plugin.incompatibleAPI"]));
+								 continue;
+			    }
 							}
 
 							if($compatiblegeniapi === false){

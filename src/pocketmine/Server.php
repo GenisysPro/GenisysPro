@@ -1496,6 +1496,7 @@ class Server{
 		$this->expEnabled = $this->getAdvancedProperty("player.experience", true);
 		$this->keepInventory = $this->getAdvancedProperty("player.keep-inventory", false);
 		$this->keepExperience = $this->getAdvancedProperty("player.keep-experience", false);
+		$this->loadIncompatibleAPI = $this->getAdvancedProperty("developer.load-incompatible-api", false);
 		$this->netherEnabled = $this->getAdvancedProperty("nether.allow-nether", false);
 		$this->netherName = $this->getAdvancedProperty("nether.level-name", "nether");
 		$this->weatherRandomDurationMin = $this->getAdvancedProperty("level.weather-random-duration-min", 6000);
@@ -1801,16 +1802,18 @@ class Server{
 			Color::init();
 			$this->craftingManager = new CraftingManager();
 
-			if($this->resourceEnabled){
-   $this->resourceManager = new ResourcePackManager($this, \pocketmine\PATH . "resource_packs" . DIRECTORY_SEPARATOR);
-			}
+			if($this->resourceEnabled) {
+                $this->resourceManager = new ResourcePackManager($this, \pocketmine\PATH . "resource_packs" . DIRECTORY_SEPARATOR);
+            }
 
 			$this->pluginManager = new PluginManager($this, $this->commandMap);
 			$this->pluginManager->subscribeToPermission(Server::BROADCAST_CHANNEL_ADMINISTRATIVE, $this->consoleSender);
 			$this->pluginManager->setUseTimings($this->getProperty("settings.enable-profiling", false));
 			$this->profilingTickRate = (float) $this->getProperty("settings.profile-report-trigger", 20);
 			$this->pluginManager->registerInterface(PharPluginLoader::class);
-			$this->pluginManager->registerInterface(FolderPluginLoader::class);
+			if($this->getAdvancedProperty("developer.folder-plugin-loader") === true) {
+                $this->pluginManager->registerInterface(FolderPluginLoader::class);
+            }
 			$this->pluginManager->registerInterface(ScriptPluginLoader::class);
 
 			//set_exception_handler([$this, "exceptionHandler"]);

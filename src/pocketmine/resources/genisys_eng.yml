@@ -1,8 +1,20 @@
-#Genisys Advanced Configuration File
+#
+#   _____            _               _____           
+#  / ____|          (_)             |  __ \          
+# | |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
+# | | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \ 
+# | |__| |  __/ | | | \__ \ |_| \__ \ |   | | | (_) |
+#  \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/ 
+#                          __/ |                    
+#                         |___/                     
+#
+#
+#
+#GenisysPro Advanced Configuration File
 
 #Version of this file
 config:
- version: 25
+ version: 26
 
 level:
  #Set if weather is enabled (rain may cause lag to older devices)
@@ -28,6 +40,14 @@ player:
  auto-clear-inventory : true
  #Choose if to keep a player's experience after they die
  keep-experience: false
+
+developer:
+  #This setting allows the server to load plugins through the source directory over a .phar file
+  #Recommended that it stays "false"
+  folder-plugin-loader: true
+  #This setting allows the server to load plugins with Incompatible API
+  #Recommanded that it stays "false"
+  load-incompatible-api: true
 
 nether:
  #Choose if the nether is allowed. The level of nether will generate automatically
