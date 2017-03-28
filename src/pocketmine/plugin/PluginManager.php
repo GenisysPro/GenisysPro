@@ -276,7 +276,7 @@ class PluginManager{
 							}
 
 							if($compatible === false){
-			    $this->server->getLogger()->notice("插件{$name}的API与服务器不符,但GenisysPro仍然加载了它");
+			    $this->server->getLogger()->debug("插件{$name}的API与服务器不符,但GenisysPro仍然加载了它");
 							}
 
 							if($compatiblegeniapi === false){
