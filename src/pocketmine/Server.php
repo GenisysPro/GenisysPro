@@ -1496,7 +1496,7 @@ class Server{
 		$this->expEnabled = $this->getAdvancedProperty("player.experience", true);
 		$this->keepInventory = $this->getAdvancedProperty("player.keep-inventory", false);
 		$this->keepExperience = $this->getAdvancedProperty("player.keep-experience", false);
-		$this->loadIncompatibleAPI = $this->getAdvancedProperty("developer.load-incompatible-api", false);
+		$this->loadIncompatibleAPI = $this->getAdvancedProperty("developer.load-incompatible-api", true);
 		$this->netherEnabled = $this->getAdvancedProperty("nether.allow-nether", false);
 		$this->netherName = $this->getAdvancedProperty("nether.level-name", "nether");
 		$this->weatherRandomDurationMin = $this->getAdvancedProperty("level.weather-random-duration-min", 6000);
