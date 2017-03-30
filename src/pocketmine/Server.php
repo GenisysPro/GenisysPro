@@ -314,6 +314,7 @@ class Server{
 	public $enchantingTableEnabled = true;
 	public $countBookshelf = false;
 	public $allowInventoryCheats = false;
+	public $folderpluginloader = true;
 
 	/**
 	 * @return string
@@ -1537,6 +1538,8 @@ class Server{
 
 		$this->allowInventoryCheats = $this->getAdvancedProperty("inventory.allow-cheats", false);
 	}
+		$this->folderpluginloader = $this->getAdvancedProperty("developer.folder-plugin-loader", true);
+	}
 	
 	/**
 	 * @deprecated Use SynapsePM plugin instead
@@ -1811,7 +1814,7 @@ class Server{
 			$this->pluginManager->setUseTimings($this->getProperty("settings.enable-profiling", false));
 			$this->profilingTickRate = (float) $this->getProperty("settings.profile-report-trigger", 20);
 			$this->pluginManager->registerInterface(PharPluginLoader::class);
-			if($this->getAdvancedProperty("developer.folder-plugin-loader") === true) {
+			if($this->folderpluginloader === true) {
                 $this->pluginManager->registerInterface(FolderPluginLoader::class);
             }
 			$this->pluginManager->registerInterface(ScriptPluginLoader::class);
