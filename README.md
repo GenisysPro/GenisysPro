@@ -48,6 +48,8 @@ Donate
 Tool
 -------------
 * [Pocket Server](https://github.com/fengberd/MinecraftPEServer) - Run PocketMine-MP/Nukkit on Android devices
+* [BetaTester]
+(https://github.com/GenisysPro/BetaTester) - More version suggestion / 支持更多版本
 
 
 Licence
