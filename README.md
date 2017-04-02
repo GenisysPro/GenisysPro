@@ -14,6 +14,7 @@ GenisysPro是一个基于Genisys的服务器软件.大多数功能由iTXTech编�
 Some of the extended functionality that Genisys offers:
 一些特色功能:
 
+* 1.0.0-1.0.4全版本(如需1.0.5支持请下载[BetaTester](https://github.com/GenisysPro/BetaTester))
 * Extended API for plugins (GeniAPI) / 继承API
 * Optional Xbox Live authentication / XBox登录验证
 * Support for Windows 10 Edition Beta / Windows 10 Edition Beta支持
