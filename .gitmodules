@@ -7,3 +7,6 @@
 [submodule "ci/plugins/PocketMine-DevTools"]
 	path = ci/plugins/PocketMine-DevTools
 	url = https://github.com/pmmp/PocketMine-DevTools.git
+[submodule "ci/plugins/BetaTester"]
+	path = ci/plugins/BetaTester
+	url = https://github.com/GenisysPro/BetaTester.git
