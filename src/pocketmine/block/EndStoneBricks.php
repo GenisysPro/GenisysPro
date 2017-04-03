@@ -22,30 +22,39 @@
  *
 */
 
-namespace pocketmine\item;
+namespace pocketmine\block;
 
-use pocketmine\block\Block;
+use pocketmine\item\Item;
+use pocketmine\item\Tool;
 
-/**
- * Class used for Items that can be Blocks
- */
-class ItemBlock extends Item{
-	public function __construct(Block $block, $meta = 0, int $count = 1){
-		$this->block = $block;
-		parent::__construct($block->getId(), $block->getDamage(), $count, $block->getName());
+class EndStoneBricks extends Solid{
+
+	protected $id = self::END_STONE_BRICKS;
+
+	public function __construct($meta = 0){
+		$this->meta = $meta;
 	}
 
-	public function setDamage(int $meta){
-		$this->meta = $meta !== -1 ? $meta & 0xf : -1;
-		$this->block->setDamage($this->meta !== -1 ? $this->meta : 0);
+	public function getHardness() {
+		return 0.8;
 	}
 
-	public function __clone(){
-		$this->block = clone $this->block;
+	public function getToolType(){
+		return Tool::TYPE_PICKAXE;
 	}
 
-	public function getBlock() : Block{
-		return $this->block;
+	public function getName() : string{
+		return "End Stone Bricks";
+	}
+
+	public function getDrops(Item $item) : array {
+		if($item->isPickaxe() >= 1){
+			return [
+				[self::END_STONE_BRICKS, $this->meta & 0x03, 1],
+			];
+		}else{
+			return [];
+		}
 	}
 
 }

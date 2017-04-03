@@ -2,19 +2,22 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
+ *  _____            _               _____           
+ * / ____|          (_)             |  __ \          
+ *| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
+ *| | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \ 
+ *| |__| |  __/ | | | \__ \ |_| \__ \ |   | | | (_) |
+ * \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/ 
+ *                         __/ |                    
+ *                        |___/                     
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author PocketMine Team
- * @link http://www.pocketmine.net/
+ * @author GenisysPro
+ * @link https://github.com/GenisysPro/GenisysPro
  *
  *
 */
@@ -24,12 +27,12 @@ namespace pocketmine\item;
 use pocketmine\block\BlockIds;
 
 interface ItemIds extends BlockIds{
-
+	
 	//All BlockIds are also accessible through this interface.
 	const IRON_SHOVEL = 256;
 	const IRON_PICKAXE = 257;
 	const IRON_AXE = 258;
-	const FLINT_AND_STEEL = 259, FLINT_STEEL = 259;
+	const FLINT_AND_STEEL = 259; const FLINT_STEEL = 259;
 	const APPLE = 260;
 	const BOW = 261;
 	const ARROW = 262;
@@ -50,13 +53,13 @@ interface ItemIds extends BlockIds{
 	const DIAMOND_SHOVEL = 277;
 	const DIAMOND_PICKAXE = 278;
 	const DIAMOND_AXE = 279;
-	const STICK = 280, STICKS = 280;
+	const STICK = 280; const STICKS = 280;
 	const BOWL = 281;
 	const MUSHROOM_STEW = 282;
-	const GOLD_SWORD = 283, GOLDEN_SWORD = 283;
-	const GOLD_SHOVEL = 284, GOLDEN_SHOVEL = 284;
-	const GOLD_PICKAXE = 285, GOLDEN_PICKAXE = 285;
-	const GOLD_AXE = 286, GOLDEN_AXE = 286;
+	const GOLD_SWORD = 283; const GOLDEN_SWORD = 283;
+	const GOLD_SHOVEL = 284; const GOLDEN_SHOVEL = 284;
+	const GOLD_PICKAXE = 285; const GOLDEN_PICKAXE = 285;
+	const GOLD_AXE = 286; const GOLDEN_AXE = 286;
 	const STRING = 287;
 	const FEATHER = 288;
 	const GUNPOWDER = 289;
@@ -64,8 +67,8 @@ interface ItemIds extends BlockIds{
 	const STONE_HOE = 291;
 	const IRON_HOE = 292;
 	const DIAMOND_HOE = 293;
-	const GOLD_HOE = 294, GOLDEN_HOE = 294;
-	const SEEDS = 295, WHEAT_SEEDS = 295;
+	const GOLD_HOE = 294; const GOLDEN_HOE = 294;
+	const SEEDS = 295; const WHEAT_SEEDS = 295;
 	const WHEAT = 296;
 	const BREAD = 297;
 	const LEATHER_CAP = 298;
@@ -94,20 +97,21 @@ interface ItemIds extends BlockIds{
 	const PAINTING = 321;
 	const GOLDEN_APPLE = 322;
 	const SIGN = 323;
-	const WOODEN_DOOR = 324, OAK_DOOR = 324;
+	const WOODEN_DOOR = 324; const OAK_DOOR = 324;
 	const BUCKET = 325;
 
 	const MINECART = 328;
 	const SADDLE = 329;
 	const IRON_DOOR = 330;
-	const REDSTONE = 331, REDSTONE_DUST = 331;
+	const REDSTONE = 331;
+	const REDSTONE_DUST = 331;
 	const SNOWBALL = 332;
 	const BOAT = 333;
 	const LEATHER = 334;
 
 	const BRICK = 336;
 	const CLAY = 337;
-	const SUGARCANE = 338, SUGAR_CANE = 338, SUGAR_CANES = 338;
+	const SUGARCANE = 338; const SUGAR_CANE = 338; const SUGAR_CANES = 338;
 	const PAPER = 339;
 	const BOOK = 340;
 	const SLIMEBALL = 341;
@@ -129,18 +133,18 @@ interface ItemIds extends BlockIds{
 	const COOKIE = 357;
 	const FILLED_MAP = 358;
 	const SHEARS = 359;
-	const MELON = 360, MELON_SLICE = 360;
+	const MELON = 360; const MELON_SLICE = 360;
 	const PUMPKIN_SEEDS = 361;
 	const MELON_SEEDS = 362;
 	const RAW_BEEF = 363;
-	const STEAK = 364, COOKED_BEEF = 364;
+	const STEAK = 364; const COOKED_BEEF = 364;
 	const RAW_CHICKEN = 365;
 	const COOKED_CHICKEN = 366;
 	const ROTTEN_FLESH = 367;
 	const ENDER_PEARL = 368;
 	const BLAZE_ROD = 369;
 	const GHAST_TEAR = 370;
-	const GOLD_NUGGET = 371, GOLDEN_NUGGET = 371;
+	const GOLD_NUGGET = 371; const GOLDEN_NUGGET = 371;
 	const NETHER_WART = 372;
 	const POTION = 373;
 	const GLASS_BOTTLE = 374;
@@ -150,26 +154,28 @@ interface ItemIds extends BlockIds{
 	const MAGMA_CREAM = 378;
 	const BREWING_STAND = 379;
 	const CAULDRON = 380;
-
+	const EYE_OF_ENDER = 381;
 	const GLISTERING_MELON = 382;
 	const SPAWN_EGG = 383;
-	const BOTTLE_O_ENCHANTING = 384, ENCHANTING_BOTTLE = 384;
+	const BOTTLE_O_ENCHANTING = 384; const ENCHANTING_BOTTLE = 384;
 	const FIRE_CHARGE = 385;
-
+	//const BOOK_AND_QUILL = 386;
+	//const WRITTTEN_BOOK = 387;  
 	const EMERALD = 388;
 	const ITEM_FRAME = 389;
 	const FLOWER_POT = 390;
-	const CARROT = 391, CARROTS = 391;
-	const POTATO = 392, POTATOES = 392;
-	const BAKED_POTATO = 393, BAKED_POTATOES = 393;
+	const CARROT = 391; const CARROTS = 391;
+	const POTATO = 392; const POTATOES = 392;
+	const BAKED_POTATO = 393; const BAKED_POTATOES = 393;
 	const POISONOUS_POTATO = 394;
-	const MAP = 395, EMPTY_MAP = 395;
+	const MAP = 395; const EMPTY_MAP = 395;
 	const GOLDEN_CARROT = 396;
-	const MOB_HEAD = 397, SKULL = 397;
+	const MOB_HEAD = 397; const SKULL = 397;
 	const CARROT_ON_A_STICK = 398;
 	const NETHER_STAR = 399;
 	const PUMPKIN_PIE = 400;
-
+	//const FIREWORK = 401;
+	//const FIREWORK_STAR = 402;
 	const ENCHANTED_BOOK = 403;
 	const COMPARATOR = 404;
 	const NETHER_BRICK = 405;
@@ -188,22 +194,27 @@ interface ItemIds extends BlockIds{
 	const IRON_HORSE_ARMOR = 417;
 	const GOLD_HORSE_ARMOR = 418;
 	const DIAMOND_HORSE_ARMOR = 419;
-	const LEAD = 420, LEASH = 420;
+	const LEAD = 420; const LEASH = 420;
 	const NAMETAG = 421;
 	const PRISMARINE_CRYSTALS = 422;
 	const RAW_MUTTON = 423;
 	const COOKED_MUTTON = 424;
-
+	//const BANNER = 425;
+	//const END_CRYSTAL = 426;
 	const SPRUCE_DOOR = 427;
 	const BIRCH_DOOR = 428;
 	const JUNGLE_DOOR = 429;
 	const ACACIA_DOOR = 430;
 	const DARK_OAK_DOOR = 431;
-
+	const CHORUS_FRUIT = 432;
+	const POPPED_CHORUS_FRUIT = 433;
+	const DRAGONS_BREATH = 437;
 	const SPLASH_POTION = 438;
-
+	const ELYTRA = 444;
+	const ELYTRA_WINGS = 444; 
+	const SHULKER_SHELL = 445;
 	const BEETROOT = 457;
-	const BEETROOT_SEEDS = 458, BEETROOT_SEED = 458;
+	const BEETROOT_SEEDS = 458; const BEETROOT_SEED = 458;
 	const BEETROOT_SOUP = 459;
 	const RAW_SALMON = 460;
 	const CLOWN_FISH = 461;
