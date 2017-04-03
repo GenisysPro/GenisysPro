@@ -22,30 +22,48 @@
  *
 */
 
-namespace pocketmine\item;
+namespace pocketmine\block;
 
-use pocketmine\block\Block;
+use pocketmine\item\Item;
+use pocketmine\item\Tool;
 
-/**
- * Class used for Items that can be Blocks
- */
-class ItemBlock extends Item{
-	public function __construct(Block $block, $meta = 0, int $count = 1){
-		$this->block = $block;
-		parent::__construct($block->getId(), $block->getDamage(), $count, $block->getName());
+class Purpur extends Solid{
+
+	protected $id = self::PURPUR;
+
+	public function __construct($meta = 0){
+		$this->meta = $meta;
 	}
 
-	public function setDamage(int $meta){
-		$this->meta = $meta !== -1 ? $meta & 0xf : -1;
-		$this->block->setDamage($this->meta !== -1 ? $this->meta : 0);
+	public function getHardness(){
+		return 1.5;
 	}
 
-	public function __clone(){
-		$this->block = clone $this->block;
+	public function getToolType(){
+		return Tool::TYPE_PICKAXE;
 	}
 
-	public function getBlock() : Block{
-		return $this->block;
+	public function getName() : string{
+		static $names = [
+			0 => "Purpur Block",
+			2 => "Purpur Pillar",
+		];
+
+		return $names[$this->meta & 0x0f] ?? "Purpur Block"; //TODO fix properly;
+	}
+
+	public function getDrops(Item $item) : array {
+		if($item->isPickaxe() >= Tool::TIER_WOODEN){
+
+			return [
+				[$this->id, $this->meta & 0x0f, 1],
+			];
+
+		}else{
+
+			return [];
+
+		}
 	}
 
 }

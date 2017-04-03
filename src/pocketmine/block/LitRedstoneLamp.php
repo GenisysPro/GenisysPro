@@ -22,30 +22,35 @@
  *
 */
 
-namespace pocketmine\item;
+namespace pocketmine\block;
 
-use pocketmine\block\Block;
+use pocketmine\item\Item;
+use pocketmine\item\Tool;
 
-/**
- * Class used for Items that can be Blocks
- */
-class ItemBlock extends Item{
-	public function __construct(Block $block, $meta = 0, int $count = 1){
-		$this->block = $block;
-		parent::__construct($block->getId(), $block->getDamage(), $count, $block->getName());
+
+class LitRedstoneLamp extends Solid{
+	protected $id = self::LIT_REDSTONE_LAMP;
+
+	public function __construct($meta = 0){
+		$this->meta = $meta;
 	}
 
-	public function setDamage(int $meta){
-		$this->meta = $meta !== -1 ? $meta & 0xf : -1;
-		$this->block->setDamage($this->meta !== -1 ? $this->meta : 0);
+	public function getName() : string{
+		return "Lit Redstone Lamp";
 	}
 
-	public function __clone(){
-		$this->block = clone $this->block;
+	public function getHardness() {
+		return 0.3;
 	}
 
-	public function getBlock() : Block{
-		return $this->block;
+	public function getToolType(){
+		return Tool::TYPE_PICKAXE;
 	}
 
+
+	public function getDrops(Item $item) : array {
+		return [
+			[Item::REDSTONE_LAMP, 0 ,1],
+		];
+	}
 }
