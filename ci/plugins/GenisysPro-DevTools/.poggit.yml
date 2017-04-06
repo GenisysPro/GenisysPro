@@ -1,0 +1,10 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/pmmp/PocketMine-DevTools
+branches:
+ - master
+ - api3
+projects:
+  PocketMine-DevTools:
+    path: ""
+    stub: "stub.php"
+    icon: devtools.png
+...
