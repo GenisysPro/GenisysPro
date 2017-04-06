@@ -19,34 +19,35 @@
  *
 */
 
-namespace pocketmine\network;
 
-use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
+namespace pocketmine\network\mcpe\protocol;
 
-class CompressBatchedTask extends AsyncTask{
+#include <rules/DataPacket.h>
 
-	public $level = 7;
-	public $data;
-	public $final;
-	public $targets;
 
-	public function __construct($data, array $targets, $level = 7){
-		$this->data = $data;
-		$this->targets = $targets;
-		$this->level = $level;
+use pocketmine\network\mcpe\NetworkSession;
+
+class ShowCreditsPacket extends DataPacket{
+	const NETWORK_ID = ProtocolInfo::SHOW_CREDITS_PACKET;
+
+	const STATUS_START_CREDITS = 0;
+	const STATUS_END_CREDITS = 1;
+
+	public $playerEid;
+	public $status;
+
+	public function decode(){
+		$this->playerEid = $this->getEntityRuntimeId();
+		$this->status = $this->getVarInt();
 	}
 
-	public function onRun(){
-		try{
-			$this->final = zlib_encode($this->data, ZLIB_ENCODING_DEFLATE, $this->level);
-			$this->data = null;
-		}catch(\Throwable $e){
-
-		}
+	public function encode(){
+		$this->reset();
+		$this->putEntityRuntimeId($this->playerEid);
+		$this->putVarInt($this->status);
 	}
 
-	public function onCompletion(Server $server){
-		$server->broadcastPacketsCallback($this->final, (array) $this->targets);
+	public function handle(NetworkSession $session) : bool{
+		return $session->handleShowCredits($this);
 	}
 }

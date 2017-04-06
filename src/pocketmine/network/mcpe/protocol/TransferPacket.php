@@ -19,34 +19,30 @@
  *
 */
 
-namespace pocketmine\network;
+namespace pocketmine\network\mcpe\protocol;
 
-use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
+#include <rules/DataPacket.h>
 
-class CompressBatchedTask extends AsyncTask{
+use pocketmine\network\mcpe\NetworkSession;
 
-	public $level = 7;
-	public $data;
-	public $final;
-	public $targets;
+class TransferPacket extends DataPacket{
+	const NETWORK_ID = ProtocolInfo::TRANSFER_PACKET;
 
-	public function __construct($data, array $targets, $level = 7){
-		$this->data = $data;
-		$this->targets = $targets;
-		$this->level = $level;
+	public $address;
+	public $port = 19132;
+
+	public function decode(){
+
 	}
 
-	public function onRun(){
-		try{
-			$this->final = zlib_encode($this->data, ZLIB_ENCODING_DEFLATE, $this->level);
-			$this->data = null;
-		}catch(\Throwable $e){
-
-		}
+	public function encode(){
+		$this->reset();
+		$this->putString($this->address);
+		$this->putLShort($this->port);
 	}
 
-	public function onCompletion(Server $server){
-		$server->broadcastPacketsCallback($this->final, (array) $this->targets);
+	public function handle(NetworkSession $session) : bool{
+		return $session->handleTransfer($this);
 	}
+
 }

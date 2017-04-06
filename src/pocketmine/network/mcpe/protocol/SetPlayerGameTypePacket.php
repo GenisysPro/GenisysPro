@@ -19,34 +19,29 @@
  *
 */
 
-namespace pocketmine\network;
+namespace pocketmine\network\mcpe\protocol;
 
-use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
+#include <rules/DataPacket.h>
 
-class CompressBatchedTask extends AsyncTask{
 
-	public $level = 7;
-	public $data;
-	public $final;
-	public $targets;
+use pocketmine\network\mcpe\NetworkSession;
 
-	public function __construct($data, array $targets, $level = 7){
-		$this->data = $data;
-		$this->targets = $targets;
-		$this->level = $level;
+class SetPlayerGameTypePacket extends DataPacket{
+	const NETWORK_ID = ProtocolInfo::SET_PLAYER_GAME_TYPE_PACKET;
+
+	public $gamemode;
+
+	public function decode(){
+		$this->gamemode = $this->getVarInt();
 	}
 
-	public function onRun(){
-		try{
-			$this->final = zlib_encode($this->data, ZLIB_ENCODING_DEFLATE, $this->level);
-			$this->data = null;
-		}catch(\Throwable $e){
-
-		}
+	public function encode(){
+		$this->reset();
+		$this->putVarInt($this->gamemode);
 	}
 
-	public function onCompletion(Server $server){
-		$server->broadcastPacketsCallback($this->final, (array) $this->targets);
+	public function handle(NetworkSession $session) : bool{
+		return $session->handleSetPlayerGameType($this);
 	}
+
 }

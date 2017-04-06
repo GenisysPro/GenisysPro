@@ -19,34 +19,33 @@
  *
 */
 
-namespace pocketmine\network;
+namespace pocketmine\network\mcpe\protocol;
 
-use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
+#include <rules/DataPacket.h>
 
-class CompressBatchedTask extends AsyncTask{
 
-	public $level = 7;
-	public $data;
-	public $final;
-	public $targets;
+use pocketmine\network\mcpe\NetworkSession;
 
-	public function __construct($data, array $targets, $level = 7){
-		$this->data = $data;
-		$this->targets = $targets;
-		$this->level = $level;
+class AnimatePacket extends DataPacket{
+	const NETWORK_ID = ProtocolInfo::ANIMATE_PACKET;
+
+	public $action;
+	public $eid;
+
+	public function decode(){
+		$this->action = $this->getVarInt();
+		$this->eid = $this->getEntityRuntimeId();
+		//TODO: check extra float which appears when 0x80 bitflag is set
 	}
 
-	public function onRun(){
-		try{
-			$this->final = zlib_encode($this->data, ZLIB_ENCODING_DEFLATE, $this->level);
-			$this->data = null;
-		}catch(\Throwable $e){
-
-		}
+	public function encode(){
+		$this->reset();
+		$this->putVarInt($this->action);
+		$this->putEntityRuntimeId($this->eid);
 	}
 
-	public function onCompletion(Server $server){
-		$server->broadcastPacketsCallback($this->final, (array) $this->targets);
+	public function handle(NetworkSession $session) : bool{
+		return $session->handleAnimate($this);
 	}
+
 }

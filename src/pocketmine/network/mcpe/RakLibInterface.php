@@ -19,7 +19,7 @@
  *
 */
 
-namespace pocketmine\network;
+namespace pocketmine\network\mcpe;
 
 use pocketmine\event\player\PlayerCreationEvent;
 use pocketmine\network\AdvancedSourceInterface;

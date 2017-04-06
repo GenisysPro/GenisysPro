@@ -19,34 +19,15 @@
  *
 */
 
-namespace pocketmine\network;
+namespace pocketmine\network\mcpe;
 
-use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
+use raklib\protocol\EncapsulatedPacket;
 
-class CompressBatchedTask extends AsyncTask{
+class CachedEncapsulatedPacket extends EncapsulatedPacket{
 
-	public $level = 7;
-	public $data;
-	public $final;
-	public $targets;
+	private $internalData = null;
 
-	public function __construct($data, array $targets, $level = 7){
-		$this->data = $data;
-		$this->targets = $targets;
-		$this->level = $level;
-	}
-
-	public function onRun(){
-		try{
-			$this->final = zlib_encode($this->data, ZLIB_ENCODING_DEFLATE, $this->level);
-			$this->data = null;
-		}catch(\Throwable $e){
-
-		}
-	}
-
-	public function onCompletion(Server $server){
-		$server->broadcastPacketsCallback($this->final, (array) $this->targets);
+	public function toBinary($internal = false){
+		return $this->internalData === null ? ($this->internalData = parent::toBinary($internal)) : $this->internalData;
 	}
 }

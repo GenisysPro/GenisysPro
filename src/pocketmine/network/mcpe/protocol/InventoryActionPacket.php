@@ -19,34 +19,32 @@
  *
 */
 
-namespace pocketmine\network;
+namespace pocketmine\network\mcpe\protocol;
 
-use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
+#include <rules/DataPacket.h>
 
-class CompressBatchedTask extends AsyncTask{
+use pocketmine\network\mcpe\NetworkSession;
 
-	public $level = 7;
-	public $data;
-	public $final;
-	public $targets;
+class InventoryActionPacket extends DataPacket{
+	const NETWORK_ID = ProtocolInfo::INVENTORY_ACTION_PACKET;
 
-	public function __construct($data, array $targets, $level = 7){
-		$this->data = $data;
-		$this->targets = $targets;
-		$this->level = $level;
+	public $uvarint0;
+	public $item;
+	public $varint1;
+	public $varint2;
+
+	public function decode(){
+
 	}
 
-	public function onRun(){
-		try{
-			$this->final = zlib_encode($this->data, ZLIB_ENCODING_DEFLATE, $this->level);
-			$this->data = null;
-		}catch(\Throwable $e){
-
-		}
+	public function encode(){
+		$this->putUnsignedVarInt($this->uvarint0);
+		$this->putSlot($this->item);
+		$this->putVarInt($this->varint1);
+		$this->putVarInt($this->varint2);
 	}
 
-	public function onCompletion(Server $server){
-		$server->broadcastPacketsCallback($this->final, (array) $this->targets);
+	public function handle(NetworkSession $session) : bool{
+		return $session->handleInventoryAction($this);
 	}
 }

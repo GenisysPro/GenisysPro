@@ -19,34 +19,35 @@
  *
 */
 
-namespace pocketmine\network;
+namespace pocketmine\network\mcpe\protocol;
 
-use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
+#include <rules/DataPacket.h>
 
-class CompressBatchedTask extends AsyncTask{
 
-	public $level = 7;
-	public $data;
-	public $final;
-	public $targets;
+use pocketmine\network\mcpe\NetworkSession;
 
-	public function __construct($data, array $targets, $level = 7){
-		$this->data = $data;
-		$this->targets = $targets;
-		$this->level = $level;
+class ServerToClientHandshakePacket extends DataPacket{
+	const NETWORK_ID = ProtocolInfo::SERVER_TO_CLIENT_HANDSHAKE_PACKET;
+
+	public $publicKey;
+	public $serverToken;
+
+	public function canBeSentBeforeLogin() : bool{
+		return true;
 	}
 
-	public function onRun(){
-		try{
-			$this->final = zlib_encode($this->data, ZLIB_ENCODING_DEFLATE, $this->level);
-			$this->data = null;
-		}catch(\Throwable $e){
-
-		}
+	public function decode(){
+		$this->publicKey = $this->getString();
+		$this->serverToken = $this->getString();
 	}
 
-	public function onCompletion(Server $server){
-		$server->broadcastPacketsCallback($this->final, (array) $this->targets);
+	public function encode(){
+		$this->reset();
+		$this->putString($this->publicKey);
+		$this->putString($this->serverToken);
+	}
+
+	public function handle(NetworkSession $session) : bool{
+		return $session->handleServerToClientHandshake($this);
 	}
 }

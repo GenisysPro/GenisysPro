@@ -19,34 +19,33 @@
  *
 */
 
-namespace pocketmine\network;
+namespace pocketmine\network\mcpe\protocol;
 
-use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
+#include <rules/DataPacket.h>
 
-class CompressBatchedTask extends AsyncTask{
 
-	public $level = 7;
-	public $data;
-	public $final;
-	public $targets;
+use pocketmine\network\mcpe\NetworkSession;
 
-	public function __construct($data, array $targets, $level = 7){
-		$this->data = $data;
-		$this->targets = $targets;
-		$this->level = $level;
+class ContainerSetDataPacket extends DataPacket{
+	const NETWORK_ID = ProtocolInfo::CONTAINER_SET_DATA_PACKET;
+
+	public $windowid;
+	public $property;
+	public $value;
+
+	public function decode(){
+
 	}
 
-	public function onRun(){
-		try{
-			$this->final = zlib_encode($this->data, ZLIB_ENCODING_DEFLATE, $this->level);
-			$this->data = null;
-		}catch(\Throwable $e){
-
-		}
+	public function encode(){
+		$this->reset();
+		$this->putByte($this->windowid);
+		$this->putVarInt($this->property);
+		$this->putVarInt($this->value);
 	}
 
-	public function onCompletion(Server $server){
-		$server->broadcastPacketsCallback($this->final, (array) $this->targets);
+	public function handle(NetworkSession $session) : bool{
+		return $session->handleContainerSetData($this);
 	}
+
 }

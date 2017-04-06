@@ -19,34 +19,35 @@
  *
 */
 
-namespace pocketmine\network;
+namespace pocketmine\network\mcpe\protocol;
 
-use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
+#include <rules/DataPacket.h>
 
-class CompressBatchedTask extends AsyncTask{
 
-	public $level = 7;
-	public $data;
-	public $final;
-	public $targets;
+use pocketmine\network\mcpe\NetworkSession;
 
-	public function __construct($data, array $targets, $level = 7){
-		$this->data = $data;
-		$this->targets = $targets;
-		$this->level = $level;
+class BlockEventPacket extends DataPacket{
+	const NETWORK_ID = ProtocolInfo::BLOCK_EVENT_PACKET;
+
+	public $x;
+	public $y;
+	public $z;
+	public $case1;
+	public $case2;
+
+	public function decode(){
+
 	}
 
-	public function onRun(){
-		try{
-			$this->final = zlib_encode($this->data, ZLIB_ENCODING_DEFLATE, $this->level);
-			$this->data = null;
-		}catch(\Throwable $e){
-
-		}
+	public function encode(){
+		$this->reset();
+		$this->putBlockPosition($this->x, $this->y, $this->z);
+		$this->putVarInt($this->case1);
+		$this->putVarInt($this->case2);
 	}
 
-	public function onCompletion(Server $server){
-		$server->broadcastPacketsCallback($this->final, (array) $this->targets);
+	public function handle(NetworkSession $session) : bool{
+		return $session->handleBlockEvent($this);
 	}
+
 }

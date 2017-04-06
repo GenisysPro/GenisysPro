@@ -19,34 +19,34 @@
  *
 */
 
-namespace pocketmine\network;
 
-use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
+namespace pocketmine\network\mcpe\protocol;
 
-class CompressBatchedTask extends AsyncTask{
+#include <rules/DataPacket.h>
 
-	public $level = 7;
-	public $data;
-	public $final;
-	public $targets;
 
-	public function __construct($data, array $targets, $level = 7){
-		$this->data = $data;
-		$this->targets = $targets;
-		$this->level = $level;
+use pocketmine\network\mcpe\NetworkSession;
+
+class BlockPickRequestPacket extends DataPacket{
+	const NETWORK_ID = ProtocolInfo::BLOCK_PICK_REQUEST_PACKET;
+
+	public $tileX;
+	public $tileY;
+	public $tileZ;
+	public $hotbarSlot;
+
+	public function decode(){
+		$this->getSignedBlockPosition($this->tileX, $this->tileY, $this->tileZ);
+		$this->hotbarSlot = $this->getByte();
 	}
 
-	public function onRun(){
-		try{
-			$this->final = zlib_encode($this->data, ZLIB_ENCODING_DEFLATE, $this->level);
-			$this->data = null;
-		}catch(\Throwable $e){
-
-		}
+	public function encode(){
+		$this->reset();
+		$this->putSignedBlockPosition($this->tileX, $this->tileY, $this->tileZ);
+		$this->putByte($this->hotbarSlot);
 	}
 
-	public function onCompletion(Server $server){
-		$server->broadcastPacketsCallback($this->final, (array) $this->targets);
+	public function handle(NetworkSession $session) : bool{
+		return $session->handleBlockPickRequest($this);
 	}
 }

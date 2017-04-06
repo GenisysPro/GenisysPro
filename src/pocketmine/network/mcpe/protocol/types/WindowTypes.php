@@ -19,34 +19,29 @@
  *
 */
 
-namespace pocketmine\network;
 
-use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
+namespace pocketmine\network\mcpe\protocol\types;
 
-class CompressBatchedTask extends AsyncTask{
 
-	public $level = 7;
-	public $data;
-	public $final;
-	public $targets;
+interface WindowTypes{
 
-	public function __construct($data, array $targets, $level = 7){
-		$this->data = $data;
-		$this->targets = $targets;
-		$this->level = $level;
-	}
+	const INVENTORY = -1;
+	const CONTAINER = 0;
+	const WORKBENCH = 1;
+	const FURNACE = 2;
+	const ENCHANTMENT = 3;
+	const BREWING_STAND = 4;
+	const ANVIL = 5;
+	const DISPENSER = 6;
+	const DROPPER = 7;
+	const HOPPER = 8;
+	const CAULDRON = 9;
+	const MINECART_CHEST = 10;
+	const MINECART_HOPPER = 11;
+	const HORSE = 12;
+	const BEACON = 13;
+	const STRUCTURE_EDITOR = 14;
+	const TRADING = 15;
+	const COMMAND_BLOCK = 16;
 
-	public function onRun(){
-		try{
-			$this->final = zlib_encode($this->data, ZLIB_ENCODING_DEFLATE, $this->level);
-			$this->data = null;
-		}catch(\Throwable $e){
-
-		}
-	}
-
-	public function onCompletion(Server $server){
-		$server->broadcastPacketsCallback($this->final, (array) $this->targets);
-	}
 }

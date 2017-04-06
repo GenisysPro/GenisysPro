@@ -19,34 +19,30 @@
  *
 */
 
-namespace pocketmine\network;
+namespace pocketmine\network\mcpe\protocol;
 
-use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
+#include <rules/DataPacket.h>
 
-class CompressBatchedTask extends AsyncTask{
+use pocketmine\network\mcpe\NetworkSession;
 
-	public $level = 7;
-	public $data;
-	public $final;
-	public $targets;
+class AvailableCommandsPacket extends DataPacket{
+	const NETWORK_ID = ProtocolInfo::AVAILABLE_COMMANDS_PACKET;
 
-	public function __construct($data, array $targets, $level = 7){
-		$this->data = $data;
-		$this->targets = $targets;
-		$this->level = $level;
+	public $commands; //JSON-encoded command data
+	public $unknown;
+
+	public function decode(){
+
 	}
 
-	public function onRun(){
-		try{
-			$this->final = zlib_encode($this->data, ZLIB_ENCODING_DEFLATE, $this->level);
-			$this->data = null;
-		}catch(\Throwable $e){
-
-		}
+	public function encode(){
+		$this->reset();
+		$this->putString($this->commands);
+		$this->putString($this->unknown);
 	}
 
-	public function onCompletion(Server $server){
-		$server->broadcastPacketsCallback($this->final, (array) $this->targets);
+	public function handle(NetworkSession $session) : bool{
+		return $session->handleAvailableCommands($this);
 	}
+
 }

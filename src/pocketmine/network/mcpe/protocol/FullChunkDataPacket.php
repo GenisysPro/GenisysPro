@@ -19,34 +19,33 @@
  *
 */
 
-namespace pocketmine\network;
+namespace pocketmine\network\mcpe\protocol;
 
-use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
+#include <rules/DataPacket.h>
 
-class CompressBatchedTask extends AsyncTask{
 
-	public $level = 7;
+use pocketmine\network\mcpe\NetworkSession;
+
+class FullChunkDataPacket extends DataPacket{
+	const NETWORK_ID = ProtocolInfo::FULL_CHUNK_DATA_PACKET;
+
+	public $chunkX;
+	public $chunkZ;
 	public $data;
-	public $final;
-	public $targets;
 
-	public function __construct($data, array $targets, $level = 7){
-		$this->data = $data;
-		$this->targets = $targets;
-		$this->level = $level;
+	public function decode(){
+
 	}
 
-	public function onRun(){
-		try{
-			$this->final = zlib_encode($this->data, ZLIB_ENCODING_DEFLATE, $this->level);
-			$this->data = null;
-		}catch(\Throwable $e){
-
-		}
+	public function encode(){
+		$this->reset();
+		$this->putVarInt($this->chunkX);
+		$this->putVarInt($this->chunkZ);
+		$this->putString($this->data);
 	}
 
-	public function onCompletion(Server $server){
-		$server->broadcastPacketsCallback($this->final, (array) $this->targets);
+	public function handle(NetworkSession $session) : bool{
+		return $session->handleFullChunkData($this);
 	}
+
 }

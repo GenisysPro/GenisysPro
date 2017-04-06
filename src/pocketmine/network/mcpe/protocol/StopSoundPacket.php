@@ -19,34 +19,32 @@
  *
 */
 
-namespace pocketmine\network;
 
-use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
+namespace pocketmine\network\mcpe\protocol;
 
-class CompressBatchedTask extends AsyncTask{
+#include <rules/DataPacket.h>
 
-	public $level = 7;
-	public $data;
-	public $final;
-	public $targets;
 
-	public function __construct($data, array $targets, $level = 7){
-		$this->data = $data;
-		$this->targets = $targets;
-		$this->level = $level;
+use pocketmine\network\mcpe\NetworkSession;
+
+class StopSoundPacket extends DataPacket{
+	const NETWORK_ID = ProtocolInfo::STOP_SOUND_PACKET;
+
+	public $string1;
+	public $stopAll;
+
+	public function decode(){
+		$this->string1 = $this->getString();
+		$this->stopAll = $this->getBool();
 	}
 
-	public function onRun(){
-		try{
-			$this->final = zlib_encode($this->data, ZLIB_ENCODING_DEFLATE, $this->level);
-			$this->data = null;
-		}catch(\Throwable $e){
-
-		}
+	public function encode(){
+		$this->reset();
+		$this->putString($this->string1);
+		$this->putBool($this->stopAll);
 	}
 
-	public function onCompletion(Server $server){
-		$server->broadcastPacketsCallback($this->final, (array) $this->targets);
+	public function handle(NetworkSession $session) : bool{
+		return $session->handleStopSound($this);
 	}
 }

@@ -19,34 +19,35 @@
  *
 */
 
-namespace pocketmine\network;
 
-use pocketmine\scheduler\AsyncTask;
-use pocketmine\Server;
+namespace pocketmine\network\mcpe\protocol;
 
-class CompressBatchedTask extends AsyncTask{
 
-	public $level = 7;
-	public $data;
-	public $final;
-	public $targets;
+use pocketmine\network\mcpe\NetworkSession;
 
-	public function __construct($data, array $targets, $level = 7){
-		$this->data = $data;
-		$this->targets = $targets;
-		$this->level = $level;
-	}
+class UnknownPacket extends DataPacket{
+	const NETWORK_ID = -1; //Invalid, do not try to write this
 
-	public function onRun(){
-		try{
-			$this->final = zlib_encode($this->data, ZLIB_ENCODING_DEFLATE, $this->level);
-			$this->data = null;
-		}catch(\Throwable $e){
+	public $payload;
 
+	public function pid(){
+		if(strlen($this->payload ?? "") > 0){
+			return ord($this->payload{0});
 		}
+		return self::NETWORK_ID;
 	}
 
-	public function onCompletion(Server $server){
-		$server->broadcastPacketsCallback($this->final, (array) $this->targets);
+	public function decode(){
+		$this->offset -= 1; //Rewind one byte so we can read the PID
+		$this->payload = $this->get(true);
+	}
+
+	public function encode(){
+		//Do not reset the buffer, this class does not have a valid NETWORK_ID constant.
+		$this->put($this->payload);
+	}
+
+	public function handle(NetworkSession $session) : bool{
+		return $session->handleUnknown($this);
 	}
 }
