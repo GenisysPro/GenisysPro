@@ -24,7 +24,7 @@
 
 namespace pocketmine\inventory;
 
-use pocketmine\network\mcpe\protocol\types\InventoryNetworkIds;
+use pocketmine\network\mcpe\protocol\types\WindowTypes;
 
 /**
  * Saves all the information regarding default inventory sizes and types
