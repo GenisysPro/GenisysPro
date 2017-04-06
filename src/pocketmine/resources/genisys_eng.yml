@@ -76,7 +76,7 @@ server:
  #Set if Advanced Command Selector is enabled
  advanced-command-selector: false
  #Set if enable ResourcePackManager
- enable-resource: false
+ enable-resource: true
 
 enchantment:
  #Choose if anvils are enabled

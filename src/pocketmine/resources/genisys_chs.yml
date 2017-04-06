@@ -82,8 +82,8 @@ server:
  allow-splash-potion: true
  #是否启用高级指令选择器
  advanced-command-selector: false
- #是否加载ResourcePackManager
- enable-resource: false
+ #是否加载ResourcePackManager(如面板服无法开服请尝试关闭)
+ enable-resource: true
 
 enchantment:
  #是否允许使用铁砧
