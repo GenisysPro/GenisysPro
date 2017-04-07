@@ -2,7 +2,7 @@
 
 /*
  * DevTools plugin for PocketMine-MP
- * Copyright (C) 2014 PocketMine Team <https://github.com/PocketMine/DevTools>
+ * Copyright (C) 2017 GenisysPro Team <https://github.com/GenisysPro/DevTools>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -236,7 +236,6 @@ class DevTools extends PluginBase implements CommandExecutor{
 				$finfo->compress(\Phar::GZ);
 			}
 		}
-		$phar->compressFiles(\Phar::GZ);
 		$phar->stopBuffering();
 
 		$sender->sendMessage($server->getName() . " " . $server->getPocketMineVersion() . " Phar file has been created on " . $pharPath);
