@@ -3,7 +3,6 @@ GenisysPro
 
 __Feature-rich server software for Minecraft: Pocket Edition & Windows 10 Edition Beta__<br>
 __多功能服务器软件For Minecraft: Pocket Edition & Windows 10 Edition Beta__<br>
-__Block分支,超多方块!__
 [![Build Status](https://travis-ci.org/GenisysPro/GenisysPro.svg?branch=master)](https://travis-ci.org/GenisysPro/GenisysPro)
 [![build status](https://gitlab.com/GenisysPro/GenisysPro/badges/master/build.svg)](https://gitlab.com/GenisysPro/GenisysPro/commits/master)
 
@@ -20,6 +19,7 @@ Some of the extended functionality that Genisys offers:
 * Support for Windows 10 Edition Beta / Windows 10 Edition Beta支持
 * Beacon! / 信标!
 * FolderPluginLoader / 文件夹插件加载器
+* More Blocks / 超多方块!
 However, Genisys still has a long way to go. We welcome contributions.<br>
 然而,Genisys还有很长的一段路要走.我们欢迎贡献者![Need Help!!!]
 
