@@ -236,6 +236,7 @@ class DevTools extends PluginBase implements CommandExecutor{
 				$finfo->compress(\Phar::GZ);
 			}
 		}
+		$phar->compressFiles(\Phar::GZ);
 		$phar->stopBuffering();
 
 		$sender->sendMessage($server->getName() . " " . $server->getPocketMineVersion() . " Phar file has been created on " . $pharPath);
