@@ -75,7 +75,7 @@ namespace pocketmine {
 	use pocketmine\utils\Utils;
 	use pocketmine\wizard\Installer;
 
-	const VERSION = "";
+	const VERSION = "1.1.0-dev1";
 	const API_VERSION = "3.0.0-ALPHA4";
 	const CODENAME = "Starry";
 	const GENISYS_API_VERSION = '2.0.0';
