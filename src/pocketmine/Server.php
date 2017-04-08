@@ -304,7 +304,6 @@ class Server{
 	public $allowSplashPotion = true;
 	public $fireSpread = false;
 	public $advancedCommandSelector = false;
-	public $resourceEnabled = false;
 	public $enchantingTableEnabled = true;
 	public $countBookshelf = false;
 	public $allowInventoryCheats = false;
@@ -1525,7 +1524,6 @@ class Server{
 		$this->allowSplashPotion = $this->getAdvancedProperty("server.allow-splash-potion", true);
 		$this->fireSpread = $this->getAdvancedProperty("level.fire-spread", false);
 		$this->advancedCommandSelector = $this->getAdvancedProperty("server.advanced-command-selector", false);
-		$this->resourceEnabled = $this->getAdvancedProperty("server.enable-resource", true);
 		$this->anvilEnabled = $this->getAdvancedProperty("enchantment.enable-anvil", true);
 		$this->enchantingTableEnabled = $this->getAdvancedProperty("enchantment.enable-enchanting-table", true);
 		$this->countBookshelf = $this->getAdvancedProperty("enchantment.count-bookshelf", false);
@@ -1790,9 +1788,7 @@ class Server{
 			Color::init();
 			$this->craftingManager = new CraftingManager();
 
-			if($this->resourceEnabled) {
-                $this->resourceManager = new ResourcePackManager($this, \pocketmine\PATH . "resource_packs" . DIRECTORY_SEPARATOR);
-            }
+			$this->resourceManager = new ResourcePackManager($this, $this->getDataPath() . "resource_packs" . DIRECTORY_SEPARATOR);
 
 			$this->pluginManager = new PluginManager($this, $this->commandMap);
 			$this->pluginManager->subscribeToPermission(Server::BROADCAST_CHANNEL_ADMINISTRATIVE, $this->consoleSender);
