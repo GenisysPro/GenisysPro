@@ -2,12 +2,6 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
- *
  *  _____            _               _____           
  * / ____|          (_)             |  __ \          
  *| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
@@ -2176,6 +2170,9 @@ class Server{
 		}
 
 		$this->pluginManager->registerInterface(PharPluginLoader::class);
+		if($this->folderpluginloader === true) {
+               $this->pluginManager->registerInterface(FolderPluginLoader::class);
+           }
 		$this->pluginManager->registerInterface(ScriptPluginLoader::class);
 		$this->pluginManager->loadPlugins($this->pluginPath);
 		$this->enablePlugins(PluginLoadOrder::STARTUP);
