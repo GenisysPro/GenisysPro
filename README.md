@@ -24,9 +24,9 @@ TODO List:
 - [x] Beacon! / 信标!
 - [x] FolderPluginLoader / 文件夹插件加载器
 - [x] More Blocks / 超多方块!
-- [] 铁砧
-- [] 1.0.x进服
-- [] 服务器全局材质包
+- [ ] 铁砧
+- [ ] 1.0.x进服
+- [ ] 服务器全局材质包
 
 However, Genisys still has a long way to go. We welcome contributions.<br>
 然而,Genisys还有很长的一段路要走.我们欢迎贡献者![Need Help!!!]
