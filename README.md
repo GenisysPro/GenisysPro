@@ -13,13 +13,21 @@ GenisysPro是一个基于Genisys的服务器软件.大多数功能由iTXTech编�
 Some of the extended functionality that Genisys offers:
 一些特色功能:
 
-* 1.0.0-1.0.4全版本(如需1.0.5支持请下载[BetaTester](https://github.com/GenisysPro/BetaTester))
+* 1.0.5进服
 * Extended API for plugins (GeniAPI) / 继承API
 * Optional Xbox Live authentication / XBox登录验证
 * Support for Windows 10 Edition Beta / Windows 10 Edition Beta支持
-* Beacon! / 信标!
-* FolderPluginLoader / 文件夹插件加载器
-* More Blocks / 超多方块!
+
+TODO List:
+即将支持:
+
+- [x] Beacon! / 信标!
+- [x] FolderPluginLoader / 文件夹插件加载器
+- [x] More Blocks / 超多方块!
+- [] 铁砧
+- [] 1.0.x进服
+- [] 服务器全局材质包
+
 However, Genisys still has a long way to go. We welcome contributions.<br>
 然而,Genisys还有很长的一段路要走.我们欢迎贡献者![Need Help!!!]
 
