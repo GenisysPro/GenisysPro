@@ -186,10 +186,10 @@ class BinaryStream extends \stdClass{
 
 	public function getSlot(){
 		$id = $this->getVarInt();
-
 		if($id <= 0){
 			return Item::get(0, 0, 0);
 		}
+
 		$auxValue = $this->getVarInt();
 		$data = $auxValue >> 8;
 		$cnt = $auxValue & 0xff;
@@ -201,12 +201,23 @@ class BinaryStream extends \stdClass{
 			$nbt = $this->get($nbtLen);
 		}
 
-		return Item::get(
-			$id,
-			$data,
-			$cnt,
-			$nbt
-		);
+		//TODO
+		$canPlaceOn = $this->getVarInt();
+		if($canPlaceOn > 0){
+			for($i = 0; $i < $canPlaceOn; ++$i){
+				$this->getString();
+			}
+		}
+
+		//TODO
+		$canDestroy = $this->getVarInt();
+		if($canDestroy > 0){
+			for($i = 0; $i < $canDestroy; ++$i){
+				$this->getString();
+			}
+		}
+
+		return Item::get($id, $data, $cnt, $nbt);
 	}
 
 
@@ -217,11 +228,15 @@ class BinaryStream extends \stdClass{
 		}
 
 		$this->putVarInt($item->getId());
-		$auxValue = (($item->getDamage() ?? -1) << 8) | $item->getCount();
+		$auxValue = ($item->getDamage() << 8) | $item->getCount();
 		$this->putVarInt($auxValue);
+
 		$nbt = $item->getCompoundTag();
 		$this->putLShort(strlen($nbt));
 		$this->put($nbt);
+
+		$this->putVarInt(0); //CanPlaceOn entry count (TODO)
+		$this->putVarInt(0); //CanDestroy entry count (TODO)
 	}
 
 	public function getString(){
@@ -233,66 +248,68 @@ class BinaryStream extends \stdClass{
 		$this->put($v);
 	}
 
-	//TODO: varint64
-
 	/**
-	 * Reads an unsigned varint32 from the stream.
+	 * Reads a 32-bit variable-length unsigned integer from the buffer and returns it.
+	 * @return int
 	 */
 	public function getUnsignedVarInt(){
 		return Binary::readUnsignedVarInt($this);
 	}
 
 	/**
-	 * Writes an unsigned varint32 to the stream.
+	 * Writes a 32-bit variable-length unsigned integer to the end of the buffer.
+	 * @param int $v
 	 */
 	public function putUnsignedVarInt($v){
 		$this->put(Binary::writeUnsignedVarInt($v));
 	}
 
 	/**
-	 * Reads a signed varint32 from the stream.
+	 * Reads a 32-bit zigzag-encoded variable-length integer from the buffer and returns it.
+	 * @return int
 	 */
 	public function getVarInt(){
 		return Binary::readVarInt($this);
 	}
 
 	/**
-	 * Writes a signed varint32 to the stream.
+	 * Writes a 32-bit zigzag-encoded variable-length integer to the end of the buffer.
+	 * @param int $v
 	 */
 	public function putVarInt($v){
 		$this->put(Binary::writeVarInt($v));
 	}
 
-	public function getEntityId(){
-		return $this->getVarInt();
+	/**
+	 * Reads a 64-bit variable-length integer from the buffer and returns it.
+	 * @return int|string int, or the string representation of an int64 on 32-bit platforms
+	 */
+	public function getUnsignedVarLong(){
+		return Binary::readUnsignedVarLong($this);
 	}
 
-	public function putEntityId($v){
-		$this->putVarInt($v);
+	/**
+	 * Writes a 64-bit variable-length integer to the end of the buffer.
+	 * @param int|string $v int, or the string representation of an int64 on 32-bit platforms
+	 */
+	public function putUnsignedVarLong($v){
+		$this->buffer .= Binary::writeUnsignedVarLong($v);
 	}
 
-	public function getBlockCoords(&$x, &$y, &$z){
-		$x = $this->getVarInt();
-		$y = $this->getUnsignedVarInt();
-		$z = $this->getVarInt();
+	/**
+	 * Reads a 64-bit zigzag-encoded variable-length integer from the buffer and returns it.
+	 * @return int|string int, or the string representation of an int64 on 32-bit platforms
+	 */
+	public function getVarLong(){
+		return Binary::readVarLong($this);
 	}
 
-	public function putBlockCoords($x, $y, $z){
-		$this->putVarInt($x);
-		$this->putUnsignedVarInt($y);
-		$this->putVarInt($z);
-	}
-
-	public function getVector3f(&$x, &$y, &$z){
-		$x = $this->getLFloat(4);
-		$y = $this->getLFloat(4);
-		$z = $this->getLFloat(4);
-	}
-
-	public function putVector3f($x, $y, $z){
-		$this->putLFloat($x);
-		$this->putLFloat($y);
-		$this->putLFloat($z);
+	/**
+	 * Writes a 64-bit zigzag-encoded variable-length integer to the end of the buffer.
+	 * @param int|string $v int, or the string representation of an int64 on 32-bit platforms
+	 */
+	public function putVarLong($v){
+		$this->buffer .= Binary::writeVarLong($v);
 	}
 
 	public function feof(){

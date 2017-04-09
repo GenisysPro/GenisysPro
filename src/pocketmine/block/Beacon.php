@@ -81,7 +81,7 @@ use pocketmine\math\Vector3;
  					new IntTag("y", $this->y),
  					new IntTag("z", $this->z)
  				]);
- 				Tile::createTile(Tile::BEACON, $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4), $nbt);
+ 				Tile::createTile(Tile::BEACON, $this->getLevel(), $nbt);
  			}
 			
 			if($player->isCreative() and $player->getServer()->limitedCreative){

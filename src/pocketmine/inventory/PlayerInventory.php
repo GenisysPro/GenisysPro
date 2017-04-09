@@ -27,10 +27,10 @@ use pocketmine\event\entity\EntityInventoryChangeEvent;
 use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\item\Item;
 use pocketmine\nbt\tag\ListTag;
-use pocketmine\network\protocol\ContainerSetContentPacket;
-use pocketmine\network\protocol\ContainerSetSlotPacket;
-use pocketmine\network\protocol\MobArmorEquipmentPacket;
-use pocketmine\network\protocol\MobEquipmentPacket;
+use pocketmine\network\mcpe\protocol\ContainerSetContentPacket;
+use pocketmine\network\mcpe\protocol\ContainerSetSlotPacket;
+use pocketmine\network\mcpe\protocol\MobArmorEquipmentPacket;
+use pocketmine\network\mcpe\protocol\MobEquipmentPacket;
 use pocketmine\Player;
 use pocketmine\Server;
 
@@ -227,8 +227,8 @@ class PlayerInventory extends BaseInventory{
 		$pk = new MobEquipmentPacket();
 		$pk->eid = $this->getHolder()->getId();
 		$pk->item = $item;
-		$pk->slot = $this->getHeldItemSlot();
-		$pk->selectedSlot = $this->getHeldItemIndex();
+		$pk->inventorySlot = $this->getHeldItemSlot();
+		$pk->hotbarSlot = $this->getHeldItemIndex();
 
 		if(!is_array($target)){
 			$target->dataPacket($pk);
@@ -432,6 +432,7 @@ class PlayerInventory extends BaseInventory{
 				$pk2 = new ContainerSetContentPacket();
 				$pk2->windowid = ContainerSetContentPacket::SPECIAL_ARMOR;
 				$pk2->slots = $armor;
+				$pk2->targetEid = $player->getId();
 				$player->dataPacket($pk2);
 			}else{
 				$player->dataPacket($pk);
@@ -520,6 +521,7 @@ class PlayerInventory extends BaseInventory{
 				continue;
 			}
 			$pk->windowid = $id;
+			$pk->targetEid = $player->getId(); //TODO: check if this is correct
 			$player->dataPacket(clone $pk);
 		}
 	}

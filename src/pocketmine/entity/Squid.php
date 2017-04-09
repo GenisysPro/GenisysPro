@@ -26,8 +26,8 @@ use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\Item as ItemItem;
 use pocketmine\math\Vector3;
-use pocketmine\network\protocol\AddEntityPacket;
-use pocketmine\network\protocol\EntityEventPacket;
+use pocketmine\network\mcpe\protocol\AddEntityPacket;
+use pocketmine\network\mcpe\protocol\EntityEventPacket;
 use pocketmine\Player;
 
 class Squid extends WaterAnimal implements Ageable{

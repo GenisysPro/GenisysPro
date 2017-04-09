@@ -39,7 +39,7 @@ class BeaconDelayedCheckTask extends Task {
 	
 	public function onRun($currentTick) {
 		$level = Server::getInstance()->getLevel($this->levelId);
-		if (!Server::getInstance()->isLevelLoaded($level->getName()) || !$level->isChunkLoaded($this->pos->x >> 4, $this->pos->z >> 4)) return;
+		if (!Server::getInstance()->isLevelLoaded($level->getName())) return;
 		$tile = $level->getTile($this->pos);
 		if ($tile instanceof Beacon) {
 			$tile->scheduleUpdate();

@@ -23,7 +23,7 @@ namespace pocketmine\inventory;
 
 use pocketmine\block\TrappedChest;
 use pocketmine\level\Level;
-use pocketmine\network\protocol\BlockEventPacket;
+use pocketmine\network\mcpe\protocol\BlockEventPacket;
 use pocketmine\Player;
 use pocketmine\tile\Chest;
 

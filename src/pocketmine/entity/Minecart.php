@@ -25,7 +25,7 @@ use pocketmine\block\Block;
 use pocketmine\block\Rail;
 use pocketmine\math\Math;
 use pocketmine\math\Vector3;
-use pocketmine\network\protocol\AddEntityPacket;
+use pocketmine\network\mcpe\protocol\AddEntityPacket;
 use pocketmine\Player;
 
 class Minecart extends Vehicle{

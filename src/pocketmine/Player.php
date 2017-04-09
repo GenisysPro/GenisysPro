@@ -2248,6 +2248,33 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		return $this->protocol;
 	}
 
+	public function handleAvailableCommands(AvailableCommandsPacket $packet) : bool{
+		return false;
+	}
+
+	public function handleCommandStep(CommandStepPacket $packet) : bool{
+		if($this->spawned === false or !$this->isAlive()){
+			return true;
+		}
+		$this->craftingType = 0;
+		$commandText = $packet->command;
+		if($packet->inputJson !== null){
+			foreach($packet->inputJson as $arg){ //command ordering will be an issue
+				$commandText .= " " . $arg;
+			}
+		}
+		$this->server->getPluginManager()->callEvent($ev = new PlayerCommandPreprocessEvent($this, "/" . $commandText));
+		if($ev->isCancelled()){
+			return true;
+		}
+
+		Timings::$playerCommandTimer->startTiming();
+		$this->server->dispatchCommand($ev->getPlayer(), substr($ev->getMessage(), 1));
+		Timings::$playerCommandTimer->stopTiming();
+
+		return true;
+	}
+
 	/**
 	 * Handles a Minecraft packet
 	 * TODO: Separate all of this in handlers
@@ -2437,7 +2464,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				 * Changing hotbar slot mapping at will has been deprecated because it causes far too many
 				 * issues with Windows 10 Edition Beta.
 				 */
-				$this->inventory->setHeldItemIndex($packet->selectedSlot, false, $packet->slot);
+				$this->inventory->setHeldItemIndex($packet->hotbarSlot, false, $packet->inventorySlot);
 
 				$this->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_ACTION, false);
 				break;
