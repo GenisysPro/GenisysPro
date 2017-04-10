@@ -2003,6 +2003,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->processLogin();
 	}
 
+/*
 	public function handleResourcePacksInfo(ResourcePacksInfoPacket $packet) : bool{
 		return false;
 	}
@@ -2052,6 +2053,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 		return true;
 	}
+*/
 
 	public function clearCreativeItems(){
 		$this->personalCreativeItems = [];
@@ -2246,33 +2248,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	public function getProtocol(){
 		return $this->protocol;
-	}
-
-	public function handleAvailableCommands(AvailableCommandsPacket $packet) : bool{
-		return false;
-	}
-
-	public function handleCommandStep(CommandStepPacket $packet) : bool{
-		if($this->spawned === false or !$this->isAlive()){
-			return true;
-		}
-		$this->craftingType = 0;
-		$commandText = $packet->command;
-		if($packet->inputJson !== null){
-			foreach($packet->inputJson as $arg){ //command ordering will be an issue
-				$commandText .= " " . $arg;
-			}
-		}
-		$this->server->getPluginManager()->callEvent($ev = new PlayerCommandPreprocessEvent($this, "/" . $commandText));
-		if($ev->isCancelled()){
-			return true;
-		}
-
-		Timings::$playerCommandTimer->startTiming();
-		$this->server->dispatchCommand($ev->getPlayer(), substr($ev->getMessage(), 1));
-		Timings::$playerCommandTimer->stopTiming();
-
-		return true;
 	}
 
 	/**
