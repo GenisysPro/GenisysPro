@@ -304,7 +304,6 @@ class Server{
 	public $allowSplashPotion = true;
 	public $fireSpread = false;
 	public $advancedCommandSelector = false;
-	public $resourceEnabled = false;
 	public $enchantingTableEnabled = true;
 	public $countBookshelf = false;
 	public $allowInventoryCheats = false;
@@ -1525,7 +1524,6 @@ class Server{
 		$this->allowSplashPotion = $this->getAdvancedProperty("server.allow-splash-potion", true);
 		$this->fireSpread = $this->getAdvancedProperty("level.fire-spread", false);
 		$this->advancedCommandSelector = $this->getAdvancedProperty("server.advanced-command-selector", false);
-		$this->resourceEnabled = $this->getAdvancedProperty("server.enable-resource", false);
 		$this->anvilEnabled = $this->getAdvancedProperty("enchantment.enable-anvil", true);
 		$this->enchantingTableEnabled = $this->getAdvancedProperty("enchantment.enable-enchanting-table", true);
 		$this->countBookshelf = $this->getAdvancedProperty("enchantment.count-bookshelf", false);
@@ -1677,7 +1675,7 @@ class Server{
 
 			$onlineMode = $this->getConfigBoolean("online-mode", false);
 			if(!extension_loaded("openssl")){
-				$this->logger->warning("找不到 OpenSSL 扩展,请重新安装PHP,否则无法使用XBox验证 && 材质包功能.");
+				$this->logger->notice(TextFormat::RED."找不到 OpenSSL 扩展,请重新安装PHP,否则无法使用XBox验证 && 材质包功能.");
 				$this->setConfigBool("online-mode", false);
 			}elseif(!$onlineMode){
 				$this->logger->notice("服务器处在离线模式!");
@@ -1748,7 +1746,7 @@ class Server{
 			define('pocketmine\DEBUG', (int) $this->getProperty("debug.level", 1));
 
 			if(((int) ini_get('zend.assertions')) > 0 and ((bool) $this->getProperty("debug.assertions.warn-if-enabled", true)) !== false){
-				$this->logger->warning("Debugging assertions are enabled, this may impact on performance. To disable them, set `zend.assertions = -1` in php.ini.");
+				$this->logger->notice(TextFormat::RED."Debugging assertions are enabled, this may impact on performance. To disable them, set `zend.assertions = -1` in php.ini.");
 			}
 
 			ini_set('assert.exception', (bool) $this->getProperty("debug.assertions.throw-exception", 0));
@@ -1790,9 +1788,7 @@ class Server{
 			Color::init();
 			$this->craftingManager = new CraftingManager();
 
-			if($this->resourceEnabled) {
-                $this->resourceManager = new ResourcePackManager($this, \pocketmine\PATH . "resource_packs" . DIRECTORY_SEPARATOR);
-            }
+			$this->resourceManager = new ResourcePackManager($this, $this->getDataPath() . "resource_packs" . DIRECTORY_SEPARATOR);
 
 			$this->pluginManager = new PluginManager($this, $this->commandMap);
 			$this->pluginManager->subscribeToPermission(Server::BROADCAST_CHANNEL_ADMINISTRATIVE, $this->consoleSender);
@@ -2722,6 +2718,13 @@ class Server{
 				}
 			}
 
+  if($this->dserverConfig["enable"] and $this->dserverConfig["motdPlayers"]){
+			 $max = $this->getDServerMaxPlayers();
+			 $online = $this->getDServerOnlinePlayers();
+			 $name = $this->getNetwork()->getName().'['.$online.'/'.$max.']';
+			 $this->getNetwork()->setName($name);
+			 //TODO: 检测是否爆满,不同状态颜色
+			}
 			$this->getNetwork()->updateName();
 		}
 
