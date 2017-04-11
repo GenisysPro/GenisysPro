@@ -53,7 +53,7 @@ class Installer{
 	}
 
 	public function run(){
-		echo "[*] Genisys set-up wizard\n";
+		echo "[*] GenisysPro set-up wizard\n";
 		echo "[*] Please select a language:\n";
 		foreach(InstallerLang::$languages as $short => $native){
 			echo " $native => $short\n";
