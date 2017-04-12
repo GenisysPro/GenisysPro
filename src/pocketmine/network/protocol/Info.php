@@ -2,12 +2,6 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
- * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
- *
  *  _____            _               _____           
  * / ____|          (_)             |  __ \          
  *| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
@@ -40,8 +34,8 @@ interface Info{
 	 * Actual Minecraft: PE protocol version
 	 */
 	const CURRENT_PROTOCOL = 105;
-	const ACCEPTED_PROTOCOLS = [105];	
-	const MINECRAFT_VERSION = "v1.0.5";
+	const ACCEPTED_PROTOCOLS = [105,106];	
+	const MINECRAFT_VERSION = "v1.0.5&6";
 	const MINECRAFT_VERSION_NETWORK = "1.0.5";
 
 	const LOGIN_PACKET = 0x01;
