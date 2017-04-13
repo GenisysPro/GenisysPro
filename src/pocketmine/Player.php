@@ -2261,7 +2261,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$this->directDataPacket($pk);
 
 				$infoPacket = new ResourcePacksInfoPacket();
-        		$infoPacket->resourcePackEntries = $this->server->getResourcePackManager()->getResourceStack();
+        		$infoPacket->resourcePackEntries = $this->server->getResourceManager()->getResourceStack();
         		$infoPacket->mustAccept = $this->server->forceResources;
         		$this->directDataPacket($infoPacket);
 				
@@ -2276,7 +2276,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		  				$this->close("", "must accept resource packs to join", true);
 		  				break;
 		  			case ResourcePackClientResponsePacket::STATUS_SEND_PACKS:
-		 				$manager = $this->server->getResourcePackManager();
+		 				$manager = $this->server->getResourceManager();
 		 				foreach($packet->packIds as $uuid){
 		 					$pack = $manager->getPackById($uuid);
 		 					if(!($pack instanceof ResourcePack)){
@@ -2296,7 +2296,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		 				break;
 		 			case ResourcePackClientResponsePacket::STATUS_HAVE_ALL_PACKS:
 		 				$pk = new ResourcePackStackPacket();
-		 				$manager = $this->server->getResourcePackManager();
+		 				$manager = $this->server->getResourceManager();
 		 				$pk->resourcePackStack = $manager->getResourceStack();
 		 				$pk->mustAccept = $manager->resourcePacksRequired();
 		 				$this->dataPacket($pk);
@@ -2308,7 +2308,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		  		break;
 
 		  	case ProtocolInfo::RESOURCE_PACK_CHUNK_REQUEST_PACKET:
-		  		$manager = $this->server->getResourcePackManager();
+		  		$manager = $this->server->getResourceManager();
  				$pack = $manager->getPackById($packet->packId);
  				if(!($pack instanceof ResourcePack)){
  					$this->close("", "disconnectionScreen.resourcePack", true);
