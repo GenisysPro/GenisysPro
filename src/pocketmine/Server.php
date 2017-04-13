@@ -1536,7 +1536,6 @@ class Server{
 
 		$this->allowInventoryCheats = $this->getAdvancedProperty("inventory.allow-cheats", false);
 		$this->folderpluginloader = $this->getAdvancedProperty("developer.folder-plugin-loader", true);
-	}
 
 		$this->forceResources = $this->getAdvancedProperty("packs.force-resources", false);
 		$this->resourceStack = $this->getAdvancedProperty("packs.resource-stack", []);
