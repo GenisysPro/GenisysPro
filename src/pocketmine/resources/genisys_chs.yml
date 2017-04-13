@@ -51,6 +51,10 @@ developer:
   #建议关闭
   load-incompatible-api: true
 
+packs:
+  force-resources: false
+  resource-stack: []
+
 nether:
  #是否允许地狱，打开此选项会自动生成地狱地图
  allow-nether: true
