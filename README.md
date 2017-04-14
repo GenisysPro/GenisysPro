@@ -7,6 +7,12 @@ __多功能服务器软件For Minecraft: Pocket Edition & Windows 10 Edition Bet
 [![Build Status](https://travis-ci.org/GenisysPro/GenisysPro.svg?branch=master)](https://travis-ci.org/GenisysPro/GenisysPro)
 [![build status](https://gitlab.com/GenisysPro/GenisysPro/badges/master/build.svg)](https://gitlab.com/GenisysPro/GenisysPro/commits/master)
 
+Version
+-------------
+Accepted Versions(支持版本):
+- [x] MCPE v1.0.5 Alpha
+- [x] MCPE v1.0.6 Alpha
+
 Introduction
 -------------
 GenisysPro is a server software based on **[Genisys](https://github.com/iTXTech/Genisys)** with extended functionality. Most of the original code was written by **iTXTech**.<br>
@@ -14,7 +20,7 @@ GenisysPro是一个基于Genisys的服务器软件.大多数功能由iTXTech编�
 Some of the extended functionality that Genisys offers:
 一些特色功能:
 
-* 1.0.5进服
+* Accepted Versions多版本支持
 * Extended API for plugins (GeniAPI) / 继承API
 * Optional Xbox Live authentication / XBox登录验证
 * Support for Windows 10 Edition Beta / Windows 10 Edition Beta支持
@@ -25,8 +31,7 @@ TODO List:
 - [x] Beacon! / 信标!
 - [x] FolderPluginLoader / 文件夹插件加载器
 - [x] More Blocks / 超多方块!
-- [ ] 铁砧
-- [ ] 1.0.x进服
+- [x] 铁砧
 - [ ] 服务器全局材质包
 
 However, Genisys still has a long way to go. We welcome contributions.<br>
