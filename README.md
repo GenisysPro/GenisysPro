@@ -62,9 +62,7 @@ Donate
 
 Tool
 -------------
-* [Pocket Server](https://github.com/fengberd/MinecraftPEServer) - Run PocketMine-MP/Nukkit on Android devices
-* [BetaTester](https://github.com/GenisysPro/BetaTester) - 1.0.5 player join GenisysPro Server(1.0.0-1.0.4) / 1.0.5玩家加入GenisysPro服务器(1.0.0-1.0.4)
-
+* [Pocket Server](https://github.com/fengberd/MinecraftPEServer) - Run PocketMine-MP on Android devices
 
 Licence
 -------------
