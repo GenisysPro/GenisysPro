@@ -58,7 +58,6 @@ class MakeServerCommand extends VanillaCommand{
 				$finfo->compress(\Phar::GZ);
 			}
 		}
-		$phar->compressFiles(\Phar::GZ);
 		$phar->stopBuffering();
 
 	 $license = "
