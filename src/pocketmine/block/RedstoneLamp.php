@@ -38,4 +38,9 @@ class RedstoneLamp extends Solid{
 	public function getName() : string{
 		return "Redstone Lamp";
 	}
+
+	public function turnOn(){
+		$this->getLevel()->setBlock($this, new LitRedstoneLamp(), true, true);
+		return true;
+	}
 }

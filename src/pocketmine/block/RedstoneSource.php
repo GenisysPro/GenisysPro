@@ -71,7 +71,7 @@ class RedstoneSource extends Flowable{
 		}
 		if($block->getId() == Block::TNT) $block->onActivate(new Item(Item::FLINT_AND_STEEL));
 		/** @var InactiveRedstoneLamp $block */
-		if($block->getId() == Block::INACTIVE_REDSTONE_LAMP) $block->turnOn();
+		if($block->getId() == Block::REDSTONE_LAMP) $block->turnOn();
 		/** @var Dropper|Dispenser $block */
 		if($block->getId() == Block::DROPPER or $block->getId() == Block::DISPENSER) $block->activate();
 
@@ -106,7 +106,7 @@ class RedstoneSource extends Flowable{
 				if($block->isOpened()) $block->onActivate(new Item(0));
 			}
 			/** @var ActiveRedstoneLamp $block */
-			if($block->getId() == Block::ACTIVE_REDSTONE_LAMP) $block->turnOff();
+			if($block->getId() == Block::LIT_REDSTONE_LAMP) $block->turnOff();
 		}
 		/** @var PoweredRepeater $block */
 		if($block->getId() == Block::POWERED_REPEATER_BLOCK){
@@ -148,7 +148,7 @@ class RedstoneSource extends Flowable{
 				$block = $this->getSide(Vector3::SIDE_DOWN);
 				if(!$this->checkPower($block)){
 					/** @var $block ActiveRedstoneLamp */
-					if($block->getId() == Block::ACTIVE_REDSTONE_LAMP) $block->turnOff();
+					if($block->getId() == Block::LIT_REDSTONE_LAMP) $block->turnOff();
 				}
 
 				$block = $this->getSide(Vector3::SIDE_DOWN, 2);
@@ -187,7 +187,7 @@ class RedstoneSource extends Flowable{
 			}
 		}
 
-		if($block->getId() == Block::ACTIVE_REDSTONE_LAMP and !in_array(Vector3::SIDE_UP, $ignore)){
+		if($block->getId() == Block::LIT_REDSTONE_LAMP and !in_array(Vector3::SIDE_UP, $ignore)){
 			$pos = $block->getSide(Vector3::SIDE_UP);
 			if($pos instanceof RedstoneSource and $pos->getId() != self::REDSTONE_TORCH){
 				if($pos->isActivated($this)) return true;
