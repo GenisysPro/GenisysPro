@@ -755,6 +755,31 @@ class Item implements ItemIds, \JsonSerializable{
 		return $this;
 	}
 
+	public function getLore() : array{
+		$tag = $this->getNamedTagEntry("display");
+		if($tag instanceof CompoundTag and isset($tag->Lore) and $tag->Lore instanceof ListTag){
+			$lines = [];
+			foreach($tag->Lore->getValue() as $line){
+				$lines[] = $line->getValue();
+			}
+			return $lines;
+		}
+		return [];
+	}
+	public function setLore(array $lines){
+		$tag = $this->getNamedTag();
+		if(!isset($tag->display)){
+			$tag->display = new CompoundTag("display", []);
+		}
+		$tag->display->Lore = new ListTag("Lore");
+		$tag->display->Lore->setTagType(NBT::TAG_String);
+		$count = 0;
+		foreach($lines as $line){
+			$tag->display->Lore[$count++] = new StringTag("", $line);
+		}
+	}
+		
+
 	public function getNamedTagEntry($name){
 		$tag = $this->getNamedTag();
 		if($tag !== null){
@@ -924,7 +949,7 @@ class Item implements ItemIds, \JsonSerializable{
 	public function isLeggings(){
 		return false;
 	}
-
+  
 	public function isChestplate(){
 		return false;
 	}
@@ -962,17 +987,19 @@ class Item implements ItemIds, \JsonSerializable{
 		return false;
 	}
 
-	public final function equals(Item $item, bool $checkDamage = true, bool $checkCompound = true, bool $checkCount = false) : bool{
-		return $this->id === $item->getId() and ($checkCount === false or $this->getCount() === $item->getCount()) and($checkDamage === false or $this->getDamage() === $item->getDamage()) and ($checkCompound === false or $this->getCompoundTag() === $item->getCompoundTag());
-	}
-
-	public final function deepEquals(Item $item, bool $checkDamage = true, bool $checkCompound = true, bool $checkCount = false) : bool{
-		if($this->equals($item, $checkDamage, $checkCompound, $checkCount)){
-			return true;
-		}elseif($item->hasCompoundTag() and $this->hasCompoundTag()){
-			return NBT::matchTree($this->getNamedTag(), $item->getNamedTag());
+	public final function equals(Item $item, bool $checkDamage = true, bool $checkCompound = true,  $checkCount = false) : bool{
+		if($this->id === $item->getId() and ($checkDamage === false or $this->getDamage() === $item->getDamage()) and ($checkCount === false or $this->getCount() === $item->getCount())){
+			if($checkCompound){
+				if($item->getCompoundTag() === $this->getCompoundTag()){
+					return true;
+				}elseif($this->hasCompoundTag() and $item->hasCompoundTag()){
+					//Serialized NBT didn't match, check the cached object tree.
+					return NBT::matchTree($this->getNamedTag(), $item->getNamedTag());
+				}
+			}else{
+				return true;
+			}
 		}
-
 		return false;
 	}
 

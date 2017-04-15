@@ -180,9 +180,9 @@ abstract class BaseInventory implements Inventory{
 
 	public function slotContains($slot, Item $item, $matchCount = false){
 		if($matchCount){
-			return $this->getItem($slot)->deepEquals($item, true, true, true);
+			return $this->getItem($slot)->equals($item, true, true, true);
 		}else{
-			return $this->getItem($slot)->deepEquals($item) and $this->getItem($slot)->getCount() >= $item->getCount();
+			return $this->getItem($slot)->equals($item) and $this->getItem($slot)->getCount() >= $item->getCount();
 		}
 	}
 
