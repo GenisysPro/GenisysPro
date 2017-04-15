@@ -25,8 +25,8 @@ use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityRegainHealthEvent;
 use pocketmine\event\player\PlayerExhaustEvent;
 use pocketmine\event\player\PlayerExperienceChangeEvent;
-use pocketmine\inventory\EnderChestInventory;
 use pocketmine\inventory\FloatingInventory;
+use pocketmine\inventory\EnderChestInventory;
 use pocketmine\inventory\InventoryHolder;
 use pocketmine\inventory\PlayerInventory;
 use pocketmine\inventory\SimpleTransactionQueue;
@@ -41,12 +41,11 @@ use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\network\protocol\AddPlayerPacket;
-use pocketmine\network\protocol\RemoveEntityPacket;
 use pocketmine\Player;
 use pocketmine\utils\UUID;
 
 class Human extends Creature implements ProjectileSource, InventoryHolder{
-
+	
 	const DATA_PLAYER_FLAG_SLEEP = 1;
 	const DATA_PLAYER_FLAG_DEAD = 2; //TODO: CHECK
 
@@ -56,7 +55,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 
 	/** @var PlayerInventory */
 	protected $inventory;
-
+	
 	/** @var EnderChestInventory */
 	protected $enderChestInventory;
 
@@ -419,7 +418,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	public function getInventory(){
 		return $this->inventory;
 	}
-
+	
 	public function getEnderChestInventory(){
 		return $this->enderChestInventory;
 	}
@@ -443,7 +442,6 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 
 		$inventoryContents = ($this->namedtag->Inventory ?? null);
 		$this->inventory = new PlayerInventory($this, $inventoryContents);
-
 		$this->enderChestInventory = new EnderChestInventory($this, ($this->namedtag->EnderChestInventory ?? null));
 
 		//Virtual inventory for desktop GUI crafting and anti-cheat transaction processing
@@ -621,7 +619,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 				}
 			}
 		}
-
+		
 		$this->namedtag->EnderChestInventory = new ListTag("EnderChestInventory", []);
 		$this->namedtag->Inventory->setTagType(NBT::TAG_Compound);
 		if($this->enderChestInventory !== null){
@@ -690,24 +688,15 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 		}
 	}
 
-	public function despawnFrom(Player $player){
-		if(isset($this->hasSpawned[$player->getLoaderId()])){
-
-			$pk = new RemoveEntityPacket();
-			$pk->eid = $this->getId();
-			$player->dataPacket($pk);
-			unset($this->hasSpawned[$player->getLoaderId()]);
-		}
-	}
-
 	public function close(){
 		if(!$this->closed){
 			if($this->getFloatingInventory() instanceof FloatingInventory){
 				foreach($this->getFloatingInventory()->getContents() as $craftingItem){
 					$this->level->dropItem($this, $craftingItem);
 				}
+			}else{
+				$this->server->getLogger()->debug("Attempted to drop a null crafting inventory\n");
 			}
-
 			if(!($this instanceof Player) or $this->loggedIn){
 				foreach($this->inventory->getViewers() as $viewer){
 					$viewer->removeWindow($this->inventory);
