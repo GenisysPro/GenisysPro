@@ -1608,7 +1608,7 @@ class Level implements ChunkManager, Metadatable{
 		}
 
 		if($player !== null){
-			$ev = new BlockBreakEvent($player, $target, $item, ($player->isCreative() or $this->server->allowInstabreak));
+			$ev = new BlockBreakEvent($player, $target, $item, ($player->isCreative() or $player->allowInstaBreak()));
 
 			if($player->isAdventure() or $player->isSpectator() or ($player->isSurvival() and $item instanceof Item and !$target->isBreakable($item))){
 				$ev->setCancelled();
