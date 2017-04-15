@@ -332,6 +332,9 @@ abstract class Entity extends Location implements Metadatable{
 
 	protected $riding = null;
 
+	/** @var PressurePlate */
+	protected $activatedPressurePlates = [];
+
 	public $dropExp = [0, 0];
 
 
