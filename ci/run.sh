@@ -17,12 +17,8 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
-cp -r ci/plugins plugins
-"$PHP_BINARY" -dphar.readonly=0 ./plugins/PocketMine-DevTools/src/DevTools/ConsoleScript.php --make ./plugins/PocketMine-DevTools --relative ./plugins/PocketMine-DevTools --out ./plugins/DevTools.phar
-rm -rf ./plugins/PocketMine-DevTools
-
-echo -e "version\nmakeserver\nstop\n" | "$PHP_BINARY" -dphar.readonly=0 src/pocketmine/PocketMine.php --no-wizard --disable-ansi --disable-readline --debug.level=2
-if ls plugins/DevTools/Genisys*.phar >/dev/null 2>&1; then
+echo -e "version\nms\nstop\n" | "$PHP_BINARY" -dphar.readonly=0 src/pocketmine/PocketMine.php --no-wizard --disable-ansi --disable-readline --debug.level=2
+if ls plugins/GenisysPro/GenisysPro*.phar >/dev/null 2>&1; then
     echo Server phar created successfully.
 else
     echo No phar created!
