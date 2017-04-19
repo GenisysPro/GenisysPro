@@ -163,7 +163,7 @@ class RedstoneTorch extends RedstoneSource{
 				if(!in_array($hash = Level::blockHash($block->x, $block->y, $block->z), $notCheck)){
 					if(!$this->checkPower($block)){
 						/** @var $block ActiveRedstoneLamp */
-						if($block->getId() == Block::ACTIVE_REDSTONE_LAMP) $block->turnOff();
+						if($block->getId() == Block::LIT_REDSTONE_LAMP) $block->turnOff();
 					}
 
 					$block = $this->getSide(Vector3::SIDE_DOWN, 2);
@@ -242,8 +242,8 @@ class RedstoneTorch extends RedstoneSource{
 		}elseif(
 			$below->isTransparent() === false or $below->getId() === self::FENCE or
 			$below->getId() === self::COBBLE_WALL or
-			$below->getId() == Block::INACTIVE_REDSTONE_LAMP or
-			$below->getId() == Block::ACTIVE_REDSTONE_LAMP
+			$below->getId() == Block::REDSTONE_LAMP or
+			$below->getId() == Block::LIT_REDSTONE_LAMP
 		){
 			$this->meta = 0;
 			$this->getLevel()->setBlock($block, $this, true, true);
