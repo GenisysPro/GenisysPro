@@ -15,9 +15,10 @@ Accepted Versions(支持版本):
 
 Donate
 -------------
+### Coming soon
+
 GenisysPro is a free software.We hope you can donate us for a better environment.Thanks for your donate.<br>
 GenisysPro是一个免费开源的软件.我们希望你能捐赠我们,这将是我们前进的动力.感谢你的捐赠.<br>
-**[Click here](http://genisyspro.fuwuyun.loan/index.php/genisyspro/donate/)**戳这里捐赠owo
 
 Introduction
 -------------
