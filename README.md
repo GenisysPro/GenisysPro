@@ -40,8 +40,8 @@ TODO List:
 - [x] 铁砧
 - [ ] 服务器全局材质包
 
-However, Genisys still has a long way to go. We welcome contributions.<br>
-然而,Genisys还有很长的一段路要走.我们欢迎贡献者![Need Help!!!]
+However, GenisysPro still has a long way to go. We welcome contributions.<br>
+然而,GenisysPro还有很长的一段路要走.我们欢迎贡献者![Need Help!!!]
 
 Help & Support
 -------------
