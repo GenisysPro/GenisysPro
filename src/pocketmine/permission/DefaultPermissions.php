@@ -146,6 +146,7 @@ abstract class DefaultPermissions{
 		self::registerPermission(new Permission(self::ROOT . ".command.summon", "" , Permission::DEFAULT_OP), $commands);
 		self::registerPermission(new Permission(self::ROOT . ".command.xp", "" , Permission::DEFAULT_OP), $commands);
 		self::registerPermission(new Permission(self::ROOT . ".command.chunkinfo", "" , Permission::DEFAULT_OP), $commands);
+		self::registerPermission(new Permission(self::ROOT . ".command.transfer", "" , Permission::DEFAULT_OP), $commands);
 
 		$commands->recalculatePermissibles();
 
