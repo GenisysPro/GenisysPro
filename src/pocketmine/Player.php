@@ -2262,7 +2262,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 				$infoPacket = new ResourcePacksInfoPacket();
         		$infoPacket->resourcePackEntries = $this->server->getResourcePackManager()->getResourceStack();
-        		$infoPacket->mustAccept = $this->server->forceResources;
+        		$infoPacket->mustAccept = $this->server->getResourcePackManager()->resourcePacksRequired();
         		$this->directDataPacket($infoPacket);
 				
 				/*if($this->isConnected()){

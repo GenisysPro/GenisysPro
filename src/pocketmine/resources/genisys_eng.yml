@@ -49,10 +49,6 @@ developer:
   #Recommanded that it stays "false"
   load-incompatible-api: true
 
-packs:
-  force-resources: false
-  resource-stack: []
-
 nether:
  #Choose if the nether is allowed. The level of nether will generate automatically
  allow-nether: true

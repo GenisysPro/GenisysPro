@@ -1684,10 +1684,10 @@ class Server{
 
 			$onlineMode = $this->getConfigBoolean("online-mode", false);
 			if(!extension_loaded("openssl")){
-				$this->logger->notice(TextFormat::RED."找不到 OpenSSL 扩展,请重新安装PHP,否则无法使用XBox验证 && 材质包功能.");
+				$this->logger->warning("找不到 OpenSSL 扩展,请重新安装PHP,否则无法使用XBox验证 && 材质包功能(开发中).");
 				$this->setConfigBool("online-mode", false);
 			}elseif(!$onlineMode){
-				$this->logger->notice("服务器处在离线模式!");
+				$this->logger->warning("服务器处在离线模式!");
 			}
 
 			$this->forceLanguage = $this->getProperty("settings.force-language", false);
@@ -1755,7 +1755,7 @@ class Server{
 			define('pocketmine\DEBUG', (int) $this->getProperty("debug.level", 1));
 
 			if(((int) ini_get('zend.assertions')) > 0 and ((bool) $this->getProperty("debug.assertions.warn-if-enabled", true)) !== false){
-				$this->logger->notice(TextFormat::RED."Debugging assertions are enabled, this may impact on performance. To disable them, set `zend.assertions = -1` in php.ini.");
+				$this->logger->warning("Debugging assertions are enabled, this may impact on performance. To disable them, set `zend.assertions = -1` in php.ini.");
 			}
 
 			ini_set('assert.exception', (bool) $this->getProperty("debug.assertions.throw-exception", 0));
