@@ -308,8 +308,6 @@ class Server{
 	public $countBookshelf = false;
 	public $allowInventoryCheats = false;
 	public $folderpluginloader = true;
-	public $forceResources = false;
-	public $resourceStack = [];
 
 	/**
 	 * @return string
@@ -1537,8 +1535,6 @@ class Server{
 		$this->allowInventoryCheats = $this->getAdvancedProperty("inventory.allow-cheats", false);
 		$this->folderpluginloader = $this->getAdvancedProperty("developer.folder-plugin-loader", true);
 
-		$this->forceResources = $this->getAdvancedProperty("packs.force-resources", false);
-		$this->resourceStack = $this->getAdvancedProperty("packs.resource-stack", []);
 	}
 	
 	/**

@@ -2273,6 +2273,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
             case ProtocolInfo::RESOURCE_PACK_CLIENT_RESPONSE_PACKET:
                	switch($packet->status){
 		 			case ResourcePackClientResponsePacket::STATUS_REFUSED:
+		 			//TODO: 多语言翻译
 		  				$this->close("", "must accept resource packs to join", true);
 		  				break;
 		  			case ResourcePackClientResponsePacket::STATUS_SEND_PACKS:
@@ -2281,7 +2282,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		 					$pack = $manager->getPackById($uuid);
 		 					if(!($pack instanceof ResourcePack)){
 		 						//Client requested a resource pack but we don't have it available on the server
-		 						$this->close("", "disconnectionScreen.resourcePack", true); //TODO: add strings to lang files
+		 						$this->close("", "disconnectionScreen.resourcePack", true); //TODO: 多语言翻译
 		 						break;
 		 					}
 		 
