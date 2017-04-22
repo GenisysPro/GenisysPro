@@ -377,7 +377,8 @@ class Server{
 	 * @return string
 	 */
 	public function getVersion(){
-		return ProtocolInfo::MINECRAFT_VERSION;
+		$version = implode(",",ProtocolInfo::MINECRAFT_VERSION);
+		return $version;
 	}
 
 	/**
@@ -1464,6 +1465,7 @@ class Server{
 	}
 
 	public function about(){
+	 $version = implode(",",ProtocolInfo::MINECRAFT_VERSION);
 		$string = "
 
   _____            _               _____           
@@ -1476,9 +1478,11 @@ class Server{
                          |___/                     
 
 	版本: §6" . $this->getPocketMineVersion() . '§f
-	客户端版本: §b' . ProtocolInfo::MINECRAFT_VERSION . '§f
+	客户端版本: §b' . $version . '§f
+	PHP版本: §e' . PHP_VERSION . '§f
+	系统: §6' . PHP_OS .'§f
 	本核心由 §dSuperXingKong插件组 §f维护
-	QQ群: §a559301590
+	QQ群: §a559301590 §f
 	欢迎捐赠QQ: §c1912003473
 	';
 	
