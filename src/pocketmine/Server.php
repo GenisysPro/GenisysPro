@@ -36,6 +36,7 @@ use pocketmine\entity\Entity;
 use pocketmine\event\HandlerList;
 use pocketmine\event\level\LevelInitEvent;
 use pocketmine\event\level\LevelLoadEvent;
+use pocketmine\event\player\PlayerAddOpEvent;
 use pocketmine\event\server\QueryRegenerateEvent;
 use pocketmine\event\server\ServerCommandEvent;
 use pocketmine\event\Timings;
@@ -377,7 +378,8 @@ class Server{
 	 * @return string
 	 */
 	public function getVersion(){
-		return ProtocolInfo::MINECRAFT_VERSION;
+		$version = implode(",",ProtocolInfo::MINECRAFT_VERSION);
+		return $version;
 	}
 
 	/**
@@ -1033,6 +1035,15 @@ class Server{
 		return null;
 	}
 
+	public function getExpectedExperience($level){
+		if(isset($this->expCache[$level])) return $this->expCache[$level];
+		$levelSquared = $level ** 2;
+		if($level < 16) $this->expCache[$level] = $levelSquared + 6 * $level;
+		elseif($level < 31) $this->expCache[$level] = 2.5 * $levelSquared - 40.5 * $level + 360;
+		else $this->expCache[$level] = 4.5 * $levelSquared - 162.5 * $level + 2220;
+		return $this->expCache[$level];
+	}
+
 	/**
 	 * @param Level $level
 	 * @param bool  $forceUnload
@@ -1348,12 +1359,15 @@ class Server{
 	 * @param string $name
 	 */
 	public function addOp($name){
-		$this->operators->set(strtolower($name), true);
+		$this->getPluginManager()->callEvent($ev = new PlayerAddOpEvent($this->getPlayer($name)));
+		if(!$ev->isCancelled()){
+		 $this->operators->set(strtolower($name), true);
 
-		if(($player = $this->getPlayerExact($name)) !== null){
-			$player->recalculatePermissions();
-		}
+	 	if(($player = $this->getPlayerExact($name)) !== null){
+			 $player->recalculatePermissions();
+ 		}
 		$this->operators->save(true);
+		}
 	}
 
 	/**
@@ -1464,6 +1478,7 @@ class Server{
 	}
 
 	public function about(){
+	 $version = implode(",",ProtocolInfo::MINECRAFT_VERSION);
 		$string = "
 
   _____            _               _____           
@@ -1476,9 +1491,11 @@ class Server{
                          |___/                     
 
 	版本: §6" . $this->getPocketMineVersion() . '§f
-	客户端版本: §b' . ProtocolInfo::MINECRAFT_VERSION . '§f
+	客户端版本: §b' . $version . '§f
+	PHP版本: §e' . PHP_VERSION . '§f
+	系统: §6' . PHP_OS .'§f
 	本核心由 §dSuperXingKong插件组 §f维护
-	QQ群: §a559301590
+	QQ群: §a559301590 §f
 	欢迎捐赠QQ: §c1912003473
 	';
 	
