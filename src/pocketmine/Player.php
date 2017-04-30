@@ -2842,7 +2842,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 				$target = $this->level->getEntity($packet->target);
 				$this->server->getInstance()->getPluginManager()->callEvent($ev = new InteractEvent($this, $target, $packet->action));
-				var_dump($ev);
 
 				$cancelled = false;
 
