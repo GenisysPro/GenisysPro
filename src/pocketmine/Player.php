@@ -56,6 +56,7 @@ use pocketmine\event\inventory\InventoryCloseEvent;
 use pocketmine\event\inventory\InventoryPickupArrowEvent;
 use pocketmine\event\inventory\InventoryPickupItemEvent;
 use pocketmine\event\player\cheat\PlayerIllegalMoveEvent;
+use pocketmine\event\player\InteractEvent;
 use pocketmine\event\player\PlayerAchievementAwardedEvent;
 use pocketmine\event\player\PlayerAnimationEvent;
 use pocketmine\event\player\PlayerBedEnterEvent;
@@ -2840,6 +2841,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$this->craftingType = self::CRAFTING_SMALL;
 
 				$target = $this->level->getEntity($packet->target);
+				$this->server->getInstance()->getPluginManager()->callEvent($ev = new InteractEvent($this, $target, $packet->action));
+				var_dump($ev);
 
 				$cancelled = false;
 

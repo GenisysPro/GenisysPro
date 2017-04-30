@@ -24,19 +24,39 @@
 
 namespace pocketmine\event\player;
 
-use pocketmine\event\Cancellable;
+use pocketmine\entity\Entity;
 use pocketmine\Player;
 
 /**
- * Called when a player is given op
+ * Called when a player is interacting an entity
  */
-class PlayerAddOpEvent extends PlayerEvent implements Cancellable{
+class InteractEvent extends PlayerEvent{
 	public static $handlerList = null;
+
+	protected $entity;
+
+	protected $action;
 
 	/**
 	 * @param Player   $player
 	 */
-	public function __construct(Player $player){
+	public function __construct(Player $player, Entity $entity, $action){
 		$this->player = $player;
+		$this->entity = $entity;
+		$this->action = $action;
+	}
+
+	/**
+	 * @return Entity
+	 */
+	public function getEntity(){
+		return $this->entity;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getAction(){
+		return $this->action;
 	}
 }
