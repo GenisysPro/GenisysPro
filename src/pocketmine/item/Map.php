@@ -140,7 +140,7 @@ class Map {
 		$this->update(ClientboundMapItemDataPacket::BITFLAG_TEXTURE_UPDATE);
 	}
 
-	public function update($type = 0x00) {
+	public function update($type = 0x00, $player = null) {
 		$pk = new ClientboundMapItemDataPacket();
 		$pk->mapId = $this->getMapId();
 		$pk->type = $type;
@@ -152,7 +152,11 @@ class Map {
 		$pk->xOffset = $this->getXOffset();
 		$pk->yOffset = $this->getYOffset();
 		$pk->colors = $this->getColors();
-		Server::getInstance()->broadcastPacket(Server::getInstance()->getOnlinePlayers(), $pk);
+		if($player === null){
+			Server::getInstance()->broadcastPacket(Server::getInstance()->getOnlinePlayers(), $pk);
+		}else{
+			$player->dataPacket($pk);
+		}
 	}
 
 	public function fromPng(String $path) {

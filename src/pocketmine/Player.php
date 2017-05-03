@@ -3004,11 +3004,11 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				if($this->getServer()->mapEnabled){
 					if($packet->uuid == -1 || !file_exists($path)){
 						$map = new Map($packet->uuid);
-						$map->update(ClientboundMapItemDataPacket::BITFLAG_TEXTURE_UPDATE);
+						$map->update(ClientboundMapItemDataPacket::BITFLAG_TEXTURE_UPDATE, $this);
 					}else{
 						$map = new Map($packet->uuid);
 						$map->fromPng($path);
-						$map->update(ClientboundMapItemDataPacket::BITFLAG_TEXTURE_UPDATE);
+						$map->update(ClientboundMapItemDataPacket::BITFLAG_TEXTURE_UPDATE, $this);
 						MapUtils::cacheMap($map);
 					}
 				}
