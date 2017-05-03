@@ -2,29 +2,34 @@
 
 /*
  *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
+ *  _____            _               _____           
+ * / ____|          (_)             |  __ \          
+ *| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
+ *| | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \ 
+ *| |__| |  __/ | | | \__ \ |_| \__ \ |   | | | (_) |
+ * \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/ 
+ *                         __/ |                    
+ *                        |___/                     
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
+ * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author iTX Technologies
- * @link https://itxtech.org
+ * @author GenisysPro
+ * @link https://github.com/GenisysPro/GenisysPro
  *
- */
+ *
+*/
 
 namespace pocketmine\level\sound;
 
 use pocketmine\math\Vector3;
 use pocketmine\network\protocol\BlockEventPacket;
+use pocketmine\network\protocol\LevelSoundEventPacket;
 
 class NoteblockSound extends GenericSound{
+
 	protected $instrument;
 	protected $pitch;
 
@@ -48,6 +53,13 @@ class NoteblockSound extends GenericSound{
 		$pk->case1 = $this->instrument;
 		$pk->case2 = $this->pitch;
 
-		return $pk;
+		$pk2 = new LevelSoundEventPacket();
+		$pk2->sound = LevelSoundEventPacket::SOUND_NOTE;
+		$pk2->x = $this->x;
+		$pk2->y = $this->y;
+		$pk2->z = $this->z;
+		$pk2->pitch = $this->pitch;
+
+		return array($pk,$pk2);
 	}
 }
