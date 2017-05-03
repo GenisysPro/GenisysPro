@@ -48,6 +48,9 @@ class LoginPacket extends DataPacket{
 
 	public $clientData = [];
 
+	public $deviceModel;
+	public $os;
+
 	public function decode(){
 		$this->protocol = $this->getInt();
 		if(!in_array($this->protocol, Info::ACCEPTED_PROTOCOLS)){
@@ -105,6 +108,15 @@ class LoginPacket extends DataPacket{
 		if(isset($this->clientData["SkinData"])){
 			$this->skin = base64_decode($this->clientData["SkinData"]);
 		}
+
+		if(isset($this->clientData["DeviceModel"])){
+			$this->deviceModel = $this->clientData["DeviceModel"];
+		}
+
+		if(isset($this->clientData["DeviceOS"])){
+			$this->os = $this->clientData["DeviceOS"];
+		}
+
 		if($verified){
 			$this->identityPublicKey = $chainKey;
 		}
