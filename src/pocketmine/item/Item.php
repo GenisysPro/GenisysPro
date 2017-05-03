@@ -214,6 +214,8 @@ class Item implements ItemIds, \JsonSerializable{
 			self::$list[self::BONE] = Bone::class;
 			self::$list[self::SUGAR] = Sugar::class;
 			self::$list[self::COOKIE] = Cookie::class;
+			self::$list[self::FILLED_MAP] = FilledMap::class;
+			self::$list[self::EMPTY_MAP] = EmptyMap::class;
 			self::$list[self::MELON] = Melon::class;
 			self::$list[self::RAW_BEEF] = RawBeef::class;
 			self::$list[self::STEAK] = Steak::class;
