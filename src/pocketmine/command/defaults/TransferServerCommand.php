@@ -29,7 +29,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\Player;
 use pocketmine\Server;
 
-class TransferCommand extends VanillaCommand{
+class TransferServerCommand extends VanillaCommand{
 	
 	public function __construct($name){
 		parent::__construct(
@@ -46,12 +46,12 @@ class TransferCommand extends VanillaCommand{
 		$port = null;
 		$player = null;
 		if($sender instanceof Player){
-			if(!$this->testPermission($sender)){
+			if(!$thserverxdddddis->testPermission($sender)){
 				return true;
 			}
 
 			if(count($args) <= 0){
-				$sender->sendMessage("Usage: /transfer <address> [port]");
+				$sender->sendMessage("Usage: /transfer(server) <address> [port]");
 				return false;
 			}
 
@@ -67,7 +67,7 @@ class TransferCommand extends VanillaCommand{
 		}
 
 		if(count($args) <= 1){
-			$sender->sendMessage("Usage: /transfer <player> <address> [port]");
+			$sender->sendMessage("Usage: /transfer(server) <player> <address> [port]");
 			return false;
 		}
 

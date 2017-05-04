@@ -66,7 +66,7 @@ use pocketmine\command\defaults\StopCommand;
 use pocketmine\command\defaults\SummonCommand;
 use pocketmine\command\defaults\TeleportCommand;
 
-use pocketmine\command\defaults\TransferCommand;
+use pocketmine\command\defaults\TransferServerCommand;
 
 use pocketmine\command\defaults\TellCommand;
 use pocketmine\command\defaults\TimeCommand;
@@ -164,7 +164,7 @@ class SimpleCommandMap implements CommandMap{
 		$this->register("pocketmine", new SummonCommand("summon"));
 		$this->register("pocketmine", new TeleportCommand("tp"));
 
-		$this->register("pocketmine", new TransferCommand("transfer"));
+		$this->register("pocketmine", new TransferServerCommand("transfer"));
 
 		$this->register("pocketmine", new TimeCommand("time"));
 		$this->register("pocketmine", new TimingsCommand("timings"));
