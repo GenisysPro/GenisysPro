@@ -1360,7 +1360,7 @@ class Server{
 	 * @param string $name
 	 */
 	public function addOp($name){
-		$this->getPluginManager()->callEvent($ev = new PlayerAddOpEvent($this->getPlayer($name)));
+		$this->getPluginManager()->callEvent($ev = new PlayerAddOpEvent($this->getOfflinePlayer($name)));
 		if(!$ev->isCancelled()){
 		 $this->operators->set(strtolower($name), true);
 
