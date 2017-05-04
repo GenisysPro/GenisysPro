@@ -40,7 +40,7 @@ class InteractEvent extends PlayerEvent{
 	/**
 	 * @param Player   $player
 	 */
-	public function __construct(Player $player, Entity $entity, $action){
+	public function __construct(Player $player, Entity $entity = null, $action){
 		$this->player = $player;
 		$this->entity = $entity;
 		$this->action = $action;
