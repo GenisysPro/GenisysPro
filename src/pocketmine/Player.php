@@ -3563,6 +3563,15 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	 * @param int    $stay Duration in ticks to stay on screen for
 	 * @param int    $fadeOut Duration in ticks for fade-out.
 	 */
+	 public function sendActionBar(string $title, string $subtitle = "", int $fadeIn = -1, int $stay = -1, int $fadeOut = -1){
+		 $this->setTitleDuration($fadeIn, $stay, $fadeOut);
+		if($subtitle !== ""){
+			$this->sendTitleText($subtitle, SetTitlePacket::TYPE_SET_SUBTITLE);
+		}
+		$this->sendTitleText($title, SetTitlePacket::TYPE_SET_TITLE);
+	 }
+	 
+	 /*********/
 	public function addTitle(string $title, string $subtitle = "", int $fadeIn = -1, int $stay = -1, int $fadeOut = -1){
 		$this->setTitleDuration($fadeIn, $stay, $fadeOut);
 		if($subtitle !== ""){
