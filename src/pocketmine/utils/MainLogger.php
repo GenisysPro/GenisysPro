@@ -219,7 +219,7 @@ class MainLogger extends \AttachableThreadedLogger{
 		}
 
     //$message = TextFormat::toANSI(TextFormat::AQUA . "[" . date("H:i:s", $now) . "] " . TextFormat::RESET . $color . "[" . $threadName . "/" . $prefix . "]:" . " " . $message . TextFormat::RESET);
-	$message = TextFormat::toANSI(TextFormat::AQUA . "[GenisysPro]->[" . date("H:i:s", $now) . "] " . TextFormat::RESET . $color . "[$prefix ]:" . " " . $message . TextFormat::RESET);
+	$message = TextFormat::toANSI(TextFormat::AQUA . "[GenisysPro]->[" . date("H:i:s", $now) . "] " . TextFormat::RESET . $color . "[$prefix]:" . " " . $message . TextFormat::RESET);
 	//$message = TextFormat::toANSI(TextFormat::AQUA . "[" . date("H:i:s") . "] ". TextFormat::RESET . $color ."<".$prefix . ">" . " " . $message . TextFormat::RESET);
 		$cleanMessage = TextFormat::clean($message);
 
