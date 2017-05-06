@@ -54,7 +54,7 @@ Get GenisysPro
 -------------
 * Download the latest build from [Gitlab CI](https://gitlab.com/GenisysPro/GenisysPro/builds).
 * 下载最新稳定版本
-* Installation instructions can be found in the [wiki](https://github.com/iTXTech/Genisys/wiki).
+* Installation instructions can be found in the [wiki](https://github.com/GenisysPro/GenisysPro/wiki).
 * 安装介绍Wiki
 * PHP Binaries and other on [here](https://itxtech.org/genisys/get/).
 * PHP运行库
