@@ -38,7 +38,7 @@ class TransferServerCommand extends VanillaCommand{
 			"/transferserver <player玩家> <address地址> [port端口]",
 			["transferserver"]
 		);
-		$this->setPermission("pocketmine.command.transferserver");
+		$this->setPermission("pocketmine.command.transfer");
 	}
 
 	public function execute(CommandSender $sender, $currentAlias, array $args){
