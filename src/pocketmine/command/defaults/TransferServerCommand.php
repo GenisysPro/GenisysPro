@@ -35,10 +35,10 @@ class TransferServerCommand extends VanillaCommand{
 		parent::__construct(
 			$name,
 			"将玩家传送至另一个服务器",
-			"/transfer <player玩家> <address地址> [port端口]",
-			["transfer"]
+			"/transferserver <player玩家> <address地址> [port端口]",
+			["transferserver"]
 		);
-		$this->setPermission("pocketmine.command.transfer");
+		$this->setPermission("pocketmine.command.transferserver");
 	}
 
 	public function execute(CommandSender $sender, $currentAlias, array $args){
@@ -51,7 +51,7 @@ class TransferServerCommand extends VanillaCommand{
 			}
 
 			if(count($args) <= 0){
-				$sender->sendMessage("Usage: /transfer(server) <address> [port]");
+				$sender->sendMessage("Usage: /transferserver <address> [port]");
 				return false;
 			}
 
@@ -67,7 +67,7 @@ class TransferServerCommand extends VanillaCommand{
 		}
 
 		if(count($args) <= 1){
-			$sender->sendMessage("Usage: /transfer(server) <player> <address> [port]");
+			$sender->sendMessage("Usage: /transferserver <player> <address> [port]");
 			return false;
 		}
 
