@@ -46,7 +46,7 @@ class TransferServerCommand extends VanillaCommand{
 		$port = null;
 		$player = null;
 		if($sender instanceof Player){
-			if(!$thserverxdddddis->testPermission($sender)){
+			if(!$this->testPermission($sender)){
 				return true;
 			}
 
