@@ -1360,15 +1360,12 @@ class Server{
 	 * @param string $name
 	 */
 	public function addOp($name){
-		$this->getPluginManager()->callEvent($ev = new PlayerAddOpEvent($this->getOfflinePlayer($name)));
-		if(!$ev->isCancelled()){
-		 $this->operators->set(strtolower($name), true);
+		$this->operators->set(strtolower($name), true);
 
 	 	if(($player = $this->getPlayerExact($name)) !== null){
 			 $player->recalculatePermissions();
  		}
 		$this->operators->save(true);
-		}
 	}
 
 	/**
