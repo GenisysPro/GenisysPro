@@ -8,9 +8,9 @@ GenisysPro
 
 Languages
 -------------
-[English]()  
-[简体中文]()  
-[繁體中文]()
+[English](https://github.com/Leo3418/GenisysPro/tree/i18n/readme#english)  
+[简体中文](https://github.com/Leo3418/GenisysPro/tree/i18n/readme#简体中文)  
+[繁體中文](https://github.com/Leo3418/GenisysPro/tree/i18n/readme#繁體中文)
 
 # English
 
@@ -140,7 +140,7 @@ Doxygen 生成的官方文档（暂无）
 
 讨论
 -------------
-欢迎加入 [QQ 群](https://jq.qq.com/?_wv=1027&k=46Xjsfo) 参与讨论。
+欢迎加入 [QQ 群](https://jq.qq.com/?_wv=1027&k=46Xjsfo)参与讨论。
 
 捐赠
 -------------
@@ -216,7 +216,7 @@ GenisysPro 還有很長的路要走。我們歡迎貢獻者，並希望得到幫
 
 討論
 -------------
-歡迎進入 [QQ 群](https://jq.qq.com/?_wv=1027&k=46Xjsfo) 參與討論。
+歡迎進入 [QQ 群](https://jq.qq.com/?_wv=1027&k=46Xjsfo)參與討論。
 
 捐贈
 -------------
