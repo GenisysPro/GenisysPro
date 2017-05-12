@@ -21,18 +21,19 @@
 
 namespace pocketmine\network\protocol;
 
-use pocketmine\resourcepacks\ResourcePackInfoEntry;
-
 #include <rules/DataPacket.h>
 
+use pocketmine\resourcepacks\ResourcePackInfoEntry;
+use pocketmine\resourcepacks\ResourcePack;
 
 class ResourcePacksInfoPacket extends DataPacket{
+
 	const NETWORK_ID = Info::RESOURCE_PACKS_INFO_PACKET;
 
-	public $mustAccept = false; //if true, forces client to use selected resource packs
-	/** @var ResourcePackInfoEntry[] */
+	public $mustAccept = false; //force client to use selected resource packs
+	/** @var ResourcePackInfoEntry */
 	public $behaviorPackEntries = [];
-	/** @var ResourcePackInfoEntry[] */
+	/** @var ResourcePackInfoEntry */
 	public $resourcePackEntries = [];
 
 	public function decode(){
@@ -43,17 +44,25 @@ class ResourcePacksInfoPacket extends DataPacket{
 		$this->reset();
 
 		$this->putBool($this->mustAccept);
-		$this->putShort(count($this->behaviorPackEntries));
+		$this->putLShort(count($this->behaviorPackEntries));
 		foreach($this->behaviorPackEntries as $entry){
 			$this->putString($entry->getPackId());
 			$this->putString($entry->getPackVersion());
-			$this->putLong($entry->getPackSize());
+			$this->putLLong($entry->getPackSize());
 		}
-		$this->putShort(count($this->resourcePackEntries));
+		$this->putLShort(count($this->resourcePackEntries));
 		foreach($this->resourcePackEntries as $entry){
 			$this->putString($entry->getPackId());
 			$this->putString($entry->getPackVersion());
-			$this->putLong($entry->getPackSize());
+			$this->putLLong($entry->getPackSize());
 		}
 	}
+
+	/**
+	 * @return string
+     */
+	public function getName(){
+		return "ResourcePacksInfoPacket";
+	}
+
 }
