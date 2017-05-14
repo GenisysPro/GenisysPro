@@ -26,19 +26,20 @@ namespace pocketmine\tile;
 use pocketmine\math\Vector3;
 use pocketmine\scheduler\Task;
 use pocketmine\Server;
+use pocketmine\level\Level;
 
 class BeaconDelayedCheckTask extends Task {
 	
 	private $pos;
-	private $levelId;
+	private $level;
 	
-	public function __construct(Vector3 $pos, $levelId) {
+	public function __construct(Vector3 $pos, Level $level) {
 		$this->pos = $pos;
-		$this->levelId = $levelId;
+		$this->level = $level;
 	}
 	
 	public function onRun($currentTick) {
-		$level = Server::getInstance()->getLevel($this->levelId);
+		$level = $this->level;
 		if (!Server::getInstance()->isLevelLoaded($level->getName())) return;
 		$tile = $level->getTile($this->pos);
 		if ($tile instanceof Beacon) {
