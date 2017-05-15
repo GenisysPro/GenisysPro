@@ -102,7 +102,7 @@ interface BlockIds{
 	const WOODEN_PRESSURE_PLATE = 72;
 	const REDSTONE_ORE = 73;
 	const GLOWING_REDSTONE_ORE = 74;
-	//const UNLIT_REDSTONE_TORCH = 75;
+	const UNLIT_REDSTONE_TORCH = 75;
 	const REDSTONE_TORCH = 76;
 	const STONE_BUTTON = 77;
 	const SNOW = 78; const SNOW_LAYER = 78;
