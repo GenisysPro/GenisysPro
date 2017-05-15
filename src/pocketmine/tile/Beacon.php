@@ -208,7 +208,7 @@ class Beacon extends Spawnable implements Nameable, InventoryHolder {
 		if (!empty($this->getEffects())) {
 			$this->applyEffects($this);
 		}
-		$this->getLevel()->getServer()->getScheduler()->scheduleDelayedTask(new BeaconDelayedCheckTask($this, $this->getLevel(), 20 * 4);//4 seconds
+		$this->getLevel()->getServer()->getScheduler()->scheduleDelayedTask(new BeaconDelayedCheckTask($this, $this->getLevel()), 20 * 4);//4 seconds
 	}
 	
 	public function getInventory() {
