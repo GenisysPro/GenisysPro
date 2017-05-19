@@ -54,7 +54,7 @@ Get GenisysPro
 * Installation instructions can be found in the [Wiki](https://github.com/GenisysPro/GenisysPro/wiki).
 
 
-NOTE: **The `master` branch is the only officially supported branch.**  
+NOTE: **The `master` branch is the only officially-supported branch.**  
 All other branches are in testing and may be unstable. Do not use builds from other branches unless you are sure you understand the risks.
 
 
@@ -203,7 +203,7 @@ GenisysPro 還有很長的路要走。我們歡迎貢獻者，並希望得到幫
 -------------
 * 在  [GitHub](https://github.com/GenisysPro/GenisysPro/archive/master.zip) 下載最新版  
   *-或者-*  
-  在 [Gitlab CI](https://gitlab.com/GenisysPro/GenisysPro/builds) 下載預先製作的核心。下载的文件通常不是最新的，每周只会更新数次。  
+  在 [Gitlab CI](https://gitlab.com/GenisysPro/GenisysPro/builds) 下載預先製作的核心。下載的核心通常不是最新的，每周衹會更新若干次。
 * 下載 [PHP 二進制碼](https://itxtech.org/genisys/get/) 和其它必需的軟件。
 * 您可于 [Wiki](https://github.com/GenisysPro/GenisysPro/wiki) 找到配置指南。
 
