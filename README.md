@@ -106,11 +106,7 @@ Genisys 的部分特色功能：
 
 支持版本
 -------------
-`master` 分支目前支持：
-- [x] MCPE v1.0.5 Alpha
-- [x] MCPE v1.0.6 Alpha
-- [x] MCPE v1.0.7 Alpha
-- [x] MCPE v1.0.8 Alpha
+点击[这里](https://github.com/GenisysPro/GenisysPro#supported-version)查看 `master` 分支目前支持的版本。
 
 即将支持
 -------------
@@ -182,11 +178,7 @@ Genisys 的部分特別機能：
 
 支援的版本
 -------------
-`master` 分支當前支援：
-- [x] MCPE v1.0.5 Alpha
-- [x] MCPE v1.0.6 Alpha
-- [x] MCPE v1.0.7 Alpha
-- [x] MCPE v1.0.8 Alpha
+點選[這裏](https://github.com/GenisysPro/GenisysPro#supported-version)查看 `master` 分支當前支援的版本。
 
 將要支援
 -------------
