@@ -32,6 +32,7 @@ Game versions supported by `master` branch:
 - [x] MCPE v1.0.6 Alpha
 - [x] MCPE v1.0.7 Alpha
 - [x] MCPE v1.0.8 Alpha
+- [x] MCPE v1.0.9 Alpha
 
 TODO List
 -------------
