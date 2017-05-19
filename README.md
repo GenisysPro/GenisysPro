@@ -8,9 +8,9 @@ GenisysPro
 
 Languages
 -------------
-[English](https://github.com/Leo3418/GenisysPro/tree/i18n/readme#english)  
-[简体中文](https://github.com/Leo3418/GenisysPro/tree/i18n/readme#简体中文)  
-[繁體中文](https://github.com/Leo3418/GenisysPro/tree/i18n/readme#繁體中文)
+[English](https://github.com/GenisysPro/GenisysPro/tree/i18n/readme#english)  
+[简体中文](https://github.com/GenisysPro/GenisysPro/tree/i18n/readme#简体中文)  
+[繁體中文](https://github.com/GenisysPro/GenisysPro/tree/i18n/readme#繁體中文)
 
 # English
 
