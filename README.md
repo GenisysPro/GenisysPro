@@ -42,7 +42,7 @@ TODO List
 - [x] Folder Plugin Loader
 - [x] More Blocks
 - [x] Anvil
-- [ ] Global resource packs
+- [x] Global resource packs
 
 GenisysPro still has a long way to go. We are pleased to receive help from everybody and welcome contributors.  
 
@@ -119,7 +119,7 @@ Genisys 的部分特色功能：
 - [x] 文件夹插件加载器
 - [x] 更多方块
 - [x] 铁砧
-- [ ] 服务器全局资源包
+- [x] 服务器全局资源包
 
 GenisysPro 还有很长的一段路要走。我们欢迎贡献者，并希望能得到帮助！
 
@@ -191,7 +191,7 @@ Genisys 的部分特別機能：
 - [x] 資料夾内插件
 - [x] 更多方塊
 - [x] 鐵砧
-- [ ] 伺服器全球資源包
+- [x] 伺服器全球資源包
 
 GenisysPro 還有很長的路要走。我們歡迎貢獻者，並希望得到幫助！
 
