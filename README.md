@@ -16,6 +16,7 @@ Languages
 
 Introduction
 -------------
+
 __GenisysPro is a feature-rich server software for *Minecraft: Pocket Edition* and *Minecraft: Windows 10 Edition*.__  
 GenisysPro is based on **[Genisys](https://github.com/iTXTech/Genisys)** with extended functionality. Most of the code was originally written by members of **[iTXTech](https://github.com/orgs/iTXTech/people)**.  
 
@@ -66,6 +67,9 @@ Official Doxygen-generated Documentation (unavailable yet)
 Discussion
 -------------
 Join our [QQ group](https://jq.qq.com/?_wv=1027&k=46Xjsfo) for discussions.
+
+Join our [Discord Group](https://discord.gg/WrKzRNn) for discussions.
+
 
 Donating
 -------------
