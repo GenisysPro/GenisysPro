@@ -25,6 +25,7 @@ Some of the functionality that Genisys offers:
 * Extended API for plugins (GeniAPI)
 * Optional Xbox Live authentication
 * Support for Minecraft: Windows 10 Edition
+* Global resource packs
 
 Supported Version
 -------------
@@ -107,6 +108,7 @@ Genisys 的部分特色功能：
 * 插件扩展 API (GeniAPI)
 * Xbox Live 验证（可选）
 * 支持 Minecraft: Windows 10 版
+* 支援全域材质
 
 支持版本
 -------------
@@ -179,6 +181,7 @@ Genisys 的部分特別機能：
 * 插件擴充 API (GeniAPI)
 * 可選的 Xbox Live 驗證
 * 支援 Minecraft: Windows 10 Edition
+* 支援全域材质
 
 支援的版本
 -------------
