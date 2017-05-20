@@ -67,10 +67,8 @@ Official Doxygen-generated Documentation (unavailable yet)
 
 Discussion
 -------------
-Join our [QQ group](https://jq.qq.com/?_wv=1027&k=46Xjsfo) for discussions.
-
-Join our [Discord Group](https://discord.gg/WrKzRNn) for discussions.
-
+* [QQ group](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
+* [Discord Group](https://discord.gg/WrKzRNn)
 
 Donating
 -------------
@@ -143,7 +141,8 @@ Doxygen 生成的官方文档（暂无）
 
 讨论
 -------------
-欢迎加入 [QQ 群](https://jq.qq.com/?_wv=1027&k=46Xjsfo)参与讨论。
+* [QQ 群](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
+* [Discord 群组](https://discord.gg/WrKzRNn)
 
 捐赠
 -------------
@@ -216,7 +215,8 @@ GenisysPro 還有很長的路要走。我們歡迎貢獻者，並希望得到幫
 
 討論
 -------------
-歡迎進入 [QQ 群](https://jq.qq.com/?_wv=1027&k=46Xjsfo)參與討論。
+* [QQ 群](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
+* [Discord 群組](https://discord.gg/WrKzRNn) 
 
 捐贈
 -------------
