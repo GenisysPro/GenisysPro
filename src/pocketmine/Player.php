@@ -80,6 +80,7 @@ use pocketmine\event\player\PlayerTextPreSendEvent;
 use pocketmine\event\player\PlayerToggleFlightEvent;
 use pocketmine\event\player\PlayerToggleSneakEvent;
 use pocketmine\event\player\PlayerToggleSprintEvent;
+use pocketmine\event\player\PlayerToggleGlideEvent;
 use pocketmine\event\player\PlayerUseFishingRodEvent;
 use pocketmine\event\server\DataPacketReceiveEvent;
 use pocketmine\event\server\DataPacketSendEvent;
@@ -2794,6 +2795,24 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 							$this->setSneaking(false);
 						}
 						break 2;
+					case PlayerActionPacket::ACTION_START_GLIDE:
+  						$ev = new PlayerToggleGlideEvent($this, true);
+  						$this->server->getPluginManager()->callEvent($ev);
+  						if($ev->isCancelled()){
+  							$this->sendData($this);
+  						}else{
+  							$this->setGliding(true);
+  						}
+  						break 2;
+  					case PlayerActionPacket::ACTION_STOP_GLIDE:
+  						$ev = new PlayerToggleGlideEvent($this, false);
+  						$this->server->getPluginManager()->callEvent($ev);
+  						if($ev->isCancelled()){
+  							$this->sendData($this);
+  						}else{
+  							$this->setGliding(false);
+  						}
+  						break 2;
 					default:
 						assert(false, "Unhandled player action " . $packet->action . " from " . $this->getName());
 				}
