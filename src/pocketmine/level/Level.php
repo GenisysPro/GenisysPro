@@ -2892,7 +2892,10 @@ class Level implements ChunkManager, Metadatable{
 	 * @return string
 	 */
 	public function getName() : string{
-		return $this->provider->getName();
+		if($this->provider->getName() == true){
+			return $this->provider->getName();
+		}
+		
 	}
 
 	/**
