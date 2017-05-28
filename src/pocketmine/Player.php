@@ -12,7 +12,7 @@
  *                        |___/                     
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
+ * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
@@ -3629,7 +3629,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$pk = new SetTitlePacket();
 			$pk->type = SetTitlePacket::TYPE_SET_ANIMATION_TIMES;
 			$pk->fadeInTime = $fadeIn;
-			$pk->stayTime = $stay;
+			$pk->duration = $stay;
 			$pk->fadeOutTime = $fadeOut;
 			$this->dataPacket($pk);
 		}
@@ -3644,7 +3644,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	protected function sendTitleText(string $title, int $type){
 		$pk = new SetTitlePacket();
 		$pk->type = $type;
-		$pk->text = $title;
+		$pk->title = $title;
 		$this->dataPacket($pk);
 	}
 
