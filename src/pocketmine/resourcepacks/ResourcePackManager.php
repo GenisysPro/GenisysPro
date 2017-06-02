@@ -89,6 +89,9 @@ class ResourcePackManager{
 							case "zip":
 								$newPack = new ZippedResourcePack($packPath);
 								break;
+							case "mcpack":
+								$newPack = new ZippedResourcePack($packPath);
+								break;
 							default:
 								$this->server->getLogger()->warning($this->server->getLanguage()->translateString("pocketmine.resourcepacks.unsupportedType", [$path]));
 								break;
