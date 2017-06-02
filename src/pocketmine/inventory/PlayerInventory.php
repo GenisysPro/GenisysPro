@@ -432,6 +432,7 @@ class PlayerInventory extends BaseInventory{
 				$pk2 = new ContainerSetContentPacket();
 				$pk2->windowid = ContainerSetContentPacket::SPECIAL_ARMOR;
 				$pk2->slots = $armor;
+				$pk2->targetEid = $player->getId();
 				$player->dataPacket($pk2);
 			}else{
 				$player->dataPacket($pk);
@@ -520,6 +521,7 @@ class PlayerInventory extends BaseInventory{
 				continue;
 			}
 			$pk->windowid = $id;
+			$pk->targetEid = $player->getId();
 			$player->dataPacket(clone $pk);
 		}
 	}

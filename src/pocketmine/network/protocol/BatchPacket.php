@@ -25,17 +25,17 @@ namespace pocketmine\network\protocol;
 
 
 class BatchPacket extends DataPacket{
-	const NETWORK_ID = Info::BATCH_PACKET;
+	const NETWORK_ID = 0xfe;
 
 	public $payload;
 
 	public function decode(){
-		$this->payload = $this->getString();
+		$this->payload = $this->get(true);
 	}
 
 	public function encode(){
 		$this->reset();
-		$this->putString($this->payload);
+		$this->put($this->payload);
 	}
 
 }
