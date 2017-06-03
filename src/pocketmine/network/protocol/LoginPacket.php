@@ -60,9 +60,7 @@ class LoginPacket extends DataPacket{
 
 		$this->gameEdition = $this->getByte();
 
-		$str = zlib_decode($this->getString(), 1024 * 1024 * 64);
-
-		$this->setBuffer($str, 0);
+		$this->setBuffer($this->getString(), 0);
 
 		$time = time();
 
