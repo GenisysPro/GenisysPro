@@ -2813,6 +2813,10 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
   							$this->setGliding(false);
   						}
   						break 2;
+					case PlayerActionPacket::ACTION_CONTINUE_BREAK:
+					 $block = $this->level->getBlock($pos);
+					 $this->level->broadcastLevelEvent($pos, LevelEventPacket::EVENT_PARTICLE_PUNCH_BLOCK, $block->getId() | ($block->getDamage() << 8) | ($packet->face << 16));
+					 break;
 					default:
 						assert(false, "Unhandled player action " . $packet->action . " from " . $this->getName());
 				}
