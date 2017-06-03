@@ -30,11 +30,7 @@ Some of the functionality that Genisys offers:
 Supported Version
 -------------
 Game versions supported by `master` branch:
-- [x] MCPE v1.0.5 Alpha
-- [x] MCPE v1.0.6 Alpha
-- [x] MCPE v1.0.7 Alpha
-- [x] MCPE v1.0.8 Alpha
-- [x] MCPE v1.0.9 Alpha
+- [x] MCPE v1.1.x Alpha
 
 TODO List
 -------------
