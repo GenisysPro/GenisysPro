@@ -29,7 +29,7 @@ class MovePlayerPacket extends DataPacket {
 
 	const MODE_NORMAL = 0;
 	const MODE_RESET = 1;
-	const MODE_POTATION = 2;
+	const MODE_ROTATION = 2;
 	const MODE_PITCH = 3; //facepalm Mojang
 
 	public $eid;
