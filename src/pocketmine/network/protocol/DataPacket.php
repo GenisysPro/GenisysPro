@@ -107,9 +107,8 @@ abstract class DataPacket extends BinaryStream {
                     $value[2] = $this->getVarInt(); //z
                     break;
                 case Entity::DATA_TYPE_LONG:
-                    $value = $this->getVarInt(); //TODO: varint64 proper support
+                    $value = $this->getVarLong();
                     break;
-                    
                 case Entity::DATA_TYPE_VECTOR3F:
                     $value = [0.0, 0.0, 0.0];
                     $this->getVector3f($value[0], $value[1], $value[2]);
@@ -158,7 +157,7 @@ abstract class DataPacket extends BinaryStream {
                     $this->putVarInt($d[1][2]); //z
                     break;
                 case Entity::DATA_TYPE_LONG:
-                    $this->putVarInt($d[1]); //TODO: varint64 proper support
+                    $this->putVarLong($d[1]);
                     break;
                 case Entity::DATA_TYPE_VECTOR3F:
                     //TODO: change this implementation (use objects)

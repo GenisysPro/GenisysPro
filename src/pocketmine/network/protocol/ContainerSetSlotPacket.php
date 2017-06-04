@@ -25,31 +25,31 @@ namespace pocketmine\network\protocol;
 
 use pocketmine\item\Item;
 
-class ContainerSetSlotPacket extends DataPacket{
-	const NETWORK_ID = Info::CONTAINER_SET_SLOT_PACKET;
+class ContainerSetSlotPacket extends DataPacket {
 
-	public $windowid;
-	public $slot;
-	/** @var Item */
-	public $item;
-	public $hotbarSlot;
-	public $unknown;
+    const NETWORK_ID = Info::CONTAINER_SET_SLOT_PACKET;
 
-	public function decode(){
-		$this->windowid = $this->getByte();
-		$this->slot = $this->getVarInt();
-		$this->hotbarSlot = $this->getVarInt();
-		$this->item = $this->getSlot();
-		$this->unknown = $this->getByte();
-	}
+    public $windowid;
+    public $slot;
+    /** @var Item */
+    public $item;
+    public $hotbarSlot;
+    public $unknown;
 
-	public function encode(){
-		$this->reset();
-		$this->putByte($this->windowid);
-		$this->putVarInt($this->slot);
-		$this->putVarInt($this->hotbarSlot);
-		$this->putSlot($this->item);
-		$this->putByte($this->unknown);
-	}
+    public function decode() {
+        $this->windowid = $this->getByte();
+        $this->slot = $this->getVarInt();
+        $this->hotbarSlot = $this->getVarInt();
+        $this->item = $this->getSlot();
+        $this->unknown = $this->getByte();
+    }
 
+    public function encode() {
+        $this->reset();
+        $this->putByte($this->windowid);
+        $this->putVarInt($this->slot);
+        $this->putVarInt($this->hotbarSlot);
+        $this->putSlot($this->item);
+        $this->putByte($this->unknown);
+    }
 }

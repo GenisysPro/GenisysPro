@@ -24,20 +24,20 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class TakeItemEntityPacket extends DataPacket{
-	const NETWORK_ID = Info::TAKE_ITEM_ENTITY_PACKET;
+class TakeItemEntityPacket extends DataPacket {
 
-	public $target;
-	public $eid;
+    const NETWORK_ID = Info::TAKE_ITEM_ENTITY_PACKET;
 
-	public function decode(){
+    public $target;
+    public $eid;
 
-	}
+    public function decode() {
 
-	public function encode(){
-		$this->reset();
-		$this->putEntityId($this->target);
-		$this->putEntityId($this->eid);
-	}
+    }
 
+    public function encode() {
+        $this->reset();
+        $this->putEntityRuntimeId($this->target);
+        $this->putEntityRuntimeId($this->eid);
+    }
 }
