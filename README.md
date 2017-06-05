@@ -172,11 +172,11 @@ __GenisysPro：功能豐富的 Minecraft: PE 與 Minecraft: Windows 10 Edition �
 GenisysPro 基於 **[Genisys](https://github.com/iTXTech/Genisys)** 開發，并且加入更多機能。大部分原始程式碼皆爲 **[iTXTech](https://github.com/orgs/iTXTech/people)** 團隊所編寫。  
 
 Genisys 的部分特別機能：
-* 支援多個版本
+* 同時支援多個版本連線
 * 插件擴充 API (GeniAPI)
-* 可選的 Xbox Live 驗證
+* 選擇性的 Xbox Live 驗證開關
 * 支援 Minecraft: Windows 10 Edition
-* 支援全域材质
+* 支援全域材質包
 
 支援的版本
 -------------
@@ -185,22 +185,22 @@ Genisys 的部分特別機能：
 將要支援
 -------------
 
-- [x] 燈塔！
-- [x] 資料夾内插件
-- [x] 更多方塊
+- [x] 烽火台！
+- [x] 資料夾插件加載器
+- [x] 更多方塊支援
 - [x] 鐵砧
-- [x] 伺服器全球資源包
+- [x] 伺服器全局材質包
 
-GenisysPro 還有很長的路要走。我們歡迎貢獻者，並希望得到幫助！
+GenisysPro 還有很長的一段路要走。我們歡迎貢獻者，並希望得到幫助！
 
 
 獲得 GenisysPro
 -------------
 * 在  [GitHub](https://github.com/GenisysPro/GenisysPro/archive/master.zip) 下載最新版  
   *-或者-*  
-  在 [Gitlab CI](https://gitlab.com/GenisysPro/GenisysPro/builds) 下載預先製作的核心。下載的核心通常不是最新的，每周衹會更新若干次。
-* 下載 [PHP 二進制碼](https://itxtech.org/genisys/get/) 和其它必需的軟件。
-* 您可于 [Wiki](https://github.com/GenisysPro/GenisysPro/wiki) 找到配置指南。
+  在 [Gitlab CI](https://gitlab.com/GenisysPro/GenisysPro/builds) 下載預先製作的核心。下載的核心通常不會是最新的，每個禮拜頂多更新個幾次。
+* 下載 [PHP 二進制碼](https://itxtech.org/genisys/get/) 和其他必備的插件。
+* 您可以在 [Wiki](https://github.com/GenisysPro/GenisysPro/wiki) 找到配置指南。
 
 注意：**`master` 分支是唯一支援的分支！**  
 所有其它分支皆爲不穩定的測試分支。除非您確定您知曉使用測試分支的風險，否則請勿使用非 `master` 的任何分支。
