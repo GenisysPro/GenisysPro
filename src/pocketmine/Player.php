@@ -1436,6 +1436,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		if($gamemode === Player::SPECTATOR){
 			return Player::CREATIVE;
 		}
+	}
 
 	/**
 	 * Sends all the option flags
