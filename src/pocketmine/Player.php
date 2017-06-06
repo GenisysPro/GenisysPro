@@ -1340,6 +1340,16 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	}
 
 	/**
+	 * @internal
+	 * Sends the player's gamemode to the client.
+	 */
+	public function sendGamemode(){
+		$pk = new SetPlayerGameTypePacket();
+		$pk->gamemode = Player::getClientFriendlyGamemode($this->gamemode);
+		$this->dataPacket($pk);
+	}
+
+	/**
 	 * Sets the gamemode, and if needed, kicks the Player.
 	 *
 	 * @param int  $gm
@@ -1355,10 +1365,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->server->getPluginManager()->callEvent($ev = new PlayerGameModeChangeEvent($this, $gm));
 		if($ev->isCancelled()){
 			if($client){ //gamemode change by client in the GUI
-				$pk = new SetPlayerGameTypePacket();
-				$pk->gamemode = $this->gamemode & 0x01;
-				$this->dataPacket($pk);
-				$this->sendSettings();
+				$this->sendGamemode();
 			}
 			return false;
 		}
@@ -1390,9 +1397,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->namedtag->playerGameType = new IntTag("playerGameType", $this->gamemode);
 
 		if(!$client){ //Gamemode changed by server, do not send for client changes
-			$pk = new SetPlayerGameTypePacket();
-			$pk->gamemode = $this->gamemode & 0x01;
-			$this->dataPacket($pk);
+			$this->sendGamemode();
 		}else{
 			Command::broadcastCommandMessage($this, new TranslationContainer("commands.gamemode.success.self", [Server::getGamemodeString($gm)]));
 		}
@@ -1415,6 +1420,22 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->inventory->sendHeldItem($this->hasSpawned);
 		return true;
 	}
+
+	/**
+	 * @internal
+	 *
+	 * Returns a client-friendly gamemode of the specified real gamemode
+	 * This function takes care of handling gamemodes known to MCPE (as of 1.1.0.3, that includes Survival, Creative and Adventure)
+	 *
+	 * TODO: remove this when Spectator Mode gets added properly to MCPE
+	 *
+	 * @param int $gamemode
+	 */
+	public static function getClientFriendlyGamemode(int $gamemode) : int{
+		$gamemode &= 0x03;
+		if($gamemode === Player::SPECTATOR){
+			return Player::CREATIVE;
+		}
 
 	/**
 	 * Sends all the option flags
@@ -2080,12 +2101,13 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$pk = new StartGamePacket();
 		$pk->entityUniqueId = $this->id;
 		$pk->entityRuntimeId = $this->id;
+		$pk->playerGamemode = Player::getClientFriendlyGamemode($this->gamemode);
 		$pk->x = $this->x;
 		$pk->y = $this->y;
 		$pk->z = $this->z;
 		$pk->seed = -1;
 		$pk->dimension = $this->level->getDimension();
-		$pk->gamemode = $this->gamemode & 0x01;
+		$pk->worldGamemode = Player::getClientFriendlyGamemode($this->server->getGamemode());
 		$pk->difficulty = $this->server->getDifficulty();
 		$pk->spawnX = $spawnPosition->getFloorX();
 		$pk->spawnY = $spawnPosition->getFloorY();
@@ -3476,12 +3498,10 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$this->setViewDistance($packet->radius);
 				break;
 			case ProtocolInfo::SET_PLAYER_GAME_TYPE_PACKET:
-				if($packet->gamemode !== ($this->gamemode & 0x01)){
-					//GUI gamemode change, set it back to original for now (only possible through client bug or hack with current allowed client permissions)
-					$pk = new SetPlayerGameTypePacket();
-					$pk->gamemode = $this->gamemode & 0x01;
-					$this->dataPacket($pk);
-					$this->sendSettings();
+				if($packet->gamemode !== $this->gamemode){
+					 //Set this back to default. TODO: handle this properly
+ 			$this->sendGamemode();
+ 			$this->sendSettings();
 				}
 				break;
 			case ProtocolInfo::ITEM_FRAME_DROP_ITEM_PACKET:
