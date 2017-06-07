@@ -3087,8 +3087,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				}
 				$this->craftingType = 0;
 				$commandText = $packet->command;
-				if($packet->inputJson !== null){
-					foreach($packet->inputJson as $arg){ //command ordering will be an issue
+				if($packet->args !== null){
+					foreach($packet->args as $arg){ //command ordering will be an issue
 						$commandText .= " " . $arg;
 					}
 				}
