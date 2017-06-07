@@ -2,11 +2,11 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -15,7 +15,7 @@
  *
  * @author PocketMine Team
  * @link http://www.pocketmine.net/
- * 
+ *
  *
 */
 
@@ -34,6 +34,8 @@ class StartGamePacket extends DataPacket {
     public $x;
     public $y;
     public $z;
+    public $pitch;
+    public $yaw;
     public $seed;
     public $dimension;
     public $generator = 1; //default infinite - 0 old, 1 infinite, 2 flat
@@ -49,9 +51,11 @@ class StartGamePacket extends DataPacket {
     public $lightningLevel;
     public $commandsEnabled;
     public $isTexturePacksRequired = 0;
-    public $unknown;
+    public $levelId = ""; //base64 string, usually the same as world folder name in vanilla
     public $worldName;
     public $premiumWorldTemplateId = "";
+    public $unknownBool = false;
+    public $currentTick = 0;
 
     public function decode() {
 
@@ -59,12 +63,12 @@ class StartGamePacket extends DataPacket {
 
     public function encode() {
         $this->reset();
-        $this->putEntityUniqueId($this->entityUniqueId); //EntityUniqueID
-        $this->putEntityRuntimeId($this->entityRuntimeId); //EntityRuntimeID
-        $this->putVarInt($this->playerGamemode);
+        $this->putEntityUniqueId($this->entityUniqueId);
+        $this->putEntityRuntimeId($this->entityRuntimeId);
+        $this->putVarInt($this->playerGamemode); //client gamemode, other field is world gamemode
         $this->putVector3f($this->x, $this->y, $this->z);
-        $this->putLFloat(0); //TODO: find out what these are (yaw/pitch?)
-        $this->putLFloat(0);
+        $this->putLFloat($this->pitch);
+        $this->putLFloat($this->yaw);
         $this->putVarInt($this->seed);
         $this->putVarInt($this->dimension);
         $this->putVarInt($this->generator);
@@ -78,8 +82,12 @@ class StartGamePacket extends DataPacket {
         $this->putLFloat($this->lightningLevel);
         $this->putBool($this->commandsEnabled);
         $this->putBool($this->isTexturePacksRequired);
-        $this->putString($this->unknown);
+        $this->putUnsignedVarInt(0); //TODO: gamerules
+        $this->putString($this->levelId);
         $this->putString($this->worldName);
         $this->putString($this->premiumWorldTemplateId);
+        $this->putBool($this->unknownBool);
+        $this->putLLong($this->currentTick);
     }
+
 }
