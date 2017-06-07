@@ -92,6 +92,7 @@ use pocketmine\network\protocol\BatchPacket;
 use pocketmine\network\protocol\DataPacket;
 use pocketmine\network\protocol\FullChunkDataPacket;
 use pocketmine\network\protocol\LevelEventPacket;
+use pocketmine\network\protocol\LevelSoundEventPacket;
 use pocketmine\network\protocol\MoveEntityPacket;
 use pocketmine\network\protocol\SetEntityMotionPacket;
 use pocketmine\network\protocol\SetTimePacket;
@@ -568,6 +569,23 @@ class Level implements ChunkManager, Metadatable{
 			}
 		}
 	}
+
+    public function broadcastLevelEvent(Vector3 $pos, int $evid, int $data = 0){
+        $pk = new LevelEventPacket();
+        $pk->evid = $evid;
+        $pk->data = $data;
+        list($pk->x, $pk->y, $pk->z) = [$pos->x, $pos->y, $pos->z];
+        $this->addChunkPacket($pos->x >> 4, $pos->z >> 4, $pk);
+    }
+
+    public function broadcastLevelSoundEvent(Vector3 $pos, int $soundId, int $pitch = 1, int $extraData = -1){
+        $pk = new LevelSoundEventPacket();
+        $pk->sound = $soundId;
+        $pk->pitch = $pitch;
+        $pk->extraData = $extraData;
+        list($pk->x, $pk->y, $pk->z) = [$pos->x, $pos->y, $pos->z];
+        $this->addChunkPacket($pos->x >> 4, $pos->z >> 4, $pk);
+    }
 
 	/**
 	 * @return bool

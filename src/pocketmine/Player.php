@@ -2,14 +2,14 @@
 
 /*
  *
- *  _____            _               _____           
- * / ____|          (_)             |  __ \          
- *| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
- *| | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \ 
+ *  _____            _               _____
+ * / ____|          (_)             |  __ \
+ *| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___
+ *| | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \
  *| |__| |  __/ | | | \__ \ |_| \__ \ |   | | | (_) |
- * \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/ 
- *                         __/ |                    
- *                        |___/                     
+ * \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/
+ *                         __/ |
+ *                        |___/
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
 
 namespace pocketmine;
 
+use pocketmine\network\protocol\LevelEventPacket;
 use pocketmine\block\Air;
 use pocketmine\block\Block;
 use pocketmine\block\Fire;
@@ -1341,12 +1342,21 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	/**
 	 * @internal
-	 * Sends the player's gamemode to the client.
+	 *
+	 * Returns a client-friendly gamemode of the specified real gamemode
+	 * This function takes care of handling gamemodes known to MCPE (as of 1.1.0.3, that includes Survival, Creative and Adventure)
+	 *
+	 * TODO: remove this when Spectator Mode gets added properly to MCPE
+	 *
+	 * @param int $gamemode
 	 */
-	public function sendGamemode(){
-		$pk = new SetPlayerGameTypePacket();
-		$pk->gamemode = Player::getClientFriendlyGamemode($this->gamemode);
-		$this->dataPacket($pk);
+	public static function getClientFriendlyGamemode(int $gamemode) : int{
+		$gamemode &= 0x03;
+		if($gamemode === Player::SPECTATOR){
+			return Player::CREATIVE;
+		}
+
+		return $gamemode;
 	}
 
 	/**
@@ -1423,19 +1433,12 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	/**
 	 * @internal
-	 *
-	 * Returns a client-friendly gamemode of the specified real gamemode
-	 * This function takes care of handling gamemodes known to MCPE (as of 1.1.0.3, that includes Survival, Creative and Adventure)
-	 *
-	 * TODO: remove this when Spectator Mode gets added properly to MCPE
-	 *
-	 * @param int $gamemode
+	 * Sends the player's gamemode to the client.
 	 */
-	public static function getClientFriendlyGamemode(int $gamemode) : int{
-		$gamemode &= 0x03;
-		if($gamemode === Player::SPECTATOR){
-			return Player::CREATIVE;
-		}
+	public function sendGamemode(){
+		$pk = new SetPlayerGameTypePacket();
+		$pk->gamemode = Player::getClientFriendlyGamemode($this->gamemode);
+		$this->dataPacket($pk);
 	}
 
 	/**
@@ -2293,7 +2296,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
         		$infoPacket->resourcePackEntries = $this->server->getResourcePackManager()->getResourceStack();
         		$infoPacket->mustAccept = $this->server->getResourcePackManager()->resourcePacksRequired();
         		$this->directDataPacket($infoPacket);
-				
+
 				/*if($this->isConnected()){
 					$this->processLogin();
 				}*/
@@ -2344,7 +2347,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
  					$this->close("", "disconnectionScreen.resourcePack", true);
  					return true;
  				}
- 
+
  				$pk = new ResourcePackChunkDataPacket();
  				$pk->packId = $pack->getPackId();
  				$pk->chunkIndex = $packet->chunkIndex;
@@ -3614,7 +3617,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		}
 		$this->sendTitleText($title, SetTitlePacket::TYPE_SET_TITLE);
 	 }
-	 
+
 	 /*********/
 	public function addTitle(string $title, string $subtitle = "", int $fadeIn = -1, int $stay = -1, int $fadeOut = -1){
 		$this->setTitleDuration($fadeIn, $stay, $fadeOut);
