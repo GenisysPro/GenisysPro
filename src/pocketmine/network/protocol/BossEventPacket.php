@@ -25,20 +25,28 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
-class BossEventPacket extends DataPacket {
+class BossEventPacket extends DataPacket{
 
-    const NETWORK_ID = Info::BOSS_EVENT_PACKET;
+	const NETWORK_ID = Info::BOSS_EVENT_PACKET;
 
-    public $eid;
-    public $type;
+  	public $eid;
+	public $type;
 
-    public function decode() {
+	public function decode(){
 
-    }
+	}
 
-    public function encode() {
-        $this->reset();
-        $this->putEntityRuntimeId($this->eid);
-        $this->putUnsignedVarInt($this->type);
-    }
+	public function encode(){
+		$this->reset();
+		$this->putEntityId($this->eid);
+		$this->putUnsignedVarInt($this->type);
+	}
+
+	/**
+	 * @return PacketName|string
+     */
+	public function getName(){
+		return "BossEventPacket";
+	}
+
 }

@@ -232,13 +232,15 @@ class PlayerInventory extends BaseInventory{
 
 		if(!is_array($target)){
 			$target->dataPacket($pk);
-			 if($this->getHeldItemSlot() !== -1 and $target === $this->getHolder()){
+			if($target === $this->getHolder()){
 				$this->sendSlot($this->getHeldItemSlot(), $target);
 			}
 		}else{
 			$this->getHolder()->getLevel()->getServer()->broadcastPacket($target, $pk);
-			if($this->getHeldItemSlot() !== -1 and in_array($this->getHolder(), $target)){
-				 $this->sendSlot($this->getHeldItemSlot(), $this->getHolder());
+			foreach($target as $player){
+				if($player === $this->getHolder()){
+					$this->sendSlot($this->getHeldItemSlot(), $player);
+					break;
 				}
 			}
 		}
@@ -430,7 +432,6 @@ class PlayerInventory extends BaseInventory{
 				$pk2 = new ContainerSetContentPacket();
 				$pk2->windowid = ContainerSetContentPacket::SPECIAL_ARMOR;
 				$pk2->slots = $armor;
-				$pk2->targetEid = $player->getId();
 				$player->dataPacket($pk2);
 			}else{
 				$player->dataPacket($pk);
@@ -519,7 +520,6 @@ class PlayerInventory extends BaseInventory{
 				continue;
 			}
 			$pk->windowid = $id;
-			$pk->targetEid = $player->getId();
 			$player->dataPacket(clone $pk);
 		}
 	}

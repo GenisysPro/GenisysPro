@@ -75,7 +75,7 @@ use pocketmine\network\protocol\MovePlayerPacket;
 use pocketmine\network\protocol\PlaySoundPacket;
 use pocketmine\network\protocol\PlayStatusPacket;
 use pocketmine\network\protocol\PlayerActionPacket;
-use pocketmine\network\protocol\EntityFallPacket;
+use pocketmine\network\protocol\PlayerFallPacket;
 use pocketmine\network\protocol\PlayerInputPacket;
 use pocketmine\network\protocol\PlayerListPacket;
 use pocketmine\network\protocol\RemoveBlockPacket;
@@ -261,7 +261,7 @@ class Network {
 			while($stream->offset < $len){
 				$buf = $stream->getString();
 				if(($pk = $this->getPacket(ord($buf{0}))) !== null){
-					if($pk::NETWORK_ID === 0xfe){
+					if($pk::NETWORK_ID === Info::BATCH_PACKET){
 						throw new \InvalidStateException("Invalid BatchPacket inside BatchPacket");
 					}
 
@@ -344,7 +344,7 @@ class Network {
 		$this->registerPacket(ProtocolInfo::ADVENTURE_SETTINGS_PACKET, AdventureSettingsPacket::class);
 		$this->registerPacket(ProtocolInfo::ANIMATE_PACKET, AnimatePacket::class);
 		$this->registerPacket(ProtocolInfo::AVAILABLE_COMMANDS_PACKET, AvailableCommandsPacket::class);
-		$this->registerPacket(0xfe, BatchPacket::class);
+		$this->registerPacket(ProtocolInfo::BATCH_PACKET, BatchPacket::class);
 		$this->registerPacket(ProtocolInfo::BLOCK_ENTITY_DATA_PACKET, BlockEntityDataPacket::class);
 		$this->registerPacket(ProtocolInfo::BLOCK_EVENT_PACKET, BlockEventPacket::class);
  		$this->registerPacket(ProtocolInfo::BOSS_EVENT_PACKET, BossEventPacket::class);
@@ -378,7 +378,7 @@ class Network {
 		$this->registerPacket(ProtocolInfo::MOB_EQUIPMENT_PACKET, MobEquipmentPacket::class);
 		$this->registerPacket(ProtocolInfo::MOVE_ENTITY_PACKET, MoveEntityPacket::class);
 		$this->registerPacket(ProtocolInfo::MOVE_PLAYER_PACKET, MovePlayerPacket::class);
-		$this->registerPacket(ProtocolInfo::ENTITY_FALL_PACKET, EntityFallPacket::class);
+		$this->registerPacket(ProtocolInfo::PLAYER_FALL_PACKET, PlayerFallPacket::class);
 		$this->registerPacket(ProtocolInfo::PLAYER_ACTION_PACKET, PlayerActionPacket::class);
 		$this->registerPacket(ProtocolInfo::PLAYER_INPUT_PACKET, PlayerInputPacket::class);
 		$this->registerPacket(ProtocolInfo::PLAYER_LIST_PACKET, PlayerListPacket::class);

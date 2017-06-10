@@ -2,11 +2,11 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
+ *  ____            _        _   __  __ _                  __  __ ____  
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -15,7 +15,7 @@
  *
  * @author PocketMine Team
  * @link http://www.pocketmine.net/
- *
+ * 
  *
 */
 
@@ -23,7 +23,6 @@ namespace pocketmine\level;
 
 use pocketmine\math\Vector3;
 use pocketmine\utils\MainLogger;
-
 
 class Position extends Vector3{
 
@@ -46,7 +45,7 @@ class Position extends Vector3{
 	public static function fromObject(Vector3 $pos, Level $level = null){
 		return new Position($pos->x, $pos->y, $pos->z, $level);
 	}
-
+	
 	public function add($x, $y = 0, $z = 0){
 		if($x instanceof Vector3){
 			return new Position($this->x + $x->x, $this->y + $x->y, $this->z + $x->z, $this->level);
@@ -63,7 +62,7 @@ class Position extends Vector3{
 			MainLogger::getLogger()->debug("Position was holding a reference to an unloaded Level");
 			$this->level = null;
 		}
-
+ 
 		return $this->level;
 	}
 
@@ -80,7 +79,7 @@ class Position extends Vector3{
 		if($level !== null and $level->isClosed()){
 			throw new \InvalidArgumentException("Specified level has been unloaded and cannot be used");
 		}
-
+ 
 		$this->level = $level;
 		return $this;
 	}
@@ -137,6 +136,5 @@ class Position extends Vector3{
 		parent::fromObjectAdd($pos, $x, $y, $z);
 		return $this;
 	}
-
 
 }

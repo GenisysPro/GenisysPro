@@ -24,21 +24,21 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class AnimatePacket extends DataPacket {
+class AnimatePacket extends DataPacket{
+	const NETWORK_ID = Info::ANIMATE_PACKET;
 
-    const NETWORK_ID = Info::ANIMATE_PACKET;
+	public $action;
+	public $eid;
 
-    public $action;
-    public $eid;
+	public function decode(){
+		$this->action = $this->getVarInt();
+		$this->eid = $this->getEntityId();
+	}
 
-    public function decode() {
-        $this->action = $this->getVarInt();
-        $this->eid = $this->getEntityRuntimeId();
-    }
+	public function encode(){
+		$this->reset();
+		$this->putVarInt($this->action);
+		$this->putEntityId($this->eid);
+	}
 
-    public function encode() {
-        $this->reset();
-        $this->putVarInt($this->action);
-        $this->putEntityRuntimeId($this->eid);
-    }
 }
