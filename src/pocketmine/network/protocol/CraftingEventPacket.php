@@ -23,43 +23,40 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
-use pocketmine\item\Item;
 
-class CraftingEventPacket extends DataPacket{
-	const NETWORK_ID = Info::CRAFTING_EVENT_PACKET;
+class CraftingEventPacket extends DataPacket {
 
-	public $windowId;
-	public $type;
-	public $id;
-	/** @var Item[] */
-	public $input = [];
-	/** @var Item[] */
-	public $output = [];
+    const NETWORK_ID = Info::CRAFTING_EVENT_PACKET;
 
-	public function clean(){
-		$this->input = [];
-		$this->output = [];
-		return parent::clean();
-	}
+    public $windowId;
+    public $type;
+    public $id;
+    public $input = [];
+    public $output = [];
 
-	public function decode(){
-		$this->windowId = $this->getByte();
-		$this->type = $this->getVarInt();
-		$this->id = $this->getUUID();
+    public function clean() {
+        $this->input = [];
+        $this->output = [];
+        return parent::clean();
+    }
 
-		$size = $this->getUnsignedVarInt();
-		for($i = 0; $i < $size and $i < 128; ++$i){
-			$this->input[] = $this->getSlot();
-		}
+    public function decode() {
+        $this->windowId = $this->getByte();
+        $this->type = $this->getVarInt();
+        $this->id = $this->getUUID();
 
-		$size = $this->getUnsignedVarInt();
-		for($i = 0; $i < $size and $i < 128; ++$i){
-			$this->output[] = $this->getSlot();
-		}
-	}
+        $size = $this->getUnsignedVarInt();
+        for ($i = 0; $i < $size and $i < 128; ++$i) {
+            $this->input[] = $this->getSlot();
+        }
 
-	public function encode(){
+        $size = $this->getUnsignedVarInt();
+        for ($i = 0; $i < $size and $i < 128; ++$i) {
+            $this->output[] = $this->getSlot();
+        }
+    }
 
-	}
+    public function encode() {
 
+    }
 }

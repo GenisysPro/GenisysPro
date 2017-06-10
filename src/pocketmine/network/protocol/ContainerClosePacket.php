@@ -24,18 +24,18 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class ContainerClosePacket extends DataPacket{
-	const NETWORK_ID = Info::CONTAINER_CLOSE_PACKET;
+class ContainerClosePacket extends DataPacket {
 
-	public $windowid;
+    const NETWORK_ID = Info::CONTAINER_CLOSE_PACKET;
 
-	public function decode(){
-		$this->windowid = $this->getByte();
-	}
+    public $windowid;
 
-	public function encode(){
-		$this->reset();
-		$this->putByte($this->windowid);
-	}
+    public function decode() {
+        $this->windowid = $this->getByte();
+    }
 
+    public function encode() {
+        $this->reset();
+        $this->putByte($this->windowid);
+    }
 }

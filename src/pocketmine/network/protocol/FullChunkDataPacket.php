@@ -24,22 +24,22 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class FullChunkDataPacket extends DataPacket{
-	const NETWORK_ID = Info::FULL_CHUNK_DATA_PACKET;
+class FullChunkDataPacket extends DataPacket {
 
-	public $chunkX;
-	public $chunkZ;
-	public $data;
+    const NETWORK_ID = Info::FULL_CHUNK_DATA_PACKET;
 
-	public function decode(){
+    public $chunkX;
+    public $chunkZ;
+    public $data;
 
-	}
+    public function decode() {
 
-	public function encode(){
-		$this->reset();
-		$this->putVarInt($this->chunkX);
-		$this->putVarInt($this->chunkZ);
-		$this->putString($this->data);
-	}
+    }
 
+    public function encode() {
+        $this->reset();
+        $this->putVarInt($this->chunkX);
+        $this->putVarInt($this->chunkZ);
+        $this->putString($this->data);
+    }
 }

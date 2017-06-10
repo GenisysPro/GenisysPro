@@ -24,16 +24,17 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class PlayerFallPacket extends DataPacket{
-	const NETWORK_ID = Info::PLAYER_FALL_PACKET;
+class PlayerFallPacket extends DataPacket {
 
-	public $fallDistance;
+    const NETWORK_ID = Info::PLAYER_FALL_PACKET;
 
-	public function decode(){
-		$this->fallDistance = $this->getLFloat();
-	}
+    public $fallDistance;
 
-	public function encode(){
+    public function decode() {
+        $this->fallDistance = $this->getLFloat();
+    }
 
-	}
+    public function encode() {
+
+    }
 }

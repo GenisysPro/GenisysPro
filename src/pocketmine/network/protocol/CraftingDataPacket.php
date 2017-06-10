@@ -30,171 +30,171 @@ use pocketmine\inventory\ShapelessRecipe;
 use pocketmine\item\Item;
 use pocketmine\utils\BinaryStream;
 
-class CraftingDataPacket extends DataPacket{
-	const NETWORK_ID = Info::CRAFTING_DATA_PACKET;
+class CraftingDataPacket extends DataPacket {
 
-	const ENTRY_SHAPELESS = 0;
-	const ENTRY_SHAPED = 1;
-	const ENTRY_FURNACE = 2;
-	const ENTRY_FURNACE_DATA = 3;
-	const ENTRY_MULTI = 4;
+    const NETWORK_ID = Info::CRAFTING_DATA_PACKET;
 
-	/** @var object[] */
-	public $entries = [];
-	public $cleanRecipes = false;
+    const ENTRY_SHAPELESS = 0;
+    const ENTRY_SHAPED = 1;
+    const ENTRY_FURNACE = 2;
+    const ENTRY_FURNACE_DATA = 3;
+    const ENTRY_MULTI = 4;
 
-	public function clean(){
-		$this->entries = [];
-		return parent::clean();
-	}
+    /** @var object[] */
+    public $entries = [];
+    public $cleanRecipes = false;
 
-	public function decode(){
-		$entries = [];
-		$recipeCount = $this->getUnsignedVarInt();
-		for($i = 0; $i < $recipeCount; ++$i){
-			$entry = [];
-			$entry["type"] = $recipeType = $this->getVarInt();
+    public function clean() {
+        $this->entries = [];
+        return parent::clean();
+    }
 
-			switch($recipeType){
-				case self::ENTRY_SHAPELESS:
-					$ingredientCount = $this->getUnsignedVarInt();
-					/** @var Item */
-					$entry["input"] = [];
-					for($j = 0; $j < $ingredientCount; ++$j){
-						$entry["input"][] = $this->getSlot();
-					}
-					$resultCount = $this->getUnsignedVarInt();
-					$entry["output"] = [];
-					for($k = 0; $k < $resultCount; ++$k){
-						$entry["output"][] = $this->getSlot();
-					}
-					$entry["uuid"] = $this->getUUID()->toString();
+    public function decode() {
+        $entries = [];
+        $recipeCount = $this->getUnsignedVarInt();
+        for ($i = 0; $i < $recipeCount; ++$i) {
+            $entry = [];
+            $entry["type"] = $recipeType = $this->getVarInt();
 
-					break;
-				case self::ENTRY_SHAPED:
-					$entry["width"] = $this->getVarInt();
-					$entry["height"] = $this->getVarInt();
-					$count = $entry["width"] * $entry["height"];
-					$entry["input"] = [];
-					for($j = 0; $j < $count; ++$j){
-						$entry["input"][] = $this->getSlot();
-					}
-					$resultCount = $this->getUnsignedVarInt();
-					$entry["output"] = [];
-					for($k = 0; $k < $resultCount; ++$k){
-						$entry["output"][] = $this->getSlot();
-					}
-					$entry["uuid"] = $this->getUUID()->toString();
-					break;
-				case self::ENTRY_FURNACE:
-				case self::ENTRY_FURNACE_DATA:
-					$entry["inputId"] = $this->getVarInt();
-					if($recipeType === self::ENTRY_FURNACE_DATA){
-						$entry["inputDamage"] = $this->getVarInt();
-					}
-					$entry["output"] = $this->getSlot();
-					break;
-				case self::ENTRY_MULTI:
-					$entry["uuid"] = $this->getUUID()->toString();
-					break;
-				default:
-					throw new \UnexpectedValueException("Unhandled recipe type $recipeType!"); //do not continue attempting to decode
-			}
-			$entries[] = $entry;
-		}
-		$this->getBool(); //cleanRecipes
-	}
+            switch ($recipeType) {
+                case self::ENTRY_SHAPELESS:
+                    $ingredientCount = $this->getUnsignedVarInt();
+                    /** @var Item */
+                    $entry["input"] = [];
+                    for ($j = 0; $j < $ingredientCount; ++$j) {
+                        $entry["input"][] = $this->getSlot();
+                    }
+                    $resultCount = $this->getUnsignedVarInt();
+                    $entry["output"] = [];
+                    for ($k = 0; $k < $resultCount; ++$k) {
+                        $entry["output"][] = $this->getSlot();
+                    }
+                    $entry["uuid"] = $this->getUUID()->toString();
 
-	private static function writeEntry($entry, BinaryStream $stream){
-		if($entry instanceof ShapelessRecipe){
-			return self::writeShapelessRecipe($entry, $stream);
-		}elseif($entry instanceof ShapedRecipe){
-			return self::writeShapedRecipe($entry, $stream);
-		}elseif($entry instanceof FurnaceRecipe){
-			return self::writeFurnaceRecipe($entry, $stream);
-		}
-		//TODO: add MultiRecipe
+                    break;
+                case self::ENTRY_SHAPED:
+                    $entry["width"] = $this->getVarInt();
+                    $entry["height"] = $this->getVarInt();
+                    $count = $entry["width"] * $entry["height"];
+                    $entry["input"] = [];
+                    for ($j = 0; $j < $count; ++$j) {
+                        $entry["input"][] = $this->getSlot();
+                    }
+                    $resultCount = $this->getUnsignedVarInt();
+                    $entry["output"] = [];
+                    for ($k = 0; $k < $resultCount; ++$k) {
+                        $entry["output"][] = $this->getSlot();
+                    }
+                    $entry["uuid"] = $this->getUUID()->toString();
+                    break;
+                case self::ENTRY_FURNACE:
+                case self::ENTRY_FURNACE_DATA:
+                    $entry["inputId"] = $this->getVarInt();
+                    if ($recipeType === self::ENTRY_FURNACE_DATA) {
+                        $entry["inputDamage"] = $this->getVarInt();
+                    }
+                    $entry["output"] = $this->getSlot();
+                    break;
+                case self::ENTRY_MULTI:
+                    $entry["uuid"] = $this->getUUID()->toString();
+                    break;
+                default:
+                    throw new \UnexpectedValueException("Unhandled recipe type $recipeType!"); //do not continue attempting to decode
+            }
+            $entries[] = $entry;
+        }
+        $this->getBool(); //cleanRecipes
+    }
 
-		return -1;
-	}
+    private static function writeEntry($entry, BinaryStream $stream) {
+        if ($entry instanceof ShapelessRecipe) {
+            return self::writeShapelessRecipe($entry, $stream);
+        } elseif ($entry instanceof ShapedRecipe) {
+            return self::writeShapedRecipe($entry, $stream);
+        } elseif ($entry instanceof FurnaceRecipe) {
+            return self::writeFurnaceRecipe($entry, $stream);
+        }
+        //TODO: add MultiRecipe
 
-	private static function writeShapelessRecipe(ShapelessRecipe $recipe, BinaryStream $stream){
-		$stream->putUnsignedVarInt($recipe->getIngredientCount());
-		foreach($recipe->getIngredientList() as $item){
-			$stream->putSlot($item);
-		}
+        return -1;
+    }
 
-		$stream->putUnsignedVarInt(1);
-		$stream->putSlot($recipe->getResult());
+    private static function writeShapelessRecipe(ShapelessRecipe $recipe, BinaryStream $stream) {
+        $stream->putUnsignedVarInt($recipe->getIngredientCount());
+        foreach ($recipe->getIngredientList() as $item) {
+            $stream->putSlot($item);
+        }
 
-		$stream->putUUID($recipe->getId());
+        $stream->putUnsignedVarInt(1);
+        $stream->putSlot($recipe->getResult());
 
-		return CraftingDataPacket::ENTRY_SHAPELESS;
-	}
+        $stream->putUUID($recipe->getId());
 
-	private static function writeShapedRecipe(ShapedRecipe $recipe, BinaryStream $stream){
-		$stream->putVarInt($recipe->getWidth());
-		$stream->putVarInt($recipe->getHeight());
+        return CraftingDataPacket::ENTRY_SHAPELESS;
+    }
 
-		for($z = 0; $z < $recipe->getHeight(); ++$z){
-			for($x = 0; $x < $recipe->getWidth(); ++$x){
-				$stream->putSlot($recipe->getIngredient($x, $z));
-			}
-		}
+    private static function writeShapedRecipe(ShapedRecipe $recipe, BinaryStream $stream) {
+        $stream->putVarInt($recipe->getWidth());
+        $stream->putVarInt($recipe->getHeight());
 
-		$stream->putUnsignedVarInt(1);
-		$stream->putSlot($recipe->getResult());
+        for ($z = 0; $z < $recipe->getHeight(); ++$z) {
+            for ($x = 0; $x < $recipe->getWidth(); ++$x) {
+                $stream->putSlot($recipe->getIngredient($x, $z));
+            }
+        }
 
-		$stream->putUUID($recipe->getId());
+        $stream->putUnsignedVarInt(1);
+        $stream->putSlot($recipe->getResult());
 
-		return CraftingDataPacket::ENTRY_SHAPED;
-	}
+        $stream->putUUID($recipe->getId());
 
-	private static function writeFurnaceRecipe(FurnaceRecipe $recipe, BinaryStream $stream){
-		if(!$recipe->getInput()->hasAnyDamageValue()){ //Data recipe
-			$stream->putVarInt($recipe->getInput()->getId());
-			$stream->putVarInt($recipe->getInput()->getDamage());
-			$stream->putSlot($recipe->getResult());
+        return CraftingDataPacket::ENTRY_SHAPED;
+    }
 
-			return CraftingDataPacket::ENTRY_FURNACE_DATA;
-		}else{
-			$stream->putVarInt($recipe->getInput()->getId());
-			$stream->putSlot($recipe->getResult());
+    private static function writeFurnaceRecipe(FurnaceRecipe $recipe, BinaryStream $stream) {
+        if (!$recipe->getInput()->hasAnyDamageValue()) { //Data recipe
+            $stream->putVarInt($recipe->getInput()->getId());
+            $stream->putVarInt($recipe->getInput()->getDamage());
+            $stream->putSlot($recipe->getResult());
 
-			return CraftingDataPacket::ENTRY_FURNACE;
-		}
-	}
+            return CraftingDataPacket::ENTRY_FURNACE_DATA;
+        } else {
+            $stream->putVarInt($recipe->getInput()->getId());
+            $stream->putSlot($recipe->getResult());
 
-	public function addShapelessRecipe(ShapelessRecipe $recipe){
-		$this->entries[] = $recipe;
-	}
+            return CraftingDataPacket::ENTRY_FURNACE;
+        }
+    }
 
-	public function addShapedRecipe(ShapedRecipe $recipe){
-		$this->entries[] = $recipe;
-	}
+    public function addShapelessRecipe(ShapelessRecipe $recipe) {
+        $this->entries[] = $recipe;
+    }
 
-	public function addFurnaceRecipe(FurnaceRecipe $recipe){
-		$this->entries[] = $recipe;
-	}
+    public function addShapedRecipe(ShapedRecipe $recipe) {
+        $this->entries[] = $recipe;
+    }
 
-	public function encode(){
-		$this->reset();
-		$this->putUnsignedVarInt(count($this->entries));
+    public function addFurnaceRecipe(FurnaceRecipe $recipe) {
+        $this->entries[] = $recipe;
+    }
 
-		$writer = new BinaryStream();
-		foreach($this->entries as $d){
-			$entryType = self::writeEntry($d, $writer);
-			if($entryType >= 0){
-				$this->putVarInt($entryType);
-				$this->put($writer->getBuffer());
-			}else{
-				$this->putVarInt(-1);
-			}
+    public function encode() {
+        $this->reset();
+        $this->putUnsignedVarInt(count($this->entries));
 
-			$writer->reset();
-		}
+        $writer = new BinaryStream();
+        foreach ($this->entries as $d) {
+            $entryType = self::writeEntry($d, $writer);
+            if ($entryType >= 0) {
+                $this->putVarInt($entryType);
+                $this->put($writer->getBuffer());
+            } else {
+                $this->putVarInt(-1);
+            }
 
-		$this->putBool($this->cleanRecipes);
-	}
+            $writer->reset();
+        }
 
+        $this->putBool($this->cleanRecipes);
+    }
 }
