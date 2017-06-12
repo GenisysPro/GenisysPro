@@ -229,6 +229,7 @@ class PlayerInventory extends BaseInventory{
 		$pk->item = $item;
 		$pk->slot = $this->getHeldItemSlot();
 		$pk->selectedSlot = $this->getHeldItemIndex();
+		$pk->windowId = ContainerSetContentPacket::SPECIAL_INVENTORY;
 
 		if(!is_array($target)){
 			$target->dataPacket($pk);

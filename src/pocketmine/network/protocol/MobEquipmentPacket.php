@@ -32,14 +32,14 @@ class MobEquipmentPacket extends DataPacket {
     public $item;
     public $slot;
     public $selectedSlot;
-    public $unknownByte;
+    public $windowId;
 
     public function decode() {
         $this->eid = $this->getEntityRuntimeId();
         $this->item = $this->getSlot();
         $this->slot = $this->getByte();
         $this->selectedSlot = $this->getByte();
-        $this->unknownByte = $this->getByte();
+        $this->windowId = $this->getByte();
     }
 
     public function encode() {
@@ -48,6 +48,6 @@ class MobEquipmentPacket extends DataPacket {
         $this->putSlot($this->item);
         $this->putByte($this->slot);
         $this->putByte($this->selectedSlot);
-        $this->putByte($this->unknownByte);
+        $this->putByte($this->windowId);
     }
 }
