@@ -1451,7 +1451,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$pk->autoJump = $this->autoJump;
 		$pk->allowFlight = $this->allowFlight;
 		$pk->noClip = $this->isSpectator();
-		$pk->worldBuilder = true;
+		$pk->worldBuilder = !($this->isAdventure());
 		$pk->isFlying = $this->flying;
 		$pk->userPermission = ($this->isOp() ? AdventureSettingsPacket::PERMISSION_OPERATOR : AdventureSettingsPacket::PERMISSION_NORMAL);
 		$this->dataPacket($pk);
