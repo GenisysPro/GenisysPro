@@ -19,9 +19,6 @@
  *
 */
 
-/**
- * NOTE: This is also the destroy block SOUND.
- */
 namespace pocketmine\level\particle;
 
 use pocketmine\block\Block;
@@ -29,14 +26,14 @@ use pocketmine\math\Vector3;
 use pocketmine\network\protocol\LevelEventPacket;
 
 class DestroyBlockParticle extends Particle{
-	
+
 	protected $data;
 
 	public function __construct(Vector3 $pos, Block $b){
 		parent::__construct($pos->x, $pos->y, $pos->z);
-		$this->data = $b->getId() + ($b->getDamage() << 12);
+		$this->data = $b->getId() | ($b->getDamage() << 8);
 	}
-	
+
 	public function encode(){
 		$pk = new LevelEventPacket;
 		$pk->evid = LevelEventPacket::EVENT_PARTICLE_DESTROY;
@@ -44,7 +41,7 @@ class DestroyBlockParticle extends Particle{
 		$pk->y = $this->y;
 		$pk->z = $this->z;
 		$pk->data = $this->data;
-		
+
 		return $pk;
 	}
 }

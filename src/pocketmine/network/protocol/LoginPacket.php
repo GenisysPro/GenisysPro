@@ -49,7 +49,7 @@ class LoginPacket extends DataPacket{
 	public $clientData = [];
 
 	public $deviceModel;
-	public $os;
+	public $deviceOS;
 
 	public function decode(){
 		$this->protocol = $this->getInt();
@@ -112,7 +112,7 @@ class LoginPacket extends DataPacket{
 		}
 
 		if(isset($this->clientData["DeviceOS"])){
-			$this->os = $this->clientData["DeviceOS"];
+			$this->deviceOS = $this->clientData["DeviceOS"];
 		}
 
 		if($verified){

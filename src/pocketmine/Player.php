@@ -232,6 +232,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	/** @var Vector3 */
 	protected $sleeping = null;
 	protected $clientID = null;
+	
+	protected $deviceModel;
+	protected $deviceOS;
 
 	private $loaderId = null;
 
@@ -333,6 +336,14 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		}
 		$this->fishingHook = $entity;
 	}
+	
+	public function getDeviceModel(){
+	    return $this->deviceModel;
+    }
+
+    public function getDeviceOS(){
+	    return $this->deviceOS;
+    }
 
 	public function getItemInHand(){
 		return $this->inventory->getItemInHand();
@@ -2221,6 +2232,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$this->setNameTag($this->username);
 				$this->iusername = strtolower($this->username);
 				$this->protocol = $packet->protocol;
+				$this->deviceModel = $packet->deviceModel;
+				$this->deviceOS = $packet->deviceOS;
 
 				if($this->server->getConfigBoolean("online-mode", false) && $packet->identityPublicKey === null){
 					$this->kick("disconnectionScreen.notAuthenticated", false);
