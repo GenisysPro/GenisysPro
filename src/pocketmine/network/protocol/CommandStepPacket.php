@@ -23,32 +23,32 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
-class CommandStepPacket extends DataPacket {
+class CommandStepPacket extends DataPacket{
 
-    const NETWORK_ID = Info::COMMAND_STEP_PACKET;
+	const NETWORK_ID = Info::COMMAND_STEP_PACKET;
 
-    public $command;
-    public $overload;
-    public $uvarint1;
-    public $uvarint2;
-    public $bool;
-    public $uvarint64;
-    public $args;
-    public $string4;
+	public $command;
+	public $overload;
+	public $uvarint1;
+	public $currentStep;
+	public $done;
+	public $clientId;
+	public $inputJson;
+	public $outputJson;
 
-    public function decode() {
-        $this->command = $this->getString();
-        $this->overload = $this->getString();
-        $this->uvarint1 = $this->getUnsignedVarInt();
-        $this->uvarint2 = $this->getUnsignedVarInt();
-        $this->bool = (bool)$this->getByte();
-        $this->uvarint64 = $this->getUnsignedVarLong();
-        $this->args = json_decode($this->getString());
-        $this->string4 = $this->getString();
-        $this->get(true);
-    }
+	public function decode(){
+		$this->command = $this->getString();
+		$this->overload = $this->getString();
+		$this->uvarint1 = $this->getUnsignedVarInt();
+		$this->currentStep = $this->getUnsignedVarInt();
+		$this->done = (bool) $this->getByte();
+		$this->clientId = $this->getUnsignedVarInt(); //TODO: varint64
+		$this->inputJson = json_decode($this->getString());
+		$this->outputJson = $this->getString();
+	}
 
-    public function encode() {
+	public function encode(){
 
-    }
+	}
+
 }

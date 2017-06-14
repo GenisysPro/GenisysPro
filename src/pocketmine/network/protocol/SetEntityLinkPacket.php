@@ -27,7 +27,7 @@ namespace pocketmine\network\protocol;
 class SetEntityLinkPacket extends DataPacket{
 
 	const NETWORK_ID = Info::SET_ENTITY_LINK_PACKET;
-	
+
 	const TYPE_REMOVE = 0;
 	const TYPE_RIDE = 1;
 	const TYPE_PASSENGER = 2;
@@ -43,8 +43,16 @@ class SetEntityLinkPacket extends DataPacket{
 
 	public function encode(){
 		$this->reset();
-		$this->putEntityUniqueId($this->from);
-		$this->putEntityUniqueId($this->to);
+		$this->putEntityId($this->from);
+		$this->putEntityId($this->to);
 		$this->putByte($this->type);
 	}
+
+	/**
+	 * @return PacketName|string
+	 */
+	public function getName(){
+		return "SetEntityLinkPacket";
+	}
+
 }

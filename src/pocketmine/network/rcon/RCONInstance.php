@@ -66,6 +66,7 @@ class RCONInstance extends Thread{
 			. Binary::writeLInt((int) $packetType)
 			. $payload
 			. "\x00\x00"; //Terminate payload and packet
+
 		return socket_write($client, Binary::writeLInt(strlen($pk)) . $pk);
 	}
 
@@ -87,6 +88,7 @@ class RCONInstance extends Thread{
 		$requestID = Binary::readLInt(socket_read($client, 4));
 		$packetType = Binary::readLInt(socket_read($client, 4));
 		$payload = rtrim(socket_read($client, $size + 2)); //Strip two null bytes
+
 		return true;
 	}
 

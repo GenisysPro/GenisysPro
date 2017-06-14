@@ -22,6 +22,7 @@
 /**
  * Network-related classes
  */
+
 namespace pocketmine\network;
 
 use pocketmine\network\protocol\DataPacket;

@@ -2,11 +2,11 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
+ *  ____            _        _   __  __ _                  __  __ ____  
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -15,7 +15,7 @@
  *
  * @author PocketMine Team
  * @link http://www.pocketmine.net/
- *
+ * 
  *
 */
 
@@ -31,14 +31,14 @@ use pocketmine\item\Item;
 use pocketmine\utils\BinaryStream;
 
 class CraftingDataPacket extends DataPacket{
+
 	const NETWORK_ID = Info::CRAFTING_DATA_PACKET;
 
 	const ENTRY_SHAPELESS = 0;
 	const ENTRY_SHAPED = 1;
 	const ENTRY_FURNACE = 2;
 	const ENTRY_FURNACE_DATA = 3;
-	const ENTRY_MULTI = 4; //TODO
-	const ENTRY_SHULKER_BOX = 5; //TODO
+	const ENTRY_MULTI = 4;
 
 	/** @var object[] */
 	public $entries = [];
@@ -46,6 +46,7 @@ class CraftingDataPacket extends DataPacket{
 
 	public function clean(){
 		$this->entries = [];
+
 		return parent::clean();
 	}
 
@@ -58,7 +59,6 @@ class CraftingDataPacket extends DataPacket{
 
 			switch($recipeType){
 				case self::ENTRY_SHAPELESS:
-				case self::ENTRY_SHULKER_BOX:
 					$ingredientCount = $this->getUnsignedVarInt();
 					/** @var Item */
 					$entry["input"] = [];
@@ -115,6 +115,7 @@ class CraftingDataPacket extends DataPacket{
 		}elseif($entry instanceof FurnaceRecipe){
 			return self::writeFurnaceRecipe($entry, $stream);
 		}
+
 		//TODO: add MultiRecipe
 
 		return -1;
@@ -197,6 +198,13 @@ class CraftingDataPacket extends DataPacket{
 		}
 
 		$this->putBool($this->cleanRecipes);
+	}
+
+	/**
+	 * @return PacketName|string
+	 */
+	public function getName(){
+		return "CraftingDataPacket";
 	}
 
 }
