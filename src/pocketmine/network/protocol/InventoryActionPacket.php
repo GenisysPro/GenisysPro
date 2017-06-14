@@ -27,23 +27,27 @@ class InventoryActionPacket extends DataPacket{
 
 	const NETWORK_ID = Info::INVENTORY_ACTION_PACKET;
 
-	public $unknown;
+	const ACTION_GIVE_ITEM = 0;
+	const ACTION_ENCHANT_ITEM = 2;
+
+	public $actionId;
 	public $item;
+	public $enchantmentId = 0;
+	public $enchantmentLevel = 0;
 
 	public function decode(){
-
+		$this->actionId = $this->getUnsignedVarInt();
+		$this->item = $this->getSlot();
+		$this->enchantmentId = $this->getVarInt();
+		$this->enchantmentLevel = $this->getVarInt();
 	}
 
 	public function encode(){
-		$this->putUnsignedVarInt($this->unknown);
+		$this->reset();
+		$this->putUnsignedVarInt($this->actionId);
 		$this->putSlot($this->item);
-	}
-
-	/**
-	 * @return PacketName|string
-	 */
-	public function getName(){
-		return "InventoryActionPacket";
+		$this->putVarInt($this->enchantmentId);
+		$this->putVarInt($this->enchantmentLevel);
 	}
 
 }
