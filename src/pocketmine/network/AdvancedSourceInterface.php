@@ -22,7 +22,6 @@
 /**
  * Network-related classes
  */
-
 namespace pocketmine\network;
 
 interface AdvancedSourceInterface extends SourceInterface{

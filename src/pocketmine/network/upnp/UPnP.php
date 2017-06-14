@@ -22,7 +22,6 @@
 /**
  * UPnP port forwarding support. Only for Windows
  */
-
 namespace pocketmine\network\upnp;
 
 use pocketmine\utils\Utils;
