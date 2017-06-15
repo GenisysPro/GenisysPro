@@ -65,7 +65,7 @@ class StartGamePacket extends DataPacket{
 		$this->putEntityId($this->entityRuntimeId); //EntityRuntimeID
 		$this->putVarInt($this->playerGamemode); //client gamemode, other field is world gamemode
 		$this->putVector3f($this->x, $this->y, $this->z);
-		$this->putLFloat($thia->pitch);
+		$this->putLFloat($this->pitch);
 		$this->putLFloat($this->yaw);
 		$this->putVarInt($this->seed);
 		$this->putVarInt($this->dimension);
