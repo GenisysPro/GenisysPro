@@ -355,56 +355,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		]);
 	}
 
-	public function setExperienceAndLevel(int $exp, int $level){
-		return $this->setTotalXp(self::getTotalXpRequirement($level) + $exp);
-	}
-
-	public function setExp(int $exp){
-		return $this->setTotalXp($exp);
-	}
-
-	public function setExpLevel(int $level){
-		return $this->setXpLevel($level);
-	}
-
-	public function getExpectedExperience(){
-		return self::getTotalXpRequirement($this->getXpLevel() + 1);
-	}
-
-	public function getLevelUpExpectedExperience(){
-		return self::getLevelXpRequirement($this->getXpLevel() + 1);
-	}
-
-	public function calcExpLevel(){
-	}
-
-	public function addExperience(int $exp){
-		return $this->addXp($exp);
-	}
-
-	public function addExpLevel(int $level){
-		return $this->addXpLevel($level);
-	}
-
-	public function getExp(){
-		return $this->getTotalXp();
-	}
-
-	public function getExpLevel(){
-		return $this->getXpLevel();
-	}
-
-	public function canPickupExp(): bool{
-		return $this->canPickupXp();
-	}
-
-	public function resetExpCooldown(){
-		$this->resetXpCooldown();
-	}
-
-	public function updateExperience(){
-	}
-
 	/**
 	 * This might disappear in the future.
 	 * Please use getUniqueId() instead (IP + clientId + name combo, in the future it'll change to real UUID for online
