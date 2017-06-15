@@ -47,13 +47,13 @@ class ResourcePacksInfoPacket extends DataPacket{
 		foreach($this->behaviorPackEntries as $entry){
 			$this->putString($entry->getPackId());
 			$this->putString($entry->getPackVersion());
-			$this->putLong($entry->getPackSize());
+			$this->putLLong($entry->getPackSize());
 		}
 		$this->putUnsignedVarInt(count($this->resourcePackEntries));
 		foreach($this->resourcePackEntries as $entry){
 			$this->putString($entry->getPackId());
 			$this->putString($entry->getPackVersion());
-			$this->putLong($entry->getPackSize());
+			$this->putLLong($entry->getPackSize());
 		}
 	}
 
