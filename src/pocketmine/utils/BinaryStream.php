@@ -194,6 +194,9 @@ class BinaryStream extends \stdClass{
 		}
 		$auxValue = $this->getVarInt();
 		$data = $auxValue >> 8;
+		if($data === 0x7fff){
+			$data = -1;
+		}
 		$cnt = $auxValue & 0xff;
 
 		$nbtLen = $this->getLShort();
@@ -229,7 +232,7 @@ class BinaryStream extends \stdClass{
 		}
 
 		$this->putVarInt($item->getId());
-		$auxValue = ($item->getDamage() << 8) | $item->getCount();
+		$auxValue = (($item->getDamage() & 0x7fff) << 8) | $item->getCount();
 		$this->putVarInt($auxValue);
 		$nbt = $item->getCompoundTag();
 		$this->putLShort(strlen($nbt));
