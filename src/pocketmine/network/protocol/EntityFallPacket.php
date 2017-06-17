@@ -28,20 +28,21 @@ class EntityFallPacket extends DataPacket{
 
 	const NETWORK_ID = Info::ENTITY_FALL_PACKET;
 
-	public $uvarint0;
-	public $item;
-	public $uvarint1;
-	public $uvarint2;
+	public $entityRuntimeId;
+	public $fallDistance;
+	public $bool1;
 
 	public function decode(){
-
+		$this->entityRuntimeId = $this->getEntityId();
+		$this->fallDistance = $this->getLFloat();
+		$this->bool1 = $this->getBool();
 	}
 
 	public function encode(){
-		$this->putUnsignedVarInt($this->uvarint0);
-		$this->putSlot($this->item);
-		$this->putVarInt($this->varint1);
-		$this->putVarInt($this->varint2);
+		$this->reset();
+		$this->putEntityId($this->entityRuntimeId);
+		$this->putLFloat($this->fallDistance);
+		$this->putBool($this->bool1);
 	}
 
 }
