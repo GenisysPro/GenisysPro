@@ -3579,18 +3579,18 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	 public function sendActionBar(string $title, string $subtitle = "", int $fadeIn = -1, int $stay = -1, int $fadeOut = -1){
 		 $this->setTitleDuration($fadeIn, $stay, $fadeOut);
 		if($subtitle !== ""){
-			$this->sendTitleText($subtitle, SetTitlePacket::TYPE_SET_SUBTITLE);
+			$this->sendTitleText($subtitle, SetTitlePacket::TYPE_SUB_TITLE);
 		}
-		$this->sendTitleText($title, SetTitlePacket::TYPE_SET_TITLE);
+		$this->sendTitleText($title, SetTitlePacket::TYPE_TITLE);
 	 }
 
 	 /*********/
 	public function addTitle(string $title, string $subtitle = "", int $fadeIn = -1, int $stay = -1, int $fadeOut = -1){
 		$this->setTitleDuration($fadeIn, $stay, $fadeOut);
 		if($subtitle !== ""){
-			$this->sendTitleText($subtitle, SetTitlePacket::TYPE_SET_SUBTITLE);
+			$this->sendTitleText($subtitle, SetTitlePacket::TYPE_SUB_TITLE);
 		}
-		$this->sendTitleText($title, SetTitlePacket::TYPE_SET_TITLE);
+		$this->sendTitleText($title, SetTitlePacket::TYPE_TITLE);
 	}
 
 	/**
@@ -3599,7 +3599,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	 * @param string $message
 	 */
 	public function addActionBarMessage(string $message){
-		$this->sendTitleText($message, SetTitlePacket::TYPE_SET_ACTIONBAR_MESSAGE);
+		$this->sendTitleText($message, SetTitlePacket::TYPE_ACTION_BAR);
 	}
 
 	/**
@@ -3607,7 +3607,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	 */
 	public function removeTitles(){
 		$pk = new SetTitlePacket();
-		$pk->type = SetTitlePacket::TYPE_CLEAR_TITLE;
+		$pk->type = SetTitlePacket::TYPE_CLEAR;
 		$this->dataPacket($pk);
 	}
 
@@ -3621,7 +3621,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	public function setTitleDuration(int $fadeIn, int $stay, int $fadeOut){
 		if($fadeIn >= 0 and $stay >= 0 and $fadeOut >= 0){
 			$pk = new SetTitlePacket();
-			$pk->type = SetTitlePacket::TYPE_SET_ANIMATION_TIMES;
+			$pk->type = SetTitlePacket::TYPE_TIMES;
 			$pk->fadeInTime = $fadeIn;
 			$pk->duration = $stay;
 			$pk->fadeOutTime = $fadeOut;
