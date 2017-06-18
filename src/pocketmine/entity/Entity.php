@@ -209,6 +209,11 @@ abstract class Entity extends Location implements Metadatable{
 
 	const DATA_FLAG_LINGER = 45;
 
+	const SOUTH = 0;
+	const WEST = 1;
+	const NORTH = 2;
+	const EAST = 3;
+
 	public static $entityCount = 1;
 	/** @var Entity[] */
 	private static $knownEntities = [];
