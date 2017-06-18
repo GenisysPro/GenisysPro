@@ -28,7 +28,7 @@ namespace pocketmine\entity;
 use pocketmine\block\Block;
 use pocketmine\block\Fire;
 use pocketmine\block\Portal;
-
+use pocketmine\block\PressurePlate;
 use pocketmine\block\Water;
 use pocketmine\block\SlimeBlock;
 use pocketmine\entity\Item as DroppedItem;
@@ -381,8 +381,8 @@ abstract class Entity extends Location implements Metadatable{
 
 	protected $riding = null;
 
-    /** @var PressurePlate */
-    protected $activatedPressurePlates = [];
+	/** @var PressurePlate */
+	protected $activatedPressurePlates = [];
 
 	public $dropExp = [0, 0];
 
