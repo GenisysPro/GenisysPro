@@ -122,7 +122,7 @@ class SkullBlock extends Flowable {
 			if ($item->hasCustomName()) {
 				$nbt->CustomName = new StringTag("CustomName", $item->getCustomName());
 			}
-			Tile::createTile("Skull", $this->getLevel()->getChunk($this->x >> 4, $this->z >> 4), $nbt);
+			Tile::createTile("Skull", $this->getLevel(), $nbt);
 			return true;
 		}
 		return false;
