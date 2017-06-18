@@ -185,7 +185,7 @@ commands:
 
 timings:
  #Choose the host to use for viewing your timings results.
- host: mcpetimings.com
+ host: timings.pmmp.io
 
 aliases:
  #Examples:
