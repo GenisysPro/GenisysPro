@@ -30,6 +30,7 @@ if(Test-Path "Genisys*.phar"){
 
 function StartServer{
 	$command = $binary + " " + $file + " --enable-ansi"
+	chcp 65001
 	iex $command
 }
 
