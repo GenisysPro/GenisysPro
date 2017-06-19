@@ -9,6 +9,7 @@ GenisysPro
 Languages
 -------------
 [English](https://github.com/GenisysPro/GenisysPro#english)  
+[日本語](https://github.com/GenisysPro/GenisysPro#日本語)
 [简体中文](https://github.com/GenisysPro/GenisysPro#简体中文)  
 [繁體中文](https://github.com/GenisysPro/GenisysPro#繁體中文)
 
@@ -90,6 +91,89 @@ License
   	You should have received a copy of the GNU General Public License
   	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
+# 日本語
+
+前書き
+-------------
+
+__GenisysProは、*Minecraft：Pocket Edition* および *Minecraft：Windows 10 Edition* 用の豊富な機能を備えたサーバーソフトウェアです。__  
+GenisysProは **[Genisys](https://github.com/iTXTech/Genisys)** をベースとし、拡張機能を備えています。 コードのほとんどは、もともと **[iTXTech](https://github.com/orgs/iTXTech/people)**のメンバーによって書かれたものです。
+
+Genisysが提供する機能の一部:
+* 複数のクライアントバージョンのサポート
+* プラグイン用API（GeniAPI）
+* オプションのXbox Live認証
+* Minecraft: Windows 10 Editionのサポート
+* グローバルリソースパック
+
+サポートされているバージョン
+-------------
+Game versions supported by `master` branch:
+- [x] MCPE v1.1.x Alpha
+
+TODOリスト
+-------------
+
+- [x] ビーコン
+- [x] フォルダプラグインの読み込み
+- [x] もっと多くのブロック
+- [x] 金床
+- [x] グローバルリソースパック
+
+GenisysProはまだまだ道のりがあります。 皆様のご協力を歓迎し、寄付を歓迎します。  
+
+
+GenisysProを入手しよう！
+-------------
+* 最新のコードを [GitHub](https://github.com/GenisysPro/GenisysPro/archive/master.zip) からダウンロードする
+  *-又は-*  
+  ビルドを [Gitlab CI](https://gitlab.com/GenisysPro/GenisysPro/builds) からダウンロードする。こちらの
+  ビルドは最新バージョンではなく、週に数回更新されるだけです。
+* [PHPバイナリーを入手](https://itxtech.org/genisys/get/)
+* インストール手順は [Wiki](https://github.com/GenisysPro/GenisysPro/wiki) にあります。
+
+
+NOTE: **`master`ブランチは公式にサポートされている唯一のブランチです。**  
+他のすべてのブランチはテスト中であり、不安定である可能性があります。 リスクがあることを理解していない限り、他のブランチからビルドを使用しないでください。
+
+
+ヘルプ & サポート
+-------------
+Doxygenで生成された公式文書（まだ入手できません）
+
+討論
+-------------
+* [QQグループ](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
+* [Discordグループ](https://discord.gg/WrKzRNn)
+
+寄付
+-------------
+**Head developer's QQ: 1912003473**  
+GenisysProはフリーソフトウェアです。 寄付をいただきありがとうございます。GenisysProをより良くするためです。
+
+その他のツール
+-------------
+* [Pocket Server](https://github.com/fengberd/MinecraftPEServer) - PocketMine-MPをAndroid端末上で動かせるようにします。
+
+ライセンス
+-------------
+   このプログラムはフリーソフトウェアです：
+   あなたはそれを再配布したり、変更したりすることができます
+   GNU一般公衆利用許諾契約書の条項の下で
+   フリーソフトウェア財団、ライセンスのバージョン3、または
+   （あなたのオプションで）すべてのそれ以降のバージョン。
+
+   このプログラムは有用であることを願って配布されており、
+   ただし、いかなる保証もありません。 黙示の保証なしでも
+   商品性または特定の目的への適合性を保証するものではありません。 を参照してください
+   詳細については、GNU General Public Licenseを参照してください。
+
+   このプログラムと共にGNU General Public Licenseのコピーを受け取ったはずです。
+   そうでない場合は、<http://www.gnu.org/licenses/licenses.ja.html>を参照してください。
+	
+	
+	
 # 简体中文
 
 简介
