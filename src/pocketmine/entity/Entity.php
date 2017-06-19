@@ -593,6 +593,40 @@ abstract class Entity extends Location implements Metadatable{
 	}
 
 	/**
+	 * Returns whether the entity is able to climb blocks such as ladders or vines.
+	 * @return bool
+	 */
+	public function canClimb() : bool{
+		return $this->getDataFlag(self::DATA_FLAGS, self::DATA_FLAG_CAN_CLIMB);
+	}
+
+	/**
+	 * Sets whether the entity is able to climb climbable blocks.
+	 * @param bool $value
+	 */
+	public function setCanClimb(bool $value){
+		$this->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_CAN_CLIMB, $value);
+	}
+
+	/**
+	 * Returns whether this entity is climbing a block. By default this is only true if the entity is climbing a ladder or vine or similar block.
+	 *
+	 * @return bool
+	 */
+	public function canClimbWalls() : bool{
+		return $this->getDataFlag(self::DATA_FLAGS, self::DATA_FLAG_WALLCLIMBING);
+	}
+
+	/**
+	 * Sets whether the entity is climbing a block. If true, the entity can climb anything.
+	 *
+	 * @param bool $value
+	 */
+	public function setCanClimbWalls(bool $value = true){
+		$this->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_WALLCLIMBING, $value);
+	}
+
+	/**
 	 * @return Effect[]
 	 */
 	public function getEffects(){
