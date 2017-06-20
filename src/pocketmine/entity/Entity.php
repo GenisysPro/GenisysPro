@@ -1941,7 +1941,7 @@ abstract class Entity extends Location implements Metadatable{
 			}
 			if($this->getLevel() !== null){
 				$this->getLevel()->removeEntity($this);
-				$this->setLevel(null);
+				//$this->setLevel(null);
 			}
 			
 			$this->namedtag = null;
