@@ -12,6 +12,7 @@ Languages
 [日本語](https://github.com/GenisysPro/GenisysPro#日本語)  
 [简体中文](https://github.com/GenisysPro/GenisysPro#简体中文)  
 [繁體中文](https://github.com/GenisysPro/GenisysPro#繁體中文)
+[Dutch](https://github.com/GenisysPro/GenisysPro#dutch)  
 
 # English
 
@@ -319,3 +320,82 @@ GenisysPro 是一款免費、開放源代碼的自由軟體。我們歡迎並感
 
     您應該已經和程式一起收到一份 GNU 通用公共許可證的副本。如果還
     沒有，請造訪 <http://www.gnu.org/licenses/>。
+
+
+# dutch
+
+Invoering
+-------------
+
+__GenisysPro is een toekomst rijke serversoftware voor * Minecraft: Pocket Edition * en * Minecraft: Windows 10 Edition * .__
+GenisysPro is gebaseerd op ** [Genisys] (https://github.com/iTXTech/Genisys) ** met uitgebreide functionaliteit. Het grootste deel van de code is oorspronkelijk geschreven door leden van ** [iTXTech] (https://github.com/orgs/iTXTech/people) **.
+
+Enkele functies die Genisys biedt:
+* Ondersteuning voor meerdere clientversies
+* Uitgebreide API voor plugins (GeniAPI)
+* Optionele Xbox Live-verificatie
+* Ondersteuning voor Minecraft: Windows 10 Edition
+* Global resource packs
+
+Ondersteunde versie
+-------------
+Game-versies ondersteund door `master` -tak:
+- [x] MCPE v1.1.x Alpha
+
+Te doen lijst
+-------------
+
+- [x] Baken!
+- [x] Folder Plugin Loader
+- [x] Meer blokken
+- [x] Anvil
+- [x] Global resource packs
+
+GenisysPro heeft nog een lange weg. We zijn blij om hulp van iedereen te ontvangen en welkom medewerkers.
+
+
+GenisysPro krijgen
+-------------
+* Download de laatste code van [GitHub] (https://github.com/GenisysPro/GenisysPro/archive/master.zip)
+  *-of-*
+  Download een bouwen van [Gitlab CI] (https://gitlab.com/GenisysPro/GenisysPro/builds). Het gebouw is mogelijk niet de laatste versie, en wordt pas een paar keer per week bijgewerkt.
+* Krijg [PHP binaries] (https://itxtech.org/genisys/get/) en andere benodigde componenten.
+* Installatie-instructies zijn te vinden in de [Wiki] (https://github.com/GenisysPro/GenisysPro/wiki).
+
+
+OPMERKING: ** De `master`-tak is de enige officieel ondersteunde tak. **
+Alle andere takken zijn in het testen en kunnen instabiel zijn. Gebruik geen bouwwerken van andere takken, tenzij u zeker weet dat u de risico's begrijpt.
+
+
+Hulp & Ondersteuning
+-------------
+Officiële Doxygen-gegenereerde Documentatie (nog niet beschikbaar)
+
+Discussie
+-------------
+* [QQ groep] (https://jq.qq.com/?_wv=1027&k=46Xjsfo)
+* [Discord Group] (https://discord.gg/WrKzRNn)
+
+Het doneren
+-------------
+** Hoofdontwikkelaar QQ: 1912003473 **
+GenisysPro is gratis software. We waarderen uw donatie, omdat het ons helpt om GenisysPro beter te maken.
+
+Overige gereedschappen
+-------------
+* [Pocket Server] (https://github.com/fengberd/MinecraftPEServer) - Run PocketMine-MP op Android-apparaten
+
+Licentie
+-------------
+  Dit programma is gratis software: u kunt het opnieuw distribueren en / of wijzigen
+  Het is onder de voorwaarden van de GNU General Public License zoals gepubliceerd door
+  De Free Software Foundation, ofwel versie 3 van de licentie, of
+  (Naar keuze) elke latere versie.
+
+  Dit programma wordt verdeeld in de hoop dat het nuttig zal zijn,
+  Maar zonder enige garantie; Zonder zelfs de impliciete garantie van
+  VERKOOPBAARHEID OF GESCHIKTHEID VOOR EEN BEPAALD DOEL. Zie de
+  GNU General Public License voor meer informatie.
+
+  U had een kopie van de GNU General Public License moeten ontvangen
+  Samen met dit programma. Zo niet, zie <http://www.gnu.org/licenses/>.
