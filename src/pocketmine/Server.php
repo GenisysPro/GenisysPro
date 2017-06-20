@@ -1488,13 +1488,13 @@ class Server{
                           __/ |                    
                          |___/                     
 
-	版本: §6" . $this->getPocketMineVersion() . '§f
-	客户端版本: §b' . $version . '§f
-	PHP版本: §e' . PHP_VERSION . '§f
-	系统: §6' . PHP_OS .'§f
-	本核心由 §dSuperXingKong插件组 §f维护
-	QQ群: §a559301590 §f
-	欢迎捐赠QQ: §c1912003473
+	Version: §6" . $this->getPocketMineVersion() . '§f
+	Client Version: §b' . $version . '§f
+	PHP Version: §e' . PHP_VERSION . '§f
+	System OS: §6' . PHP_OS .'§f
+	This core was maintain by §dGenisysPro§f
+	Chatroom on QQ: §a559301590 §f
+	Welcome to donate us on QQ: §c1912003473
 	';
 	
 		$this->getLogger()->info($string);
