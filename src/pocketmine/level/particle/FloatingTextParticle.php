@@ -73,7 +73,7 @@ class FloatingTextParticle extends Particle{
 		$p = [];
 
 		if($this->entityId === null){
-			$this->entityId = bcadd("1095216660480", mt_rand(0, 0x7fffffff)); //No conflict with other things
+			$this->entityId = Entity::$entityCount++;
 		}else{
 			$pk0 = new RemoveEntityPacket();
 			$pk0->eid = $this->entityId;
@@ -94,13 +94,11 @@ class FloatingTextParticle extends Particle{
 			$pk->speedZ = 0;
 			$pk->yaw = 0;
 			$pk->pitch = 0;
-			$pk->item = 0;
-			$pk->meta = 0;
-			$flags = 0;
-			$flags |= 1 << Entity::DATA_FLAG_INVISIBLE;
-			$flags |= 1 << Entity::DATA_FLAG_CAN_SHOW_NAMETAG;
-			$flags |= 1 << Entity::DATA_FLAG_ALWAYS_SHOW_NAMETAG;
-			$flags |= 1 << Entity::DATA_FLAG_IMMOBILE;
+			$flags = (
+				(1 << Entity::DATA_FLAG_CAN_SHOW_NAMETAG) |
+				(1 << Entity::DATA_FLAG_ALWAYS_SHOW_NAMETAG) |
+				(1 << Entity::DATA_FLAG_IMMOBILE)
+			);
 			$pk->metadata = [
 				Entity::DATA_FLAGS => [Entity::DATA_TYPE_LONG, $flags],
 				Entity::DATA_NAMETAG => [Entity::DATA_TYPE_STRING, $this->title . ($this->text !== "" ? "\n" . $this->text : "")],
