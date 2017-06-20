@@ -340,7 +340,7 @@ Enkele functies die Genisys biedt:
 
 Ondersteunde versie
 -------------
-Game-versies ondersteund door `master` -tak:
+Game-versies ondersteund door `master` -fork:
 - [x] MCPE v1.1.x Alpha
 
 Te doen lijst
@@ -364,7 +364,7 @@ GenisysPro krijgen
 * Installatie-instructies zijn te vinden in de [Wiki] (https://github.com/GenisysPro/GenisysPro/wiki).
 
 
-OPMERKING: ** De `master`-tak is de enige officieel ondersteunde tak. **
+OPMERKING: ** De `master`-fork is de enige officieel ondersteunde fork. **
 Alle andere takken zijn in het testen en kunnen instabiel zijn. Gebruik geen bouwwerken van andere takken, tenzij u zeker weet dat u de risico's begrijpt.
 
 
