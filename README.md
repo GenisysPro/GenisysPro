@@ -386,17 +386,17 @@ Overige gereedschappen
 -------------
 * [Pocket Server] (https://github.com/fengberd/MinecraftPEServer) - Run PocketMine-MP op Android-apparaten
 
-Licentie
+License
 -------------
-  Dit programma is gratis software: u kunt het opnieuw distribueren en / of wijzigen
-  Het is onder de voorwaarden van de GNU General Public License zoals gepubliceerd door
-  De Free Software Foundation, ofwel versie 3 van de licentie, of
-  (Naar keuze) elke latere versie.
+  	This program is free software: you can redistribute it and/or modify
+  	it under the terms of the GNU General Public License as published by
+  	the Free Software Foundation, either version 3 of the License, or
+  	(at your option) any later version.
 
-  Dit programma wordt verdeeld in de hoop dat het nuttig zal zijn,
-  Maar zonder enige garantie; Zonder zelfs de impliciete garantie van
-  VERKOOPBAARHEID OF GESCHIKTHEID VOOR EEN BEPAALD DOEL. Zie de
-  GNU General Public License voor meer informatie.
+  	This program is distributed in the hope that it will be useful,
+  	but WITHOUT ANY WARRANTY; without even the implied warranty of
+  	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  	GNU General Public License for more details.
 
-  U had een kopie van de GNU General Public License moeten ontvangen
-  Samen met dit programma. Zo niet, zie <http://www.gnu.org/licenses/>.
+  	You should have received a copy of the GNU General Public License
+  	along with this program.  If not, see <http://www.gnu.org/licenses/>.
