@@ -357,11 +357,11 @@ GenisysPro heeft nog een lange weg. We zijn blij om hulp van iedereen te ontvang
 
 GenisysPro krijgen
 -------------
-* Download de laatste code van [GitHub] (https://github.com/GenisysPro/GenisysPro/archive/master.zip)
+* Download de laatste code van [GitHub](https://github.com/GenisysPro/GenisysPro/archive/master.zip)
   *-of-*
-  Download een bouwen van [Gitlab CI] (https://gitlab.com/GenisysPro/GenisysPro/builds). Het gebouw is mogelijk niet de laatste versie, en wordt pas een paar keer per week bijgewerkt.
-* Krijg [PHP binaries] (https://itxtech.org/genisys/get/) en andere benodigde componenten.
-* Installatie-instructies zijn te vinden in de [Wiki] (https://github.com/GenisysPro/GenisysPro/wiki).
+  Download een bouwen van [Gitlab CI](https://gitlab.com/GenisysPro/GenisysPro/builds). Het gebouw is mogelijk niet de laatste versie, en wordt pas een paar keer per week bijgewerkt.
+* Krijg [PHP binaries](https://itxtech.org/genisys/get/) en andere benodigde componenten.
+* Installatie-instructies zijn te vinden in de [Wiki](https://github.com/GenisysPro/GenisysPro/wiki).
 
 
 OPMERKING: ** De `master`-fork is de enige officieel ondersteunde fork. **
@@ -374,8 +374,8 @@ Officiële Doxygen-gegenereerde Documentatie (nog niet beschikbaar)
 
 Discussie
 -------------
-* [QQ groep] (https://jq.qq.com/?_wv=1027&k=46Xjsfo)
-* [Discord Group] (https://discord.gg/WrKzRNn)
+* [QQ groep](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
+* [Discord Group](https://discord.gg/WrKzRNn)
 
 Het doneren
 -------------
@@ -384,7 +384,7 @@ GenisysPro is gratis software. We waarderen uw donatie, omdat het ons helpt om G
 
 Overige gereedschappen
 -------------
-* [Pocket Server] (https://github.com/fengberd/MinecraftPEServer) - Run PocketMine-MP op Android-apparaten
+* [Pocket Server](https://github.com/fengberd/MinecraftPEServer) - Run PocketMine-MP op Android-apparaten
 
 License
 -------------
