@@ -329,7 +329,7 @@ Invoering
 -------------
 
 __GenisysPro is een toekomst rijke serversoftware voor * Minecraft: Pocket Edition * en * Minecraft: Windows 10 Edition * .__
-GenisysPro is gebaseerd op ** [Genisys] (https://github.com/iTXTech/Genisys) ** met uitgebreide functionaliteit. Het grootste deel van de code is oorspronkelijk geschreven door leden van ** [iTXTech] (https://github.com/orgs/iTXTech/people) **.
+GenisysPro is gebaseerd op ** [Genisys](https://github.com/iTXTech/Genisys) ** met uitgebreide functionaliteit. Het grootste deel van de code is oorspronkelijk geschreven door leden van ** [iTXTech](https://github.com/orgs/iTXTech/people) **.
 
 Enkele functies die Genisys biedt:
 * Ondersteuning voor meerdere clientversies
