@@ -19,15 +19,11 @@
  *
 */
 
-declare(strict_types=1);
-
 namespace pocketmine\level\format\io;
 
 use pocketmine\level\format\Chunk;
 use pocketmine\level\Level;
 use pocketmine\nbt\NBT;
-use pocketmine\network\protocol\BatchPacket;
-use pocketmine\network\protocol\FullChunkDataPacket;
 use pocketmine\scheduler\AsyncTask;
 use pocketmine\Server;
 use pocketmine\tile\Spawnable;
@@ -42,11 +38,8 @@ class ChunkRequestTask extends AsyncTask{
 
 	protected $tiles;
 
-	protected $compressionLevel;
-
 	public function __construct(Level $level, Chunk $chunk){
 		$this->levelId = $level->getId();
-		$this->compressionLevel = $level->getServer()->networkCompressionLevel;
 
 		$this->chunk = $chunk->fastSerialize();
 		$this->chunkX = $chunk->getX();
@@ -68,26 +61,15 @@ class ChunkRequestTask extends AsyncTask{
 	public function onRun(){
 		$chunk = Chunk::fastDeserialize($this->chunk);
 
-		$pk = new FullChunkDataPacket();
-		$pk->chunkX = $this->chunkX;
-		$pk->chunkZ = $this->chunkZ;
-		$pk->data = $chunk->networkSerialize() . $this->tiles;
+		$ordered = $chunk->networkSerialize() . $this->tiles;
 
-		$batch = new BatchPacket();
-		$batch->addPacket($pk);
-		$batch->compress($this->compressionLevel);
-		$batch->encode();
-
-		$this->setResult($batch->buffer, false);
+		$this->setResult($ordered, false);
 	}
 
 	public function onCompletion(Server $server){
 		$level = $server->getLevel($this->levelId);
 		if($level instanceof Level and $this->hasResult()){
-			$batch = new BatchPacket($this->getResult());
-			$batch->compressed = true;
-			$batch->isEncoded = true;
-			$level->chunkRequestCallback($this->chunkX, $this->chunkZ, $batch);
+			$level->chunkRequestCallback($this->chunkX, $this->chunkZ, $this->getResult());
 		}
 	}
 
