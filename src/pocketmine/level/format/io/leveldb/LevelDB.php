@@ -35,7 +35,7 @@ use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\{
 	ByteTag, CompoundTag, FloatTag, IntTag, LongTag, StringTag
 };
-use pocketmine\network\protocol\ProtocolInfo;
+use pocketmine\network\protocol\Info as ProtocolInfo;
 use pocketmine\utils\Binary;
 use pocketmine\utils\MainLogger;
 
