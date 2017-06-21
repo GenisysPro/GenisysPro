@@ -19,10 +19,9 @@
  *
 */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace pocketmine\level\format;
-
 
 class EmptySubChunk extends SubChunk{
 

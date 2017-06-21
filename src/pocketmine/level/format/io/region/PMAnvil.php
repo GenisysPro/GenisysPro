@@ -19,7 +19,7 @@
  *
 */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace pocketmine\level\format\io\region;
 
@@ -49,8 +49,8 @@ class PMAnvil extends Anvil{
 		$nbt->V = new ByteTag("V", 1);
 		$nbt->LastUpdate = new LongTag("LastUpdate", 0); //TODO
 		$nbt->InhabitedTime = new LongTag("InhabitedTime", 0); //TODO
-		$nbt->TerrainPopulated = new ByteTag("TerrainPopulated", $chunk->isPopulated());
-		$nbt->LightPopulated = new ByteTag("LightPopulated", $chunk->isLightPopulated());
+		$nbt->TerrainPopulated = new ByteTag("TerrainPopulated", $chunk->isPopulated() ? 1 : 0);
+		$nbt->LightPopulated = new ByteTag("LightPopulated", $chunk->isLightPopulated() ? 1 : 0);
 
 		$nbt->Sections = new ListTag("Sections", []);
 		$nbt->Sections->setTagType(NBT::TAG_Compound);
@@ -59,7 +59,7 @@ class PMAnvil extends Anvil{
 			if($subChunk->isEmpty()){
 				continue;
 			}
-			$nbt->Sections[++$subChunks] = new CompoundTag(null, [
+			$nbt->Sections[++$subChunks] = new CompoundTag("", [
 				"Y"          => new ByteTag("Y", $y),
 				"Blocks"     => new ByteArrayTag("Blocks",     $subChunk->getBlockIdArray()),
 				"Data"       => new ByteArrayTag("Data",       $subChunk->getBlockDataArray()),
@@ -104,7 +104,7 @@ class PMAnvil extends Anvil{
 	public function nbtDeserialize(string $data){
 		$nbt = new NBT(NBT::BIG_ENDIAN);
 		try{
-			$nbt->readCompressed($data, ZLIB_ENCODING_DEFLATE);
+			$nbt->readCompressed($data);
 
 			$chunk = $nbt->getData();
 
@@ -149,5 +149,9 @@ class PMAnvil extends Anvil{
 
 	public static function getProviderName() : string{
 		return "pmanvil";
+	}
+
+	public static function getPcWorldFormatVersion() : int{
+		return -1; //Not a PC format, only PocketMine-MP
 	}
 }
