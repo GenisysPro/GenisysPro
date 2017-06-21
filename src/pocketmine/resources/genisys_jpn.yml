@@ -1,0 +1,130 @@
+#
+#   _____            _               _____           
+#  / ____|          (_)             |  __ \          
+# | |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
+# | | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \ 
+# | |__| |  __/ | | | \__ \ |_| \__ \ |   | | | (_) |
+#  \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/ 
+#                          __/ |                    
+#                         |___/                     
+#
+#
+#
+#GenisysProの詳細設定ファイル
+
+#このファイルのバージョン
+config:
+ version: 26
+
+level:
+ #天気を有効にするか（雨によって古いデバイスに遅れが生じることがあります）
+ weather: true
+ #天気ランダム期間
+ weather-random-duration-min: 6000
+ weather-random-duration-max: 12000
+ #ランダム雷の間隔、デフォルトは10秒、0 =無効
+ lightning-time: 200
+ #雷が打撃を受けた後火を出すか
+ lightning-fire: false
+ #火災が広がるの（樹木など）を有効にするか
+ fire-spread: false
+
+player:
+ #空腹を有効にするか
+ hunger: true
+ #経験値を有効にするか
+ experience: true
+ #死んだ後にプレーヤーの在庫を保持するかどうか
+ keep-inventory: false
+ #プレイヤーのインベントリをクリアしてゲームモードを変更する
+ auto-clear-inventory : true
+ #死んだ後にプレーヤーの経験を保持するかどうか
+ keep-experience: false
+
+developer:
+  #この設定では、サーバは.pharファイルを介してソースディレクトリからプラグインをロードできます
+  #"false" のままにすることをお勧めします
+  folder-plugin-loader: true
+  #この設定により、サーバーは互換性のないAPIでプラグインを読み込むことができます
+  #"false" のままにすることをお勧めします
+  load-incompatible-api: true
+
+nether:
+ #ネザーを許可するか。 ネザーのレベルは自動的に生成されます
+ allow-nether: true
+ #ネザーのレベル名
+ level-name: "nether"
+
+server:
+ #アイアンゴーレムのスポーンを有効にするか
+ allow-iron-golem: false
+ #スノーゴーレムのスポーンを有効にするか
+ allow-snow-golem: false
+ #server.logを無効にするか
+ disable-log: false
+ #誰かがゲームに参加したときにプレイヤーにそのことを伝える方法を選択
+ #0 = Message, 1 = Tip, 2 = Popup
+ player-msg-type: 0
+ login-msg: "§3@player が参加しました！"
+ logout-msg: "§3@player が退出しました"
+ #限られたクリエイティブを有効にするか（ホットバーからアイテムを削除できない、開いていることができないなど）
+ limited-creative: true
+ #DestroyBlockParticleを有効にするか
+ destroy-block-particle: true
+ #スプラッシュポーションを有効にするか
+ allow-splash-potion: true
+ #高度なコマンドセレクタを有効にするか
+ advanced-command-selector: false
+ #ResourcePackManagerを有効にするか
+ enable-resource: false
+
+enchantment:
+ #金床を有効にするか
+ enable-anvil: true
+ #エンチャントテーブルを有効にするか
+ enable-enchanting-table: true
+ #本棚を数えるかどうかを選択する（サーバーの遅延を引き起こす可能性があります）
+ #このオプションがfalseの場合、サーバはランダムカウント（0〜15）を使用します
+ count-bookshelf: false
+
+redstone:
+ ##################################################
+ ####レッドストーンシステムが有効にするかどうか##########
+ ##################################################
+ #falseであれば、レッドストーンシステムは動作しません#
+ ##################################################
+ enable: false
+ #周波数パルスを有効にするか
+ frequency-pulse: false
+ #パルスの周波数を設定します。 デフォルト= 1s
+ pulse-frequency: 1
+
+dserver:
+ #すべてのマルチサーバーの数を統一するか
+ enable: false
+ #クエリを自動的に更新するか
+ query-auto-update: false
+ #定期的にクエリを更新するか
+ query-tick-update: true
+ #MOTD上の最大のプレーヤー
+ motd-max-players: 0
+ #クエリ上の最大のプレイヤー。 0 =デフォルト
+ query-max-players: 0
+ #MOTDの全プレイヤー数を表示するか
+ motd-all-players: false
+ #クエリの全プレイヤー数を表示するか
+ query-all-players: false
+ #MOTDのオンラインプレーヤー数を表示するか
+ motd-players: false
+ #クエリのオンラインプレーヤー数を表示するか
+ query-players: false
+ #更新頻度 20=1s
+ time: 40
+ #Auto-retry # of times when server fails
+ retry-times: 3
+ #サーバーのリスト、';'で区切ります。例. 1.example.com:19132;2.example.com:19133
+ server-list: ""
+
+inventory:
+ #アンビルに問題がある場合は、これをtrueに設定します。 これにより、チート検証なしでインベントリが処理されます。
+ allow-cheats: false
