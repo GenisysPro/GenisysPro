@@ -1984,6 +1984,10 @@ abstract class Entity extends Location implements Metadatable{
 	}
 
 	public function setLinked($type = 0, Entity $entity){
+		if($entity instanceof Boat){
+			$this->setDataProperty(57, 8, [0, 1, 0]); //This is a fast hack for Boat. TODO: Improve it
+			}
+
 		if($type != 0 and $entity === null){
 			return false;
 		}
