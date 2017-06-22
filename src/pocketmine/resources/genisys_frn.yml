@@ -1,0 +1,129 @@
+#   _____            _               _____           
+#  / ____|          (_)             |  __ \          
+# | |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
+# | | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \ 
+# | |__| |  __/ | | | \__ \ |_| \__ \ |   | | | (_) |
+#  \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/ 
+#                          __/ |                    
+#                         |___/                     
+#
+#
+#
+#Fichier de configuration avancé GenisysPro
+
+#Version de ce fichier
+config:
+ version: 26
+
+level:
+ #Réglez si la météo est activée (la pluie peut provoquer un retard sur les périphériques plus anciens)
+ weather: true
+ #Temps de durée aléatoire
+ weather-random-duration-min: 6000
+ weather-random-duration-max: 12000
+ #Intervalle d'éclairement aléatoire, par défaut 10s, 0 = désactiver
+ lightning-time: 200
+ #Réglez si les éclairs ont le feu après
+ lightning-fire: false
+ #Réglez si le feu doit se propager (arbres, etc.)
+ fire-spread: false
+
+player:
+ #Réglez si la faim est activée
+ hunger: true
+ #Choisissez si l'expérience est activée
+ experience: true
+ #Choisissez de garder l'inventaire d'un joueur après sa mort
+ keep-inventory: false
+ #Effacez l'inventaire d'un joueur en changeant leur gamemode
+ auto-clear-inventory : true
+ #Choisissez de garder l'expérienChoisissez si le bas est autorisé. Le niveau de Nether générera automatiquementce d'un joueur après sa mort
+ keep-experience: false
+
+developer:
+  #Ce paramètre permet au serveur de charger des plugins via le répertoire source via un fichier .phar
+  #Recommandé qu'il reste "faux"
+  folder-plugin-loader: true
+  #Ce paramètre permet au serveur de charger des plugins avec une API incompatible
+  #Recommandé qu'il reste "faux"
+  load-incompatible-api: true
+
+nether:
+ #Choisissez si le bas est autorisé. Le niveau de Nether générera automatiquement
+ allow-nether: true
+ #Thommommé qu'il reste "faux" e nom du niveau inférieur
+ level-name: "nether"
+
+server:
+ #Choisissez si le golem de génie est autorisé
+ allow-iron-golem: false
+ #Choisissez si le vent de neige qui frappe est autorisé
+ allow-snow-golem: false
+ #Choisissez si server.log est désactivé
+ disable-log: false
+ #Choisissez comment rappeler les joueurs lorsque quelqu'un se joint au jeu
+ #0 = Message, 1 = Pointe, 2 = Apparaitre
+ player-msg-type: 0
+ login-msg: "§3@player joined the game"
+ logout-msg: "§3@player left the game"
+ #Définir si la création limitée est activée (ne peut pas supprimer les éléments de la barre hotbar, ne pas ouvrir les coffres, etc.)
+ limited-creative: true
+ #Définir si ajouter DestroyBlockParticle
+ destroy-block-particle: true
+ #Réglez si les potions d'éclaboussures sont activées
+ allow-splash-potion: true
+ #Réglez si les potions d'éclaboussures sont activées
+ advanced-command-selector: false
+ #Définir si activer ResourcePackManager
+ enable-resource: false
+
+enchantment:
+ #Choisissez si les anvil sont activés
+ enable-anvil: true
+ #Choisissez si les tables d'enchantement sont activées
+ enable-enchanting-table: true
+ #Choisissez de compter les étagères (peut causer un retard de serveur)
+ #Si cette option est fausse, le serveur utilisera un compte aléatoire (0 à 15)
+ count-bookshelf: false
+
+redstone:
+ ################################################
+#### Choisissez si le système redstone est activé ####
+ ################################################
+# Si c'est faux, le système Redstone ne fonctionnera pas #
+ ################################################
+ enable: false
+ #Choisissez si les impulsions de fréquence sont activées
+ frequency-pulse: false
+ #Réglez la fréquence des impulsions. Par défaut = 1s
+ pulse-frequency: 1
+
+dserver:
+ #Le nombre de tous les serveurs multi-serveurs unifiés
+ enable: false
+ #Mettre à jour automatiquement la requête
+ query-auto-update: false
+ #Mettre à jour périodiquement la requête
+ query-tick-update: true
+ #Le maximum de joueurs sur le MOTD
+ motd-max-players: 0
+ #Les joueurs maximum sur la requête. 0 = par défaut
+ query-max-players: 0
+ #Afficher le nombre de tous les joueurs sur MOTD
+ motd-all-players: false
+ #Afficher le nombre de tous les joueurs sur la requête
+ query-all-players: false
+ #Afficher le nombre de joueurs en ligne sur MOTD
+ motd-players: false
+ #Afficher le nombre de joueurs en ligne sur la requête
+ query-players: false
+ #Fréquence de mise à jour. 20 = 1s
+ time: 40
+ #Réessayez automatiquement le nombre de fois où le serveur échoue
+ retry-times: 3
+ #La liste du serveur, séparée par ';', par exemple 1.example.com:19132 ;2.example.com:19133
+ server-list: ""
+ 
+ inventory:
+  #Configurez ceci comme vrai si vous avez des problèmes avec les enclumes. Cela permettra de traiter les transactions d'inventaire de manière vanille sans anti-triche ou de vérification.
+  allow-cheats: false
