@@ -262,6 +262,23 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::CONCRETE] = Concrete::class;
 			self::$list[self::CONCRETE_POWDER] = ConcretePowder::class;
 			
+			self::$list[self::BLACK_GLAZED_TERRACOTTA] = BlackGlazedTerracotta::class;
+			self::$list[self::BLUE_GLAZED_TERRACOTTA] = BlueGlazedTerracotta::class;
+			self::$list[self::BROWN_GLAZED_TERRACOTTA] = BrownGlazedTerracotta::class;
+			self::$list[self::CYAN_GLAZED_TERRACOTTA] = CyanGlazedTerracotta::class;
+			self::$list[self::GRAY_GLAZED_TERRACOTTA] = GrayGlazedTerracotta::class;
+			self::$list[self::GREEN_GLAZED_TERRACOTTA] = GreenGlazedTerracotta::class;
+			self::$list[self::LIGHT_BLUE_GLAZED_TERRACOTTA] = LightBlueGlazedTerracotta::class;
+			self::$list[self::LIME_GLAZED_TERRACOTTA] = LimeGlazedTerracotta::class;
+			self::$list[self::MAGENTA_GLAZED_TERRACOTTA] = MagentaGlazedTerracotta::class;
+			self::$list[self::ORANGE_GLAZED_TERRACOTTA] = OrangeGlazedTerracotta::class;
+			self::$list[self::PINK_GLAZED_TERRACOTTA] = PinkGlazedTerracotta::class;
+			self::$list[self::PURPLE_GLAZED_TERRACOTTA] = PurpleGlazedTerracotta::class;
+			self::$list[self::RED_GLAZED_TERRACOTTA] = RedGlazedTerracotta::class;
+			self::$list[self::SILVER_GLAZED_TERRACOTTA] = SilverGlazedTerracotta::class;
+			self::$list[self::WHITE_GLAZED_TERRACOTTA] = WhiteGlazedTerracotta::class;
+			self::$list[self::YELLOW_GLAZED_TERRACOTTA] = YellowGlazedTerracotta::class;
+			
 			self::$list[self::NETHER_BRICK_FENCE] = NetherBrickFence::class;
 			self::$list[self::POWERED_RAIL] = PoweredRail::class;
 			self::$list[self::RAIL] = Rail::class;
