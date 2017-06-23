@@ -1,6 +1,6 @@
 <?php
 /*
- * Based on the amazing MyOwnWorld written by Zzm !!!
+ * Based on the amazing MyOwnWorld written by Zzm !!!(Not the best choice...)
 */
 
 namespace pocketmine\entity\mobsai;
