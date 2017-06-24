@@ -3623,9 +3623,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		if($fadeIn >= 0 and $stay >= 0 and $fadeOut >= 0){
 			$pk = new SetTitlePacket();
 			$pk->type = SetTitlePacket::TYPE_TIMES;
-			$pk->fadeInTime = $fadeIn;
+			$pk->fadeInDuration = $fadeIn;
 			$pk->duration = $stay;
-			$pk->fadeOutTime = $fadeOut;
+			$pk->fadeOutDuration = $fadeOut;
 			$this->dataPacket($pk);
 		}
 	}
