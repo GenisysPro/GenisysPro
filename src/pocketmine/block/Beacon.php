@@ -13,8 +13,6 @@
  
 namespace pocketmine\block;
 
-use pocketmine\block\Block;
-use pocketmine\block\Solid;
 use pocketmine\item\Item;
 use pocketmine\Player;
 use pocketmine\nbt\tag\CompoundTag;
@@ -23,9 +21,8 @@ use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\tile\Tile;
 use pocketmine\tile\Beacon as TileBeacon;
-use pocketmine\math\Vector3;
 
- class Beacon extends Transparent implements SolidLight{
+class Beacon extends Transparent{
  
  	protected $id = self::BEACON;
  
@@ -37,12 +34,20 @@ use pocketmine\math\Vector3;
  		return true;
  	}
  
- 	public function getName() : string{
+ 	public function getName(){
  		return "Beacon";
  	}
 	
 	public function getLightLevel(){
 		return 15;
+	}
+	
+	public function getResistance() {
+		return 15;
+	}
+	
+	public function getHardness() {
+		return 3;
 	}
  
  	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
@@ -84,12 +89,15 @@ use pocketmine\math\Vector3;
  				Tile::createTile(Tile::BEACON, $this->getLevel(), $nbt);
  			}
 			
-			if($player->isCreative() and $player->getServer()->limitedCreative){
-				return true;
-			}
  				$player->addWindow($beacon->getInventory());
  		}
  
  		return true;
  	}
+	
+	public function onBreak(Item $item){
+		$this->getLevel()->setBlock($this, new Air(), true, true);
+		return true;
+	}
+	
  }
