@@ -49,7 +49,7 @@ developer:
   load-incompatible-api: true
 
 nether:
- #Choisissez si le bas est autorisé, le niveau de Nether générera automatiquement
+ #Choisissez si le nether est autorisé, le niveau de Nether générera automatiquement
  allow-nether: true
  #Recommandé qu'il reste "nether"
  level-name: "nether"
@@ -72,7 +72,7 @@ server:
  destroy-block-particle: true
  #Réglez si les potions d'éclaboussures sont activées
  allow-splash-potion: true
- # ????
+ # Réglez si les commande de selection sont activées
  advanced-command-selector: false
  #Définir si il faut activer ResourcePackManager
  enable-resource: false
