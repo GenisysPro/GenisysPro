@@ -9,7 +9,7 @@
 #
 #
 #
-#Fichier de configuration avancé GenisysPro
+#Fichier de configuration avancé de GenisysPro
 
 #Version de ce fichier
 config:
@@ -23,7 +23,7 @@ level:
  weather-random-duration-max: 12000
  #Intervalle d'éclairement aléatoire, par défaut 10s, 0 = désactiver
  lightning-time: 200
- #Réglez si les éclairs ont le feu après
+ #Réglez si les éclairs mettent le feu dans les biomes après
  lightning-fire: false
  #Réglez si le feu doit se propager (arbres, etc.)
  fire-spread: false
@@ -37,7 +37,7 @@ player:
  keep-inventory: false
  #Effacez l'inventaire d'un joueur en changeant leur gamemode
  auto-clear-inventory : true
- #Choisissez de garder l'expérienChoisissez si le bas est autorisé. Le niveau de Nether générera automatiquementce d'un joueur après sa mort
+ #Choisissez de garder l'expérience
  keep-experience: false
 
 developer:
@@ -49,9 +49,9 @@ developer:
   load-incompatible-api: true
 
 nether:
- #Choisissez si le bas est autorisé. Le niveau de Nether générera automatiquement
+ #Choisissez si le nether est autorisé, le niveau de Nether générera automatiquement
  allow-nether: true
- #Thommommé qu'il reste "faux" e nom du niveau inférieur
+ #Recommandé qu'il reste "nether"
  level-name: "nether"
 
 server:
@@ -59,26 +59,26 @@ server:
  allow-iron-golem: false
  #Choisissez si le vent de neige qui frappe est autorisé
  allow-snow-golem: false
- #Choisissez si server.log est désactivé
+ #Choisissez si server.log est activé/désactivé
  disable-log: false
- #Choisissez comment rappeler les joueurs lorsque quelqu'un se joint au jeu
+ #Choisissez comment appeler les joueurs lorsque qu'ils rejoignent la partie
  #0 = Message, 1 = Pointe, 2 = Apparaitre
  player-msg-type: 0
- login-msg: "§3@player joined the game"
- logout-msg: "§3@player left the game"
+ login-msg: "§3@player rejoint la partie"
+ logout-msg: "§3@player quitte la partie"
  #Définir si la création limitée est activée (ne peut pas supprimer les éléments de la barre hotbar, ne pas ouvrir les coffres, etc.)
  limited-creative: true
  #Définir si ajouter DestroyBlockParticle
  destroy-block-particle: true
  #Réglez si les potions d'éclaboussures sont activées
  allow-splash-potion: true
- #Réglez si les potions d'éclaboussures sont activées
+ # Réglez si les commande de selection sont activées
  advanced-command-selector: false
- #Définir si activer ResourcePackManager
+ #Définir si il faut activer ResourcePackManager
  enable-resource: false
 
 enchantment:
- #Choisissez si les anvil sont activés
+ #Choisissez si les anvil sont activées
  enable-anvil: true
  #Choisissez si les tables d'enchantement sont activées
  enable-enchanting-table: true
@@ -87,15 +87,15 @@ enchantment:
  count-bookshelf: false
 
 redstone:
- ################################################
-#### Choisissez si le système redstone est activé ####
- ################################################
-# Si c'est faux, le système Redstone ne fonctionnera pas #
- ################################################
+ ##########################################################
+ #     Choisissez si le système redstone est activé       #
+ ##########################################################
+ # Si c'est faux, le système Redstone ne fonctionnera pas #
+ ##########################################################
  enable: false
  #Choisissez si les impulsions de fréquence sont activées
  frequency-pulse: false
- #Réglez la fréquence des impulsions. Par défaut = 1s
+ #Si il et activé, réglez la fréquence des impulsions. Par défaut = 1s
  pulse-frequency: 1
 
 dserver:
