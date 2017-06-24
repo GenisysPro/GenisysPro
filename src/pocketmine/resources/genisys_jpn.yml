@@ -21,7 +21,7 @@ level:
  weather: true
  #天気を変更する間隔
  weather-random-duration-min: 6000
- weather-random-duration-max:12000
+ weather-random-duration-max: 12000
  #雷を落下させる間隔（初期値は10秒、0秒にすると無効になります)
  lightning-time: 200
  #有効にすると雷が落下した場所に着火します
