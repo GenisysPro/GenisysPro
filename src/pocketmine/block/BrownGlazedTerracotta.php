@@ -1,6 +1,7 @@
 <?php
 
 /*
+ *
  *  ____            _        _   __  __ _                  __  __ ____
  * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
@@ -12,7 +13,9 @@
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author CookieSoftware Team
+ * @author PocketMine Team
+ * @link http://www.pocketmine.net/
+ *
  *
 */
 
