@@ -11,9 +11,9 @@ Languages
 [English](https://github.com/GenisysPro/GenisysPro#english)  
 [日本語](https://github.com/GenisysPro/GenisysPro#日本語)  
 [简体中文](https://github.com/GenisysPro/GenisysPro#简体中文)  
-[繁體中文](https://github.com/GenisysPro/GenisysPro#繁體中文)
-
+[繁體中文](https://github.com/GenisysPro/GenisysPro#繁體中文)  
 [Dutch](https://github.com/GenisysPro/GenisysPro#dutch)  
+[Русский](https://github.com/GenisysPro/GenisysPro#русский)  
 
 # English
 
@@ -400,3 +400,81 @@ License
 
   	You should have received a copy of the GNU General Public License
   	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	
+# Русский
+ 
+Введение
+-------------
+ 
+__GenisysPro - многофункциональное серверное программное обеспечение для *Minecraft: Pocket Edition* и *Minecraft: Windows 10 Edition*.__  
+GenisysPro основан на **[Genisys](https://github.com/iTXTech/Genisys)** с расширенной функциональностью. Большая часть кода изначально была написана участниками **[iTXTech](https://github.com/orgs/iTXTech/people)**.  
+ 
+Некоторые функции, предлагаемые Genisys:
+* Поддержка нескольких клиентских версий
+* Расширенный API для плагинов (GeniAPI)
+* Дополнительная проверка подлинности Xbox Live
+* Поддержка Minecraft: Windows 10 Edition
+* Глобальные пакеты ресурсов
+ 
+Поддерживаемая версия
+-------------
+Игровые версии, поддерживаемые ветвью `master`:
+- [x] MCPE v1.1.x Alpha
+ 
+Список задач
+-------------
+ 
+- [x] Маяки!
+- [x] Загрузчик плагинов из исходных папок
+- [x] Больше блоков
+- [x] Наковальни
+- [x] Глобальные пакеты ресурсов (ресурс паки)
+ 
+GenisysPro еще предстоит пройти долгий путь. Мы рады получить помощь от всех и приветствовать участников.
+ 
+ 
+Установка и получение GenisysPro
+-------------
+* Загрузите исходный код из [GitHub](https://github.com/GenisysPro/GenisysPro/archive/master.zip)  
+  *или*  
+  Загрузите сборку из [Gitlab CI](https://gitlab.com/GenisysPro/GenisysPro/builds). Возможно, сборка не самая последняя версия, и она обновляется только несколько раз в неделю.
+* Загрузите [PHP библиотеки](https://itxtech.org/genisys/get/) и другие необходимые компоненты.
+* Инструкции по установке можно найти на [Вики](https://github.com/GenisysPro/GenisysPro/wiki).
+ 
+ 
+Заметка: **Ветка `master` является единственной официально поддерживаемой ветвью.**  
+Все остальные ветви тестируются и могут быть нестабильными. Не используйте сборки из других веток, если вы не уверены, что понимаете риски.
+ 
+ 
+Помощь и Поддержка
+-------------
+Официальная документация, созданная Doxygen (пока недоступна)
+ 
+Обсуждение
+-------------
+* [Группа QQ](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
+* [Группа Discord](https://discord.gg/WrKzRNn)
+ 
+Пожертвование
+-------------
+**Главный разработчик QQ: 1912003473**  
+GenisysPro - бесплатное программное обеспечение. Мы ценим ваше пожертвование, потому что это помогает нам улучшить GenisysPro.
+ 
+Другие Инструменты
+-------------
+* [Pocket Server](https://github.com/fengberd/MinecraftPEServer) - Позволит запустить PocketMine-MP и GenisysPro на устройствах Android
+ 
+Лицензия
+-------------
+  Эта программа является свободным программным обеспечением: вы можете распространять ее и / или изменять
+  Это в соответствии с условиями GNU General Public License, опубликованной
+  Фондом бесплатного программного обеспечения, либо вариант 3 лицензии, либо
+  (По вашему выбору) любой более поздней версии.
+ 
+  Эта программа распространяется в надежде, что она будет полезна,
+  Но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; Без подразумеваемой гарантии
+  КОММЕРЧЕСКОЙ ЦЕННОСТИ или ПРИГОДНОСТИ ДЛЯ ОПРЕДЕЛЕННОЙ ЦЕЛИ. См.
+  GNU General Public License для получения более подробной информации.
+ 
+  Вы должны были получить копию общедоступной лицензии GNU
+  Наряду с этой программой. Если нет, см. <http://www.gnu.org/licenses/>.
