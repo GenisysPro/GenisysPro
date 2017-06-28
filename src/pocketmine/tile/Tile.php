@@ -49,6 +49,7 @@ abstract class Tile extends Position{
 	const HOPPER = "Hopper";
 	const BEACON = "Beacon";
 	const ENDER_CHEST = "EnderChest";
+	const BED = "Bed";
 
 	public static $tileCount = 1;
 
@@ -75,6 +76,7 @@ abstract class Tile extends Position{
 	
 	public static function init(){
 		self::registerTile(Beacon::class);
+		self::registerTile(Bed::class);
 		self::registerTile(BrewingStand::class);
 		self::registerTile(Cauldron::class);
 		self::registerTile(Chest::class);
