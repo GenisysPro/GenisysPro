@@ -2046,13 +2046,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->loggedIn = true;
 		$this->server->addOnlinePlayer($this);
 
-		$this->server->getPluginManager()->callEvent($ev = new PlayerLoginEvent($this, "Plugin reason"));
-		if($ev->isCancelled()){
-			$this->close($this->getLeaveMessage(), $ev->getKickMessage());
-
-			return;
-		}
-
 		if(!$this->isConnected()){
 			return;
 		}
@@ -2089,7 +2082,13 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$pk->levelId = "";
 		$pk->worldName = $this->server->getMotd();
 		$this->dataPacket($pk);
-
+		
+        $this->server->getPluginManager()->callEvent($ev = new PlayerLoginEvent($this, "Plugin reason"));
+        if($ev->isCancelled()){
+            $this->close($this->getLeaveMessage(), $ev->getKickMessage());
+            return;
+        }
+		
 		$pk = new SetTimePacket();
 		$pk->time = $this->level->getTime();
 		$pk->started = $this->level->stopTime == false;
