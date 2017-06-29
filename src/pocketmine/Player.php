@@ -1301,16 +1301,17 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		return $this->gamemode;
 	}
 
-	/**
-	 * @internal
-	 *
-	 * Returns a client-friendly gamemode of the specified real gamemode
-	 * This function takes care of handling gamemodes known to MCPE (as of 1.1.0.3, that includes Survival, Creative and Adventure)
-	 *
-	 * TODO: remove this when Spectator Mode gets added properly to MCPE
-	 *
-	 * @param int $gamemode
-	 */
+    /**
+     * @internal
+     *
+     * Returns a client-friendly gamemode of the specified real gamemode
+     * This function takes care of handling gamemodes known to MCPE (as of 1.1.0.3, that includes Survival, Creative and Adventure)
+     *
+     * TODO: remove this when Spectator Mode gets added properly to MCPE
+     *
+     * @param int $gamemode
+     * @return int
+     */
 	public static function getClientFriendlyGamemode(int $gamemode) : int{
 		$gamemode &= 0x03;
 		if($gamemode === Player::SPECTATOR){
@@ -1883,15 +1884,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->checkTeleportPosition();
 
 		$this->timings->stopTiming();
-
-		//TODO: remove this workaround (broken client MCPE 1.0.0)
-		if(count($this->messageQueue) > 0){
-			$pk = new TextPacket();
-			$pk->type = TextPacket::TYPE_RAW;
-			$pk->message = implode("\n", $this->messageQueue);
-			$this->dataPacket($pk);
-			$this->messageQueue = [];
-		}
 
 		return true;
 	}
@@ -3642,11 +3634,12 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->dataPacket($pk);
 	}
 
-	/**
-	 * Sends a direct chat message to a player
-	 *
-	 * @param string|TextContainer $message
-	 */
+    /**
+     * Sends a direct chat message to a player
+     *
+     * @param string|TextContainer $message
+     * @return bool
+     */
 	public function sendMessage($message){
 		if($message instanceof TextContainer){
 			if($message instanceof TranslationContainer){
@@ -3726,6 +3719,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
      *
      * @param $title
      * @param string $subtitle
+     * @param int $fadein
+     * @param int $fadeout
+     * @param int $duration
      * @return bool
      */
 	public function sendTitle($title, $subtitle = "", $fadein = 20, $fadeout = 20, $duration = 5){
@@ -4325,9 +4321,11 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		return $this->isConnected();
 	}
 
-	/**
-	 * @param Effect
-	*/
+    /**
+     * @param Effect $effect
+     * @return bool|void
+     * @internal param $Effect
+     */
 	public function addEffect(Effect $effect){//Overwrite
 		if($effect->isBad() && $this->isCreative()){
 			return;
