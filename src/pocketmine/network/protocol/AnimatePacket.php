@@ -30,23 +30,23 @@ class AnimatePacket extends DataPacket{
 
 	public $action;
 	public $eid;
+	public $float;
 
 	public function decode(){
 		$this->action = $this->getVarInt();
 		$this->eid = $this->getEntityId();
+		if($this->float & 0x80){
+				$this->float = $this->getLFloat();
+		}
 	}
 
 	public function encode(){
 		$this->reset();
 		$this->putVarInt($this->action);
 		$this->putEntityId($this->eid);
-	}
-
-	/**
-	 * @return PacketName|string
-	 */
-	public function getName(){
-		return "AnimatePacket";
+		if($this->float & 0x80){
+				$this->putLFloat($this->float);
+		}
 	}
 
 }
