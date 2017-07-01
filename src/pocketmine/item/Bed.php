@@ -24,8 +24,8 @@ namespace pocketmine\item;
 use pocketmine\block\Block;
 
 class Bed extends Item{
-	
-    const WHITE_BED = 0;
+
+	const WHITE_BED = 0;
 	const ORANGE_BED = 1;
 	const MAGENTA_BED = 2;
 	const LIGTH_BLUE_BED = 3;
