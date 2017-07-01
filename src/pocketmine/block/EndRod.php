@@ -24,8 +24,9 @@
 
 namespace pocketmine\block;
 
-use pocketmine\Player;
 use pocketmine\item\Item;
+use pocketmine\math\Vector3;
+use pocketmine\Player;
 
 class EndRod extends Flowable{
 
@@ -39,7 +40,7 @@ class EndRod extends Flowable{
 		return 14;
 	}
 
-	public function getName() : string {
+	public function getName(){
 		return "End Rod";
 	}
 
