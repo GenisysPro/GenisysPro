@@ -32,8 +32,8 @@ class InstallerLang{
 		"ita" => "Italiano",
 		"kor" => "한국어",
 		"deu" => "Deutsch",
-		"fra" => "Français"
-		"ind" => "Bahasa Indonesia"
+		"fra" => "Français",
+		"ind" => "Bahasa Indonesia",
 		"ukr" => "Україна"
 	];
 	private $texts = [];
