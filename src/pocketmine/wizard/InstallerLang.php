@@ -32,7 +32,9 @@ class InstallerLang{
 		"ita" => "Italiano",
 		"kor" => "한국어",
 		"deu" => "Deutsch",
-		"ind" => "Bahasa Indonesia"
+		"fra" => "Français",
+		"ind" => "Bahasa Indonesia",
+		"ukr" => "Україна"
 	];
 	private $texts = [];
 	private $lang;
