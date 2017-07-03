@@ -44,6 +44,7 @@ class Shulker extends Monster{
 	
 	public function initEntity(){
 		$this->setMaxHealth(30);
+		$this->setDataProperty(Entity::DATA_VARIANT, Entity::DATA_TYPE_INT, rand(0,15));
 		parent::initEntity();
 	}
 	
