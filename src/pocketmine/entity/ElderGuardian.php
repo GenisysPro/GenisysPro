@@ -44,6 +44,7 @@ class ElderGuardian extends Animal{
 	
 	public function initEntity(){
 		$this->setMaxHealth(80);
+		$this->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_ELDER, true);
 		parent::initEntity();
 	}
 
