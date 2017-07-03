@@ -58,6 +58,7 @@ class NoteblockSound extends GenericSound{
 		$pk2->x = $this->x;
 		$pk2->y = $this->y;
 		$pk2->z = $this->z;
+		$pk2->extraData = $this->instrument;
 		$pk2->pitch = $this->pitch;
 
 		return array($pk,$pk2);
