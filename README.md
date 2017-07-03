@@ -13,7 +13,7 @@ Languages
 [简体中文](https://github.com/GenisysPro/GenisysPro#简体中文)  
 [繁體中文](https://github.com/GenisysPro/GenisysPro#繁體中文)  
 [Dutch](https://github.com/GenisysPro/GenisysPro#dutch)  
-[Русский](https://github.com/GenisysPro/GenisysPro#русский)  
+[Русский](https://github.com/GenisysPro/GenisysPro#russian)  
 
 # English
 
@@ -401,7 +401,7 @@ License
   	You should have received a copy of the GNU General Public License
   	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	
-# Русский
+# Russian
  
 Введение
 -------------
