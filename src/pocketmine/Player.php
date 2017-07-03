@@ -156,6 +156,7 @@ use pocketmine\network\protocol\TakeItemEntityPacket;
 use pocketmine\network\protocol\TextPacket;
 use pocketmine\network\protocol\UpdateAttributesPacket;
 use pocketmine\network\protocol\UpdateBlockPacket;
+use pocketmine\network\protocol\TransferPacket;
 use pocketmine\network\SourceInterface;
 use pocketmine\permission\PermissibleBase;
 use pocketmine\permission\PermissionAttachment;
@@ -3639,6 +3640,17 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$pk->title = $title;
 		$this->dataPacket($pk);
 	}
+	
+	/**
+     * @param string $adress
+     * @param $port
+     */
+	public function transfer(string $adress, $port){
+        $pk = new TransferPacket();
+        $pk->address = $address;
+        $pk->port = $port;
+        $this->dataPacket($pk);
+    }
 
     /**
      * Sends a direct chat message to a player
