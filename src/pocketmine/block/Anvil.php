@@ -25,6 +25,7 @@ use pocketmine\inventory\AnvilInventory;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 use pocketmine\Player;
+use pocketmine\network\protocol\LevelEventPacket;
 
 class Anvil extends Fallable{
 	
@@ -88,6 +89,7 @@ class Anvil extends Fallable{
 		$direction = ($player !== null? $player->getDirection(): 0) & 0x03;
 		$this->meta = ($this->meta & 0x0c) | $direction;
 		$this->getLevel()->setBlock($block, $this, true, true);
+		$player->getLevel()->broadcastLevelEvent($player, LevelEventPacket::EVENT_SOUND_ANVIL_FALL);
 	}
 
 	public function getDrops(Item $item) : array {
