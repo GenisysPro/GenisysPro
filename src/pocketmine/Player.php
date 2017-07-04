@@ -3642,10 +3642,10 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	}
 	
 	/**
-     * @param string $adress
+     * @param string $address
      * @param $port
      */
-	public function transfer(string $adress, $port){
+	public function transfer(string $address, $port){
         $pk = new TransferPacket();
         $pk->address = $address;
         $pk->port = $port;
