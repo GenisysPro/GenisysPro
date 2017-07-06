@@ -318,7 +318,8 @@ class EntityDamageEvent extends EntityEvent implements Cancellable{
 			$this->thornsArmor = array_rand($this->thornsLevel);
 			$thornsL = $this->thornsLevel[$this->thornsArmor];
 			if(mt_rand(1, 100) < $thornsL * 15){
-				$this->thornsDamage = mt_rand(1, 4);
+				//$this->thornsDamage = mt_rand(1, 4); 
+				$this->thornsDamage = 0; //Delete When #321 Is Fixed And Add In The Normal Damage
 			}
 		}
 	}
