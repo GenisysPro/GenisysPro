@@ -31,7 +31,7 @@ class Chicken extends Animal{
 
 	public $width = 0.6;
 	public $length = 0.6;
-	public $height = 1.8;
+	public $height = 0;
 
 	public $dropExp = [1, 3];
 	
@@ -57,21 +57,10 @@ class Chicken extends Animal{
 	}
 	
 	public function getDrops(){
-		$drops = [];
-		if ($this->lastDamageCause instanceof EntityDamageByEntityEvent and $this->lastDamageCause->getEntity() instanceof Player) {
-			
-				switch (\mt_rand(0, 2)) {
-					case 0:
-						$drops[] = ItemItem::get(ItemItem::RAW_CHICKEN, 0, 1);
-						break;
-					case 1:
-						$drops[] = ItemItem::get(ItemItem::FEATHER, 0, 1);
-						break;
-					case 2:
-						$drops[] = ItemItem::get(ItemItem::FEATHER, 0, 2);
-						break;
-				}
-		}
+		$drops = [ItemItem::get(ItemItem::FEATHER, 0, mt_rand(0, 2))
+		];
+		$drops[] = ItemItem::get(ItemItem::RAW_CHICKEN, 0, 1);
+		
 		return $drops;
 	}
 }
