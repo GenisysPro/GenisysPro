@@ -103,7 +103,7 @@ class Beacon extends Transparent
             }
             $player->addWindow($beacon->getInventory());
         }
-        
+
         return true;
     }
 
