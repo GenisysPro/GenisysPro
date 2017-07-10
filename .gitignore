@@ -10,6 +10,9 @@ server.properties
 *.txt
 genisys.yml
 crashdumps/*
+resource_packs/*
+*.db
+*.sqlite3
 
 # Common IDEs
 .idea/
