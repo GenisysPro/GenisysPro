@@ -496,7 +496,7 @@ abstract class Entity extends Location implements Metadatable{
 	}
 
 	public function getScale(){
-		$this->getDataProperty(self::DATA_SCALE, self::DATA_TYPE_FLOAT);
+		return $this->getDataProperty(self::DATA_SCALE, self::DATA_TYPE_FLOAT);
 	}
 
 	/**
