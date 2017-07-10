@@ -310,6 +310,7 @@ class Server{
 	public $allowInventoryCheats = false;
 	public $folderpluginloader = true;
 	public $mapEnabled = true;//TODO: 配置文件
+    public $absorbWater = false;
 
 	/**
 	 * @return string
@@ -1550,7 +1551,8 @@ class Server{
 		$this->allowInventoryCheats = $this->getAdvancedProperty("inventory.allow-cheats", false);
 		$this->folderpluginloader = $this->getAdvancedProperty("developer.folder-plugin-loader", true);
 
-	}
+        $this->absorbWater = $this->getAdvancedProperty("server.absorb-water", false);
+    }
 	
 	/**
 	 * @return int
