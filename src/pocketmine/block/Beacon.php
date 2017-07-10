@@ -69,7 +69,7 @@ class Beacon extends Transparent
             new IntTag("y", $block->y),
             new IntTag("z", $block->z)
         ]);
-        $pot = Tile::createTile(Tile::BEACON, $this->getLevel(), $nbt);
+        Tile::createTile(Tile::BEACON, $this->getLevel(), $nbt);
         return true;
     }
 
