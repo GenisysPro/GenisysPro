@@ -13,7 +13,7 @@
 
 #Version de ce fichier
 config:
- version: 26
+ version: 27
 
 level:
  #Réglez si la météo est activée (la pluie peut provoquer un retard sur les périphériques plus anciens)
@@ -76,6 +76,8 @@ server:
  advanced-command-selector: false
  #Définir si il faut activer ResourcePackManager
  enable-resource: false
+ #This parameter turns on or off the absorption of water by a sponge //TODO: Translation for other languages
+ absorb-water: false
 
 enchantment:
  #Choisissez si les anvil sont activées
