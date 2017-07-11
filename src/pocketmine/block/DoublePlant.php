@@ -36,14 +36,25 @@ class DoublePlant extends Flowable {
 	const ROSE_BUSH = 4;
 	const PEONY = 5;
 
+	/**
+	 * DoublePlant constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeReplaced(){
 		return true;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		static $names = [
 			0 => "Sunflower",
@@ -56,6 +67,11 @@ class DoublePlant extends Flowable {
 		return $names[$this->meta & 0x07];
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return bool|int
+	 */
 	public function onUpdate($type){
 		if($type === Level::BLOCK_UPDATE_NORMAL){
 			if($this->getSide(0)->isTransparent() === true && !$this->getSide(0) instanceof DoublePlant){ //Replace with common break method
@@ -68,6 +84,18 @@ class DoublePlant extends Flowable {
 		return false;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$down = $this->getSide(0);
 		$up = $this->getSide(1);
@@ -79,6 +107,11 @@ class DoublePlant extends Flowable {
 		return false;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return mixed|void
+	 */
 	public function onBreak(Item $item){
 		$up = $this->getSide(1);
 		$down = $this->getSide(0);
@@ -97,6 +130,11 @@ class DoublePlant extends Flowable {
 		}
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		if(($this->meta & 0x08) !== 0x08){
 			return [[Item::DOUBLE_PLANT, $this->meta, 1]];

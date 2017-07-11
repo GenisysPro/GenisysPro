@@ -30,6 +30,11 @@ use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
 class ChunkInfoCommand extends VanillaCommand {
+	/**
+	 * ChunkInfoCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -39,6 +44,13 @@ class ChunkInfoCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.chunkinfo");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $commandLabel
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $commandLabel, array $args){
 		if(!$this->testPermission($sender)){
 			return true;

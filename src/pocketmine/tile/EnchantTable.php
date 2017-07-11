@@ -28,18 +28,33 @@ use pocketmine\nbt\tag\StringTag;
 
 class EnchantTable extends Spawnable implements Nameable {
 
+	/**
+	 * EnchantTable constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 */
 	public function __construct(Level $level, CompoundTag $nbt){
 		parent::__construct($level, $nbt);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return $this->hasName() ? $this->namedtag->CustomName->getValue() : "Enchanting Table";
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function hasName(){
 		return isset($this->namedtag->CustomName);
 	}
 
+	/**
+	 * @param void $str
+	 */
 	public function setName($str){
 		if($str === ""){
 			unset($this->namedtag->CustomName);
@@ -49,6 +64,9 @@ class EnchantTable extends Spawnable implements Nameable {
 		$this->namedtag->CustomName = new StringTag("CustomName", $str);
 	}
 
+	/**
+	 * @return CompoundTag
+	 */
 	public function getSpawnCompound(){
 		$nbt = new CompoundTag("", [
 			new StringTag("id", Tile::ENCHANT_TABLE),

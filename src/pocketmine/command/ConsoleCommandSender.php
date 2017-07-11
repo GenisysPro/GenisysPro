@@ -32,6 +32,9 @@ class ConsoleCommandSender implements CommandSender {
 
 	private $perm;
 
+	/**
+	 * ConsoleCommandSender constructor.
+	 */
 	public function __construct(){
 		$this->perm = new PermissibleBase($this);
 	}

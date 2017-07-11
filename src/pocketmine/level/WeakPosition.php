@@ -41,6 +41,12 @@ class WeakPosition extends Position {
 		$this->levelId = ($level !== null ? $level->getId() : -1);
 	}
 
+	/**
+	 * @param Vector3    $pos
+	 * @param Level|null $level
+	 *
+	 * @return WeakPosition
+	 */
 	public static function fromObject(Vector3 $pos, Level $level = null){
 		return new WeakPosition($pos->x, $pos->y, $pos->z, $level);
 	}
@@ -84,6 +90,9 @@ class WeakPosition extends Position {
 		return WeakPosition::fromObject(parent::getSide($side, $step), $this->level);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function __toString(){
 		return "Weak" . parent::__toString();
 	}

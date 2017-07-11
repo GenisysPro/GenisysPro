@@ -82,6 +82,11 @@ class LevelTimings {
 	/** @var TimingsHandler */
 	public $syncChunkLoadPostTimer;
 
+	/**
+	 * LevelTimings constructor.
+	 *
+	 * @param Level $level
+	 */
 	public function __construct(Level $level){
 		$name = $level->getFolderName() . " - ";
 

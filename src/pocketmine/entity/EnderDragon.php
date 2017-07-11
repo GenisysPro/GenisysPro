@@ -37,10 +37,16 @@ class EnderDragon extends Monster {
 		parent::initEntity();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Ender Dragon";
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

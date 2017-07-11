@@ -37,10 +37,16 @@ abstract class NamedTag extends Tag {
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName(){
 		return $this->__name;
 	}
 
+	/**
+	 * @param $name
+	 */
 	public function setName($name){
 		$this->__name = $name;
 	}

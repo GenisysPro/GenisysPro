@@ -28,10 +28,16 @@ class SetEntityDataPacket extends DataPacket {
 	public $eid;
 	public $metadata;
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putEntityId($this->eid);

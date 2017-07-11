@@ -28,6 +28,12 @@ class AsyncWorker extends Worker {
 	private $logger;
 	private $id;
 
+	/**
+	 * AsyncWorker constructor.
+	 *
+	 * @param \ThreadedLogger $logger
+	 * @param                 $id
+	 */
 	public function __construct(\ThreadedLogger $logger, $id){
 		$this->logger = $logger;
 		$this->id = $id;
@@ -42,10 +48,16 @@ class AsyncWorker extends Worker {
 		$store = [];
 	}
 
+	/**
+	 * @param \Throwable $e
+	 */
 	public function handleException(\Throwable $e){
 		$this->logger->logException($e);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getThreadName(){
 		return "Asynchronous Worker #" . $this->id;
 	}

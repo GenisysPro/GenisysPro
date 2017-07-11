@@ -30,18 +30,32 @@ class Concrete extends Solid {
 
 	protected $id = self::CONCRETE;
 
+	/**
+	 * Concrete constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getHardness(){
 		return 1.8;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function getName(){
 		static $names = [
 			0 => "White Concrete",

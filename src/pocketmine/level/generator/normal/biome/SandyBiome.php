@@ -28,6 +28,9 @@ use pocketmine\level\generator\populator\DeadBush;
 
 class SandyBiome extends GrassyBiome {
 
+	/**
+	 * SandyBiome constructor.
+	 */
 	public function __construct(){
 		parent::__construct();
 
@@ -82,6 +85,9 @@ class SandyBiome extends GrassyBiome {
 		]);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Sandy";
 	}

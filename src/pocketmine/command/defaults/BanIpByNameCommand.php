@@ -38,6 +38,11 @@ use pocketmine\Player;
 
 class BanIpByNameCommand extends VanillaCommand {
 
+	/**
+	 * BanIpByNameCommand constructor.
+	 *
+	 * @param string $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -47,6 +52,13 @@ class BanIpByNameCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.banipbyname");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return \true;

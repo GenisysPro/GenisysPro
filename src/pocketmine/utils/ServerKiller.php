@@ -27,6 +27,11 @@ class ServerKiller extends Thread {
 
 	public $time;
 
+	/**
+	 * ServerKiller constructor.
+	 *
+	 * @param int $time
+	 */
 	public function __construct($time = 15){
 		$this->time = $time;
 	}
@@ -42,6 +47,9 @@ class ServerKiller extends Thread {
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getThreadName(){
 		return "Server Killer";
 	}

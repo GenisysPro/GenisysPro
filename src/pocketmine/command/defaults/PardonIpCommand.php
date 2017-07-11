@@ -28,6 +28,11 @@ use pocketmine\event\TranslationContainer;
 
 class PardonIpCommand extends VanillaCommand {
 
+	/**
+	 * PardonIpCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -37,6 +42,13 @@ class PardonIpCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.unban.ip");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;

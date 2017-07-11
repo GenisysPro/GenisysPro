@@ -29,6 +29,11 @@ use pocketmine\utils\TextFormat;
 
 class KickCommand extends VanillaCommand {
 
+	/**
+	 * KickCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -38,6 +43,13 @@ class KickCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.kick");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;

@@ -38,23 +38,42 @@ class Void extends Generator {
 	/** @var Chunk */
 	private $emptyChunk = null;
 
+	/**
+	 * @return array
+	 */
 	public function getSettings(){
 		return [];
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName(){
 		return "Void";
 	}
 
+	/**
+	 * Void constructor.
+	 *
+	 * @param array $settings
+	 */
 	public function __construct(array $settings = []){
 		$this->options = $settings;
 	}
 
+	/**
+	 * @param ChunkManager $level
+	 * @param Random       $random
+	 */
 	public function init(ChunkManager $level, Random $random){
 		$this->level = $level;
 		$this->random = $random;
 	}
 
+	/**
+	 * @param $chunkX
+	 * @param $chunkZ
+	 */
 	public function generateChunk($chunkX, $chunkZ){
 		if($this->emptyChunk === null){
 			$this->chunk = clone $this->level->getChunk($chunkX, $chunkZ);
@@ -85,10 +104,17 @@ class Void extends Generator {
 		$this->level->setChunk($chunkX, $chunkZ, $chunk);
 	}
 
+	/**
+	 * @param $chunkX
+	 * @param $chunkZ
+	 */
 	public function populateChunk($chunkX, $chunkZ){
 
 	}
 
+	/**
+	 * @return Vector3
+	 */
 	public function getSpawn(){
 		return new Vector3(128, 72, 128);
 	}

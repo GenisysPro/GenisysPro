@@ -36,10 +36,16 @@ class ResourcePacksInfoPacket extends DataPacket {
 	/** @var ResourcePackInfoEntry */
 	public $resourcePackEntries = [];
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 

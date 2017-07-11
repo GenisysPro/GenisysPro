@@ -38,6 +38,9 @@ class CommandReader extends Thread {
 
 	private $type = self::TYPE_STREAM;
 
+	/**
+	 * CommandReader constructor.
+	 */
 	public function __construct(){
 		$this->buffer = new \Threaded;
 
@@ -183,6 +186,9 @@ class CommandReader extends Thread {
 
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getThreadName(){
 		return "Console";
 	}

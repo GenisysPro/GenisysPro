@@ -32,10 +32,16 @@ class Stray extends Skeleton {
 
 	public $dropExp = [5, 5];
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Stray";
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

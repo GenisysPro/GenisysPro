@@ -40,6 +40,12 @@ class Boat extends Vehicle {
 	public $gravity = 0.5;
 	public $drag = 0.1;
 
+	/**
+	 * Boat constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 */
 	public function __construct(Level $level, CompoundTag $nbt){
 		if(!isset($nbt->WoodID)){
 			$nbt->WoodID = new IntTag("WoodID", 0);
@@ -48,10 +54,16 @@ class Boat extends Vehicle {
 		$this->setDataProperty(self::DATA_VARIANT, self::DATA_TYPE_INT, $this->getWoodID());
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getWoodID() : int{
 		return (int) $this->namedtag["WoodID"];
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -70,6 +82,12 @@ class Boat extends Vehicle {
 		parent::spawnTo($player);
 	}
 
+	/**
+	 * @param float             $damage
+	 * @param EntityDamageEvent $source
+	 *
+	 * @return bool|void
+	 */
 	public function attack($damage, EntityDamageEvent $source){
 		parent::attack($damage, $source);
 
@@ -83,6 +101,11 @@ class Boat extends Vehicle {
 		}
 	}
 
+	/**
+	 * @param $currentTick
+	 *
+	 * @return bool
+	 */
 	public function onUpdate($currentTick){
 		if($this->closed){
 			return false;
@@ -125,12 +148,18 @@ class Boat extends Vehicle {
 	}
 
 
+	/**
+	 * @return array
+	 */
 	public function getDrops(){
 		return [
 			ItemItem::get(ItemItem::BOAT, 0, 1)
 		];
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getSaveId(){
 		$class = new \ReflectionClass(static::class);
 		return $class->getShortName();

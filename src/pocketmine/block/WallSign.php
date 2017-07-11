@@ -27,10 +27,18 @@ class WallSign extends SignPost {
 
 	protected $id = self::WALL_SIGN;
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Wall Sign";
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return bool|int
+	 */
 	public function onUpdate($type){
 		$faces = [
 			2 => 3,

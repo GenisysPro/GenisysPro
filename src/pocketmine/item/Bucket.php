@@ -30,18 +30,42 @@ use pocketmine\level\Level;
 use pocketmine\Player;
 
 class Bucket extends Item {
+	/**
+	 * Bucket constructor.
+	 *
+	 * @param int $meta
+	 * @param int $count
+	 */
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::BUCKET, $meta, $count, "Bucket");
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getMaxStackSize() : int{
 		return 1;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @param Level  $level
+	 * @param Player $player
+	 * @param Block  $block
+	 * @param Block  $target
+	 * @param        $face
+	 * @param        $fx
+	 * @param        $fy
+	 * @param        $fz
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Level $level, Player $player, Block $block, Block $target, $face, $fx, $fy, $fz){
 		$targetBlock = Block::get($this->meta);
 

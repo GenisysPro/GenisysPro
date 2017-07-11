@@ -31,6 +31,11 @@ use pocketmine\Server;
 
 class TransferServerCommand extends VanillaCommand {
 
+	/**
+	 * TransferServerCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -41,6 +46,13 @@ class TransferServerCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.transfer");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		$address = null;
 		$port = null;

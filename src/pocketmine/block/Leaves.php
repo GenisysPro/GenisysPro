@@ -41,26 +41,46 @@ class Leaves extends Transparent {
 
 	protected $id = self::LEAVES;
 
+	/**
+	 * Leaves constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getHardness(){
 		return 0.2;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_SHEARS;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getBurnChance() : int{
 		return 30;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getBurnAbility() : int{
 		return 60;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		static $names = [
 			self::OAK => "Oak Leaves",
@@ -71,6 +91,15 @@ class Leaves extends Transparent {
 		return $names[$this->meta & 0x03];
 	}
 
+	/**
+	 * @param Block $pos
+	 * @param array $visited
+	 * @param       $distance
+	 * @param       $check
+	 * @param null  $fromSide
+	 *
+	 * @return bool
+	 */
 	private function findLog(Block $pos, array $visited, $distance, &$check, $fromSide = null){
 		++$check;
 		$index = $pos->x . "." . $pos->y . "." . $pos->z;
@@ -136,6 +165,11 @@ class Leaves extends Transparent {
 		return false;
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return bool|int
+	 */
 	public function onUpdate($type){
 		if($type === Level::BLOCK_UPDATE_NORMAL){
 			if(($this->meta & 0b00001100) === 0){
@@ -163,11 +197,28 @@ class Leaves extends Transparent {
 		return false;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool|void
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$this->meta |= 0x04;
 		$this->getLevel()->setBlock($this, $this, true);
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		$drops = [];
 		if($item->isShears() or $item->getEnchantmentLevel(Enchantment::TYPE_MINING_SILK_TOUCH) > 0){

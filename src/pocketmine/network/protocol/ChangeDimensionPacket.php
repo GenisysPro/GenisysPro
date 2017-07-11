@@ -41,10 +41,16 @@ class ChangeDimensionPacket extends DataPacket {
 	public $z;
 	public $unknown; //bool
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putVarInt($this->dimension);

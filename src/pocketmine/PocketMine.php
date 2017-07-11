@@ -182,6 +182,9 @@ namespace pocketmine {
 		}
 	}
 
+	/**
+	 * @return bool|string
+	 */
 	function detect_system_timezone(){
 		switch(Utils::getOS()){
 			case 'win':
@@ -310,6 +313,9 @@ namespace pocketmine {
 		}
 	}
 
+	/**
+	 * @param $pid
+	 */
 	function kill($pid){
 		switch(Utils::getOS()){
 			case "win":
@@ -344,6 +350,12 @@ namespace pocketmine {
 		return -1;
 	}
 
+	/**
+	 * @param int  $start
+	 * @param null $trace
+	 *
+	 * @return array
+	 */
 	function getTrace($start = 1, $trace = null){
 		if($trace === null){
 			if(function_exists("xdebug_get_function_stack")){
@@ -374,6 +386,11 @@ namespace pocketmine {
 		return $messages;
 	}
 
+	/**
+	 * @param $path
+	 *
+	 * @return string
+	 */
 	function cleanPath($path){
 		return rtrim(str_replace(["\\", ".php", "phar://", rtrim(str_replace(["\\", "phar://"], ["/", ""], \pocketmine\PATH), "/"), rtrim(str_replace(["\\", "phar://"], ["/", ""], \pocketmine\PLUGIN_PATH), "/")], ["/", "", "", "", ""], $path), "/");
 	}

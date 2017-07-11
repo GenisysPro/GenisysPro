@@ -31,6 +31,14 @@ class Mineshaft extends Populator {
 	private static $BASE_Y = 35;
 	private static $RAND_Y = 11;
 
+	/**
+	 * @param ChunkManager $level
+	 * @param              $chunkX
+	 * @param              $chunkZ
+	 * @param Random       $random
+	 *
+	 * @return mixed|void
+	 */
 	public function populate(ChunkManager $level, $chunkX, $chunkZ, Random $random){
 		if($random->nextRange(0, self::$ODD) === 0){
 			//$mineshaft = new Mineshaft($random);

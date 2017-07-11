@@ -30,10 +30,16 @@ class HurtArmorPacket extends DataPacket {
 
 	public $health;
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putVarInt($this->health);

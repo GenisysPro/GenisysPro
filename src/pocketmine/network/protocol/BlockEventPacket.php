@@ -34,10 +34,16 @@ class BlockEventPacket extends DataPacket {
 	public $case1;
 	public $case2;
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putBlockCoords($this->x, $this->y, $this->z);

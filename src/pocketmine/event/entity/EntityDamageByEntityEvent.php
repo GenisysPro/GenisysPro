@@ -45,6 +45,9 @@ class EntityDamageByEntityEvent extends EntityDamageEvent {
 		$this->addAttackerModifiers($damager);
 	}
 
+	/**
+	 * @param Entity $damager
+	 */
 	protected function addAttackerModifiers(Entity $damager){
 		if($damager->hasEffect(Effect::STRENGTH)){
 			$this->setRateDamage(1 + 0.3 * ($damager->getEffect(Effect::STRENGTH)->getAmplifier() + 1), self::MODIFIER_STRENGTH);

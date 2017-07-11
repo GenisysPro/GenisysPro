@@ -36,6 +36,14 @@ class LowMemoryEvent extends ServerEvent {
 	private $triggerCount;
 	private $global;
 
+	/**
+	 * LowMemoryEvent constructor.
+	 *
+	 * @param      $memory
+	 * @param      $memoryLimit
+	 * @param bool $isGlobal
+	 * @param int  $triggerCount
+	 */
 	public function __construct($memory, $memoryLimit, $isGlobal = false, $triggerCount = 0){
 		$this->memory = $memory;
 		$this->memoryLimit = $memoryLimit;

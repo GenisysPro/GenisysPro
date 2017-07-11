@@ -9,6 +9,9 @@ use pocketmine\level\generator\populator\DeadBush;
 
 class MesaBiome extends SandyBiome {
 
+	/**
+	 * MesaBiome constructor.
+	 */
 	public function __construct(){
 		parent::__construct();
 
@@ -56,6 +59,9 @@ class MesaBiome extends SandyBiome {
 		]);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Mesa";
 	}

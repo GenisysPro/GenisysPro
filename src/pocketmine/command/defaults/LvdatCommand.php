@@ -29,6 +29,11 @@ use pocketmine\nbt\tag\StringTag;
 
 class LvdatCommand extends VanillaCommand {
 
+	/**
+	 * LvdatCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -38,6 +43,13 @@ class LvdatCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.lvdat");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return false;
@@ -113,6 +125,12 @@ class LvdatCommand extends VanillaCommand {
 		return true;
 	}
 
+	/**
+	 * @param CommandSender $c
+	 * @param               $world
+	 *
+	 * @return bool
+	 */
 	public function autoLoad(CommandSender $c, $world){
 		if($c->getServer()->isLevelLoaded($world)) return true;
 		if(!$c->getServer()->isLevelGenerated($world)){

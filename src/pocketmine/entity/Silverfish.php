@@ -29,10 +29,16 @@ class Silverfish extends Monster {
 
 	public $dropExp = [5, 5];
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Silverfish";
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

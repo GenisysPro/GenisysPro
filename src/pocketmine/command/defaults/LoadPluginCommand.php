@@ -29,6 +29,11 @@ use pocketmine\utils\TextFormat;
 
 class LoadPluginCommand extends VanillaCommand {
 
+	/**
+	 * LoadPluginCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -38,6 +43,13 @@ class LoadPluginCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.loadplugin");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $commandLabel
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $commandLabel, array $args){
 		if(!$this->testPermission($sender)){
 			return false;

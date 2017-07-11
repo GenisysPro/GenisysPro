@@ -28,6 +28,11 @@ use pocketmine\utils\TextFormat;
 
 class WhitelistCommand extends VanillaCommand {
 
+	/**
+	 * WhitelistCommand constructor.
+	 *
+	 * @param string $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -38,6 +43,13 @@ class WhitelistCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.whitelist.reload;pocketmine.command.whitelist.enable;pocketmine.command.whitelist.disable;pocketmine.command.whitelist.list;pocketmine.command.whitelist.add;pocketmine.command.whitelist.remove");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;
@@ -109,6 +121,12 @@ class WhitelistCommand extends VanillaCommand {
 		return true;
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param               $perm
+	 *
+	 * @return bool
+	 */
 	private function badPerm(CommandSender $sender, $perm){
 		if(!$sender->hasPermission("pocketmine.command.whitelist.$perm")){
 			$sender->sendMessage(new TranslationContainer(TextFormat::RED . "%commands.generic.permission"));

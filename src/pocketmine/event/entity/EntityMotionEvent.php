@@ -31,6 +31,12 @@ class EntityMotionEvent extends EntityEvent implements Cancellable {
 	/** @var Vector3 */
 	private $mot;
 
+	/**
+	 * EntityMotionEvent constructor.
+	 *
+	 * @param Entity  $entity
+	 * @param Vector3 $mot
+	 */
 	public function __construct(Entity $entity, Vector3 $mot){
 		$this->entity = $entity;
 		$this->mot = $mot;

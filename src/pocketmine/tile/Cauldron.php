@@ -32,6 +32,12 @@ use pocketmine\utils\Color;
 
 class Cauldron extends Spawnable {
 
+	/**
+	 * Cauldron constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 */
 	public function __construct(Level $level, CompoundTag $nbt){
 		if(!isset($nbt->PotionId) or !($nbt->PotionId instanceof ShortTag)){
 			$nbt->PotionId = new ShortTag("PotionId", 0xffff);
@@ -45,28 +51,46 @@ class Cauldron extends Spawnable {
 		parent::__construct($level, $nbt);
 	}
 
+	/**
+	 * @return mixed|null
+	 */
 	public function getPotionId(){
 		return $this->namedtag["PotionId"];
 	}
 
+	/**
+	 * @param $potionId
+	 */
 	public function setPotionId($potionId){
 		$this->namedtag->PotionId = new ShortTag("PotionId", $potionId);
 		$this->onChanged();
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function hasPotion(){
 		return $this->namedtag["PotionId"] !== 0xffff;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function getSplashPotion(){
 		return ($this->namedtag["SplashPotion"] == true);
 	}
 
+	/**
+	 * @param $bool
+	 */
 	public function setSplashPotion($bool){
 		$this->namedtag->SplashPotion = new ByteTag("SplashPotion", ($bool == true) ? 1 : 0);
 		$this->onChanged();
 	}
 
+	/**
+	 * @return null|Color
+	 */
 	public function getCustomColor(){//
 		if($this->isCustomColor()){
 			$color = $this->namedtag["CustomColor"];
@@ -78,22 +102,39 @@ class Cauldron extends Spawnable {
 		return null;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getCustomColorRed(){
 		return ($this->namedtag["CustomColor"] >> 16) & 0xff;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getCustomColorGreen(){
 		return ($this->namedtag["CustomColor"] >> 8) & 0xff;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getCustomColorBlue(){
 		return ($this->namedtag["CustomColor"]) & 0xff;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isCustomColor(){
 		return isset($this->namedtag->CustomColor);
 	}
 
+	/**
+	 * @param     $r
+	 * @param int $g
+	 * @param int $b
+	 */
 	public function setCustomColor($r, $g = 0xff, $b = 0xff){
 		if($r instanceof Color){
 			$color = ($r->getRed() << 16 | $r->getGreen() << 8 | $r->getBlue()) & 0xffffff;
@@ -111,6 +152,9 @@ class Cauldron extends Spawnable {
 		$this->onChanged();
 	}
 
+	/**
+	 * @return CompoundTag
+	 */
 	public function getSpawnCompound(){
 		$nbt = new CompoundTag("", [
 			new StringTag("id", Tile::CAULDRON),

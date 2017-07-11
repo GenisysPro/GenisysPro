@@ -44,6 +44,9 @@ interface Plugin extends CommandExecutor {
 	 */
 	public function onEnable();
 
+	/**
+	 * @return mixed
+	 */
 	public function isEnabled();
 
 	/**
@@ -52,6 +55,9 @@ interface Plugin extends CommandExecutor {
 	 */
 	public function onDisable();
 
+	/**
+	 * @return mixed
+	 */
 	public function isDisabled();
 
 	/**
@@ -89,10 +95,19 @@ interface Plugin extends CommandExecutor {
 	 */
 	public function getConfig();
 
+	/**
+	 * @return mixed
+	 */
 	public function saveConfig();
 
+	/**
+	 * @return mixed
+	 */
 	public function saveDefaultConfig();
 
+	/**
+	 * @return mixed
+	 */
 	public function reloadConfig();
 
 	/**
@@ -100,6 +115,9 @@ interface Plugin extends CommandExecutor {
 	 */
 	public function getServer();
 
+	/**
+	 * @return mixed
+	 */
 	public function getName();
 
 	/**

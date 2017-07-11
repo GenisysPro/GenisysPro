@@ -39,10 +39,16 @@ class MobEffectPacket extends DataPacket {
 	public $particles = true;
 	public $duration;
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putEntityId($this->eid);

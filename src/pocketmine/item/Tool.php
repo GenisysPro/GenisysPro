@@ -40,10 +40,21 @@ abstract class Tool extends Item {
 	const TYPE_AXE = 4;
 	const TYPE_SHEARS = 5;
 
+	/**
+	 * Tool constructor.
+	 *
+	 * @param int    $id
+	 * @param int    $meta
+	 * @param int    $count
+	 * @param string $name
+	 */
 	public function __construct($id, $meta = 0, $count = 1, $name = "Unknown"){
 		parent::__construct($id, $meta, $count, $name);
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getMaxStackSize() : int{
 		return 1;
 	}
@@ -137,35 +148,59 @@ abstract class Tool extends Item {
 		return $levels[$type];
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isUnbreakable(){
 		$tag = $this->getNamedTagEntry("Unbreakable");
 		return $tag !== null and $tag->getValue() > 0;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isPickaxe(){
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isAxe(){
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isSword(){
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isShovel(){
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isHoe(){
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isShears(){
 		return ($this->id === self::SHEARS);
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isTool(){
 		return ($this->id === self::FLINT_STEEL or $this->id === self::SHEARS or $this->id === self::BOW or $this->isPickaxe() !== false or $this->isAxe() !== false or $this->isShovel() !== false or $this->isSword() !== false or $this->isHoe() !== false);
 	}

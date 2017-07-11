@@ -32,14 +32,25 @@ class Sandstone extends Solid {
 
 	protected $id = self::SANDSTONE;
 
+	/**
+	 * Sandstone constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getHardness(){
 		return 0.8;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		static $names = [
 			0 => "Sandstone",
@@ -50,10 +61,18 @@ class Sandstone extends Solid {
 		return $names[$this->meta & 0x03];
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 1){
 			return [

@@ -30,6 +30,14 @@ use pocketmine\utils\Random;
 
 class GroundCover extends Populator {
 
+	/**
+	 * @param ChunkManager $level
+	 * @param              $chunkX
+	 * @param              $chunkZ
+	 * @param Random       $random
+	 *
+	 * @return mixed|void
+	 */
 	public function populate(ChunkManager $level, $chunkX, $chunkZ, Random $random){
 		$chunk = $level->getChunk($chunkX, $chunkZ);
 		if($level instanceof Level or $level instanceof SimpleChunkManager){

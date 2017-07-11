@@ -48,26 +48,55 @@ class Cauldron extends Solid {
 
 	protected $id = self::CAULDRON_BLOCK;
 
+	/**
+	 * Cauldron constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHardness(){
 		return 2;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Cauldron";
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$nbt = new CompoundTag("", [
 			new StringTag("id", Tile::CAULDRON),
@@ -90,11 +119,21 @@ class Cauldron extends Solid {
 		return true;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return bool
+	 */
 	public function onBreak(Item $item){
 		$this->getLevel()->setBlock($this, new Air(), true);
 		return true;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 1){
 			return [
@@ -109,14 +148,26 @@ class Cauldron extends Solid {
 		$this->getLevel()->setBlock($this, $this, true);//Undo the damage value
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isEmpty(){
 		return $this->meta === 0x00;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isFull(){
 		return $this->meta === 0x06;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = null){//@author iTX. rewrite @Dog194
 		$tile = $this->getLevel()->getTile($this);
 		if(!($tile instanceof TileCauldron)){
@@ -289,6 +340,11 @@ class Cauldron extends Solid {
 		return true;
 	}
 
+	/**
+	 * @param Item   $item
+	 * @param Player $player
+	 * @param Item   $result
+	 */
 	public function addItem(Item $item, Player $player, Item $result){
 		if($item->getCount() <= 1){
 			$player->getInventory()->setItemInHand($result);

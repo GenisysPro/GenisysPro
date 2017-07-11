@@ -30,26 +30,46 @@ use pocketmine\Player;
 class Noteblock extends Solid implements ElectricalAppliance {
 	protected $id = self::NOTEBLOCK;
 
+	/**
+	 * Noteblock constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getHardness(){
 		return 0.8;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getResistance(){
 		return 4;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_AXE;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getStrength(){
 		if($this->meta < 24) $this->meta++;
 		else $this->meta = 0;
@@ -57,6 +77,9 @@ class Noteblock extends Solid implements ElectricalAppliance {
 		return $this->meta * 1;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getInstrument(){
 		$below = $this->getSide(Vector3::SIDE_DOWN);
 		switch($below->getId()){
@@ -133,6 +156,12 @@ class Noteblock extends Solid implements ElectricalAppliance {
 		return NoteblockSound::INSTRUMENT_PIANO;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = null){
 		$up = $this->getSide(Vector3::SIDE_UP);
 		if($up->getId() == 0){
@@ -143,6 +172,9 @@ class Noteblock extends Solid implements ElectricalAppliance {
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Noteblock";
 	}

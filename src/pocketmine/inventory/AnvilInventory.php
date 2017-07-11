@@ -36,6 +36,11 @@ class AnvilInventory extends TemporaryInventory {
 	const RESULT = 2;
 
 
+	/**
+	 * AnvilInventory constructor.
+	 *
+	 * @param Position $pos
+	 */
 	public function __construct(Position $pos){
 		parent::__construct(new FakeBlockMenu($this, $pos), InventoryType::get(InventoryType::ANVIL));
 	}
@@ -47,10 +52,19 @@ class AnvilInventory extends TemporaryInventory {
 		return $this->holder;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getResultSlotIndex(){
 		return self::RESULT;
 	}
 
+	/**
+	 * @param Player $player
+	 * @param Item   $resultItem
+	 *
+	 * @return bool
+	 */
 	public function onRename(Player $player, Item $resultItem) : bool{
 		if(!$resultItem->equals($this->getItem(self::TARGET), true, false, true)){
 			//Item does not match target item. Everything must match except the tags.
@@ -72,6 +86,13 @@ class AnvilInventory extends TemporaryInventory {
 		return true;
 	}
 
+	/**
+	 * @param Player $player
+	 * @param Item   $target
+	 * @param Item   $sacrifice
+	 *
+	 * @return bool
+	 */
 	public function process(Player $player, Item $target, Item $sacrifice){
 		$resultItem = clone $target;
 		Server::getInstance()->getPluginManager()->callEvent($ev = new AnvilProcessEvent($this));
@@ -99,6 +120,11 @@ class AnvilInventory extends TemporaryInventory {
 		}
 	}
 
+	/**
+	 * @param Transaction $transaction
+	 *
+	 * @return bool
+	 */
 	public function processSlotChange(Transaction $transaction) : bool{
 		if($transaction->getSlot() === $this->getResultSlotIndex()){
 			return false;
@@ -106,10 +132,18 @@ class AnvilInventory extends TemporaryInventory {
 		return true;
 	}
 
+	/**
+	 * @param int  $index
+	 * @param Item $before
+	 * @param bool $send
+	 */
 	public function onSlotChange($index, $before, $send){
 		//Do not send anvil slot updates to anyone. This will cause a client crash.
 	}
 
+	/**
+	 * @param Player $who
+	 */
 	public function onClose(Player $who){
 		parent::onClose($who);
 

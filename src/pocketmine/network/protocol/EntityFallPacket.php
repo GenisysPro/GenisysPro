@@ -32,12 +32,18 @@ class EntityFallPacket extends DataPacket {
 	public $fallDistance;
 	public $bool1;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->entityRuntimeId = $this->getEntityId();
 		$this->fallDistance = $this->getLFloat();
 		$this->bool1 = $this->getBool();
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putEntityId($this->entityRuntimeId);

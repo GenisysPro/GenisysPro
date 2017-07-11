@@ -28,6 +28,11 @@ use pocketmine\utils\TextFormat;
 
 class BiomeCommand extends VanillaCommand {
 
+	/**
+	 * BiomeCommand constructor.
+	 *
+	 * @param string $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -37,6 +42,13 @@ class BiomeCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.biome");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;

@@ -66,6 +66,12 @@ class LevelDB extends BaseLevelProvider {
 	/** @var \LevelDB */
 	protected $db;
 
+	/**
+	 * LevelDB constructor.
+	 *
+	 * @param Level  $level
+	 * @param string $path
+	 */
 	public function __construct(Level $level, string $path){
 		$this->level = $level;
 		$this->path = $path;
@@ -121,18 +127,36 @@ class LevelDB extends BaseLevelProvider {
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	public static function getProviderName() : string{
 		return "leveldb";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getWorldHeight() : int{
 		return 256;
 	}
 
+	/**
+	 * @param string $path
+	 *
+	 * @return bool
+	 */
 	public static function isValid(string $path) : bool{
 		return file_exists($path . "/level.dat") and is_dir($path . "/db/");
 	}
 
+	/**
+	 * @param string     $path
+	 * @param string     $name
+	 * @param int|string $seed
+	 * @param string     $generator
+	 * @param array      $options
+	 */
 	public static function generate(string $path, string $name, $seed, string $generator, array $options = []){
 		if(!file_exists($path)){
 			mkdir($path, 0777, true);
@@ -228,18 +252,33 @@ class LevelDB extends BaseLevelProvider {
 		$this->chunks = [];
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getGenerator() : string{
 		return $this->levelData["generatorName"];
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getGeneratorOptions() : array{
 		return ["preset" => $this->levelData["generatorOptions"]];
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getLoadedChunks() : array{
 		return $this->chunks;
 	}
 
+	/**
+	 * @param int $x
+	 * @param int $z
+	 *
+	 * @return bool
+	 */
 	public function isChunkLoaded(int $x, int $z) : bool{
 		return isset($this->chunks[Level::chunkHash($x, $z)]);
 	}
@@ -250,6 +289,13 @@ class LevelDB extends BaseLevelProvider {
 		}
 	}
 
+	/**
+	 * @param int  $chunkX
+	 * @param int  $chunkZ
+	 * @param bool $create
+	 *
+	 * @return bool
+	 */
 	public function loadChunk(int $chunkX, int $chunkZ, bool $create = false) : bool{
 		if(isset($this->chunks[$index = Level::chunkHash($chunkX, $chunkZ)])){
 			return true;
@@ -424,6 +470,9 @@ class LevelDB extends BaseLevelProvider {
 		}
 	}
 
+	/**
+	 * @param Chunk $chunk
+	 */
 	private function writeChunk(Chunk $chunk){
 		$index = LevelDB::chunkIndex($chunk->getX(), $chunk->getZ());
 		$this->db->put($index . self::TAG_VERSION, chr(self::CURRENT_STORAGE_VERSION));
@@ -448,6 +497,10 @@ class LevelDB extends BaseLevelProvider {
 		//TODO: clean up old data
 	}
 
+	/**
+	 * @param array  $targets
+	 * @param string $index
+	 */
 	private function writeTags(array $targets, string $index){
 		$nbt = new NBT(NBT::LITTLE_ENDIAN);
 		$out = [];
@@ -466,6 +519,13 @@ class LevelDB extends BaseLevelProvider {
 		}
 	}
 
+	/**
+	 * @param int  $x
+	 * @param int  $z
+	 * @param bool $safe
+	 *
+	 * @return bool
+	 */
 	public function unloadChunk(int $x, int $z, bool $safe = true) : bool{
 		$chunk = $this->chunks[$index = Level::chunkHash($x, $z)] ?? null;
 		if($chunk instanceof Chunk and $chunk->unload($safe)){
@@ -477,6 +537,12 @@ class LevelDB extends BaseLevelProvider {
 		return false;
 	}
 
+	/**
+	 * @param int $chunkX
+	 * @param int $chunkZ
+	 *
+	 * @return bool
+	 */
 	public function saveChunk(int $chunkX, int $chunkZ) : bool{
 		if($this->isChunkLoaded($chunkX, $chunkZ)){
 			$chunk = $this->getChunk($chunkX, $chunkZ);
@@ -516,6 +582,11 @@ class LevelDB extends BaseLevelProvider {
 		return $this->db;
 	}
 
+	/**
+	 * @param int   $chunkX
+	 * @param int   $chunkZ
+	 * @param Chunk $chunk
+	 */
 	public function setChunk(int $chunkX, int $chunkZ, Chunk $chunk){
 		$chunk->setX($chunkX);
 		$chunk->setZ($chunkZ);
@@ -527,14 +598,32 @@ class LevelDB extends BaseLevelProvider {
 		$this->chunks[$index] = $chunk;
 	}
 
+	/**
+	 * @param int $chunkX
+	 * @param int $chunkZ
+	 *
+	 * @return string
+	 */
 	public static function chunkIndex(int $chunkX, int $chunkZ) : string{
 		return Binary::writeLInt($chunkX) . Binary::writeLInt($chunkZ);
 	}
 
+	/**
+	 * @param int $chunkX
+	 * @param int $chunkZ
+	 *
+	 * @return bool
+	 */
 	private function chunkExists(int $chunkX, int $chunkZ) : bool{
 		return $this->db->get(LevelDB::chunkIndex($chunkX, $chunkZ) . self::TAG_VERSION) !== false;
 	}
 
+	/**
+	 * @param int $chunkX
+	 * @param int $chunkZ
+	 *
+	 * @return bool
+	 */
 	public function isChunkGenerated(int $chunkX, int $chunkZ) : bool{
 		if($this->chunkExists($chunkX, $chunkZ) and ($chunk = $this->getChunk($chunkX, $chunkZ, false)) !== null){
 			return true;
@@ -543,6 +632,12 @@ class LevelDB extends BaseLevelProvider {
 		return false;
 	}
 
+	/**
+	 * @param int $chunkX
+	 * @param int $chunkZ
+	 *
+	 * @return bool
+	 */
 	public function isChunkPopulated(int $chunkX, int $chunkZ) : bool{
 		$chunk = $this->getChunk($chunkX, $chunkZ);
 		if($chunk instanceof Chunk){

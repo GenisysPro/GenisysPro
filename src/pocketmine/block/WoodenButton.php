@@ -30,10 +30,20 @@ use pocketmine\Player;
 class WoodenButton extends RedstoneSource {
 	protected $id = self::WOODEN_BUTTON;
 
+	/**
+	 * WoodenButton constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return bool|int
+	 */
 	public function onUpdate($type){
 		if($type == Level::BLOCK_UPDATE_SCHEDULED){
 			if($this->isActivated()){
@@ -65,6 +75,9 @@ class WoodenButton extends RedstoneSource {
 		return false;
 	}
 
+	/**
+	 * @param array $ignore
+	 */
 	public function deactivate(array $ignore = []){
 		parent::deactivate($ignore = []);
 		$faces = [
@@ -90,6 +103,9 @@ class WoodenButton extends RedstoneSource {
 		$this->checkTorchOff($this->getSide($faces[$side]), [$this->getOppositeSide($faces[$side])]);
 	}
 
+	/**
+	 * @param array $ignore
+	 */
 	public function activate(array $ignore = []){
 		parent::activate($ignore = []);
 		$faces = [
@@ -117,14 +133,23 @@ class WoodenButton extends RedstoneSource {
 		$this->checkTorchOn($this->getSide($faces[$side]), [$this->getOppositeSide($faces[$side])]);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Wooden Button";
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getHardness(){
 		return 0.5;
 	}
 
+	/**
+	 * @param Item $item
+	 */
 	public function onBreak(Item $item){
 		if($this->isActivated()){
 			$this->meta ^= 0x08;
@@ -134,6 +159,18 @@ class WoodenButton extends RedstoneSource {
 		$this->getLevel()->setBlock($this, new Air(), true, false);
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		if($target->isTransparent() === false){
 			$this->meta = $face;
@@ -143,14 +180,28 @@ class WoodenButton extends RedstoneSource {
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @param Block|null $from
+	 *
+	 * @return bool
+	 */
 	public function isActivated(Block $from = null){
 		return (($this->meta & 0x08) === 0x08);
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = null){
 		if(!$this->isActivated()){
 			$this->meta ^= 0x08;

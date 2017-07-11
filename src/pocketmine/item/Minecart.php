@@ -31,14 +31,35 @@ use pocketmine\nbt\tag\ListTag;
 use pocketmine\Player;
 
 class Minecart extends Item {
+	/**
+	 * Minecart constructor.
+	 *
+	 * @param int $meta
+	 * @param int $count
+	 */
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::MINECART, $meta, $count, "Minecart");
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @param Level  $level
+	 * @param Player $player
+	 * @param Block  $block
+	 * @param Block  $target
+	 * @param        $face
+	 * @param        $fx
+	 * @param        $fy
+	 * @param        $fz
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Level $level, Player $player, Block $block, Block $target, $face, $fx, $fy, $fz){
 		$minecart = new MinecartEntity($player->getLevel(), new CompoundTag("", [
 			"Pos" => new ListTag("Pos", [

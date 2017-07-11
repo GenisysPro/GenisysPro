@@ -40,6 +40,11 @@ class Fire extends Flowable {
 	/** @var Vector3 */
 	private $temporalVector = null;
 
+	/**
+	 * Fire constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 		if($this->temporalVector === null){
@@ -47,26 +52,46 @@ class Fire extends Flowable {
 		}
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function hasEntityCollision(){
 		return true;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Fire Block";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getLightLevel(){
 		return 15;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return bool
+	 */
 	public function isBreakable(Item $item){
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeReplaced(){
 		return true;
 	}
 
+	/**
+	 * @param Entity $entity
+	 */
 	public function onEntityCollide(Entity $entity){
 		$ProtectL = 0;
 		if(!$entity->hasEffect(Effect::FIRE_RESISTANCE)){
@@ -87,10 +112,20 @@ class Fire extends Flowable {
 		}
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		return [];
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return int
+	 */
 	public function onUpdate($type){
 		if($type == Level::BLOCK_UPDATE_NORMAL or $type == Level::BLOCK_UPDATE_RANDOM or $type == Level::BLOCK_UPDATE_SCHEDULED){
 			if(!$this->getSide(Vector3::SIDE_DOWN)->isTopFacingSurfaceSolid() and !$this->canNeighborBurn()){
@@ -177,6 +212,9 @@ class Fire extends Flowable {
 		return 0;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getTickRate() : int{
 		return 30;
 	}
@@ -203,6 +241,11 @@ class Fire extends Flowable {
 		return false;
 	}*/
 
+	/**
+	 * @param Block $block
+	 * @param int   $bound
+	 * @param int   $damage
+	 */
 	private function tryToCatchBlockOnFire(Block $block, int $bound, int $damage){
 		$burnAbility = $block->getBurnAbility();
 
@@ -225,6 +268,11 @@ class Fire extends Flowable {
 		}
 	}
 
+	/**
+	 * @param Block $block
+	 *
+	 * @return int|mixed
+	 */
 	private function getChanceOfNeighborsEncouragingFire(Block $block){
 		if($block->getId() !== self::AIR){
 			return 0;

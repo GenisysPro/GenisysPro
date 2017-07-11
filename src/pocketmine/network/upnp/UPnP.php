@@ -28,6 +28,11 @@ namespace pocketmine\network\upnp;
 use pocketmine\utils\Utils;
 
 abstract class UPnP {
+	/**
+	 * @param $port
+	 *
+	 * @return bool
+	 */
 	public static function PortForward($port){
 		if(Utils::$online === false){
 			return false;
@@ -50,6 +55,11 @@ abstract class UPnP {
 		return true;
 	}
 
+	/**
+	 * @param $port
+	 *
+	 * @return bool
+	 */
 	public static function RemovePortForward($port){
 		if(Utils::$online === false){
 			return false;

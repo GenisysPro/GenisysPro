@@ -31,10 +31,18 @@ class Leaves2 extends Leaves {
 
 	protected $id = self::LEAVES2;
 
+	/**
+	 * Leaves2 constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		static $names = [
 			self::ACACIA => "Acacia Leaves",
@@ -43,6 +51,11 @@ class Leaves2 extends Leaves {
 		return $names[$this->meta & 0x01];
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		$drops = [];
 		if($item->isShears() or $item->getEnchantmentLevel(Enchantment::TYPE_MINING_SILK_TOUCH) > 0){

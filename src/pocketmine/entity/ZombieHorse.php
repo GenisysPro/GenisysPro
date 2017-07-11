@@ -37,6 +37,9 @@ class ZombieHorse extends Animal {
 
 	public $dropExp = [5, 5];
 
+	/**
+	 * @return string
+	 */
 	public function getName(){
 		return "ZombieHorse";
 	}
@@ -46,6 +49,9 @@ class ZombieHorse extends Animal {
 		parent::initEntity();
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

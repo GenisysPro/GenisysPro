@@ -36,6 +36,9 @@ class ResourcePackClientResponsePacket extends DataPacket {
 	public $status;
 	public $packIds = [];
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->status = $this->getByte();
 		$entryCount = $this->getLShort();
@@ -44,6 +47,9 @@ class ResourcePackClientResponsePacket extends DataPacket {
 		}
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putByte($this->status);

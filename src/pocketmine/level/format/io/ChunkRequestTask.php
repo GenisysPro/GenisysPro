@@ -38,6 +38,12 @@ class ChunkRequestTask extends AsyncTask {
 
 	protected $tiles;
 
+	/**
+	 * ChunkRequestTask constructor.
+	 *
+	 * @param Level $level
+	 * @param Chunk $chunk
+	 */
 	public function __construct(Level $level, Chunk $chunk){
 		$this->levelId = $level->getId();
 
@@ -66,6 +72,9 @@ class ChunkRequestTask extends AsyncTask {
 		$this->setResult($ordered, false);
 	}
 
+	/**
+	 * @param Server $server
+	 */
 	public function onCompletion(Server $server){
 		$level = $server->getLevel($this->levelId);
 		if($level instanceof Level and $this->hasResult()){

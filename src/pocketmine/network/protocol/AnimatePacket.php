@@ -32,6 +32,9 @@ class AnimatePacket extends DataPacket {
 	public $eid;
 	public $float;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->action = $this->getVarInt();
 		$this->eid = $this->getEntityId();
@@ -40,6 +43,9 @@ class AnimatePacket extends DataPacket {
 		}
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putVarInt($this->action);

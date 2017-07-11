@@ -30,6 +30,13 @@ class BlockSpreadEvent extends BlockFormEvent implements Cancellable {
 	/** @var Block */
 	private $source;
 
+	/**
+	 * BlockSpreadEvent constructor.
+	 *
+	 * @param Block $block
+	 * @param Block $source
+	 * @param Block $newState
+	 */
 	public function __construct(Block $block, Block $source, Block $newState){
 		parent::__construct($block, $newState);
 		$this->source = $source;

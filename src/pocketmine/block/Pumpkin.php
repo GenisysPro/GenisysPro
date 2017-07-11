@@ -35,26 +35,53 @@ class Pumpkin extends Solid {
 
 	protected $id = self::PUMPKIN;
 
+	/**
+	 * Pumpkin constructor.
+	 */
 	public function __construct(){
 
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHardness(){
 		return 1;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isHelmet(){
 		return true;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_AXE;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Pumpkin";
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		if($player instanceof Player){
 			$this->meta = ((int) $player->getDirection() + 5) % 4;

@@ -32,10 +32,16 @@ class Skeleton extends Monster implements ProjectileSource {
 
 	public $dropExp = [5, 5];
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Skeleton";
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -62,6 +68,9 @@ class Skeleton extends Monster implements ProjectileSource {
 		$player->dataPacket($pk);
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getDrops(){
 		$drops = [
 			ItemItem::get(ItemItem::ARROW, 0, mt_rand(0, 2))

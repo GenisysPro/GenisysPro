@@ -31,11 +31,17 @@ class DisconnectPacket extends DataPacket {
 	public $hideDisconnectionScreen = false;
 	public $message;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->hideDisconnectionScreen = $this->getBool();
 		$this->message = $this->getString();
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putBool($this->hideDisconnectionScreen);

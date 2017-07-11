@@ -29,11 +29,17 @@ class StopSoundPacket extends DataPacket {
 	public $sound;
 	public $stopAll;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->sound = $this->getString();
 		$this->stopAll = $this->getBool();
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putString($this->sound);

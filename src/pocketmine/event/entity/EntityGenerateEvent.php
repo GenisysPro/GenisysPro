@@ -36,6 +36,13 @@ class EntityGenerateEvent extends EntityEvent implements Cancellable {
 	private $cause;
 	private $entityType;
 
+	/**
+	 * EntityGenerateEvent constructor.
+	 *
+	 * @param Position $pos
+	 * @param int      $entityType
+	 * @param int      $cause
+	 */
 	public function __construct(Position $pos, int $entityType, int $cause = self::CAUSE_MOB_SPAWNER){
 		$this->position = $pos;
 		$this->entityType = $entityType;
@@ -49,6 +56,9 @@ class EntityGenerateEvent extends EntityEvent implements Cancellable {
 		return $this->position;
 	}
 
+	/**
+	 * @param Position $pos
+	 */
 	public function setPosition(Position $pos){
 		$this->position = $pos;
 	}

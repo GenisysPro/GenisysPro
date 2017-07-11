@@ -33,6 +33,11 @@ abstract class InventoryEvent extends Event {
 	/** @var Inventory */
 	protected $inventory;
 
+	/**
+	 * InventoryEvent constructor.
+	 *
+	 * @param Inventory $inventory
+	 */
 	public function __construct(Inventory $inventory){
 		$this->inventory = $inventory;
 	}

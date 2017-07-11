@@ -7,6 +7,9 @@ use pocketmine\level\generator\populator\DeadBush;
 
 class BeachBiome extends SandyBiome {
 
+	/**
+	 * BeachBiome constructor.
+	 */
 	public function __construct(){
 		parent::__construct();
 
@@ -16,6 +19,9 @@ class BeachBiome extends SandyBiome {
 		$this->setElevation(62, 65);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Beach";
 	}

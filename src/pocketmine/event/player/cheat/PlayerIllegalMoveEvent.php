@@ -34,11 +34,20 @@ class PlayerIllegalMoveEvent extends PlayerCheatEvent implements Cancellable {
 
 	private $attemptedPosition;
 
+	/**
+	 * PlayerIllegalMoveEvent constructor.
+	 *
+	 * @param Player  $player
+	 * @param Vector3 $attemptedPosition
+	 */
 	public function __construct(Player $player, Vector3 $attemptedPosition){
 		$this->attemptedPosition = $attemptedPosition;
 		$this->player = $player;
 	}
 
+	/**
+	 * @return Vector3
+	 */
 	public function getAttemptedPosition() : Vector3{
 		return $this->attemptedPosition;
 	}

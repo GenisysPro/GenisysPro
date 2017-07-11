@@ -114,6 +114,12 @@ abstract class Achievement {
 	];
 
 
+	/**
+	 * @param Player $player
+	 * @param        $achievementId
+	 *
+	 * @return bool
+	 */
 	public static function broadcast(Player $player, $achievementId){
 		if(isset(Achievement::$list[$achievementId])){
 			$translation = new TranslationContainer("chat.type.achievement", [$player->getDisplayName(), TextFormat::GREEN . Achievement::$list[$achievementId]["name"]]);
@@ -129,6 +135,13 @@ abstract class Achievement {
 		return false;
 	}
 
+	/**
+	 * @param       $achievementId
+	 * @param       $achievementName
+	 * @param array $requires
+	 *
+	 * @return bool
+	 */
 	public static function add($achievementId, $achievementName, array $requires = []){
 		if(!isset(Achievement::$list[$achievementId])){
 			Achievement::$list[$achievementId] = [

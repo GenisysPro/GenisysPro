@@ -29,6 +29,11 @@ use pocketmine\command\CommandSender;
 
 class TitleCommand extends VanillaCommand {
 
+	/**
+	 * TitleCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -38,6 +43,13 @@ class TitleCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.title");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if($sender instanceof Player){
 			if(!$this->testPermission($sender)){

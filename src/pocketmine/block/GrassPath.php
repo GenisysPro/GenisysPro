@@ -33,18 +33,30 @@ class GrassPath extends Transparent {
 
 	protected $id = self::GRASS_PATH;
 
+	/**
+	 * GrassPath constructor.
+	 */
 	public function __construct(){
 
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Grass Path";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_SHOVEL;
 	}
 
+	/**
+	 * @return AxisAlignedBB
+	 */
 	protected function recalculateBoundingBox(){
 		return new AxisAlignedBB(
 			$this->x,
@@ -56,6 +68,11 @@ class GrassPath extends Transparent {
 		);
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return bool|int
+	 */
 	public function onUpdate($type){
 		if($type == Level::BLOCK_UPDATE_NORMAL){
 			$block = $this->getSide(self::SIDE_UP);
@@ -67,10 +84,18 @@ class GrassPath extends Transparent {
 		return false;
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getHardness(){
 		return 0.6;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		if($item->getEnchantmentLevel(Enchantment::TYPE_MINING_SILK_TOUCH) > 0){
 			return [

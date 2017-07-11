@@ -27,6 +27,9 @@ use pocketmine\network\protocol\ContainerOpenPacket;
 use pocketmine\Player;
 
 abstract class ContainerInventory extends BaseInventory {
+	/**
+	 * @param Player $who
+	 */
 	public function onOpen(Player $who){
 		parent::onOpen($who);
 		$pk = new ContainerOpenPacket();
@@ -46,6 +49,9 @@ abstract class ContainerInventory extends BaseInventory {
 		$this->sendContents($who);
 	}
 
+	/**
+	 * @param Player $who
+	 */
 	public function onClose(Player $who){
 		$pk = new ContainerClosePacket();
 		$pk->windowid = $who->getWindowId($this);

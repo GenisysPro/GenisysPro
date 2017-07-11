@@ -29,6 +29,9 @@ use pocketmine\utils\Random;
 
 class SpruceTree extends Tree {
 
+	/**
+	 * SpruceTree constructor.
+	 */
 	public function __construct(){
 		$this->trunkBlock = Block::LOG;
 		$this->leafBlock = Block::LEAVES;
@@ -37,6 +40,13 @@ class SpruceTree extends Tree {
 		$this->treeHeight = 10;
 	}
 
+	/**
+	 * @param ChunkManager $level
+	 * @param              $x
+	 * @param              $y
+	 * @param              $z
+	 * @param Random       $random
+	 */
 	public function placeObject(ChunkManager $level, $x, $y, $z, Random $random){
 		$this->treeHeight = $random->nextBoundedInt(4) + 6;
 

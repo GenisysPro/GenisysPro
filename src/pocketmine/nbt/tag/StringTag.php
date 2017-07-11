@@ -27,14 +27,25 @@ use pocketmine\nbt\NBT;
 
 class StringTag extends NamedTag {
 
+	/**
+	 * @return int
+	 */
 	public function getType(){
 		return NBT::TAG_String;
 	}
 
+	/**
+	 * @param NBT  $nbt
+	 * @param bool $network
+	 */
 	public function read(NBT $nbt, bool $network = false){
 		$this->value = $nbt->getString($network);
 	}
 
+	/**
+	 * @param NBT  $nbt
+	 * @param bool $network
+	 */
 	public function write(NBT $nbt, bool $network = false){
 		$nbt->putString($this->value, $network);
 	}

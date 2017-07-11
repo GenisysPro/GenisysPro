@@ -119,6 +119,9 @@ abstract class Command {
 		return $customData;
 	}
 
+	/**
+	 * @return \stdClass
+	 */
 	public function getOverloads() : \stdClass{
 		return $this->commandData->overloads;
 	}
@@ -203,6 +206,11 @@ abstract class Command {
 		return $this->label;
 	}
 
+	/**
+	 * @param $name
+	 *
+	 * @return bool
+	 */
 	public function setLabel($name){
 		$this->nextLabel = $name;
 		if(!$this->isRegistered()){
@@ -324,6 +332,9 @@ abstract class Command {
 		$this->usageMessage = $usage;
 	}
 
+	/**
+	 * @return \stdClass
+	 */
 	public static final function generateDefaultData() : \stdClass{
 		if(self::$defaultDataTemplate === null){
 			self::$defaultDataTemplate = json_decode(file_get_contents(Server::getInstance()->getFilePath() . "src/pocketmine/resources/command_default.json"));

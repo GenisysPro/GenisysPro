@@ -104,6 +104,9 @@ abstract class Stair extends Transparent {
 	}
 	*/
 
+	/**
+	 * @return AxisAlignedBB
+	 */
 	protected function recalculateBoundingBox(){
 
 		if(($this->getDamage() & 0x04) > 0){
@@ -127,6 +130,18 @@ abstract class Stair extends Transparent {
 		}
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$faces = [
 			0 => 0,
@@ -143,14 +158,25 @@ abstract class Stair extends Transparent {
 		return true;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHardness(){
 		return 2;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getResistance(){
 		return 15;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= Tool::TIER_WOODEN){
 			return [

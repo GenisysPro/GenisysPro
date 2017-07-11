@@ -38,6 +38,9 @@ class MapUtils {
 	public static $idConfig;
 	private static $cachedMaps = [];
 
+	/**
+	 * MapUtils constructor.
+	 */
 	public function __construct(){
 		$path = Server::getInstance()->getDataPath() . "maps";
 		@mkdir($path);
@@ -94,11 +97,17 @@ class MapUtils {
 		}
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getMapColors(){//TODO: make static
 		return self::$MapColors;
 	}
 
 
+	/**
+	 * @return bool|mixed
+	 */
 	public static function getNewId(){
 		$id = self::$idConfig->get("map", 0);
 		$id++;
@@ -107,10 +116,18 @@ class MapUtils {
 		return $id;
 	}
 
+	/**
+	 * @param Map $map
+	 */
 	public static function cacheMap(Map $map){//TODO: serialize?
 		self::$cachedMaps[$map->getMapId()] = $map;
 	}
 
+	/**
+	 * @param int $uuid
+	 *
+	 * @return int|mixed
+	 */
 	public static function getCachedMap(int $uuid){
 		return self::$cachedMaps[$uuid]??-1;
 	}
@@ -140,12 +157,23 @@ class MapUtils {
 		return self::$MapColors[$index];
 	}
 
+	/**
+	 * @param array $hsv1
+	 * @param array $hsv2
+	 *
+	 * @return mixed
+	 */
 	public static function distanceHSV(array $hsv1, array $hsv2){
 		return ($hsv1['v'] - $hsv2['v']) ** 2
 			+ ($hsv1['s'] * cos($hsv1['h']) - $hsv2['s'] * cos($hsv2['h'])) ** 2
 			+ ($hsv1['s'] * sin($hsv1['h']) - $hsv2['s'] * sin($hsv2['h'])) ** 2;
 	}
 
+	/**
+	 * @param Map $map
+	 *
+	 * @return bool
+	 */
 	public static function exportToPDF(Map $map){
 		if(!extension_loaded("gd")){
 			Server::getInstance()->getLogger()->error("Unable to find the gd extension, can't create PNG image from Map");
@@ -197,6 +225,11 @@ class MapUtils {
 	return t;
 		}*/
 
+	/**
+	 * @param Block $block
+	 *
+	 * @return Color
+	 */
 	public static function getBlockColor(Block $block){
 		$meta = $block->getDamage();
 		switch($id = $block->getId()){

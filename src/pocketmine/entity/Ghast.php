@@ -31,6 +31,9 @@ class Ghast extends FlyingAnimal {
 	public $length = 6;
 	public $height = 6;
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Ghast";
 	}
@@ -40,6 +43,9 @@ class Ghast extends FlyingAnimal {
 		parent::initEntity();
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

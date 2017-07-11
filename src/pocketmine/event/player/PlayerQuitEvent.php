@@ -33,24 +33,43 @@ class PlayerQuitEvent extends PlayerEvent {
 	protected $quitMessage;
 	protected $autoSave = true;
 
+	/**
+	 * PlayerQuitEvent constructor.
+	 *
+	 * @param Player $player
+	 * @param        $quitMessage
+	 * @param bool   $autoSave
+	 */
 	public function __construct(Player $player, $quitMessage, $autoSave = true){
 		$this->player = $player;
 		$this->quitMessage = $quitMessage;
 		$this->autoSave = $autoSave;
 	}
 
+	/**
+	 * @param $quitMessage
+	 */
 	public function setQuitMessage($quitMessage){
 		$this->quitMessage = $quitMessage;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getQuitMessage(){
 		return $this->quitMessage;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function getAutoSave(){
 		return $this->autoSave;
 	}
 
+	/**
+	 * @param bool $value
+	 */
 	public function setAutoSave($value = true){
 		$this->autoSave = (bool) $value;
 	}

@@ -46,30 +46,51 @@ class FloatingTextParticle extends Particle {
 		$this->title = $title;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getText(){
 		return $this->text;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getTitle(){
 		return $this->title;
 	}
 
+	/**
+	 * @param $text
+	 */
 	public function setText($text){
 		$this->text = $text;
 	}
 
+	/**
+	 * @param $title
+	 */
 	public function setTitle($title){
 		$this->title = $title;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isInvisible(){
 		return $this->invisible;
 	}
 
+	/**
+	 * @param bool $value
+	 */
 	public function setInvisible($value = true){
 		$this->invisible = (bool) $value;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function encode(){
 		$p = [];
 

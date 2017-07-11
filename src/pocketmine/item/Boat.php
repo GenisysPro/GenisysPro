@@ -32,14 +32,35 @@ use pocketmine\nbt\tag\ListTag;
 use pocketmine\Player;
 
 class Boat extends Item {
+	/**
+	 * Boat constructor.
+	 *
+	 * @param int $meta
+	 * @param int $count
+	 */
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::BOAT, $meta, $count, "Boat");
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @param Level  $level
+	 * @param Player $player
+	 * @param Block  $block
+	 * @param Block  $target
+	 * @param        $face
+	 * @param        $fx
+	 * @param        $fy
+	 * @param        $fz
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Level $level, Player $player, Block $block, Block $target, $face, $fx, $fy, $fz){
 		$realPos = $block->getSide($face);
 

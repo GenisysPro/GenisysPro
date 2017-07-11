@@ -58,22 +58,37 @@ class ShapedRecipeFromJson extends ShapedRecipe {
 		$this->output = clone $result;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getWidth(){
 		return count($this->ingredients[0]);
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHeight(){
 		return count($this->ingredients);
 	}
 
+	/**
+	 * @return Item
+	 */
 	public function getResult(){
 		return $this->output;
 	}
 
+	/**
+	 * @return null
+	 */
 	public function getId(){
 		return $this->id;
 	}
 
+	/**
+	 * @param UUID $id
+	 */
 	public function setId(UUID $id){
 		if($this->id !== null){
 			throw new \InvalidStateException("Id is already set");
@@ -82,6 +97,13 @@ class ShapedRecipeFromJson extends ShapedRecipe {
 		$this->id = $id;
 	}
 
+	/**
+	 * @param      $x
+	 * @param      $y
+	 * @param Item $item
+	 *
+	 * @return $this
+	 */
 	public function addIngredient($x, $y, Item $item){
 		$this->ingredients[$y][$x] = clone $item;
 		return $this;
@@ -104,6 +126,10 @@ class ShapedRecipeFromJson extends ShapedRecipe {
 		return $this;
 	}
 
+	/**
+	 * @param $key
+	 * @param $item
+	 */
 	protected function fixRecipe($key, $item){
 		foreach($this->shapeItems[$key] as $entry){
 			$this->ingredients[$entry->y][$entry->x] = clone $item;

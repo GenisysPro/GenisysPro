@@ -30,6 +30,14 @@ class Pond extends Populator {
 	private $lavaOdd = 4;
 	private $lavaSurfaceOdd = 4;
 
+	/**
+	 * @param ChunkManager $level
+	 * @param              $chunkX
+	 * @param              $chunkZ
+	 * @param Random       $random
+	 *
+	 * @return mixed|void
+	 */
 	public function populate(ChunkManager $level, $chunkX, $chunkZ, Random $random){
 		if($random->nextRange(0, $this->waterOdd) === 0){
 			$x = $random->nextRange($chunkX << 4, ($chunkX << 4) + 16);
@@ -42,14 +50,23 @@ class Pond extends Populator {
 		}
 	}
 
+	/**
+	 * @param $waterOdd
+	 */
 	public function setWaterOdd($waterOdd){
 		$this->waterOdd = $waterOdd;
 	}
 
+	/**
+	 * @param $lavaOdd
+	 */
 	public function setLavaOdd($lavaOdd){
 		$this->lavaOdd = $lavaOdd;
 	}
 
+	/**
+	 * @param $lavaSurfaceOdd
+	 */
 	public function setLavaSurfaceOdd($lavaSurfaceOdd){
 		$this->lavaSurfaceOdd = $lavaSurfaceOdd;
 	}

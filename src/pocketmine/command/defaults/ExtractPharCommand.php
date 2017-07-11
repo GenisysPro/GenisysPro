@@ -7,6 +7,11 @@ use pocketmine\utils\TextFormat;
 
 class ExtractPharCommand extends VanillaCommand {
 
+	/**
+	 * ExtractPharCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -16,6 +21,13 @@ class ExtractPharCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.extractphar");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $commandLabel
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $commandLabel, array $args){
 		if(!$this->testPermission($sender)){
 			return false;

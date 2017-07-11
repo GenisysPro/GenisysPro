@@ -29,6 +29,14 @@ use pocketmine\math\VectorMath;
 use pocketmine\utils\Random;
 
 class Cave extends Populator {
+	/**
+	 * @param ChunkManager $level
+	 * @param              $chunkX
+	 * @param              $chunkZ
+	 * @param Random       $random
+	 *
+	 * @return mixed|void
+	 */
 	public function populate(ChunkManager $level, $chunkX, $chunkZ, Random $random){
 		$overLap = 8;
 		$firstSeed = $random->nextInt();
@@ -48,6 +56,14 @@ class Cave extends Populator {
 		}
 	}
 
+	/**
+	 * @param ChunkManager $level
+	 * @param              $x
+	 * @param              $z
+	 * @param              $chunkX
+	 * @param              $chunkZ
+	 * @param Random       $random
+	 */
 	private function pop(ChunkManager $level, $x, $z, $chunkX, $chunkZ, Random $random){
 		$c = $level->getChunk($x, $z);
 		$oC = $level->getChunk($chunkX, $chunkZ);
@@ -85,6 +101,18 @@ class Cave extends Populator {
 		}
 	}
 
+	/**
+	 * @param ChunkManager $level
+	 * @param Vector3      $chunk
+	 * @param Vector3      $target
+	 * @param              $horizontalScale
+	 * @param              $verticalScale
+	 * @param              $horizontalAngle
+	 * @param              $verticalAngle
+	 * @param int          $startingNode
+	 * @param int          $nodeAmount
+	 * @param Random       $random
+	 */
 	private function generateCaveBranch(ChunkManager $level, Vector3 $chunk, Vector3 $target, $horizontalScale, $verticalScale, $horizontalAngle, $verticalAngle, int $startingNode, int $nodeAmount, Random $random){
 		$middle = new Vector3($chunk->getX() + 8, 0, $chunk->getZ() + 8);
 		$horizontalOffset = 0;
@@ -165,6 +193,12 @@ class Cave extends Populator {
 		}
 	}
 
+	/**
+	 * @param ChunkManager $level
+	 * @param Vector3      $chunk
+	 * @param Vector3      $target
+	 * @param Random       $random
+	 */
 	private function generateLargeCaveBranch(ChunkManager $level, Vector3 $chunk, Vector3 $target, Random $random){
 		$this->generateCaveBranch($level, $chunk, $target, $random->nextFloat() * 6 + 1, 0.5, 0, 0, -1, -1, $random);
 	}
@@ -184,6 +218,17 @@ class CaveNode {
 	private $verticalSize;
 	private $horizontalSize;
 
+	/**
+	 * CaveNode constructor.
+	 *
+	 * @param ChunkManager $level
+	 * @param Vector3      $chunk
+	 * @param Vector3      $start
+	 * @param Vector3      $end
+	 * @param Vector3      $target
+	 * @param              $verticalSize
+	 * @param              $horizontalSize
+	 */
 	public function __construct(ChunkManager $level, Vector3 $chunk, Vector3 $start, Vector3 $end, Vector3 $target, $verticalSize, $horizontalSize){
 		$this->level = $level;
 		$this->chunk = $chunk;
@@ -194,6 +239,11 @@ class CaveNode {
 		$this->horizontalSize = $horizontalSize;
 	}
 
+	/**
+	 * @param Vector3 $pos
+	 *
+	 * @return Vector3
+	 */
 	private function clamp(Vector3 $pos){
 		return new Vector3(
 			Math::clamp($pos->getFloorX(), 0, 16),
@@ -202,6 +252,9 @@ class CaveNode {
 		);
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canPlace(){
 		for($x = $this->start->getFloorX(); $x < $this->end->getFloorX(); $x++){
 			for($z = $this->start->getFloorZ(); $z < $this->end->getFloorZ(); $z++){

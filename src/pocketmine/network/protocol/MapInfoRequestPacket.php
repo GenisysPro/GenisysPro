@@ -26,10 +26,16 @@ class MapInfoRequestPacket extends DataPacket {
 
 	public $uuid;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->uuid = $this->getEntityId();
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putEntityId($this->uuid);

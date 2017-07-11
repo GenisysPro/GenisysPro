@@ -27,14 +27,23 @@ namespace pocketmine\network\protocol;
 class ClientToServerHandshakePacket extends DataPacket {
 	const NETWORK_ID = Info::CLIENT_TO_SERVER_HANDSHAKE_PACKET;
 
+	/**
+	 * @return bool
+	 */
 	public function canBeSentBeforeLogin() : bool{
 		return true;
 	}
 
+	/**
+	 *
+	 */
 	public function decode(){
 		//No payload
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		//No payload

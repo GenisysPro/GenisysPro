@@ -42,6 +42,15 @@ class BlockPlaceEvent extends BlockEvent implements Cancellable {
 	protected $blockReplace;
 	protected $blockAgainst;
 
+	/**
+	 * BlockPlaceEvent constructor.
+	 *
+	 * @param Player $player
+	 * @param Block  $blockPlace
+	 * @param Block  $blockReplace
+	 * @param Block  $blockAgainst
+	 * @param Item   $item
+	 */
 	public function __construct(Player $player, Block $blockPlace, Block $blockReplace, Block $blockAgainst, Item $item){
 		$this->block = $blockPlace;
 		$this->blockReplace = $blockReplace;
@@ -50,6 +59,9 @@ class BlockPlaceEvent extends BlockEvent implements Cancellable {
 		$this->player = $player;
 	}
 
+	/**
+	 * @return Player
+	 */
 	public function getPlayer(){
 		return $this->player;
 	}
@@ -63,10 +75,16 @@ class BlockPlaceEvent extends BlockEvent implements Cancellable {
 		return $this->item;
 	}
 
+	/**
+	 * @return Block
+	 */
 	public function getBlockReplaced(){
 		return $this->blockReplace;
 	}
 
+	/**
+	 * @return Block
+	 */
 	public function getBlockAgainst(){
 		return $this->blockAgainst;
 	}

@@ -27,14 +27,25 @@ use pocketmine\nbt\NBT;
 
 class FloatTag extends NamedTag {
 
+	/**
+	 * @return int
+	 */
 	public function getType(){
 		return NBT::TAG_Float;
 	}
 
+	/**
+	 * @param NBT  $nbt
+	 * @param bool $network
+	 */
 	public function read(NBT $nbt, bool $network = false){
 		$this->value = $nbt->getFloat();
 	}
 
+	/**
+	 * @param NBT  $nbt
+	 * @param bool $network
+	 */
 	public function write(NBT $nbt, bool $network = false){
 		$nbt->putFloat($this->value);
 	}

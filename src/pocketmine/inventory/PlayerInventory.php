@@ -40,6 +40,12 @@ class PlayerInventory extends BaseInventory {
 	/** @var int[] */
 	protected $hotbar;
 
+	/**
+	 * PlayerInventory constructor.
+	 *
+	 * @param Human $player
+	 * @param null  $contents
+	 */
 	public function __construct(Human $player, $contents = null){
 		$this->hotbar = range(0, $this->getHotbarSize() - 1, 1);
 		parent::__construct($player, InventoryType::get(InventoryType::PLAYER));
@@ -72,10 +78,16 @@ class PlayerInventory extends BaseInventory {
 		}
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getSize(){
 		return parent::getSize() - 4; //Remove armor slots
 	}
 
+	/**
+	 * @param $size
+	 */
 	public function setSize($size){
 		parent::setSize($size + 4);
 		$this->sendContents($this->getViewers());
@@ -245,6 +257,11 @@ class PlayerInventory extends BaseInventory {
 		}
 	}
 
+	/**
+	 * @param int  $index
+	 * @param Item $before
+	 * @param bool $send
+	 */
 	public function onSlotChange($index, $before, $send){
 		if($send){
 			$holder = $this->getHolder();
@@ -266,18 +283,36 @@ class PlayerInventory extends BaseInventory {
 		}
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHotbarSize(){
 		return 9;
 	}
 
+	/**
+	 * @param $index
+	 *
+	 * @return Item
+	 */
 	public function getArmorItem($index){
 		return $this->getItem($this->getSize() + $index);
 	}
 
+	/**
+	 * @param      $index
+	 * @param Item $item
+	 *
+	 * @return bool
+	 */
 	public function setArmorItem($index, Item $item){
 		return $this->setItem($this->getSize() + $index, $item);
 	}
 
+	/**
+	 * @param $index
+	 * @param $cost
+	 */
 	public function damageArmor($index, $cost){
 		$this->slots[$this->getSize() + $index]->useOn($this->slots[$this->getSize() + $index], $cost);
 		if($this->slots[$this->getSize() + $index]->getDamage() >= $this->slots[$this->getSize() + $index]->getMaxDurability()){
@@ -286,38 +321,77 @@ class PlayerInventory extends BaseInventory {
 		$this->sendArmorContents($this->getViewers());
 	}
 
+	/**
+	 * @return Item
+	 */
 	public function getHelmet(){
 		return $this->getItem($this->getSize());
 	}
 
+	/**
+	 * @return Item
+	 */
 	public function getChestplate(){
 		return $this->getItem($this->getSize() + 1);
 	}
 
+	/**
+	 * @return Item
+	 */
 	public function getLeggings(){
 		return $this->getItem($this->getSize() + 2);
 	}
 
+	/**
+	 * @return Item
+	 */
 	public function getBoots(){
 		return $this->getItem($this->getSize() + 3);
 	}
 
+	/**
+	 * @param Item $helmet
+	 *
+	 * @return bool
+	 */
 	public function setHelmet(Item $helmet){
 		return $this->setItem($this->getSize(), $helmet);
 	}
 
+	/**
+	 * @param Item $chestplate
+	 *
+	 * @return bool
+	 */
 	public function setChestplate(Item $chestplate){
 		return $this->setItem($this->getSize() + 1, $chestplate);
 	}
 
+	/**
+	 * @param Item $leggings
+	 *
+	 * @return bool
+	 */
 	public function setLeggings(Item $leggings){
 		return $this->setItem($this->getSize() + 2, $leggings);
 	}
 
+	/**
+	 * @param Item $boots
+	 *
+	 * @return bool
+	 */
 	public function setBoots(Item $boots){
 		return $this->setItem($this->getSize() + 3, $boots);
 	}
 
+	/**
+	 * @param int  $index
+	 * @param Item $item
+	 * @param bool $send
+	 *
+	 * @return bool
+	 */
 	public function setItem($index, Item $item, $send = true){
 		if($index < 0 or $index >= $this->size){
 			return false;
@@ -349,6 +423,12 @@ class PlayerInventory extends BaseInventory {
 		return true;
 	}
 
+	/**
+	 * @param int  $index
+	 * @param bool $send
+	 *
+	 * @return bool
+	 */
 	public function clear($index, $send = true){
 		if(isset($this->slots[$index])){
 			$item = Item::get(Item::AIR, 0, 0);

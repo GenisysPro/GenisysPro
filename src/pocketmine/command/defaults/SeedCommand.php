@@ -28,6 +28,11 @@ use pocketmine\Player;
 
 class SeedCommand extends VanillaCommand {
 
+	/**
+	 * SeedCommand constructor.
+	 *
+	 * @param string $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -37,6 +42,13 @@ class SeedCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.seed");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;

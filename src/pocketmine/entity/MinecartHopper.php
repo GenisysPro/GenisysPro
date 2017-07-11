@@ -27,14 +27,23 @@ use pocketmine\Player;
 class MinecartHopper extends Minecart {
 	const NETWORK_ID = 96;
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Minecart Hopper";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getType() : int{
 		return self::TYPE_HOPPER;
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

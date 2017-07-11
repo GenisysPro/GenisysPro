@@ -37,10 +37,16 @@ class Slime extends Living {
 
 	public $dropExp = [1, 4];
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Slime";
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -58,8 +64,11 @@ class Slime extends Living {
 		parent::spawnTo($player);
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getDrops(){
-		$drops = array(ItemItem::get(ItemItem::SLIMEBALL, 0, 1));
+		$drops = [ItemItem::get(ItemItem::SLIMEBALL, 0, 1)];
 		if($this->lastDamageCause instanceof EntityDamageByEntityEvent and $this->lastDamageCause->getEntity() instanceof Player){
 			if(\mt_rand(0, 199) < 5){
 				switch(\mt_rand(0, 2)){

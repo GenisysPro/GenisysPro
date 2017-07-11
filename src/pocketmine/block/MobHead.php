@@ -37,18 +37,32 @@ class MobHead extends Flowable {
 
 	protected $id = self::SKULL_BLOCK;
 
+	/**
+	 * MobHead constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHardness(){
 		return 1;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Mob Head";
 	}
 
+	/**
+	 * @return AxisAlignedBB
+	 */
 	protected function recalculateBoundingBox(){
 		return new AxisAlignedBB(
 			$this->x + 0.25,
@@ -60,6 +74,18 @@ class MobHead extends Flowable {
 		);
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		if($face !== 0){
 			$this->meta = $face;
@@ -87,6 +113,11 @@ class MobHead extends Flowable {
 		return false;
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return int|void
+	 */
 	public function onUpdate($type){
 		$faces = [
 			1 => 0,
@@ -106,6 +137,11 @@ class MobHead extends Flowable {
 		return parent::onUpdate($type);
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		$tile = $this->level->getTile($this);
 		if($tile instanceof SkullTile){

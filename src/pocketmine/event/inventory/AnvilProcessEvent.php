@@ -10,6 +10,11 @@ class AnvilProcessEvent extends InventoryEvent implements Cancellable {
 	public static $handlerList = null;
 	protected $inventory;
 
+	/**
+	 * AnvilProcessEvent constructor.
+	 *
+	 * @param AnvilInventory $inventory
+	 */
 	public function __construct(AnvilInventory $inventory){
 		parent::__construct($inventory);
 		$this->inventory = $inventory;

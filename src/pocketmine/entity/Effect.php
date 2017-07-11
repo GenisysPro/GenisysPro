@@ -103,6 +103,11 @@ class Effect {
 		return null;
 	}
 
+	/**
+	 * @param $name
+	 *
+	 * @return null|Effect
+	 */
 	public static function getEffectByName($name){
 		if(defined(Effect::class . "::" . strtoupper($name))){
 			return self::getEffect(constant(Effect::class . "::" . strtoupper($name)));
@@ -127,6 +132,16 @@ class Effect {
 
 	protected $bad;
 
+	/**
+	 * Effect constructor.
+	 *
+	 * @param      $id
+	 * @param      $name
+	 * @param      $r
+	 * @param      $g
+	 * @param      $b
+	 * @param bool $isBad
+	 */
 	public function __construct($id, $name, $r, $g, $b, $isBad = false){
 		$this->id = $id;
 		$this->name = $name;
@@ -134,14 +149,25 @@ class Effect {
 		$this->setColor($r, $g, $b);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return $this->name;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getId(){
 		return $this->id;
 	}
 
+	/**
+	 * @param $ticks
+	 *
+	 * @return $this
+	 */
 	public function setDuration($ticks){
 		$this->duration = (($ticks > self::MAX_DURATION) ? self::MAX_DURATION : $ticks);
 		return $this;
@@ -151,10 +177,18 @@ class Effect {
 		return $this->duration;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isVisible(){
 		return $this->show;
 	}
 
+	/**
+	 * @param $bool
+	 *
+	 * @return $this
+	 */
 	public function setVisible($bool){
 		$this->show = (bool) $bool;
 		return $this;
@@ -177,19 +211,33 @@ class Effect {
 		return $this;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isAmbient(){
 		return $this->ambient;
 	}
 
+	/**
+	 * @param bool $ambient
+	 *
+	 * @return $this
+	 */
 	public function setAmbient($ambient = true){
 		$this->ambient = (bool) $ambient;
 		return $this;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isBad(){
 		return $this->bad;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canTick(){
 		if($this->amplifier < 0) $this->amplifier = 0;
 		switch($this->id){
@@ -228,6 +276,9 @@ class Effect {
 		return false;
 	}
 
+	/**
+	 * @param Entity $entity
+	 */
 	public function applyEffect(Entity $entity){
 		switch($this->id){
 			case Effect::POISON:
@@ -283,14 +334,27 @@ class Effect {
 		}
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getColor(){
 		return [$this->color >> 16, ($this->color >> 8) & 0xff, $this->color & 0xff];
 	}
 
+	/**
+	 * @param $r
+	 * @param $g
+	 * @param $b
+	 */
 	public function setColor($r, $g, $b){
 		$this->color = (($r & 0xff) << 16) + (($g & 0xff) << 8) + ($b & 0xff);
 	}
 
+	/**
+	 * @param Entity      $entity
+	 * @param bool        $modify
+	 * @param Effect|null $oldEffect
+	 */
 	public function add(Entity $entity, $modify = false, Effect $oldEffect = null){
 		if($entity instanceof Player){
 			$pk = new MobEffectPacket();
@@ -334,6 +398,9 @@ class Effect {
 		}
 	}
 
+	/**
+	 * @param Entity $entity
+	 */
 	public function remove(Entity $entity){
 		if($entity instanceof Player){
 			$pk = new MobEffectPacket();

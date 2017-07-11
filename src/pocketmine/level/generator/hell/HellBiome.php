@@ -25,6 +25,9 @@ use pocketmine\level\generator\biome\Biome;
 
 class HellBiome extends Biome {
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Hell";
 	}

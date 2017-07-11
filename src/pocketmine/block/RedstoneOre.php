@@ -30,18 +30,32 @@ class RedstoneOre extends Solid {
 
 	protected $id = self::REDSTONE_ORE;
 
+	/**
+	 * RedstoneOre constructor.
+	 */
 	public function __construct(){
 
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Redstone Ore";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHardness(){
 		return 3;
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return bool|int
+	 */
 	public function onUpdate($type){
 		if($type === Level::BLOCK_UPDATE_NORMAL or $type === Level::BLOCK_UPDATE_TOUCH){
 			$this->getLevel()->setBlock($this, Block::get(Item::GLOWING_REDSTONE_ORE, $this->meta));
@@ -52,10 +66,18 @@ class RedstoneOre extends Solid {
 		return false;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= Tool::TIER_IRON){
 			if($item->getEnchantmentLevel(Enchantment::TYPE_MINING_SILK_TOUCH) > 0){

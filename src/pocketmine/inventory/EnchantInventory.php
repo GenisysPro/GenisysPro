@@ -39,6 +39,11 @@ class EnchantInventory extends TemporaryInventory {
 	/** @var EnchantmentEntry[] */
 	private $entries = null;
 
+	/**
+	 * EnchantInventory constructor.
+	 *
+	 * @param Position $pos
+	 */
 	public function __construct(Position $pos){
 		parent::__construct(new FakeBlockMenu($this, $pos), InventoryType::get(InventoryType::ENCHANT_TABLE));
 	}
@@ -50,10 +55,16 @@ class EnchantInventory extends TemporaryInventory {
 		return $this->holder;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getResultSlotIndex(){
 		return -1; //enchanting tables don't have result slots, they modify the item in the target slot instead
 	}
 
+	/**
+	 * @param Player $who
+	 */
 	public function onOpen(Player $who){
 		parent::onOpen($who);
 		if($this->levels == null){
@@ -76,6 +87,12 @@ class EnchantInventory extends TemporaryInventory {
 		}
 	}
 
+	/**
+	 * @param int $min
+	 * @param int $max
+	 *
+	 * @return int
+	 */
 	private function randomFloat($min = 0, $max = 1){
 		return $min + mt_rand() / mt_getrandmax() * ($max - $min);
 	}
@@ -176,6 +193,9 @@ class EnchantInventory extends TemporaryInventory {
 	}
 	*/
 
+	/**
+	 * @param Player $who
+	 */
 	public function onClose(Player $who){
 		parent::onClose($who);
 
@@ -214,6 +234,11 @@ class EnchantInventory extends TemporaryInventory {
 		return true;
 	}
 
+	/**
+	 * @param Player $who
+	 * @param Item   $before
+	 * @param Item   $after
+	 */
 	public function onEnchant(Player $who, Item $before, Item $after){
 		$result = ($before->getId() === Item::BOOK) ? new EnchantedBook() : $before;
 		if(!$before->hasEnchantments() and $after->hasEnchantments() and $after->getId() == $result->getId() and
@@ -240,6 +265,9 @@ class EnchantInventory extends TemporaryInventory {
 		}
 	}
 
+	/**
+	 * @return int
+	 */
 	public function countBookshelf() : int{
 		if($this->getHolder()->getLevel()->getServer()->countBookshelf){
 			$count = 0;

@@ -365,6 +365,11 @@ class Server {
 		return \pocketmine\VERSION;
 	}
 
+	/**
+	 * @param string $prefix
+	 *
+	 * @return string
+	 */
 	public function getFormattedVersion($prefix = ""){
 		return (\pocketmine\VERSION !== "" ? $prefix . \pocketmine\VERSION : "");
 	}
@@ -466,6 +471,9 @@ class Server {
 		return $this->getConfigString("server-ip", "0.0.0.0");
 	}
 
+	/**
+	 * @return UUID
+	 */
 	public function getServerUniqueId(){
 		return $this->serverID;
 	}
@@ -705,6 +713,9 @@ class Server {
 		return $this->resourceManager;
 	}
 
+	/**
+	 * @return ResourcePackManager
+	 */
 	public function getResourcePackManager() : ResourcePackManager{
 		return $this->resourceManager;
 	}
@@ -773,10 +784,16 @@ class Server {
 		return $this->playerList;
 	}
 
+	/**
+	 * @param Recipe $recipe
+	 */
 	public function addRecipe(Recipe $recipe){
 		$this->craftingManager->registerRecipe($recipe);
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function shouldSavePlayerData() : bool{
 		return (bool) $this->getProperty("player.save-player-data", true);
 	}
@@ -1037,6 +1054,11 @@ class Server {
 		return null;
 	}
 
+	/**
+	 * @param $level
+	 *
+	 * @return mixed
+	 */
 	public function getExpectedExperience($level){
 		if(isset($this->expCache[$level])) return $this->expCache[$level];
 		$levelSquared = $level ** 2;
@@ -1353,6 +1375,9 @@ class Server {
 		return $this->banByIP;
 	}
 
+	/**
+	 * @return BanList
+	 */
 	public function getCIDBans(){
 		return $this->banByCID;
 	}
@@ -1459,6 +1484,9 @@ class Server {
 		return $result;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getCrashPath(){
 		return $this->dataPath . "crashdumps/";
 	}
@@ -1470,6 +1498,9 @@ class Server {
 		return self::$instance;
 	}
 
+	/**
+	 * @param int $microseconds
+	 */
 	public static function microSleep(int $microseconds){
 		Server::$sleeper->synchronized(function(int $ms){
 			Server::$sleeper->wait($ms);
@@ -1572,6 +1603,9 @@ class Server {
 		return ($this->dserverPlayers + count($this->getOnlinePlayers()));
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function isDServerEnabled(){
 		return $this->dserverConfig["enable"];
 	}
@@ -1580,10 +1614,16 @@ class Server {
 		$this->scheduler->scheduleAsyncTask(new DServerTask($this->dserverConfig["serverList"], $this->dserverConfig["retryTimes"]));
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getBuild(){
 		return $this->version->getBuild();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getGameVersion(){
 		return $this->version->getRelease();
 	}
@@ -2083,6 +2123,10 @@ class Server {
 		Timings::$playerNetworkTimer->stopTiming();
 	}
 
+	/**
+	 * @param       $data
+	 * @param array $identifiers
+	 */
 	public function broadcastPacketsCallback($data, array $identifiers){
 		$pk = new BatchPacket();
 		$pk->payload = $data;
@@ -2281,6 +2325,9 @@ class Server {
 
 	}
 
+	/**
+	 * @return QueryRegenerateEvent
+	 */
 	public function getQueryInformation(){
 		return $this->queryRegenerateTask;
 	}
@@ -2330,12 +2377,19 @@ class Server {
 		gc_collect_cycles();
 	}
 
+	/**
+	 * @param $signo
+	 */
 	public function handleSignal($signo){
 		if($signo === SIGTERM or $signo === SIGINT or $signo === SIGHUP){
 			$this->shutdown();
 		}
 	}
 
+	/**
+	 * @param \Throwable $e
+	 * @param null       $trace
+	 */
 	public function exceptionHandler(\Throwable $e, $trace = null){
 		if($e === null){
 			return;
@@ -2439,6 +2493,9 @@ class Server {
 		exit(1);
 	}
 
+	/**
+	 * @return array
+	 */
 	public function __debugInfo(){
 		return [];
 	}
@@ -2454,6 +2511,9 @@ class Server {
 		}
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function onPlayerLogin(Player $player){
 		if($this->sendUsageTicker > 0){
 			$this->uniquePlayers[$player->getRawUniqueId()] = $player->getRawUniqueId();
@@ -2463,17 +2523,27 @@ class Server {
 		$player->dataPacket($this->craftingManager->getCraftingDataPacket());
 	}
 
+	/**
+	 * @param        $identifier
+	 * @param Player $player
+	 */
 	public function addPlayer($identifier, Player $player){
 		$this->players[$identifier] = $player;
 		$this->identifiers[spl_object_hash($player)] = $identifier;
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function addOnlinePlayer(Player $player){
 		$this->playerList[$player->getRawUniqueId()] = $player;
 
 		$this->updatePlayerListData($player->getUniqueId(), $player->getId(), $player->getDisplayName(), $player->getSkinId(), $player->getSkinData());
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function removeOnlinePlayer(Player $player){
 		if(isset($this->playerList[$player->getRawUniqueId()])){
 			unset($this->playerList[$player->getRawUniqueId()]);
@@ -2485,6 +2555,14 @@ class Server {
 		}
 	}
 
+	/**
+	 * @param UUID       $uuid
+	 * @param            $entityId
+	 * @param            $name
+	 * @param            $skinId
+	 * @param            $skinData
+	 * @param array|null $players
+	 */
 	public function updatePlayerListData(UUID $uuid, $entityId, $name, $skinId, $skinData, array $players = null){
 		$pk = new PlayerListPacket();
 		$pk->type = PlayerListPacket::TYPE_ADD;
@@ -2492,6 +2570,10 @@ class Server {
 		$this->broadcastPacket($players === null ? $this->playerList : $players, $pk);
 	}
 
+	/**
+	 * @param UUID       $uuid
+	 * @param array|null $players
+	 */
 	public function removePlayerListData(UUID $uuid, array $players = null){
 		$pk = new PlayerListPacket();
 		$pk->type = PlayerListPacket::TYPE_REMOVE;
@@ -2499,6 +2581,9 @@ class Server {
 		$this->broadcastPacket($players === null ? $this->playerList : $players, $pk);
 	}
 
+	/**
+	 * @param Player $p
+	 */
 	public function sendFullPlayerListData(Player $p){
 		$pk = new PlayerListPacket();
 		$pk->type = PlayerListPacket::TYPE_ADD;
@@ -2512,6 +2597,10 @@ class Server {
 		$p->dataPacket($pk);
 	}
 
+	/**
+	 * @param $currentTick
+	 * @param $tickTime
+	 */
 	private function checkTickUpdates($currentTick, $tickTime){
 		foreach($this->players as $p){
 			if(!$p->loggedIn and ($tickTime - $p->creationTime) >= 10){
@@ -2579,6 +2668,9 @@ class Server {
 		}
 	}
 
+	/**
+	 * @param int $type
+	 */
 	public function sendUsage($type = SendUsageTask::TYPE_STATUS){
 		$this->scheduler->scheduleAsyncTask(new SendUsageTask($this, $type, $this->uniquePlayers));
 		$this->uniquePlayers = [];

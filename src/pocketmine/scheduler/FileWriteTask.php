@@ -27,6 +27,13 @@ class FileWriteTask extends AsyncTask {
 	private $contents;
 	private $flags;
 
+	/**
+	 * FileWriteTask constructor.
+	 *
+	 * @param     $path
+	 * @param     $contents
+	 * @param int $flags
+	 */
 	public function __construct($path, $contents, $flags = 0){
 		$this->path = $path;
 		$this->contents = $contents;

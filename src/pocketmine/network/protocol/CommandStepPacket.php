@@ -36,6 +36,9 @@ class CommandStepPacket extends DataPacket {
 	public $inputJson;
 	public $outputJson;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->command = $this->getString();
 		$this->overload = $this->getString();
@@ -49,6 +52,9 @@ class CommandStepPacket extends DataPacket {
 		$this->get(true);
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 
 	}

@@ -38,6 +38,9 @@ class Guardian extends Animal {
 
 	public $dropExp = [5, 5];
 
+	/**
+	 * @return string
+	 */
 	public function getName(){
 		return "Guardian";
 	}
@@ -47,6 +50,9 @@ class Guardian extends Animal {
 		parent::initEntity();
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -65,6 +71,9 @@ class Guardian extends Animal {
 		parent::spawnTo($player);
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getDrops(){
 		$drops = [
 			ItemItem::get(ItemItem::PRISMARINE_SHARD, 0, mt_rand(1, 2))

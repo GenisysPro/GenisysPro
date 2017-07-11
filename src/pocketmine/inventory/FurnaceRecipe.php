@@ -44,10 +44,16 @@ class FurnaceRecipe implements Recipe {
 		$this->ingredient = clone $ingredient;
 	}
 
+	/**
+	 * @return null
+	 */
 	public function getId(){
 		return $this->id;
 	}
 
+	/**
+	 * @param UUID $id
+	 */
 	public function setId(UUID $id){
 		if($this->id !== null){
 			throw new \InvalidStateException("Id is already set");

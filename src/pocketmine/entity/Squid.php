@@ -50,10 +50,17 @@ class Squid extends WaterAnimal implements Ageable {
 		$this->setMaxHealth(5);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Squid";
 	}
 
+	/**
+	 * @param float             $damage
+	 * @param EntityDamageEvent $source
+	 */
 	public function attack($damage, EntityDamageEvent $source){
 		parent::attack($damage, $source);
 		if($source->isCancelled()){
@@ -72,11 +79,19 @@ class Squid extends WaterAnimal implements Ageable {
 		}
 	}
 
+	/**
+	 * @return Vector3
+	 */
 	private function generateRandomDirection(){
 		return new Vector3(mt_rand(-1000, 1000) / 1000, mt_rand(-500, 500) / 1000, mt_rand(-1000, 1000) / 1000);
 	}
 
 
+	/**
+	 * @param $currentTick
+	 *
+	 * @return bool
+	 */
 	public function onUpdate($currentTick){
 		if($this->closed !== false){
 			return false;
@@ -147,6 +162,9 @@ class Squid extends WaterAnimal implements Ageable {
 	}
 
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -165,6 +183,9 @@ class Squid extends WaterAnimal implements Ageable {
 		parent::spawnTo($player);
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getDrops(){
 		$lootingL = 0;
 		$cause = $this->lastDamageCause;

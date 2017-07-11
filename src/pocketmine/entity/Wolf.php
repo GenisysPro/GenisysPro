@@ -33,10 +33,16 @@ class Wolf extends Animal {
 
 	public $dropExp = [1, 3];
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Wolf";
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

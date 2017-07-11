@@ -44,6 +44,12 @@ class Dispenser extends Spawnable implements InventoryHolder, Container, Nameabl
 	/** @var DispenserInventory */
 	protected $inventory;
 
+	/**
+	 * Dispenser constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 */
 	public function __construct(Level $level, CompoundTag $nbt){
 		parent::__construct($level, $nbt);
 		$this->inventory = new DispenserInventory($this);
@@ -148,14 +154,23 @@ class Dispenser extends Spawnable implements InventoryHolder, Container, Nameabl
 		return $this->inventory;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return isset($this->namedtag->CustomName) ? $this->namedtag->CustomName->getValue() : "Dispenser";
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function hasName(){
 		return isset($this->namedtag->CustomName);
 	}
 
+	/**
+	 * @param void $str
+	 */
 	public function setName($str){
 		if($str === ""){
 			unset($this->namedtag->CustomName);
@@ -165,6 +180,9 @@ class Dispenser extends Spawnable implements InventoryHolder, Container, Nameabl
 		$this->namedtag->CustomName = new StringTag("CustomName", $str);
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getMotion(){
 		$meta = $this->getBlock()->getDamage();
 		switch($meta){
@@ -258,6 +276,9 @@ class Dispenser extends Spawnable implements InventoryHolder, Container, Nameabl
 		}
 	}
 
+	/**
+	 * @return CompoundTag
+	 */
 	public function getSpawnCompound(){
 		$c = new CompoundTag("", [
 			new StringTag("id", Tile::DISPENSER),

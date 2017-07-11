@@ -32,10 +32,16 @@ class FullChunkDataPacket extends DataPacket {
 	public $chunkZ;
 	public $data;
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putVarInt($this->chunkX);

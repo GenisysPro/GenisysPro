@@ -30,11 +30,17 @@ class ResourcePackChunkRequestPacket extends DataPacket {
 	public $packId;
 	public $chunkIndex;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->packId = $this->getString();
 		$this->chunkIndex = $this->getLInt();
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putString($this->packId);

@@ -43,6 +43,13 @@ class ThrownPotion extends Projectile {
 
 	private $hasSplashed = false;
 
+	/**
+	 * ThrownPotion constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 * @param Entity|null $shootingEntity
+	 */
 	public function __construct(Level $level, CompoundTag $nbt, Entity $shootingEntity = null){
 		if(!isset($nbt->PotionId)){
 			$nbt->PotionId = new ShortTag("PotionId", Potion::AWKWARD);
@@ -54,6 +61,9 @@ class ThrownPotion extends Projectile {
 		$this->setDataProperty(self::DATA_POTION_ID, self::DATA_TYPE_SHORT, $this->getPotionId());
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getPotionId() : int{
 		return (int) $this->namedtag["PotionId"];
 	}
@@ -76,6 +86,11 @@ class ThrownPotion extends Projectile {
 		}
 	}
 
+	/**
+	 * @param $currentTick
+	 *
+	 * @return bool
+	 */
 	public function onUpdate($currentTick){
 		if($this->closed){
 			return false;
@@ -97,6 +112,9 @@ class ThrownPotion extends Projectile {
 		return $hasUpdate;
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->type = ThrownPotion::NETWORK_ID;

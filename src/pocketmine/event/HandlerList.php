@@ -68,6 +68,9 @@ class HandlerList {
 		}
 	}
 
+	/**
+	 * HandlerList constructor.
+	 */
 	public function __construct(){
 		$this->handlerSlots = [
 			EventPriority::LOWEST => [],

@@ -27,16 +27,27 @@ use pocketmine\nbt\NBT;
 
 class LongTag extends NamedTag {
 
+	/**
+	 * @return int
+	 */
 	public function getType(){
 		return NBT::TAG_Long;
 	}
 
 	//TODO: check if this also changed to varint
 
+	/**
+	 * @param NBT  $nbt
+	 * @param bool $network
+	 */
 	public function read(NBT $nbt, bool $network = false){
 		$this->value = $nbt->getLong();
 	}
 
+	/**
+	 * @param NBT  $nbt
+	 * @param bool $network
+	 */
 	public function write(NBT $nbt, bool $network = false){
 		$nbt->putLong($this->value);
 	}

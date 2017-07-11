@@ -27,14 +27,25 @@ use pocketmine\nbt\NBT;
 
 class ByteArrayTag extends NamedTag {
 
+	/**
+	 * @return int
+	 */
 	public function getType(){
 		return NBT::TAG_ByteArray;
 	}
 
+	/**
+	 * @param NBT  $nbt
+	 * @param bool $network
+	 */
 	public function read(NBT $nbt, bool $network = false){
 		$this->value = $nbt->get($nbt->getInt($network));
 	}
 
+	/**
+	 * @param NBT  $nbt
+	 * @param bool $network
+	 */
 	public function write(NBT $nbt, bool $network = false){
 		$nbt->putInt(strlen($this->value), $network);
 		$nbt->put($this->value);

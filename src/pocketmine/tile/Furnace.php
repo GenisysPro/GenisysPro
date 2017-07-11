@@ -41,6 +41,12 @@ class Furnace extends Spawnable implements InventoryHolder, Container, Nameable 
 	/** @var FurnaceInventory */
 	protected $inventory;
 
+	/**
+	 * Furnace constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 */
 	public function __construct(Level $level, CompoundTag $nbt){
 		if(!isset($nbt->BurnTime) or $nbt["BurnTime"] < 0){
 			$nbt->BurnTime = new ShortTag("BurnTime", 0);
@@ -67,14 +73,23 @@ class Furnace extends Spawnable implements InventoryHolder, Container, Nameable 
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return isset($this->namedtag->CustomName) ? $this->namedtag->CustomName->getValue() : "Furnace";
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function hasName(){
 		return isset($this->namedtag->CustomName);
 	}
 
+	/**
+	 * @param void $str
+	 */
 	public function setName($str){
 		if($str === ""){
 			unset($this->namedtag->CustomName);
@@ -175,6 +190,9 @@ class Furnace extends Spawnable implements InventoryHolder, Container, Nameable 
 		return $this->inventory;
 	}
 
+	/**
+	 * @param Item $fuel
+	 */
 	protected function checkFuel(Item $fuel){
 		$this->server->getPluginManager()->callEvent($ev = new FurnaceBurnEvent($this, $fuel, $fuel->getFuelTime()));
 
@@ -198,6 +216,9 @@ class Furnace extends Spawnable implements InventoryHolder, Container, Nameable 
 		}
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function onUpdate(){
 		if($this->closed === true){
 			return false;
@@ -281,6 +302,9 @@ class Furnace extends Spawnable implements InventoryHolder, Container, Nameable 
 		return $ret;
 	}
 
+	/**
+	 * @return CompoundTag
+	 */
 	public function getSpawnCompound(){
 		$nbt = new CompoundTag("", [
 			new StringTag("id", Tile::FURNACE),

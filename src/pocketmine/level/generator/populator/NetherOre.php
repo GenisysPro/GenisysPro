@@ -28,6 +28,14 @@ use pocketmine\utils\Random;
 class NetherOre extends Populator {
 	private $oreTypes = [];
 
+	/**
+	 * @param ChunkManager $level
+	 * @param              $chunkX
+	 * @param              $chunkZ
+	 * @param Random       $random
+	 *
+	 * @return mixed|void
+	 */
 	public function populate(ChunkManager $level, $chunkX, $chunkZ, Random $random){
 		foreach($this->oreTypes as $type){
 			$ore = new ObjectOre($random, $type);
@@ -42,6 +50,9 @@ class NetherOre extends Populator {
 		}
 	}
 
+	/**
+	 * @param array $types
+	 */
 	public function setOreTypes(array $types){
 		$this->oreTypes = $types;
 	}

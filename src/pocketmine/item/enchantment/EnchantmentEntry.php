@@ -40,10 +40,16 @@ class EnchantmentEntry {
 		$this->randomName = $randomName;
 	}
 
+	/**
+	 * @return array|Enchantment[]
+	 */
 	public function getEnchantments(){
 		return $this->enchantments;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getCost(){
 		return $this->cost;
 	}

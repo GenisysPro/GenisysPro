@@ -34,16 +34,25 @@ class ExplodePacket extends DataPacket {
 	public $radius;
 	public $records = [];
 
+	/**
+	 * @return $this
+	 */
 	public function clean(){
 		$this->records = [];
 
 		return parent::clean();
 	}
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putVector3f($this->x, $this->y, $this->z);

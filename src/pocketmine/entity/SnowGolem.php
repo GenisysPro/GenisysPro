@@ -36,10 +36,16 @@ class SnowGolem extends Animal {
 		parent::initEntity();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName(){
 		return "Snow Golem";
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

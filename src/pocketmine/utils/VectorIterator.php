@@ -56,6 +56,13 @@ class VectorIterator implements \Iterator {
 	private $secondFace;
 	private $thirdFace;
 
+	/**
+	 * VectorIterator constructor.
+	 *
+	 * @param ChunkManager $level
+	 * @param Vector3      $from
+	 * @param Vector3      $to
+	 */
 	public function __construct(ChunkManager $level, Vector3 $from, Vector3 $to){
 		if($from->equals($to)){
 			$this->end = true;
@@ -178,46 +185,110 @@ class VectorIterator implements \Iterator {
 		$this->maxDistanceInt = round($maxDistance / (sqrt($mainDirection ** 2 + $secondDirection ** 2 + $thirdDirection ** 2) / $mainDirection));
 	}
 
+	/**
+	 * @param Vector3 $a
+	 * @param Vector3 $b
+	 *
+	 * @return bool
+	 */
 	private function posEquals(Vector3 $a, Vector3 $b){
 		return $a->x === $b->x and $a->y === $b->y and $a->z === $b->z;
 	}
 
+	/**
+	 * @param Vector3 $direction
+	 *
+	 * @return int
+	 */
 	private function getXFace(Vector3 $direction){
 		return (($direction->x) > 0) ? Vector3::SIDE_EAST : Vector3::SIDE_WEST;
 	}
 
+	/**
+	 * @param Vector3 $direction
+	 *
+	 * @return int
+	 */
 	private function getYFace(Vector3 $direction){
 		return (($direction->y) > 0) ? Vector3::SIDE_UP : Vector3::SIDE_DOWN;
 	}
 
+	/**
+	 * @param Vector3 $direction
+	 *
+	 * @return int
+	 */
 	private function getZFace(Vector3 $direction){
 		return (($direction->z) > 0) ? Vector3::SIDE_SOUTH : Vector3::SIDE_NORTH;
 	}
 
+	/**
+	 * @param Vector3 $direction
+	 *
+	 * @return number
+	 */
 	private function getXLength(Vector3 $direction){
 		return abs($direction->x);
 	}
 
+	/**
+	 * @param Vector3 $direction
+	 *
+	 * @return number
+	 */
 	private function getYLength(Vector3 $direction){
 		return abs($direction->y);
 	}
 
+	/**
+	 * @param Vector3 $direction
+	 *
+	 * @return number
+	 */
 	private function getZLength(Vector3 $direction){
 		return abs($direction->z);
 	}
 
+	/**
+	 * @param $direction
+	 * @param $position
+	 * @param $blockPosition
+	 *
+	 * @return mixed
+	 */
 	private function getPosition($direction, $position, $blockPosition){
 		return $direction > 0 ? ($position - $blockPosition) : ($blockPosition + 1 - $position);
 	}
 
+	/**
+	 * @param Vector3 $direction
+	 * @param Vector3 $position
+	 * @param Vector3 $block
+	 *
+	 * @return mixed
+	 */
 	private function getXPosition(Vector3 $direction, Vector3 $position, Vector3 $block){
 		return $this->getPosition($direction->x, $position->x, $block->x);
 	}
 
+	/**
+	 * @param Vector3 $direction
+	 * @param Vector3 $position
+	 * @param Vector3 $block
+	 *
+	 * @return mixed
+	 */
 	private function getYPosition(Vector3 $direction, Vector3 $position, Vector3 $block){
 		return $this->getPosition($direction->y, $position->y, $block->y);
 	}
 
+	/**
+	 * @param Vector3 $direction
+	 * @param Vector3 $position
+	 * @param Vector3 $block
+	 *
+	 * @return mixed
+	 */
 	private function getZPosition(Vector3 $direction, Vector3 $position, Vector3 $block){
 		return $this->getPosition($direction->z, $position->z, $block->z);
 	}
@@ -248,10 +319,16 @@ class VectorIterator implements \Iterator {
 		throw new \InvalidStateException("BlockIterator doesn't support rewind()");
 	}
 
+	/**
+	 * @return int
+	 */
 	public function key(){
 		return $this->currentBlock - 1;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function valid(){
 		$this->scan();
 		return $this->currentBlock !== -1;

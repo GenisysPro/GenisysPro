@@ -28,30 +28,55 @@ class EndPortalFrame extends Solid implements SolidLight {
 
 	protected $id = self::END_PORTAL_FRAME;
 
+	/**
+	 * EndPortalFrame constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getLightLevel(){
 		return 1;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "End Portal Frame";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHardness(){
 		return -1;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getResistance(){
 		return 18000000;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return bool
+	 */
 	public function isBreakable(Item $item){
 		return false;
 	}
 
+	/**
+	 * @return AxisAlignedBB
+	 */
 	protected function recalculateBoundingBox(){
 
 		return new AxisAlignedBB(

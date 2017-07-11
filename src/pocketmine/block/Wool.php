@@ -44,18 +44,32 @@ class Wool extends Solid {
 
 	protected $id = self::WOOL;
 
+	/**
+	 * Wool constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getHardness(){
 		return 0.8;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_SHEARS;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		static $names = [
 			0 => "White Wool",
@@ -78,10 +92,16 @@ class Wool extends Solid {
 		return $names[$this->meta & 0x0f];
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getBurnChance() : int{
 		return 30;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getBurnAbility() : int{
 		return 60;
 	}

@@ -37,6 +37,11 @@ abstract class FlyingAnimal extends Creature implements Ageable {
 	private $switchDirectionTicker = 0;
 	public $switchDirectionTicks = 300;
 
+	/**
+	 * @param $currentTick
+	 *
+	 * @return bool
+	 */
 	public function onUpdate($currentTick){
 		if($this->closed !== false){
 			return false;
@@ -111,6 +116,9 @@ abstract class FlyingAnimal extends Creature implements Ageable {
 		return !$this->onGround or abs($this->motionX) > 0.00001 or abs($this->motionY) > 0.00001 or abs($this->motionZ) > 0.00001;
 	}
 
+	/**
+	 * @return Vector3
+	 */
 	private function generateRandomDirection(){
 		return new Vector3(mt_rand(-1000, 1000) / 1000, mt_rand(-500, 500) / 1000, mt_rand(-1000, 1000) / 1000);
 	}
@@ -120,10 +128,19 @@ abstract class FlyingAnimal extends Creature implements Ageable {
 		$this->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_BABY, false);
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isBaby(){
 		return $this->getDataFlag(self::DATA_FLAGS, self::DATA_FLAG_BABY);
 	}
 
+	/**
+	 * @param float             $damage
+	 * @param EntityDamageEvent $source
+	 *
+	 * @return bool|void
+	 */
 	public function attack($damage, EntityDamageEvent $source){
 		if($source->isCancelled()){
 			return;

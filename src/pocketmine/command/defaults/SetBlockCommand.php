@@ -33,6 +33,11 @@ use pocketmine\item\Item;
 
 class SetBlockCommand extends VanillaCommand {
 
+	/**
+	 * SetBlockCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -42,6 +47,13 @@ class SetBlockCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.setblock");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;

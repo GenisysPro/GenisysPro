@@ -57,6 +57,9 @@ class PlayerFishEvent extends PlayerEvent implements Cancellable {
 		return clone $this->item;
 	}
 
+	/**
+	 * @return null|FishingHook
+	 */
 	public function getHook(){
 		return $this->hook;
 	}

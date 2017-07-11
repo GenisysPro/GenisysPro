@@ -45,6 +45,9 @@ class MovingObjectPosition {
 	/** @var Entity */
 	public $entityHit = null;
 
+	/**
+	 * MovingObjectPosition constructor.
+	 */
 	protected function __construct(){
 
 	}

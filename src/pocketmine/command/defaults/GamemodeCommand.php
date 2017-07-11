@@ -30,6 +30,11 @@ use pocketmine\utils\TextFormat;
 
 class GamemodeCommand extends VanillaCommand {
 
+	/**
+	 * GamemodeCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -40,6 +45,13 @@ class GamemodeCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.gamemode");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;

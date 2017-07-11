@@ -35,10 +35,16 @@ class Chicken extends Animal {
 
 	public $dropExp = [1, 3];
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Chicken";
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -56,6 +62,9 @@ class Chicken extends Animal {
 		parent::spawnTo($player);
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getDrops(){
 		$drops = [ItemItem::get(ItemItem::FEATHER, 0, mt_rand(0, 2))
 		];

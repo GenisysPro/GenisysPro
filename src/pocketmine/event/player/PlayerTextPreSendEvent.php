@@ -38,20 +38,36 @@ class PlayerTextPreSendEvent extends PlayerEvent implements Cancellable {
 	protected $message;
 	protected $type = self::MESSAGE;
 
+	/**
+	 * PlayerTextPreSendEvent constructor.
+	 *
+	 * @param Player $player
+	 * @param        $message
+	 * @param int    $type
+	 */
 	public function __construct(Player $player, $message, $type = self::MESSAGE){
 		$this->player = $player;
 		$this->message = $message;
 		$this->type = $type;
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function getMessage(){
 		return $this->message;
 	}
 
+	/**
+	 * @param $message
+	 */
 	public function setMessage($message){
 		$this->message = $message;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getType(){
 		return $this->type;
 	}

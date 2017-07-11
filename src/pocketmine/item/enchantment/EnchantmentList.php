@@ -27,6 +27,11 @@ class EnchantmentList {
 	/** @var EnchantmentEntry[] */
 	private $enchantments;
 
+	/**
+	 * EnchantmentList constructor.
+	 *
+	 * @param $size
+	 */
 	public function __construct($size){
 		$this->enchantments = new \SplFixedArray($size);
 	}
@@ -48,6 +53,9 @@ class EnchantmentList {
 		return $this->enchantments[$slot];
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getSize(){
 		return $this->enchantments->getSize();
 	}

@@ -33,6 +33,13 @@ class ChunkLoadEvent extends ChunkEvent {
 
 	private $newChunk;
 
+	/**
+	 * ChunkLoadEvent constructor.
+	 *
+	 * @param Level $level
+	 * @param Chunk $chunk
+	 * @param bool  $newChunk
+	 */
 	public function __construct(Level $level, Chunk $chunk, bool $newChunk){
 		parent::__construct($level, $chunk);
 		$this->newChunk = $newChunk;

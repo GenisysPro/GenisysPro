@@ -32,6 +32,11 @@ use pocketmine\network\protocol\Info;
 
 class MakeServerCommand extends VanillaCommand {
 
+	/**
+	 * MakeServerCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -41,6 +46,13 @@ class MakeServerCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.makeserver");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $commandLabel
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $commandLabel, array $args){
 		if(!$this->testPermission($sender)){
 			return false;

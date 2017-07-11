@@ -27,14 +27,35 @@ use pocketmine\level\Level;
 use pocketmine\Player;
 
 class GlassBottle extends Item {
+	/**
+	 * GlassBottle constructor.
+	 *
+	 * @param int $meta
+	 * @param int $count
+	 */
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::GLASS_BOTTLE, $meta, $count, "Glass Bottle");
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @param Level  $level
+	 * @param Player $player
+	 * @param Block  $block
+	 * @param Block  $target
+	 * @param        $face
+	 * @param        $fx
+	 * @param        $fy
+	 * @param        $fz
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Level $level, Player $player, Block $block, Block $target, $face, $fx, $fy, $fz){
 		if($player === null or $player->isSurvival() !== true){
 			return false;

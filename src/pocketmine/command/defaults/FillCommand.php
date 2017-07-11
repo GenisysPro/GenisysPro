@@ -33,6 +33,11 @@ use pocketmine\utils\TextFormat;
 
 class FillCommand extends VanillaCommand {
 
+	/**
+	 * FillCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -42,6 +47,13 @@ class FillCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.fill");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $label
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $label, array $args){
 		if(!$this->testPermission($sender)){
 			return true;
@@ -94,6 +106,14 @@ class FillCommand extends VanillaCommand {
 		return false;
 	}
 
+	/**
+	 * @param Vector3   $p
+	 * @param Level     $lvl
+	 * @param ItemBlock $b
+	 * @param int       $meta
+	 *
+	 * @return bool
+	 */
 	private function setBlock(Vector3 $p, Level $lvl, ItemBlock $b, int $meta = 0) : bool{
 		$block = $b->getBlock();
 		$block->setDamage($meta);

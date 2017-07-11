@@ -32,34 +32,60 @@ class Vine extends Transparent {
 
 	protected $id = self::VINE;
 
+	/**
+	 * Vine constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isSolid(){
 		return false;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Vines";
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getHardness(){
 		return 0.2;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canPassThrough(){
 		return true;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function hasEntityCollision(){
 		return true;
 	}
 
+	/**
+	 * @param Entity $entity
+	 */
 	public function onEntityCollide(Entity $entity){
 		$entity->resetFallDistance();
 	}
 
+	/**
+	 * @return AxisAlignedBB
+	 */
 	protected function recalculateBoundingBox(){
 
 		$f1 = 1;
@@ -121,6 +147,18 @@ class Vine extends Transparent {
 	}
 
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		if(!$target->isTransparent() and $target->isSolid()){
 			$faces = [
@@ -142,6 +180,11 @@ class Vine extends Transparent {
 		return false;
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return bool
+	 */
 	public function onUpdate($type){
 		if($type === Level::BLOCK_UPDATE_NORMAL){
 			/*if($this->getSide(0)->getId() === self::AIR){ //Replace with common break method
@@ -154,6 +197,11 @@ class Vine extends Transparent {
 		return false;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		if($item->isShears()){
 			return [
@@ -164,6 +212,9 @@ class Vine extends Transparent {
 		}
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_SHEARS;
 	}

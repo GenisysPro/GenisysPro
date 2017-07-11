@@ -30,10 +30,16 @@ class BatchPacket extends DataPacket {
 
 	public $payload;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->payload = $this->get(true);
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->put($this->payload);

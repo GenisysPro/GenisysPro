@@ -103,6 +103,11 @@ class SimpleCommandMap implements CommandMap {
 	/** @var Server */
 	private $server;
 
+	/**
+	 * SimpleCommandMap constructor.
+	 *
+	 * @param Server $server
+	 */
 	public function __construct(Server $server){
 		$this->server = $server;
 		/** @var bool[] */
@@ -180,12 +185,24 @@ class SimpleCommandMap implements CommandMap {
 	}
 
 
+	/**
+	 * @param string $fallbackPrefix
+	 * @param array  $commands
+	 */
 	public function registerAll($fallbackPrefix, array $commands){
 		foreach($commands as $command){
 			$this->register($fallbackPrefix, $command);
 		}
 	}
 
+	/**
+	 * @param string  $fallbackPrefix
+	 * @param Command $command
+	 * @param null    $label
+	 * @param bool    $overrideConfig
+	 *
+	 * @return bool
+	 */
 	public function register($fallbackPrefix, Command $command, $label = null, $overrideConfig = false){
 		if($label === null){
 			$label = $command->getName();
@@ -217,6 +234,14 @@ class SimpleCommandMap implements CommandMap {
 		return $registered;
 	}
 
+	/**
+	 * @param Command $command
+	 * @param         $isAlias
+	 * @param         $fallbackPrefix
+	 * @param         $label
+	 *
+	 * @return bool
+	 */
 	private function registerAlias(Command $command, $isAlias, $fallbackPrefix, $label){
 		$this->knownCommands[$fallbackPrefix . ":" . $label] = $command;
 		if(($command instanceof VanillaCommand or $isAlias) and isset($this->knownCommands[$label])){
@@ -236,6 +261,13 @@ class SimpleCommandMap implements CommandMap {
 		return true;
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param Command       $command
+	 * @param               $label
+	 * @param array         $args
+	 * @param int           $offset
+	 */
 	private function dispatchAdvanced(CommandSender $sender, Command $command, $label, array $args, $offset = 0){
 		if(isset($args[$offset])){
 			$argsTemp = $args;
@@ -272,6 +304,12 @@ class SimpleCommandMap implements CommandMap {
 		}else $command->execute($sender, $label, $args);
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $commandLine
+	 *
+	 * @return bool
+	 */
 	public function dispatch(CommandSender $sender, $commandLine){
 		$args = explode(" ", $commandLine);
 
@@ -314,6 +352,11 @@ class SimpleCommandMap implements CommandMap {
 		$this->setDefaultCommands();
 	}
 
+	/**
+	 * @param string $name
+	 *
+	 * @return null|Command
+	 */
 	public function getCommand($name){
 		if(isset($this->knownCommands[$name])){
 			return $this->knownCommands[$name];

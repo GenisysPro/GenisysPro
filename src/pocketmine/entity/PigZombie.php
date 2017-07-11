@@ -40,10 +40,16 @@ class PigZombie extends Monster {
 
 	public $dropExp = [5, 5];
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "PigZombie";
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -70,6 +76,9 @@ class PigZombie extends Monster {
 		$player->dataPacket($pk);
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getDrops(){
 		$cause = $this->lastDamageCause;
 		$drops = [];

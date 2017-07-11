@@ -36,10 +36,16 @@ class ZombieVillager extends Zombie {
 		parent::initEntity();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Zombie Villager";
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->type = ZombieVillager::NETWORK_ID;

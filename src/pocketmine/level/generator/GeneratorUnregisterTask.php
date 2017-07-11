@@ -30,6 +30,11 @@ class GeneratorUnregisterTask extends AsyncTask {
 
 	public $levelId;
 
+	/**
+	 * GeneratorUnregisterTask constructor.
+	 *
+	 * @param Level $level
+	 */
 	public function __construct(Level $level){
 		$this->levelId = $level->getId();
 	}

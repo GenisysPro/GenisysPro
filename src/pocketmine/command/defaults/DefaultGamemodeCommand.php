@@ -37,6 +37,11 @@ use pocketmine\Server;
 
 class DefaultGamemodeCommand extends VanillaCommand {
 
+	/**
+	 * DefaultGamemodeCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -46,6 +51,13 @@ class DefaultGamemodeCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.defaultgamemode");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;

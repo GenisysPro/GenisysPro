@@ -41,6 +41,11 @@ class PMAnvil extends Anvil {
 
 	const REGION_FILE_EXTENSION = "mcapm";
 
+	/**
+	 * @param Chunk $chunk
+	 *
+	 * @return string
+	 */
 	public function nbtSerialize(Chunk $chunk) : string{
 		$nbt = new CompoundTag("Level", []);
 		$nbt->xPos = new IntTag("xPos", $chunk->getX());
@@ -101,6 +106,11 @@ class PMAnvil extends Anvil {
 		return $writer->writeCompressed(ZLIB_ENCODING_DEFLATE, RegionLoader::$COMPRESSION_LEVEL);
 	}
 
+	/**
+	 * @param string $data
+	 *
+	 * @return null|Chunk
+	 */
 	public function nbtDeserialize(string $data){
 		$nbt = new NBT(NBT::BIG_ENDIAN);
 		try{
@@ -147,6 +157,9 @@ class PMAnvil extends Anvil {
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	public static function getProviderName() : string{
 		return "pmanvil";
 	}

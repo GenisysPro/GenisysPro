@@ -35,6 +35,9 @@ class QueryHandler {
 	const HANDSHAKE = 9;
 	const STATISTICS = 0;
 
+	/**
+	 * QueryHandler constructor.
+	 */
 	public function __construct(){
 		$this->server = Server::getInstance();
 		$this->server->getLogger()->info($this->server->getLanguage()->translateString("pocketmine.server.query.start"));
@@ -68,10 +71,21 @@ class QueryHandler {
 		$this->token = random_bytes(16);
 	}
 
+	/**
+	 * @param $token
+	 * @param $salt
+	 *
+	 * @return int
+	 */
 	public static function getTokenString($token, $salt){
 		return Binary::readInt(substr(hash("sha512", $salt . ":" . $token, true), 7, 4));
 	}
 
+	/**
+	 * @param $address
+	 * @param $port
+	 * @param $packet
+	 */
 	public function handle($address, $port, $packet){
 		$offset = 2;
 		$packetType = ord($packet{$offset++});

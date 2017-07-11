@@ -33,6 +33,12 @@ class FlintSteel extends Tool {
 	/** @var Vector3 */
 	private $temporalVector = null;
 
+	/**
+	 * FlintSteel constructor.
+	 *
+	 * @param int $meta
+	 * @param int $count
+	 */
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::FLINT_STEEL, $meta, $count, "Flint and Steel");
 		if($this->temporalVector === null){
@@ -40,10 +46,25 @@ class FlintSteel extends Tool {
 		}
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @param Level  $level
+	 * @param Player $player
+	 * @param Block  $block
+	 * @param Block  $target
+	 * @param        $face
+	 * @param        $fx
+	 * @param        $fy
+	 * @param        $fz
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Level $level, Player $player, Block $block, Block $target, $face, $fx, $fy, $fz){
 		if($target->getId() === Block::OBSIDIAN and $player->getServer()->netherEnabled){//黑曜石 4*5最小 23*23最大
 			//$level->setBlock($block, new Fire(), true);

@@ -26,6 +26,9 @@ use pocketmine\block\Leaves2;
 use pocketmine\block\Wood2;
 
 class AcaciaTree extends Tree {
+	/**
+	 * AcaciaTree constructor.
+	 */
 	public function __construct(){
 		$this->trunkBlock = Block::WOOD2;
 		$this->leafBlock = Block::LEAVES2;

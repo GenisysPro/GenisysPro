@@ -138,6 +138,11 @@ class Network {
 
 	private $name;
 
+	/**
+	 * Network constructor.
+	 *
+	 * @param Server $server
+	 */
 	public function __construct(Server $server){
 
 		$this->registerPackets();
@@ -145,15 +150,25 @@ class Network {
 		$this->server = $server;
 	}
 
+	/**
+	 * @param $upload
+	 * @param $download
+	 */
 	public function addStatistics($upload, $download){
 		$this->upload += $upload;
 		$this->download += $download;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getUpload(){
 		return $this->upload;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getDownload(){
 		return $this->download;
 	}
@@ -239,10 +254,17 @@ class Network {
 		$this->packetPool[$id] = new $class;
 	}
 
+	/**
+	 * @return Server
+	 */
 	public function getServer(){
 		return $this->server;
 	}
 
+	/**
+	 * @param BatchPacket $packet
+	 * @param Player      $p
+	 */
 	public function processBatch(BatchPacket $packet, Player $p){
 		try{
 			if(strlen($packet->payload) === 0){

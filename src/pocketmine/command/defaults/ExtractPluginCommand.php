@@ -39,6 +39,11 @@ use pocketmine\utils\TextFormat;
 
 class ExtractPluginCommand extends VanillaCommand {
 
+	/**
+	 * ExtractPluginCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -48,6 +53,13 @@ class ExtractPluginCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.extractplugin");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $commandLabel
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $commandLabel, array $args){
 		if(!$this->testPermission($sender)){
 			return false;
@@ -103,6 +115,9 @@ class ExtractPluginCommand extends VanillaCommand {
 		return true;
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 */
 	private function sendPluginList(CommandSender $sender){
 		$list = "";
 		foreach(($plugins = $sender->getServer()->getPluginManager()->getPlugins()) as $plugin){

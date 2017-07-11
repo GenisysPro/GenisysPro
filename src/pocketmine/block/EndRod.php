@@ -32,26 +32,55 @@ class EndRod extends Flowable {
 
 	protected $id = self::END_ROD;
 
+	/**
+	 * EndRod constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getLightLevel(){
 		return 14;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName(){
 		return "End Rod";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getResistance(){
 		return 0;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHardness(){
 		return 0;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$faces = [
 			0 => 0,
@@ -66,6 +95,11 @@ class EndRod extends Flowable {
 		return true;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		return [
 			[$this->id, 0, 1],

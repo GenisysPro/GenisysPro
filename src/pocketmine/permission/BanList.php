@@ -146,6 +146,9 @@ class BanList {
 		}
 	}
 
+	/**
+	 * @param bool $flag
+	 */
 	public function save($flag = true){
 		$this->removeExpired();
 		$fp = @fopen($this->file, "w");

@@ -40,6 +40,11 @@ class InstallerLang {
 	private $lang;
 	private $langfile;
 
+	/**
+	 * InstallerLang constructor.
+	 *
+	 * @param string $lang
+	 */
 	public function __construct($lang = ""){
 		if(file_exists(\pocketmine\PATH . "src/pocketmine/lang/Installer/" . $lang . ".ini")){
 			$this->lang = $lang;
@@ -72,10 +77,17 @@ class InstallerLang {
 
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getLang(){
 		return ($this->lang);
 	}
 
+	/**
+	 * @param        $langfile
+	 * @param string $lang
+	 */
 	public function loadLang($langfile, $lang = "en"){
 		$this->texts[$lang] = [];
 		$texts = explode("\n", str_replace(["\r", "\\/\\/"], ["", "//"], file_get_contents($langfile)));
@@ -89,6 +101,13 @@ class InstallerLang {
 		}
 	}
 
+	/**
+	 * @param       $name
+	 * @param array $search
+	 * @param array $replace
+	 *
+	 * @return mixed
+	 */
 	public function get($name, $search = [], $replace = []){
 		if(!isset($this->texts[$this->lang][$name])){
 			if($this->lang !== "en" and isset($this->texts["en"][$name])){
@@ -103,6 +122,11 @@ class InstallerLang {
 		}
 	}
 
+	/**
+	 * @param $name
+	 *
+	 * @return mixed
+	 */
 	public function __get($name){
 		return $this->get($name);
 	}

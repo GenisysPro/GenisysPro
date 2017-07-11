@@ -29,6 +29,9 @@ class Witch extends Monster {
 
 	public $dropExp = [5, 5];
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Witch";
 	}
@@ -38,6 +41,9 @@ class Witch extends Monster {
 		parent::initEntity();
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -55,6 +61,9 @@ class Witch extends Monster {
 		parent::spawnTo($player);
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getDrops(){
 		//TODO
 		return [];

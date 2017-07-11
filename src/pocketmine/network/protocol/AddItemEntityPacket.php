@@ -37,10 +37,16 @@ class AddItemEntityPacket extends DataPacket {
 	public $speedY;
 	public $speedZ;
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putEntityId($this->eid); //EntityUniqueID

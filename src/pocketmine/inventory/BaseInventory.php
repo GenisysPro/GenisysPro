@@ -82,34 +82,60 @@ abstract class BaseInventory implements Inventory {
 		$this->slots = [];
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getSize(){
 		return $this->size;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHotbarSize(){
 		return 0;
 	}
 
+	/**
+	 * @param $size
+	 */
 	public function setSize($size){
 		$this->size = (int) $size;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getMaxStackSize(){
 		return $this->maxStackSize;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return $this->name;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getTitle(){
 		return $this->title;
 	}
 
+	/**
+	 * @param int $index
+	 *
+	 * @return Item
+	 */
 	public function getItem($index){
 		return isset($this->slots[$index]) ? clone $this->slots[$index] : Item::get(Item::AIR, 0, 0);
 	}
 
+	/**
+	 * @return Item[]
+	 */
 	public function getContents(){
 		return $this->slots;
 	}
@@ -136,6 +162,13 @@ abstract class BaseInventory implements Inventory {
 		}
 	}
 
+	/**
+	 * @param int  $index
+	 * @param Item $item
+	 * @param bool $send
+	 *
+	 * @return bool
+	 */
 	public function setItem($index, Item $item, $send = true){
 		$item = clone $item;
 		if($index < 0 or $index >= $this->size){
@@ -162,6 +195,11 @@ abstract class BaseInventory implements Inventory {
 		return true;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return bool
+	 */
 	public function contains(Item $item){
 		$count = max(1, $item->getCount());
 		$checkDamage = !$item->hasAnyDamageValue();
@@ -178,6 +216,13 @@ abstract class BaseInventory implements Inventory {
 		return false;
 	}
 
+	/**
+	 * @param      $slot
+	 * @param Item $item
+	 * @param bool $matchCount
+	 *
+	 * @return bool
+	 */
 	public function slotContains($slot, Item $item, $matchCount = false){
 		if($matchCount){
 			return $this->getItem($slot)->equals($item, true, true, true);
@@ -186,6 +231,11 @@ abstract class BaseInventory implements Inventory {
 		}
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function all(Item $item){
 		$slots = [];
 		$checkDamage = !$item->hasAnyDamageValue();
@@ -199,6 +249,10 @@ abstract class BaseInventory implements Inventory {
 		return $slots;
 	}
 
+	/**
+	 * @param Item $item
+	 * @param bool $send
+	 */
 	public function remove(Item $item, $send = true){
 		$checkDamage = !$item->hasAnyDamageValue();
 		$checkTags = $item->hasCompoundTag();
@@ -212,6 +266,11 @@ abstract class BaseInventory implements Inventory {
 		}
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return int|string
+	 */
 	public function first(Item $item){
 		$count = max(1, $item->getCount());
 		$checkDamage = !$item->hasAnyDamageValue();
@@ -226,6 +285,9 @@ abstract class BaseInventory implements Inventory {
 		return -1;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function firstEmpty(){
 		for($i = 0; $i < $this->size; ++$i){
 			if($this->getItem($i)->getId() === Item::AIR){
@@ -236,6 +298,9 @@ abstract class BaseInventory implements Inventory {
 		return -1;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function firstOccupied(){
 		for($i = 0; $i < $this->size; $i++){
 			if(($item = $this->getItem($i))->getId() !== Item::AIR and $item->getCount() > 0){
@@ -245,6 +310,11 @@ abstract class BaseInventory implements Inventory {
 		return -1;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return bool
+	 */
 	public function canAddItem(Item $item){
 		$item = clone $item;
 		$checkDamage = !$item->hasAnyDamageValue();
@@ -267,6 +337,11 @@ abstract class BaseInventory implements Inventory {
 		return false;
 	}
 
+	/**
+	 * @param array ...$slots
+	 *
+	 * @return Item[]
+	 */
 	public function addItem(...$slots){
 		/** @var Item[] $itemSlots */
 		/** @var Item[] $slots */
@@ -327,6 +402,11 @@ abstract class BaseInventory implements Inventory {
 		return $itemSlots;
 	}
 
+	/**
+	 * @param array ...$slots
+	 *
+	 * @return Item[]
+	 */
 	public function removeItem(...$slots){
 		/** @var Item[] $itemSlots */
 		/** @var Item[] $slots */
@@ -366,6 +446,12 @@ abstract class BaseInventory implements Inventory {
 		return $itemSlots;
 	}
 
+	/**
+	 * @param int  $index
+	 * @param bool $send
+	 *
+	 * @return bool
+	 */
 	public function clear($index, $send = true){
 		if(isset($this->slots[$index])){
 			$item = Item::get(Item::AIR, 0, 0);
@@ -390,6 +476,9 @@ abstract class BaseInventory implements Inventory {
 		return true;
 	}
 
+	/**
+	 * @param bool $send
+	 */
 	public function clearAll($send = true){
 		foreach($this->getContents() as $index => $i){
 			$this->clear($index, $send);
@@ -403,14 +492,25 @@ abstract class BaseInventory implements Inventory {
 		return $this->viewers;
 	}
 
+	/**
+	 * @return InventoryHolder
+	 */
 	public function getHolder(){
 		return $this->holder;
 	}
 
+	/**
+	 * @param int $size
+	 */
 	public function setMaxStackSize($size){
 		$this->maxStackSize = (int) $size;
 	}
 
+	/**
+	 * @param Player $who
+	 *
+	 * @return bool
+	 */
 	public function open(Player $who){
 		$who->getServer()->getPluginManager()->callEvent($ev = new InventoryOpenEvent($this, $who));
 		if($ev->isCancelled()){
@@ -421,24 +521,45 @@ abstract class BaseInventory implements Inventory {
 		return true;
 	}
 
+	/**
+	 * @param Player $who
+	 *
+	 * @return mixed|void
+	 */
 	public function close(Player $who){
 		$this->onClose($who);
 	}
 
+	/**
+	 * @param Player $who
+	 */
 	public function onOpen(Player $who){
 		$this->viewers[spl_object_hash($who)] = $who;
 	}
 
+	/**
+	 * @param Player $who
+	 */
 	public function onClose(Player $who){
 		unset($this->viewers[spl_object_hash($who)]);
 	}
 
+	/**
+	 * @param int  $index
+	 * @param Item $before
+	 * @param bool $send
+	 */
 	public function onSlotChange($index, $before, $send){
 		if($send){
 			$this->sendSlot($index, $this->getViewers());
 		}
 	}
 
+	/**
+	 * @param Transaction $transaction
+	 *
+	 * @return bool
+	 */
 	public function processSlotChange(Transaction $transaction) : bool{
 		return true;
 	}
@@ -492,6 +613,9 @@ abstract class BaseInventory implements Inventory {
 		}
 	}
 
+	/**
+	 * @return InventoryType
+	 */
 	public function getType(){
 		return $this->type;
 	}

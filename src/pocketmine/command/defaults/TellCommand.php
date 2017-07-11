@@ -28,6 +28,11 @@ use pocketmine\utils\TextFormat;
 
 class TellCommand extends VanillaCommand {
 
+	/**
+	 * TellCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -38,6 +43,13 @@ class TellCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.tell");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;

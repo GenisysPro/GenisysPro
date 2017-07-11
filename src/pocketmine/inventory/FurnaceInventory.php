@@ -31,6 +31,11 @@ class FurnaceInventory extends ContainerInventory {
 	const FUEL = 1;
 	const RESULT = 2;
 
+	/**
+	 * FurnaceInventory constructor.
+	 *
+	 * @param Furnace $tile
+	 */
 	public function __construct(Furnace $tile){
 		parent::__construct($tile, InventoryType::get(InventoryType::FURNACE));
 	}
@@ -90,6 +95,11 @@ class FurnaceInventory extends ContainerInventory {
 		return $this->setItem(self::SMELTING, $item);
 	}
 
+	/**
+	 * @param int  $index
+	 * @param Item $before
+	 * @param bool $send
+	 */
 	public function onSlotChange($index, $before, $send){
 		parent::onSlotChange($index, $before, $send);
 

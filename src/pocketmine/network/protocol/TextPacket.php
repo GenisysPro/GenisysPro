@@ -41,6 +41,9 @@ class TextPacket extends DataPacket {
 	public $message;
 	public $parameters = [];
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->type = $this->getByte();
 		switch($this->type){
@@ -64,6 +67,9 @@ class TextPacket extends DataPacket {
 		}
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putByte($this->type);

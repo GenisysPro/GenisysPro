@@ -29,18 +29,34 @@ use pocketmine\Player;
 class Lever extends RedstoneSource {
 	protected $id = self::LEVER;
 
+	/**
+	 * Lever constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Lever";
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return bool|int
+	 */
 	public function onUpdate($type){
 		if($type === Level::BLOCK_UPDATE_NORMAL){
 			$side = $this->getDamage();
@@ -66,6 +82,18 @@ class Lever extends RedstoneSource {
 		return false;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		if($target->isTransparent() === false){
 			$faces = [
@@ -89,6 +117,11 @@ class Lever extends RedstoneSource {
 		return false;
 	}
 
+	/**
+	 * @param array $ignore
+	 *
+	 * @return bool|void
+	 */
 	public function activate(array $ignore = []){
 		parent::activate($ignore);
 		$side = $this->meta;
@@ -112,6 +145,11 @@ class Lever extends RedstoneSource {
 		$this->checkTorchOn($this->getSide($faces[$side]), [static::getOppositeSide($faces[$side])]);
 	}
 
+	/**
+	 * @param array $ignore
+	 *
+	 * @return bool|void
+	 */
 	public function deactivate(array $ignore = []){
 		parent::deactivate($ignore);
 		$side = $this->meta;
@@ -135,6 +173,12 @@ class Lever extends RedstoneSource {
 		$this->checkTorchOff($this->getSide($faces[$side]), [static::getOppositeSide($faces[$side])]);
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = null){
 		$this->meta ^= 0x08;
 		$this->getLevel()->setBlock($this, $this, true, false);
@@ -143,6 +187,11 @@ class Lever extends RedstoneSource {
 		return true;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return mixed|void
+	 */
 	public function onBreak(Item $item){
 		if($this->isActivated()){
 			$this->meta ^= 0x08;
@@ -152,18 +201,34 @@ class Lever extends RedstoneSource {
 		$this->getLevel()->setBlock($this, new Air(), true, false);
 	}
 
+	/**
+	 * @param Block|null $from
+	 *
+	 * @return bool
+	 */
 	public function isActivated(Block $from = null){
 		return (($this->meta & 0x08) === 0x08);
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getHardness(){
 		return 0.5;
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getResistance(){
 		return 2.5;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		return [
 			[$this->id, 0, 1],

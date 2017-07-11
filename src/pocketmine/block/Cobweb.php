@@ -30,30 +30,53 @@ class Cobweb extends Flowable {
 
 	protected $id = self::COBWEB;
 
+	/**
+	 * Cobweb constructor.
+	 */
 	public function __construct(){
 
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function hasEntityCollision(){
 		return true;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Cobweb";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHardness(){
 		return 4;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_SHEARS;
 	}
 
+	/**
+	 * @param Entity $entity
+	 */
 	public function onEntityCollide(Entity $entity){
 		$entity->resetFallDistance();
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		if($item->isShears()){
 			return [

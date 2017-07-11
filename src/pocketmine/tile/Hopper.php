@@ -44,6 +44,12 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable {
 	/** @var bool */
 	protected $isPowered = false;
 
+	/**
+	 * Hopper constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 */
 	public function __construct(Level $level, CompoundTag $nbt){
 		if(!isset($nbt->TransferCooldown) or !($nbt->TransferCooldown instanceof IntTag)){
 			$nbt->TransferCooldown = new IntTag("TransferCooldown", 0);
@@ -82,6 +88,9 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable {
 		$this->isPowered = false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canUpdate(){
 		return $this->namedtag->TransferCooldown->getValue() === 0 and !$this->isPowered;
 	}
@@ -90,6 +99,9 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable {
 		$this->namedtag->TransferCooldown->setValue(8);
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function onUpdate(){
 		if(!($this->getBlock() instanceof HopperBlock)){
 			return false;
@@ -254,14 +266,23 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable {
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return isset($this->namedtag->CustomName) ? $this->namedtag->CustomName->getValue() : "Hopper";
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function hasName(){
 		return isset($this->namedtag->CustomName);
 	}
 
+	/**
+	 * @param void $str
+	 */
 	public function setName($str){
 		if($str === ""){
 			unset($this->namedtag->CustomName);
@@ -271,10 +292,16 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable {
 	}
 
 
+	/**
+	 * @return bool
+	 */
 	public function hasLock(){
 		return isset($this->namedtag->Lock);
 	}
 
+	/**
+	 * @param string $itemName
+	 */
 	public function setLock(string $itemName = ""){
 		if($itemName === ""){
 			unset($this->namedtag->Lock);
@@ -283,10 +310,18 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable {
 		$this->namedtag->Lock = new StringTag("Lock", $itemName);
 	}
 
+	/**
+	 * @param string $key
+	 *
+	 * @return bool
+	 */
 	public function checkLock(string $key){
 		return $this->namedtag->Lock->getValue() === $key;
 	}
 
+	/**
+	 * @return CompoundTag
+	 */
 	public function getSpawnCompound(){
 		$c = new CompoundTag("", [
 			new StringTag("id", Tile::HOPPER),

@@ -44,6 +44,13 @@ class PlayerExhaustEvent extends PlayerEvent implements Cancellable {
 	/** @var float */
 	private $amount;
 
+	/**
+	 * PlayerExhaustEvent constructor.
+	 *
+	 * @param Human $human
+	 * @param float $amount
+	 * @param int   $cause
+	 */
 	public function __construct(Human $human, float $amount, int $cause){
 		$this->player = $human;
 		$this->amount = $amount;
@@ -56,10 +63,16 @@ class PlayerExhaustEvent extends PlayerEvent implements Cancellable {
 		return $this->player;
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getAmount() : float{
 		return $this->amount;
 	}
 
+	/**
+	 * @param float $amount
+	 */
 	public function setAmount(float $amount){
 		$this->amount = $amount;
 	}

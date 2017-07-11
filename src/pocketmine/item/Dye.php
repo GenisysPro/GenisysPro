@@ -45,6 +45,12 @@ class Dye extends Item {
 	const WHITE = 15;
 	const BONE_MEAL = 15;
 
+	/**
+	 * Dye constructor.
+	 *
+	 * @param int $meta
+	 * @param int $count
+	 */
 	public function __construct($meta = 0, $count = 1){
 		if($meta === 3){
 			$this->block = Block::get(Item::COCOA_BLOCK);
@@ -54,6 +60,11 @@ class Dye extends Item {
 		}
 	}
 
+	/**
+	 * @param int $meta
+	 *
+	 * @return string
+	 */
 	public function getNameByMeta(int $meta) : string{
 		switch($meta){
 			case self::BLACK:

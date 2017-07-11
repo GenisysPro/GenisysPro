@@ -29,22 +29,39 @@ class EmeraldOre extends Solid {
 
 	protected $id = self::EMERALD_ORE;
 
+	/**
+	 * EmeraldOre constructor.
+	 */
 	public function __construct(){
 
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Emerald Ore";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHardness(){
 		return 3;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 4){
 			if($item->getEnchantmentLevel(Enchantment::TYPE_MINING_SILK_TOUCH) > 0){

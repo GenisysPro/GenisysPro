@@ -38,6 +38,13 @@ class FormattedCommandAlias extends Command {
 		$this->formatStrings = $formatStrings;
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $commandLabel
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $commandLabel, array $args){
 
 		$commands = [];

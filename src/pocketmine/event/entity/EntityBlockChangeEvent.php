@@ -34,6 +34,13 @@ class EntityBlockChangeEvent extends EntityEvent implements Cancellable {
 	private $from;
 	private $to;
 
+	/**
+	 * EntityBlockChangeEvent constructor.
+	 *
+	 * @param Entity $entity
+	 * @param Block  $from
+	 * @param Block  $to
+	 */
 	public function __construct(Entity $entity, Block $from, Block $to){
 		$this->entity = $entity;
 		$this->from = $from;

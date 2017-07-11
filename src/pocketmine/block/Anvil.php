@@ -35,26 +35,46 @@ class Anvil extends Fallable {
 
 	protected $id = self::ANVIL;
 
+	/**
+	 * @return bool
+	 */
 	public function isSolid(){
 		return false;
 	}
 
+	/**
+	 * Anvil constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHardness(){
 		return 5;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getResistance(){
 		return 6000;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		$names = [
 			self::NORMAL => "Anvil",
@@ -65,10 +85,19 @@ class Anvil extends Fallable {
 		return $names[$this->meta & 0x0c];
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = null){
 		if(!$this->getLevel()->getServer()->anvilEnabled){
 			return true;
@@ -85,6 +114,18 @@ class Anvil extends Fallable {
 		return true;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool|void
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$direction = ($player !== null ? $player->getDirection() : 0) & 0x03;
 		$this->meta = ($this->meta & 0x0c) | $direction;
@@ -92,6 +133,11 @@ class Anvil extends Fallable {
 		$player->getLevel()->broadcastLevelEvent($player, LevelEventPacket::EVENT_SOUND_ANVIL_FALL);
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 1){
 			return [

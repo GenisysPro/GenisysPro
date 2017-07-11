@@ -39,6 +39,11 @@ use pocketmine\utils\TextFormat;
 
 class CaveCommand extends VanillaCommand {
 
+	/**
+	 * CaveCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -48,6 +53,13 @@ class CaveCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.cave");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $commandLabel
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $commandLabel, array $args){
 		if(!$this->testPermission($sender)){
 			return true;
@@ -93,11 +105,23 @@ class CaveCommand extends VanillaCommand {
 		return true;
 	}
 
+	/**
+	 * @param $v1
+	 * @param $v2
+	 *
+	 * @return float|int
+	 */
 	public function chu($v1, $v2){
 		if($v2 == 0) return 0;
 		return $v1 / $v2;
 	}
 
+	/**
+	 * @param $yaw
+	 * @param $pitch
+	 *
+	 * @return Vector3
+	 */
 	public function getDirectionVector($yaw, $pitch){
 		$y = -\sin(\deg2rad($pitch));
 		$xz = \cos(\deg2rad($pitch));
@@ -108,6 +132,11 @@ class CaveCommand extends VanillaCommand {
 		return $temporalVector->normalize();
 	}
 
+	/**
+	 * @param Position $pos
+	 * @param          $cave
+	 * @param bool     $tt
+	 */
 	public function caves(Position $pos, $cave, $tt = false){
 		$x = $pos->x;
 		$y = $pos->y;
@@ -218,6 +247,12 @@ class CaveCommand extends VanillaCommand {
 
 	}
 
+	/**
+	 * @param Level $level
+	 * @param       $x
+	 * @param       $y
+	 * @param       $z
+	 */
 	public function lavaSpawn(Level $level, $x, $y, $z){
 		$level->getServer()->getLogger()->info("生成岩浆中 " . "floor($x)" . ", " . "floor($y)" . ", " . floor($z));
 		for($xx = $x - 20; $xx <= $x + 20; $xx++){
@@ -234,12 +269,17 @@ class CaveCommand extends VanillaCommand {
 		$level->setBlock(new Vector3($x, $y, $z), new Lava());
 	}
 
+	/**
+	 * @param Position $source
+	 * @param int      $rays
+	 * @param int      $size
+	 */
 	public function explodeBlocks(Position $source, $rays = 16, $size = 4){
 		$vector = new Vector3(0, 0, 0);
 		$vBlock = new Vector3(0, 0, 0);
 		$stepLen = 0.3;
 		$mRays = \intval($rays - 1);
-		$affectedBlocks = array();
+		$affectedBlocks = [];
 		for($i = 0; $i < $rays; ++$i){
 			for($j = 0; $j < $rays; ++$j){
 				for($k = 0; $k < $rays; ++$k){
@@ -285,6 +325,13 @@ class CaveCommand extends VanillaCommand {
 		}
 	}
 
+	/**
+	 * @param       $x
+	 * @param       $y
+	 * @param       $z
+	 * @param Level $level
+	 * @param bool  $liu
+	 */
 	public function fdx($x, $y, $z, Level $level, $liu = false){
 		//$this->getLogger()->info(TextFormat::GREEN."fdx!");
 		for($i = 1; $i < mt_rand(2, 4); $i++){
@@ -316,6 +363,11 @@ class CaveCommand extends VanillaCommand {
 		}
 	}
 
+	/**
+	 * @param $a
+	 *
+	 * @return array
+	 */
 	public function ranz($a){
 		$n = [];
 		$j = 0;
@@ -336,6 +388,15 @@ class CaveCommand extends VanillaCommand {
 		return $n;
 	}
 
+	/**
+	 * @param Level $level
+	 * @param       $x
+	 * @param       $y
+	 * @param       $z
+	 * @param       $l
+	 * @param       $id
+	 * @param       $bd
+	 */
 	public function tiankengy(Level $level, $x, $y, $z, $l, $id, $bd){
 		if($level->getBlock(new Vector3($x, $y, $z))->getId() == 0) $level->setBlock(new Vector3($x, $y, $z), Item::get($id, $bd)->getBlock());
 		if($l >= 0){

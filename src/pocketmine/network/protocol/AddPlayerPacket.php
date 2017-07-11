@@ -40,10 +40,16 @@ class AddPlayerPacket extends DataPacket {
 	public $item;
 	public $metadata = [];
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putUUID($this->uuid);

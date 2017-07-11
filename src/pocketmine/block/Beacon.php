@@ -26,30 +26,62 @@ class Beacon extends Transparent {
 
 	protected $id = self::BEACON;
 
+	/**
+	 * Beacon constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName(){
 		return "Beacon";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getLightLevel(){
 		return 15;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getResistance(){
 		return 15;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHardness(){
 		return 3;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$this->getLevel()->setBlock($this, $this, true, true);
 		$nbt = new CompoundTag("", [
@@ -65,6 +97,12 @@ class Beacon extends Transparent {
 		return true;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = null){
 		if($player instanceof Player){
 			$top = $this->getSide(1);
@@ -98,6 +136,11 @@ class Beacon extends Transparent {
 		return true;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return bool
+	 */
 	public function onBreak(Item $item){
 		$this->getLevel()->setBlock($this, new Air(), true, true);
 		return true;

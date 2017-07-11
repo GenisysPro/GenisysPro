@@ -56,6 +56,14 @@ class Explosion {
 	private $what;
 	private $dropItem;
 
+	/**
+	 * Explosion constructor.
+	 *
+	 * @param Position $center
+	 * @param          $size
+	 * @param null     $what
+	 * @param bool     $dropItem
+	 */
 	public function __construct(Position $center, $size, $what = null, bool $dropItem = true){
 		$this->level = $center->getLevel();
 		$this->source = $center;
@@ -118,6 +126,9 @@ class Explosion {
 		return true;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function explodeB() : bool{
 		$send = [];
 		$updateBlocks = [];

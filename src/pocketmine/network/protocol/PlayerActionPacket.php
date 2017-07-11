@@ -57,6 +57,9 @@ class PlayerActionPacket extends DataPacket {
 	public $z;
 	public $face;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->eid = $this->getEntityId();
 		$this->action = $this->getVarInt();
@@ -64,6 +67,9 @@ class PlayerActionPacket extends DataPacket {
 		$this->face = $this->getVarInt();
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putEntityId($this->eid);

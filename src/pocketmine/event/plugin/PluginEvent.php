@@ -34,6 +34,11 @@ abstract class PluginEvent extends Event {
 	/** @var Plugin */
 	private $plugin;
 
+	/**
+	 * PluginEvent constructor.
+	 *
+	 * @param Plugin $plugin
+	 */
 	public function __construct(Plugin $plugin){
 		$this->plugin = $plugin;
 	}

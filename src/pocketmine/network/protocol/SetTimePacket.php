@@ -31,10 +31,16 @@ class SetTimePacket extends DataPacket {
 	public $time;
 	public $started = true;
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putVarInt($this->time);

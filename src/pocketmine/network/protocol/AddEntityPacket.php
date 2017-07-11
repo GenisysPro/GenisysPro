@@ -46,10 +46,16 @@ class AddEntityPacket extends DataPacket {
 	public $metadata = [];
 	public $links = [];
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putEntityId($this->eid); //EntityUniqueID - TODO: verify this

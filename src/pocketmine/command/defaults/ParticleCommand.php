@@ -60,6 +60,11 @@ use pocketmine\utils\TextFormat;
 
 class ParticleCommand extends VanillaCommand {
 
+	/**
+	 * ParticleCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -69,6 +74,13 @@ class ParticleCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.particle");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;

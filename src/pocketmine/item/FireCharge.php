@@ -36,6 +36,12 @@ class FireCharge extends Item {
 	/** @var Vector3 */
 	private $temporalVector = null;
 
+	/**
+	 * FireCharge constructor.
+	 *
+	 * @param int $meta
+	 * @param int $count
+	 */
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::FIRE_CHARGE, $meta, $count, "Fire Charge");
 		if($this->temporalVector === null){
@@ -43,10 +49,25 @@ class FireCharge extends Item {
 		}
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @param Level  $level
+	 * @param Player $player
+	 * @param Block  $block
+	 * @param Block  $target
+	 * @param        $face
+	 * @param        $fx
+	 * @param        $fy
+	 * @param        $fz
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Level $level, Player $player, Block $block, Block $target, $face, $fx, $fy, $fz){
 		if($target->getId() === Block::OBSIDIAN and $player->getServer()->netherEnabled){
 			$tx = $target->getX();

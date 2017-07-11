@@ -30,6 +30,12 @@ class BlockGrowEvent extends BlockEvent implements Cancellable {
 	/** @var Block */
 	private $newState;
 
+	/**
+	 * BlockGrowEvent constructor.
+	 *
+	 * @param Block $block
+	 * @param Block $newState
+	 */
 	public function __construct(Block $block, Block $newState){
 		parent::__construct($block);
 		$this->newState = $newState;

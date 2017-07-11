@@ -50,6 +50,12 @@ class QueryRegenerateEvent extends ServerEvent {
 	private $extraData = [];
 
 
+	/**
+	 * QueryRegenerateEvent constructor.
+	 *
+	 * @param Server $server
+	 * @param int    $timeout
+	 */
 	public function __construct(Server $server, $timeout = 5){
 		$this->timeout = $timeout;
 		$this->serverName = $server->getMotd();
@@ -90,22 +96,37 @@ class QueryRegenerateEvent extends ServerEvent {
 		return $this->timeout;
 	}
 
+	/**
+	 * @param $timeout
+	 */
 	public function setTimeout($timeout){
 		$this->timeout = $timeout;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getServerName(){
 		return $this->serverName;
 	}
 
+	/**
+	 * @param $serverName
+	 */
 	public function setServerName($serverName){
 		$this->serverName = $serverName;
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function canListPlugins(){
 		return $this->listPlugins;
 	}
 
+	/**
+	 * @param $value
+	 */
 	public function setListPlugins($value){
 		$this->listPlugins = (bool) $value;
 	}
@@ -138,26 +159,44 @@ class QueryRegenerateEvent extends ServerEvent {
 		$this->players = $players;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getPlayerCount(){
 		return $this->numPlayers;
 	}
 
+	/**
+	 * @param $count
+	 */
 	public function setPlayerCount($count){
 		$this->numPlayers = (int) $count;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getMaxPlayerCount(){
 		return $this->maxPlayers;
 	}
 
+	/**
+	 * @param $count
+	 */
 	public function setMaxPlayerCount($count){
 		$this->maxPlayers = (int) $count;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getWorld(){
 		return $this->map;
 	}
 
+	/**
+	 * @param $world
+	 */
 	public function setWorld($world){
 		$this->map = (string) $world;
 	}
@@ -171,10 +210,16 @@ class QueryRegenerateEvent extends ServerEvent {
 		return $this->extraData;
 	}
 
+	/**
+	 * @param array $extraData
+	 */
 	public function setExtraData(array $extraData){
 		$this->extraData = $extraData;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getLongQuery(){
 		$query = "";
 
@@ -221,6 +266,9 @@ class QueryRegenerateEvent extends ServerEvent {
 		return $query;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getShortQuery(){
 		return $this->serverName . "\x00" . $this->gametype . "\x00" . $this->map . "\x00" . $this->numPlayers . "\x00" . $this->maxPlayers . "\x00" . Binary::writeLShort($this->port) . $this->ip . "\x00";
 	}

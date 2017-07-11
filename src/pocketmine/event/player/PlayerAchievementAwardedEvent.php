@@ -42,6 +42,9 @@ class PlayerAchievementAwardedEvent extends PlayerEvent implements Cancellable {
 		$this->achievement = $achievementId;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getAchievement(){
 		return $this->achievement;
 	}

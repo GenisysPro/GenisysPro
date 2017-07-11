@@ -59,18 +59,30 @@ class SimpleTransactionQueue implements TransactionQueue {
 		return $this->player;
 	}
 
+	/**
+	 * @return Inventory[]
+	 */
 	public function getInventories(){
 		return $this->inventories;
 	}
 
+	/**
+	 * @return \SplQueue
+	 */
 	public function getTransactions(){
 		return $this->transactionQueue;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getTransactionCount(){
 		return $this->transactionCount;
 	}
 
+	/**
+	 * @param Transaction $transaction
+	 */
 	public function addTransaction(Transaction $transaction){
 		$this->transactionQueue->enqueue($transaction);
 		if($transaction->getInventory() instanceof Inventory){

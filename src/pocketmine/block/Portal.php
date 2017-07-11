@@ -33,36 +33,62 @@ class Portal extends Transparent {
 	/** @var  Vector3 */
 	private $temporalVector = null;
 
+	/**
+	 * Portal constructor.
+	 */
 	public function __construct(){
 		if($this->temporalVector === null){
 			$this->temporalVector = new Vector3(0, 0, 0);
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Portal";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHardness(){
 		return -1;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getResistance(){
 		return 0;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canPassThrough(){
 		return true;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function hasEntityCollision(){
 		return true;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return mixed|void
+	 */
 	public function onBreak(Item $item){
 		$block = $this;
 		if($this->getLevel()->getBlock($this->temporalVector->setComponents($block->x - 1, $block->y, $block->z))->getId() == Block::PORTAL or
@@ -105,6 +131,18 @@ class Portal extends Transparent {
 		parent::onBreak($item);
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		if($player instanceof Player){
 			$this->meta = $player->getDirection() & 0x01;
@@ -114,6 +152,11 @@ class Portal extends Transparent {
 		return true;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		return [];
 	}

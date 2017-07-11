@@ -69,9 +69,11 @@ interface Inventory {
 	 *
 	 * Returns the Items that did not fit.
 	 *
-	 * @param Item ...$item
+	 * @param array $slots
 	 *
 	 * @return Item[]
+	 * @internal param Item ...$item
+	 *
 	 */
 	public function addItem(...$slots);
 
@@ -88,9 +90,11 @@ interface Inventory {
 	 * Removes the given Item from the inventory.
 	 * It will return the Items that couldn't be removed.
 	 *
-	 * @param Item ...$item
+	 * @param array $slots
 	 *
 	 * @return Item[]
+	 * @internal param Item ...$item
+	 *
 	 */
 	public function removeItem(...$slots);
 
@@ -205,6 +209,11 @@ interface Inventory {
 	 */
 	public function open(Player $who);
 
+	/**
+	 * @param Player $who
+	 *
+	 * @return mixed
+	 */
 	public function close(Player $who);
 
 	/**

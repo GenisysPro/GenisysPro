@@ -51,6 +51,9 @@ class LoginPacket extends DataPacket {
 	public $deviceModel;
 	public $deviceOS;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->protocol = $this->getInt();
 		if(!in_array($this->protocol, Info::ACCEPTED_PROTOCOLS)){
@@ -120,10 +123,19 @@ class LoginPacket extends DataPacket {
 		}
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 
 	}
 
+	/**
+	 * @param $token
+	 * @param $key
+	 *
+	 * @return array
+	 */
 	public function decodeToken($token, $key){
 		$tokens = explode(".", $token);
 		list($headB64, $payloadB64, $sigB64) = $tokens;
@@ -154,7 +166,7 @@ class LoginPacket extends DataPacket {
 			$verified = false;
 		}
 
-		return array($verified, json_decode(base64_decode($payloadB64), true));
+		return [$verified, json_decode(base64_decode($payloadB64), true)];
 	}
 
 }

@@ -35,20 +35,36 @@ class ResourcePackInfoEntry {
 	protected $version;
 	protected $packSize;
 
+	/**
+	 * ResourcePackInfoEntry constructor.
+	 *
+	 * @param string $packId
+	 * @param string $version
+	 * @param int    $packSize
+	 */
 	public function __construct(string $packId, string $version, $packSize = 0){
 		$this->packId = $packId;
 		$this->version = $version;
 		$this->packSize = $packSize;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getPackId() : string{
 		return $this->packId;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getVersion() : string{
 		return $this->version;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getPackSize(){
 		return $this->packSize;
 	}

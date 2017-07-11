@@ -31,18 +31,30 @@ class EndStone extends Solid {
 
 	protected $id = self::END_STONE;
 
+	/**
+	 * EndStone constructor.
+	 */
 	public function __construct(){
 
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "End Stone";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHardness(){
 		return 3;
 	}

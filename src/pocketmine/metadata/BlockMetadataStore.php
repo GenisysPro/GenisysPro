@@ -29,10 +29,21 @@ class BlockMetadataStore extends MetadataStore {
 	/** @var Level */
 	private $owningLevel;
 
+	/**
+	 * BlockMetadataStore constructor.
+	 *
+	 * @param Level $owningLevel
+	 */
 	public function __construct(Level $owningLevel){
 		$this->owningLevel = $owningLevel;
 	}
 
+	/**
+	 * @param Metadatable $block
+	 * @param string      $metadataKey
+	 *
+	 * @return string
+	 */
 	public function disambiguate(Metadatable $block, $metadataKey){
 		if(!($block instanceof Block)){
 			throw new \InvalidArgumentException("Argument must be a Block instance");
@@ -41,6 +52,12 @@ class BlockMetadataStore extends MetadataStore {
 		return $block->x . ":" . $block->y . ":" . $block->z . ":" . $metadataKey;
 	}
 
+	/**
+	 * @param mixed  $block
+	 * @param string $metadataKey
+	 *
+	 * @return MetadataValue[]
+	 */
 	public function getMetadata($block, $metadataKey){
 		if(!($block instanceof Block)){
 			throw new \InvalidArgumentException("Object must be a Block");
@@ -52,6 +69,12 @@ class BlockMetadataStore extends MetadataStore {
 		}
 	}
 
+	/**
+	 * @param mixed  $block
+	 * @param string $metadataKey
+	 *
+	 * @return bool
+	 */
 	public function hasMetadata($block, $metadataKey){
 		if(!($block instanceof Block)){
 			throw new \InvalidArgumentException("Object must be a Block");
@@ -63,6 +86,11 @@ class BlockMetadataStore extends MetadataStore {
 		}
 	}
 
+	/**
+	 * @param mixed  $block
+	 * @param string $metadataKey
+	 * @param Plugin $owningPlugin
+	 */
 	public function removeMetadata($block, $metadataKey, Plugin $owningPlugin){
 		if(!($block instanceof Block)){
 			throw new \InvalidArgumentException("Object must be a Block");
@@ -74,6 +102,11 @@ class BlockMetadataStore extends MetadataStore {
 		}
 	}
 
+	/**
+	 * @param mixed         $block
+	 * @param string        $metadataKey
+	 * @param MetadataValue $newMetadatavalue
+	 */
 	public function setMetadata($block, $metadataKey, MetadataValue $newMetadatavalue){
 		if(!($block instanceof Block)){
 			throw new \InvalidArgumentException("Object must be a Block");

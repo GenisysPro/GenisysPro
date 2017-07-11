@@ -31,10 +31,16 @@ class TakeItemEntityPacket extends DataPacket {
 	public $target;
 	public $eid;
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putEntityId($this->target);

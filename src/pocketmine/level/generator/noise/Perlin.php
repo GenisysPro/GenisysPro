@@ -31,6 +31,14 @@ class Perlin extends Noise {
 	];
 
 
+	/**
+	 * Perlin constructor.
+	 *
+	 * @param Random $random
+	 * @param        $octaves
+	 * @param        $persistence
+	 * @param int    $expansion
+	 */
 	public function __construct(Random $random, $octaves, $persistence, $expansion = 1){
 		$this->octaves = $octaves;
 		$this->persistence = $persistence;
@@ -58,6 +66,13 @@ class Perlin extends Noise {
 
 	}
 
+	/**
+	 * @param $x
+	 * @param $y
+	 * @param $z
+	 *
+	 * @return mixed
+	 */
 	public function getNoise3D($x, $y, $z){
 		$x += $this->offsetX;
 		$y += $this->offsetY;
@@ -142,6 +157,12 @@ class Perlin extends Noise {
 		*/
 	}
 
+	/**
+	 * @param $x
+	 * @param $y
+	 *
+	 * @return mixed
+	 */
 	public function getNoise2D($x, $y){
 		return $this->getNoise3D($x, $y, 0);
 	}

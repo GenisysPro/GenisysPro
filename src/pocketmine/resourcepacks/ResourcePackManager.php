@@ -54,6 +54,12 @@ class ResourcePackManager {
 	/** @var ResourcePack[] */
 	private $uuidList = [];
 
+	/**
+	 * ResourcePackManager constructor.
+	 *
+	 * @param Server $server
+	 * @param string $path
+	 */
 	public function __construct(Server $server, string $path){
 		$this->server = $server;
 		$this->path = $path;

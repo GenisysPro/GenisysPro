@@ -28,6 +28,11 @@ use pocketmine\event\TranslationContainer;
 
 class SaveOnCommand extends VanillaCommand {
 
+	/**
+	 * SaveOnCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -37,6 +42,13 @@ class SaveOnCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.save.enable");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;

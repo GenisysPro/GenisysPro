@@ -43,12 +43,18 @@ class MovePlayerPacket extends DataPacket {
 	public $onGround;
 	public $eid2;
 
+	/**
+	 * @return $this
+	 */
 	public function clean(){
 		$this->teleport = false;
 
 		return parent::clean();
 	}
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->eid = $this->getEntityId(); //EntityRuntimeID
 		$this->getVector3f($this->x, $this->y, $this->z);
@@ -60,6 +66,9 @@ class MovePlayerPacket extends DataPacket {
 		$this->eid2 = $this->getEntityId();
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putEntityId($this->eid); //EntityRuntimeID

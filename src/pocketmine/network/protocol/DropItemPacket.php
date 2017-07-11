@@ -31,11 +31,17 @@ class DropItemPacket extends DataPacket {
 	public $type;
 	public $item;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->type = $this->getByte();
 		$this->item = $this->getSlot();
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 
 	}

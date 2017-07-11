@@ -43,10 +43,19 @@ class Villager extends Creature implements NPC, Ageable {
 	public $length = 0.6;
 	public $height = 1.8;
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Villager";
 	}
 
+	/**
+	 * Villager constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 */
 	public function __construct(Level $level, CompoundTag $nbt){
 		if(!isset($nbt->Profession)){
 			$nbt->Profession = new ByteTag("Profession", mt_rand(0, 4));
@@ -64,6 +73,9 @@ class Villager extends Creature implements NPC, Ageable {
 		}
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -91,11 +103,17 @@ class Villager extends Creature implements NPC, Ageable {
 		$this->namedtag->Profession = new ByteTag("Profession", $profession);
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getProfession() : int{
 		$pro = (int) $this->namedtag["Profession"];
 		return min(4, max(0, $pro));
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isBaby(){
 		return $this->getDataFlag(self::DATA_FLAGS, self::DATA_FLAG_BABY);
 	}

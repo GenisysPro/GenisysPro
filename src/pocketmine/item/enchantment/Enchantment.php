@@ -181,6 +181,15 @@ class Enchantment {
 		return new Enchantment(self::TYPE_INVALID, "unknown", 0, 0, 0);
 	}
 
+	/**
+	 * @param $id
+	 * @param $name
+	 * @param $rarity
+	 * @param $activationType
+	 * @param $slot
+	 *
+	 * @return Enchantment
+	 */
 	public static function registerEnchantment($id, $name, $rarity, $activationType, $slot){
 		if(isset(self::$enchantments[$id])){
 			Server::getInstance()->getLogger()->debug("Unable to register enchantment with id $id.");
@@ -190,6 +199,11 @@ class Enchantment {
 		return new Enchantment($id, $name, $rarity, $activationType, $slot);
 	}
 
+	/**
+	 * @param $name
+	 *
+	 * @return Enchantment
+	 */
 	public static function getEnchantmentByName($name){
 		if(defined(Enchantment::class . "::TYPE_" . strtoupper($name))){
 			return self::getEnchantment(constant(Enchantment::class . "::TYPE_" . strtoupper($name)));
@@ -208,6 +222,11 @@ class Enchantment {
 		}
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return int
+	 */
 	public static function getEnchantAbility(Item $item){
 		switch($item->getId()){
 			case Item::BOOK:
@@ -235,6 +254,11 @@ class Enchantment {
 		return 0;
 	}
 
+	/**
+	 * @param int $enchantmentId
+	 *
+	 * @return int
+	 */
 	public static function getEnchantWeight(int $enchantmentId){
 		switch($enchantmentId){
 			case self::TYPE_ARMOR_PROTECTION:
@@ -281,6 +305,11 @@ class Enchantment {
 		return 0;
 	}
 
+	/**
+	 * @param int $enchantmentId
+	 *
+	 * @return int
+	 */
 	public static function getEnchantMaxLevel(int $enchantmentId){
 		switch($enchantmentId){
 			case self::TYPE_ARMOR_PROTECTION:
@@ -335,6 +364,17 @@ class Enchantment {
 	private $nickname;
 	private $isCustomVar;
 
+	/**
+	 * Enchantment constructor.
+	 *
+	 * @param        $id
+	 * @param        $name
+	 * @param        $rarity
+	 * @param        $activationType
+	 * @param        $slot
+	 * @param string $nickname
+	 * @param bool   $custom
+	 */
 	public function __construct($id, $name, $rarity, $activationType, $slot, $nickname = "", $custom = false){
 		$this->id = (int) $id;
 		$this->name = (string) $name;
@@ -345,48 +385,87 @@ class Enchantment {
 		$this->isCustomVar = $custom;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getNickName(){
 		return $this->nickname;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isCustom(){
 		return (bool) $this->isCustomVar;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getId(){
 		return $this->id;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return $this->name;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getRarity(){
 		return $this->rarity;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getActivationType(){
 		return $this->activationType;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getSlot(){
 		return $this->slot;
 	}
 
+	/**
+	 * @param $slot
+	 *
+	 * @return bool
+	 */
 	public function hasSlot($slot){
 		return ($this->slot & $slot) > 0;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getLevel(){
 		return $this->level;
 	}
 
+	/**
+	 * @param int $level
+	 *
+	 * @return $this
+	 */
 	public function setLevel(int $level){
 		$this->level = $level;
 
 		return $this;
 	}
 
+	/**
+	 * @param Enchantment $ent
+	 *
+	 * @return bool
+	 */
 	public function equals(Enchantment $ent){
 		if($ent->getId() == $this->getId() and $ent->getLevel() == $this->getLevel() and $ent->getActivationType() == $this->getActivationType() and $ent->getRarity() == $this->getRarity()){
 			return true;
@@ -394,6 +473,9 @@ class Enchantment {
 		return false;
 	}
 
+	/**
+	 * @return string
+	 */
 	public static function getRandomName(){
 		$count = mt_rand(3, 6);
 		$set = [];

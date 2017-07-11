@@ -31,26 +31,48 @@ class BrownMushroomBlock extends Solid {
 
 	protected $id = self::BROWN_MUSHROOM_BLOCK;
 
+	/**
+	 * BrownMushroomBlock constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 14){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Brown Mushroom Block";
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getHardness(){
 		return 0.2;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getResistance(){
 		return 1;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		if($item->getEnchantmentLevel(Enchantment::TYPE_MINING_SILK_TOUCH) > 0){
 			return [

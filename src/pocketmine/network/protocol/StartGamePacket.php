@@ -55,10 +55,16 @@ class StartGamePacket extends DataPacket {
 	public $worldName;
 	public $premiumWorldTemplateId = "";
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putEntityId($this->entityUniqueId); //EntityUniqueID

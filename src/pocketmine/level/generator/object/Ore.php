@@ -29,19 +29,42 @@ class Ore {
 	private $random;
 	public $type;
 
+	/**
+	 * Ore constructor.
+	 *
+	 * @param Random  $random
+	 * @param OreType $type
+	 */
 	public function __construct(Random $random, OreType $type){
 		$this->type = $type;
 		$this->random = $random;
 	}
 
+	/**
+	 * @return OreType
+	 */
 	public function getType(){
 		return $this->type;
 	}
 
+	/**
+	 * @param ChunkManager $level
+	 * @param              $x
+	 * @param              $y
+	 * @param              $z
+	 *
+	 * @return bool
+	 */
 	public function canPlaceObject(ChunkManager $level, $x, $y, $z){
 		return (($level->getBlockIdAt($x, $y, $z) === 1) or ($level->getBlockIdAt($x, $y, $z) === 87));
 	}
 
+	/**
+	 * @param ChunkManager $level
+	 * @param              $x
+	 * @param              $y
+	 * @param              $z
+	 */
 	public function placeObject(ChunkManager $level, $x, $y, $z){
 		$clusterSize = (int) $this->type->clusterSize;
 		$angle = $this->random->nextFloat() * M_PI;

@@ -14,6 +14,12 @@ class DServerTask extends AsyncTask {
 	public $autotimes;
 	public $re;
 
+	/**
+	 * DServerTask constructor.
+	 *
+	 * @param     $data
+	 * @param int $autotimes
+	 */
 	public function __construct($data, $autotimes = 5){
 		$this->data = $data;
 		$this->autotimes = $autotimes;
@@ -30,6 +36,12 @@ class DServerTask extends AsyncTask {
 	}
 
 
+	/**
+	 * @param     $ds
+	 * @param int $time
+	 *
+	 * @return array
+	 */
 	public function getInfo($ds, $time = 1){
 		$tmp = explode(":", $ds);
 		$ip = $tmp[0];
@@ -59,6 +71,9 @@ class DServerTask extends AsyncTask {
 		return [0, 0];
 	}
 
+	/**
+	 * @param Server $server
+	 */
 	public function onCompletion(Server $server){
 		$re = $this->re;
 		if($re[0] > 0) $server->dserverPlayers = $re[0];
@@ -66,6 +81,11 @@ class DServerTask extends AsyncTask {
 		//$server->getNetwork()->updateName();
 	}
 
+	/**
+	 * @param $buffer
+	 *
+	 * @return array
+	 */
 	public function decode($buffer){
 		$redata = [];
 		$redata["packetType"] = ord($buffer{0});

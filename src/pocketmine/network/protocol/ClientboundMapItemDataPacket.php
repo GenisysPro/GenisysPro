@@ -41,6 +41,9 @@ class ClientboundMapItemDataPacket extends DataPacket {
 	/** @var Color[][] */
 	public $colors = [];
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->mapId = $this->getVarInt();
 		$this->type = $this->getUnsignedVarInt();
@@ -78,6 +81,9 @@ class ClientboundMapItemDataPacket extends DataPacket {
 		}
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putVarInt($this->mapId); //entity unique ID, signed var-int

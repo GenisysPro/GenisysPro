@@ -29,19 +29,35 @@ class Torch extends Flowable {
 
 	protected $id = self::TORCH;
 
+	/**
+	 * Torch constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getLightLevel(){
 		return 15;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Torch";
 	}
 
 
+	/**
+	 * @param int $type
+	 *
+	 * @return bool|int
+	 */
 	public function onUpdate($type){
 		if($type === Level::BLOCK_UPDATE_NORMAL){
 			$below = $this->getSide(0);
@@ -72,6 +88,18 @@ class Torch extends Flowable {
 		return false;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$below = $this->getSide(0);
 
@@ -102,6 +130,11 @@ class Torch extends Flowable {
 		return false;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		return [
 			[$this->id, 0, 1],

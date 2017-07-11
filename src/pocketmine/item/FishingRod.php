@@ -22,6 +22,12 @@
 namespace pocketmine\item;
 
 class FishingRod extends Item {
+	/**
+	 * FishingRod constructor.
+	 *
+	 * @param int $meta
+	 * @param int $count
+	 */
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::FISHING_ROD, 0, $count, "Fishing Rod");
 	}

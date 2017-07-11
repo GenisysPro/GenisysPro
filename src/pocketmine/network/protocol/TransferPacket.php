@@ -9,10 +9,16 @@ class TransferPacket extends DataPacket {
 	public $address;
 	public $port = 19132; //default port
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putString($this->address);

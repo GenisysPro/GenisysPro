@@ -33,16 +33,25 @@ class SetEntityMotionPacket extends DataPacket {
 	public $motionY;
 	public $motionZ;
 
+	/**
+	 * @return $this
+	 */
 	public function clean(){
 		$this->entities = [];
 
 		return parent::clean();
 	}
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putEntityId($this->eid);

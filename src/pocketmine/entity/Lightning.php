@@ -36,6 +36,9 @@ class Lightning extends Animal {
 	public $length = 0.9;
 	public $height = 1.8;
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Lightning";
 	}
@@ -46,6 +49,11 @@ class Lightning extends Animal {
 		$this->setHealth(2);
 	}
 
+	/**
+	 * @param $tick
+	 *
+	 * @return bool
+	 */
 	public function onUpdate($tick){
 		parent::onUpdate($tick);
 		if($this->age > 20){
@@ -55,6 +63,9 @@ class Lightning extends Animal {
 		return true;
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

@@ -14,10 +14,16 @@ class SpawnExperienceOrbPacket extends DataPacket {
 	public $z;
 	public $amount;
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putVector3f($this->x, $this->y, $this->z);

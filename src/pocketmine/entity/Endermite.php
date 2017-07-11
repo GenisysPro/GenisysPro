@@ -36,6 +36,9 @@ class Endermite extends Monster {
 
 	public $dropExp = [5, 5];
 
+	/**
+	 * @return string
+	 */
 	public function getName(){
 		return "Endermite";
 	}
@@ -45,6 +48,9 @@ class Endermite extends Monster {
 		parent::initEntity();
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

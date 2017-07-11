@@ -35,14 +35,25 @@ class Quartz extends Solid {
 
 	protected $id = self::QUARTZ_BLOCK;
 
+	/**
+	 * Quartz constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getHardness(){
 		return 0.8;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		static $names = [
 			0 => "Quartz Block",
@@ -53,6 +64,18 @@ class Quartz extends Solid {
 		return $names[$this->meta & 0x03];
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		if($this->meta === 1 or $this->meta === 2){
 			//Quartz pillar block and chiselled quartz have different orientations
@@ -70,10 +93,18 @@ class Quartz extends Solid {
 		return true;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 1){
 			return [

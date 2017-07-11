@@ -30,6 +30,11 @@ use pocketmine\utils\TextFormat;
 
 class EffectCommand extends VanillaCommand {
 
+	/**
+	 * EffectCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -39,6 +44,13 @@ class EffectCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.effect;pocketmine.command.effect.other");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;

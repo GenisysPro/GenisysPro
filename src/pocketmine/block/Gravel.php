@@ -29,22 +29,39 @@ class Gravel extends Fallable {
 
 	protected $id = self::GRAVEL;
 
+	/**
+	 * Gravel constructor.
+	 */
 	public function __construct(){
 
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Gravel";
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getHardness(){
 		return 0.6;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_SHOVEL;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		$drops = [];
 		if($item->getEnchantmentLevel(Enchantment::TYPE_MINING_SILK_TOUCH) > 0){//使用精准采集附魔 不掉落燧石

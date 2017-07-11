@@ -25,14 +25,26 @@ namespace pocketmine\item;
 
 
 class ChorusFruit extends Food {
+	/**
+	 * ChorusFruit constructor.
+	 *
+	 * @param int $meta
+	 * @param int $count
+	 */
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::CHORUS_FRUIT, 0, $count, "Chorus Fruit");
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getFoodRestore() : int{
 		return 4;
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getSaturationRestore() : float{
 		return 2.4;
 	}

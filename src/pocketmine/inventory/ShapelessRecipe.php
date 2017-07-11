@@ -34,14 +34,25 @@ class ShapelessRecipe implements Recipe {
 	/** @var Item[] */
 	private $ingredients = [];
 
+	/**
+	 * ShapelessRecipe constructor.
+	 *
+	 * @param Item $result
+	 */
 	public function __construct(Item $result){
 		$this->output = clone $result;
 	}
 
+	/**
+	 * @return null
+	 */
 	public function getId(){
 		return $this->id;
 	}
 
+	/**
+	 * @param UUID $id
+	 */
 	public function setId(UUID $id){
 		if($this->id !== null){
 			throw new \InvalidStateException("Id is already set");
@@ -50,6 +61,9 @@ class ShapelessRecipe implements Recipe {
 		$this->id = $id;
 	}
 
+	/**
+	 * @return Item
+	 */
 	public function getResult(){
 		return clone $this->output;
 	}

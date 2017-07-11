@@ -34,6 +34,11 @@ use pocketmine\nbt\tag\FloatTag;
 
 class SummonCommand extends VanillaCommand {
 
+	/**
+	 * SummonCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -43,6 +48,13 @@ class SummonCommand extends VanillaCommand {
 		$this->setPermission("pocketmine.command.summon");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;

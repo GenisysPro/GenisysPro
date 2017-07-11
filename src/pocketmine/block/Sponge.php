@@ -31,14 +31,25 @@ class Sponge extends Solid {
 	protected $id = self::SPONGE;
 	protected $absorbRange = 6;
 
+	/**
+	 * Sponge constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getHardness(){
 		return 0.6;
 	}
 
+	/**
+	 * @param null $block
+	 */
 	public function absorbWater($block = null){
 		if(Server::getInstance()->absorbWater){
 			if($block == null) $block = $this;
@@ -55,6 +66,11 @@ class Sponge extends Solid {
 		}
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return bool|int
+	 */
 	public function onUpdate($type){
 		if($this->meta == 0){
 			if($type === Level::BLOCK_UPDATE_NORMAL){
@@ -93,6 +109,9 @@ class Sponge extends Solid {
 		return true;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		static $names = [
 			0 => "Sponge",
@@ -101,6 +120,11 @@ class Sponge extends Solid {
 		return $names[$this->meta & 0x0f];
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		return [
 			[$this->id, $this->meta & 0x0f, 1],

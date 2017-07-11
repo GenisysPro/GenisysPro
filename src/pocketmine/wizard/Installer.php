@@ -49,10 +49,16 @@ class Installer {
 
 	private $defaultLang;
 
+	/**
+	 * Installer constructor.
+	 */
 	public function __construct(){
 
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function run(){
 		echo "[*] GenisysPro set-up wizard\n";
 		echo "[*] Please select a language:\n";
@@ -96,6 +102,9 @@ class Installer {
 		return $this->defaultLang;
 	}
 
+	/**
+	 * @return bool
+	 */
 	private function showLicense(){
 		echo $this->lang->welcome_to_pocketmine . "\n";
 		echo <<<LICENSE
@@ -256,6 +265,11 @@ LICENSE;
 		sleep(4);
 	}
 
+	/**
+	 * @param string $default
+	 *
+	 * @return string
+	 */
 	private function getInput($default = ""){
 		$input = trim(fgets(STDIN));
 

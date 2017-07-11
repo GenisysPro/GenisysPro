@@ -35,10 +35,16 @@ class ContainerOpenPacket extends DataPacket {
 	public $z;
 	public $entityId = -1;
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putByte($this->windowid);

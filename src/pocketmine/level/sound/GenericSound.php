@@ -26,6 +26,13 @@ use pocketmine\network\protocol\LevelEventPacket;
 
 class GenericSound extends Sound {
 
+	/**
+	 * GenericSound constructor.
+	 *
+	 * @param Vector3 $pos
+	 * @param int     $id
+	 * @param int     $pitch
+	 */
 	public function __construct(Vector3 $pos, $id, $pitch = 0){
 		parent::__construct($pos->x, $pos->y, $pos->z);
 		$this->id = (int) $id;
@@ -35,15 +42,24 @@ class GenericSound extends Sound {
 	protected $pitch = 0;
 	protected $id;
 
+	/**
+	 * @return float
+	 */
 	public function getPitch(){
 		return $this->pitch / 1000;
 	}
 
+	/**
+	 * @param $pitch
+	 */
 	public function setPitch($pitch){
 		$this->pitch = (float) $pitch * 1000;
 	}
 
 
+	/**
+	 * @return LevelEventPacket
+	 */
 	public function encode(){
 		$pk = new LevelEventPacket;
 		$pk->evid = $this->id;

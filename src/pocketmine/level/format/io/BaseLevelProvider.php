@@ -44,6 +44,12 @@ abstract class BaseLevelProvider implements LevelProvider {
 	/** @var bool */
 	protected $asyncChunkRequest = false;
 
+	/**
+	 * BaseLevelProvider constructor.
+	 *
+	 * @param Level  $level
+	 * @param string $path
+	 */
 	public function __construct(Level $level, string $path){
 		$this->level = $level;
 		$this->path = $path;
@@ -69,42 +75,72 @@ abstract class BaseLevelProvider implements LevelProvider {
 		$this->asyncChunkRequest = (bool) $this->level->getServer()->getProperty("chunk-sending.async-chunk-request", false);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getPath() : string{
 		return $this->path;
 	}
 
+	/**
+	 * @return \pocketmine\Server
+	 */
 	public function getServer(){
 		return $this->level->getServer();
 	}
 
+	/**
+	 * @return Level
+	 */
 	public function getLevel(){
 		return $this->level;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return (string) $this->levelData["LevelName"];
 	}
 
+	/**
+	 * @return mixed|null
+	 */
 	public function getTime(){
 		return $this->levelData["Time"];
 	}
 
+	/**
+	 * @param int|string $value
+	 */
 	public function setTime($value){
 		$this->levelData->Time = new LongTag("Time", $value);
 	}
 
+	/**
+	 * @return mixed|null
+	 */
 	public function getSeed(){
 		return $this->levelData["RandomSeed"];
 	}
 
+	/**
+	 * @param int|string $value
+	 */
 	public function setSeed($value){
 		$this->levelData->RandomSeed = new LongTag("RandomSeed", (int) $value);
 	}
 
+	/**
+	 * @return Vector3
+	 */
 	public function getSpawn() : Vector3{
 		return new Vector3((float) $this->levelData["SpawnX"], (float) $this->levelData["SpawnY"], (float) $this->levelData["SpawnZ"]);
 	}
 
+	/**
+	 * @param Vector3 $pos
+	 */
 	public function setSpawn(Vector3 $pos){
 		$this->levelData->SpawnX = new IntTag("SpawnX", (int) $pos->x);
 		$this->levelData->SpawnY = new IntTag("SpawnY", (int) $pos->y);
@@ -131,6 +167,12 @@ abstract class BaseLevelProvider implements LevelProvider {
 		file_put_contents($this->getPath() . "level.dat", $buffer);
 	}
 
+	/**
+	 * @param int $x
+	 * @param int $z
+	 *
+	 * @return null|ChunkRequestTask
+	 */
 	public function requestChunkTask(int $x, int $z){
 		$chunk = $this->getChunk($x, $z, false);
 		if(!($chunk instanceof Chunk)){

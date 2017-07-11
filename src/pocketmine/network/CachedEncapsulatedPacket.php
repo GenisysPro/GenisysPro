@@ -27,6 +27,11 @@ class CachedEncapsulatedPacket extends EncapsulatedPacket {
 
 	private $internalData = null;
 
+	/**
+	 * @param bool $internal
+	 *
+	 * @return null|string
+	 */
 	public function toBinary($internal = false){
 		return $this->internalData === null ? ($this->internalData = parent::toBinary($internal)) : $this->internalData;
 	}

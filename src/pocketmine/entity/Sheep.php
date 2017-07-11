@@ -38,10 +38,19 @@ class Sheep extends Animal implements Colorable {
 	public $length = 1.4375;
 	public $height = 1.8;
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Sheep";
 	}
 
+	/**
+	 * Sheep constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 */
 	public function __construct(Level $level, CompoundTag $nbt){
 		if(!isset($nbt->Color)){
 			$nbt->Color = new ByteTag("Color", self::getRandomColor());
@@ -51,6 +60,9 @@ class Sheep extends Animal implements Colorable {
 		$this->setDataProperty(self::DATA_COLOR_INFO, self::DATA_TYPE_BYTE, $this->getColor());
 	}
 
+	/**
+	 * @return int
+	 */
 	public static function getRandomColor() : int{
 		$rand = "";
 		$rand .= str_repeat(Wool::WHITE . " ", 20);
@@ -71,14 +83,23 @@ class Sheep extends Animal implements Colorable {
 		return intval($arr[mt_rand(0, count($arr) - 1)]);
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getColor() : int{
 		return (int) $this->namedtag["Color"];
 	}
 
+	/**
+	 * @param int $color
+	 */
 	public function setColor(int $color){
 		$this->namedtag->Color = new ByteTag("Color", $color);
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -97,6 +118,9 @@ class Sheep extends Animal implements Colorable {
 		parent::spawnTo($player);
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getDrops(){
 		$drops = [
 			ItemItem::get(ItemItem::WOOL, $this->getColor(), 1)

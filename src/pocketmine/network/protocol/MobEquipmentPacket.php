@@ -34,6 +34,9 @@ class MobEquipmentPacket extends DataPacket {
 	public $selectedSlot;
 	public $windowId;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->eid = $this->getEntityId(); //EntityRuntimeID
 		$this->item = $this->getSlot();
@@ -42,6 +45,9 @@ class MobEquipmentPacket extends DataPacket {
 		$this->windowId = $this->getByte();
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putEntityId($this->eid); //EntityRuntimeID

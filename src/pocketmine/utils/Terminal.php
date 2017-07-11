@@ -49,6 +49,9 @@ abstract class Terminal {
 
 	private static $formattingCodes = null;
 
+	/**
+	 * @return bool|null
+	 */
 	public static function hasFormattingCodes(){
 		if(self::$formattingCodes === null){
 			$opts = getopt("", ["enable-ansi", "disable-ansi"]);

@@ -44,6 +44,13 @@ class PluginCommand extends Command implements PluginIdentifiableCommand {
 		$this->usageMessage = "";
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $commandLabel
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $commandLabel, array $args){
 
 		if(!$this->owningPlugin->isEnabled()){
@@ -63,6 +70,9 @@ class PluginCommand extends Command implements PluginIdentifiableCommand {
 		return $success;
 	}
 
+	/**
+	 * @return CommandExecutor|Plugin
+	 */
 	public function getExecutor(){
 		return $this->executor;
 	}

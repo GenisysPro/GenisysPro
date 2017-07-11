@@ -25,6 +25,9 @@ use pocketmine\level\generator\populator\TallGrass;
 
 class IcePlainsBiome extends SnowyBiome {
 
+	/**
+	 * IcePlainsBiome constructor.
+	 */
 	public function __construct(){
 		parent::__construct();
 
@@ -39,6 +42,9 @@ class IcePlainsBiome extends SnowyBiome {
 		$this->rainfall = 0.8;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Ice Plains";
 	}

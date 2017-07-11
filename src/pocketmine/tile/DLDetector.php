@@ -31,11 +31,20 @@ use pocketmine\nbt\tag\StringTag;
 class DLDetector extends Spawnable {
 	private $lastType = 0;
 
+	/**
+	 * DLDetector constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 */
 	public function __construct(Level $level, CompoundTag $nbt){
 		parent::__construct($level, $nbt);
 		$this->scheduleUpdate();
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getLightByTime(){
 		/*	$strength = 1;
 			$time = $this->getLevel()->getTime();
@@ -83,6 +92,9 @@ class DLDetector extends Spawnable {
 		return 0;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isActivated() : bool{
 		if($this->getType() == Block::DAYLIGHT_SENSOR){
 			if($this->getLightByTime() == 15) return true;
@@ -93,10 +105,16 @@ class DLDetector extends Spawnable {
 		}
 	}
 
+	/**
+	 * @return int
+	 */
 	private function getType() : int{
 		return $this->getBlock()->getId();
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function onUpdate(){
 		if(($this->getLevel()->getServer()->getTick() % 3) == 0){ //Update per 3 ticks
 			if($this->getType() != $this->lastType){ //Update when changed
@@ -113,6 +131,9 @@ class DLDetector extends Spawnable {
 		return true;
 	}
 
+	/**
+	 * @return CompoundTag
+	 */
 	public function getSpawnCompound(){
 		return new CompoundTag("", [
 			new StringTag("id", Tile::DAY_LIGHT_DETECTOR),

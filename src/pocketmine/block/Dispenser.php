@@ -36,26 +36,55 @@ class Dispenser extends Solid {
 
 	protected $id = self::DISPENSER;
 
+	/**
+	 * Dispenser constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getHardness(){
 		return 3.5;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Dispenser";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$dispenser = null;
 		if($player instanceof Player){
@@ -100,6 +129,9 @@ class Dispenser extends Solid {
 		return true;
 	}
 
+	/**
+	 *
+	 */
 	public function activate(){
 		$tile = $this->getLevel()->getTile($this);
 		if($tile instanceof TileDispenser){
@@ -107,6 +139,12 @@ class Dispenser extends Solid {
 		}
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = null){
 		if($player instanceof Player){
 			$t = $this->getLevel()->getTile($this);
@@ -135,6 +173,11 @@ class Dispenser extends Solid {
 		return true;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		return [
 			[$this->id, 0, 1],

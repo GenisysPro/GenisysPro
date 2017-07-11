@@ -35,10 +35,16 @@ class AddPaintingPacket extends DataPacket {
 	public $direction;
 	public $title;
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putEntityId($this->eid); //EntityUniqueID

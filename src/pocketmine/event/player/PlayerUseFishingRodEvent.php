@@ -32,11 +32,20 @@ class PlayerUseFishingRodEvent extends PlayerEvent implements Cancellable {
 
 	private $action;
 
+	/**
+	 * PlayerUseFishingRodEvent constructor.
+	 *
+	 * @param Player $player
+	 * @param int    $action
+	 */
 	public function __construct(Player $player, int $action = PlayerUseFishingRodEvent::ACTION_START_FISHING){
 		$this->player = $player;
 		$this->action = $action;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getAction() : int{
 		return $this->action;
 	}

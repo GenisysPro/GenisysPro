@@ -41,6 +41,12 @@ class Beacon extends Spawnable implements Nameable, InventoryHolder {
 	protected $currentTick = 0;
 	const POWER_LEVEL_MAX = 4;
 
+	/**
+	 * Beacon constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 */
 	public function __construct(Level $level, CompoundTag $nbt){
 		if(!isset($nbt->primary)){
 			$nbt->primary = new IntTag("primary", 0);
@@ -57,6 +63,9 @@ class Beacon extends Spawnable implements Nameable, InventoryHolder {
 		parent::saveNBT();
 	}
 
+	/**
+	 * @return CompoundTag
+	 */
 	public function getSpawnCompound(){
 		$c = new CompoundTag("", [
 			new StringTag("id", Tile::BEACON),
@@ -73,14 +82,23 @@ class Beacon extends Spawnable implements Nameable, InventoryHolder {
 		return $c;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return $this->hasName() ? $this->namedtag->CustomName->getValue() : "Beacon";
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function hasName(){
 		return isset($this->namedtag->CustomName);
 	}
 
+	/**
+	 * @param void $str
+	 */
 	public function setName($str){
 		if($str === ""){
 			unset($this->namedtag->CustomName);
@@ -89,10 +107,19 @@ class Beacon extends Spawnable implements Nameable, InventoryHolder {
 		$this->namedtag->CustomName = new StringTag("CustomName", $str);
 	}
 
+	/**
+	 * @return BeaconInventory
+	 */
 	public function getInventory(){
 		return $this->inventory;
 	}
 
+	/**
+	 * @param CompoundTag $nbt
+	 * @param Player      $player
+	 *
+	 * @return bool
+	 */
 	public function updateCompoundTag(CompoundTag $nbt, Player $player) : bool{
 		if($nbt["id"] !== Tile::BEACON){
 			return false;
@@ -102,6 +129,9 @@ class Beacon extends Spawnable implements Nameable, InventoryHolder {
 		return true;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function onUpdate(){
 		if($this->closed === true){
 			return false;
@@ -144,6 +174,9 @@ class Beacon extends Spawnable implements Nameable, InventoryHolder {
 		return true;
 	}
 
+	/**
+	 * @return int
+	 */
 	protected function calculatePowerLevel(){
 		$tileX = $this->getFloorX();
 		$tileY = $this->getFloorY();

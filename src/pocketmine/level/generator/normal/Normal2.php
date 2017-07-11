@@ -68,6 +68,12 @@ class Normal2 extends Normal {
 	private $mountainHeight = 13; // 26 / 2
 	private $basegroundHeight = 3;
 
+	/**
+	 * @param $x
+	 * @param $z
+	 *
+	 * @return Biome
+	 */
 	public function pickBiome($x, $z) : Biome{
 		$hash = $x * 2345803 ^ $z * 9236449 ^ $this->level->getSeed();
 		$hash *= $hash + 223;
@@ -86,6 +92,12 @@ class Normal2 extends Normal {
 	}
 
 
+	/**
+	 * @param ChunkManager $level
+	 * @param Random       $random
+	 *
+	 * @return mixed|void
+	 */
 	public function init(ChunkManager $level, Random $random){
 		$this->level = $level;
 		$this->random = $random;
@@ -140,6 +152,12 @@ class Normal2 extends Normal {
 	}
 
 
+	/**
+	 * @param $chunkX
+	 * @param $chunkZ
+	 *
+	 * @return mixed|void
+	 */
 	public function generateChunk($chunkX, $chunkZ){
 		$this->random->setSeed(0xdeadbeef ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
 
@@ -257,6 +275,12 @@ class Normal2 extends Normal {
 	}
 
 
+	/**
+	 * @param $chunkX
+	 * @param $chunkZ
+	 *
+	 * @return mixed|void
+	 */
 	public function populateChunk($chunkX, $chunkZ){
 		$this->random->setSeed(0xdeadbeef ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
 		foreach($this->populators as $populator){
@@ -268,6 +292,9 @@ class Normal2 extends Normal {
 		$biome->populateChunk($this->level, $chunkX, $chunkZ, $this->random);
 	}
 
+	/**
+	 * @return Vector3
+	 */
 	public function getSpawn(){
 		return new Vector3(127.5, 128, 127.5);
 	}

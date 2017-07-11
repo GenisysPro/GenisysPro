@@ -33,6 +33,12 @@ class ItemFrame extends Spawnable {
 
 	public $map_uuid = -1;
 
+	/**
+	 * ItemFrame constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 */
 	public function __construct(Level $level, CompoundTag $nbt){
 		if(!isset($nbt->ItemRotation)){
 			$nbt->ItemRotation = new ByteTag("ItemRotation", 0);
@@ -45,10 +51,16 @@ class ItemFrame extends Spawnable {
 		parent::__construct($level, $nbt);
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function hasItem() : bool{
 		return $this->getItem()->getId() !== Item::AIR;
 	}
 
+	/**
+	 * @return Item
+	 */
 	public function getItem() : Item{
 		if(isset($this->namedtag->Item)){
 			return Item::nbtDeserialize($this->namedtag->Item);
@@ -57,6 +69,9 @@ class ItemFrame extends Spawnable {
 		}
 	}
 
+	/**
+	 * @param Item|null $item
+	 */
 	public function setItem(Item $item = null){
 		if($item !== null and $item->getId() !== Item::AIR){
 			$this->namedtag->Item = $item->nbtSerialize(-1, "Item");
@@ -66,34 +81,55 @@ class ItemFrame extends Spawnable {
 		$this->onChanged();
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getItemRotation() : int{
 		return $this->namedtag->ItemRotation->getValue();
 	}
 
+	/**
+	 * @param int $rotation
+	 */
 	public function setItemRotation(int $rotation){
 		$this->namedtag->ItemRotation = new ByteTag("ItemRotation", $rotation);
 		$this->onChanged();
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getItemDropChance() : float{
 		return $this->namedtag->ItemDropChance->getValue();
 	}
 
+	/**
+	 * @param float $chance
+	 */
 	public function setItemDropChance(float $chance){
 		$this->namedtag->ItemDropChance = new FloatTag("ItemDropChance", $chance);
 		$this->onChanged();
 	}
 
+	/**
+	 * @param string $mapid
+	 */
 	public function SetMapID(string $mapid){
 		$this->map_uuid = $mapid;
 		$this->namedtag->Map_UUID = new StringTag("map_uuid", $mapid);
 		$this->onChanged();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getMapID() : string{
 		return $this->map_uuid;
 	}
 
+	/**
+	 * @return CompoundTag
+	 */
 	public function getSpawnCompound(){
 		$tag = new CompoundTag("", [
 			new StringTag("id", Tile::ITEM_FRAME),

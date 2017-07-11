@@ -28,6 +28,15 @@ use pocketmine\Player;
 class PlayerBucketEmptyEvent extends PlayerBucketEvent {
 	public static $handlerList = null;
 
+	/**
+	 * PlayerBucketEmptyEvent constructor.
+	 *
+	 * @param Player $who
+	 * @param Block  $blockClicked
+	 * @param int    $blockFace
+	 * @param Item   $bucket
+	 * @param Item   $itemInHand
+	 */
 	public function __construct(Player $who, Block $blockClicked, $blockFace, Item $bucket, Item $itemInHand){
 		parent::__construct($who, $blockClicked, $blockFace, $bucket, $itemInHand);
 	}

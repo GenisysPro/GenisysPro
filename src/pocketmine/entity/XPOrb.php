@@ -47,6 +47,11 @@ class XPOrb extends Entity {
 		}else $this->close();
 	}
 
+	/**
+	 * @param $currentTick
+	 *
+	 * @return bool
+	 */
 	public function onUpdate($currentTick){
 		if($this->closed){
 			return false;
@@ -129,18 +134,32 @@ class XPOrb extends Entity {
 		return $hasUpdate or !$this->onGround or abs($this->motionX) > 0.00001 or abs($this->motionY) > 0.00001 or abs($this->motionZ) > 0.00001;
 	}
 
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return bool
+	 */
 	public function canCollideWith(Entity $entity){
 		return false;
 	}
 
+	/**
+	 * @param $exp
+	 */
 	public function setExperience($exp){
 		$this->experience = $exp;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getExperience(){
 		return $this->experience;
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$this->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_NO_AI, true);
 		$pk = new AddEntityPacket();

@@ -47,6 +47,15 @@ class BigTree extends Tree {
 	private $totalHeight;
 	private $baseHeight = 5;
 
+	/**
+	 * @param ChunkManager $level
+	 * @param              $x
+	 * @param              $y
+	 * @param              $z
+	 * @param Random       $random
+	 *
+	 * @return bool
+	 */
 	public function canPlaceObject(ChunkManager $level, $x, $y, $z, Random $random){
 		if(!parent::canPlaceObject($level, $x, $y, $z, $random) or $level->getBlockIdAt($x, $y, $z) == Block::WATER or $level->getBlockIdAt($x, $y, $z) == Block::STILL_WATER){
 			return false;
@@ -63,6 +72,13 @@ class BigTree extends Tree {
 		return false;
 	}
 
+	/**
+	 * @param ChunkManager $level
+	 * @param              $x
+	 * @param              $y
+	 * @param              $z
+	 * @param Random       $random
+	 */
 	public function placeObject(ChunkManager $level, $x, $y, $z, Random $random){
 		$this->random = $random;
 		$this->trunkHeight = (int) ($this->totalHeight * $this->trunkHeightMultiplier);
@@ -86,6 +102,14 @@ class BigTree extends Tree {
 		$this->generateBranches($level, $x, $y, $z, $leaves);
 	}
 
+	/**
+	 * @param ChunkManager $level
+	 * @param              $x
+	 * @param              $y
+	 * @param              $z
+	 *
+	 * @return array
+	 */
 	private function getLeafGroupPoints(ChunkManager $level, $x, $y, $z){
 		$amount = $this->leafAmount * $this->totalHeight / 13;
 		$groupsPerLayer = (int) (1.382 + $amount * $amount);
@@ -135,6 +159,11 @@ class BigTree extends Tree {
 		return $groups;
 	}
 
+	/**
+	 * @param int $y
+	 *
+	 * @return int
+	 */
 	private function getLeafGroupLayerSize(int $y){
 		if($y >= 0 and $y < $this->leafDistanceLimit){
 			return (int) (($y != ($this->leafDistanceLimit - 1)) ? 3 : 2);
@@ -142,6 +171,13 @@ class BigTree extends Tree {
 		return -1;
 	}
 
+	/**
+	 * @param ChunkManager $level
+	 * @param int          $x
+	 * @param int          $y
+	 * @param int          $z
+	 * @param int          $size
+	 */
 	private function generateGroupLayer(ChunkManager $level, int $x, int $y, int $z, int $size){
 		for($xx = $x - $size; $xx <= $x + $size; $xx++){
 			for($zz = $z - $size; $zz <= $z + $size; $zz++){
@@ -156,6 +192,11 @@ class BigTree extends Tree {
 		}
 	}
 
+	/**
+	 * @param int $layer
+	 *
+	 * @return float
+	 */
 	private function getRoughLayerSize(int $layer) : float{
 		$halfHeight = $this->totalHeight / 2;
 		if($layer < ($this->totalHeight / 3)){
@@ -169,6 +210,13 @@ class BigTree extends Tree {
 		}
 	}
 
+	/**
+	 * @param ChunkManager $level
+	 * @param int          $x
+	 * @param int          $y
+	 * @param int          $z
+	 * @param array        $groups
+	 */
 	private function generateBranches(ChunkManager $level, int $x, int $y, int $z, array $groups){
 		foreach($groups as $group){
 			$baseY = $group[1];
@@ -185,6 +233,13 @@ class BigTree extends Tree {
 		}
 	}
 
+	/**
+	 * @param ChunkManager $level
+	 * @param Vector3      $from
+	 * @param Vector3      $to
+	 *
+	 * @return int
+	 */
 	private function getAvailableBlockSpace(ChunkManager $level, Vector3 $from, Vector3 $to){
 		$count = 0;
 		$iter = new VectorIterator($level, $from, $to);

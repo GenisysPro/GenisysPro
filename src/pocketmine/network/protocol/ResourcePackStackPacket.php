@@ -37,6 +37,9 @@ class ResourcePackStackPacket extends DataPacket {
 	/** @var ResourcePack[] */
 	public $resourcePackStack = [];
 
+	/**
+	 *
+	 */
 	public function decode(){
 		/*$this->mustAccept = $this->getBool();
 		$behaviorPackCount = $this->getLShort();
@@ -54,6 +57,9 @@ class ResourcePackStackPacket extends DataPacket {
 		}*/
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putBool($this->mustAccept);

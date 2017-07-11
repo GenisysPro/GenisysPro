@@ -34,10 +34,16 @@ class SetSpawnPositionPacket extends DataPacket {
 	public $z;
 	public $unknownBool;
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putVarInt($this->unknown);

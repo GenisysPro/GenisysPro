@@ -37,6 +37,9 @@ class Wither extends FlyingAnimal {
 
 	public $dropExp = 50;
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Wither";
 	}
@@ -46,6 +49,9 @@ class Wither extends FlyingAnimal {
 		parent::initEntity();
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -66,6 +72,9 @@ class Wither extends FlyingAnimal {
 
 	//TODO: 添加出生和死亡情景
 
+	/**
+	 * @return array
+	 */
 	public function getDrops(){
 		$drops = [ItemItem::get(ItemItem::NETHER_STAR, 0, 1)];
 		return $drops;

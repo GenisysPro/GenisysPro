@@ -29,6 +29,9 @@ class Wood2 extends Wood {
 
 	protected $id = self::WOOD2;
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		static $names = [
 			0 => "Acacia Wood",
