@@ -52,15 +52,11 @@ class Nether extends Generator {
 	private $emptyHeight = 64;
 	private $emptyAmplitude = 1;
 	private $density = 0.5;
-	private $bedrockDepth = 5;
 
 	/** @var Populator[] */
 	private $generationPopulators = [];
 	/** @var Simplex */
 	private $noiseBase;
-
-	/** @var BiomeSelector */
-	private $selector;
 
 	private static $GAUSSIAN_KERNEL = null;
 	private static $SMOOTH_SIZE = 2;

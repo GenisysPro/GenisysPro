@@ -81,7 +81,7 @@ class ZippedResourcePack implements ResourcePack {
 
 		$archive = new \ZipArchive();
 		if(($openResult = $archive->open($zipPath)) !== true){
-			throw new \InvalidStateException("打开 $zipPath时遇到ZipArchive错误 $openResult");
+			throw new \InvalidStateException("打开 $zipPath $openResult");//Yeah, I don't speak, that...
 		}
 
 		if(($manifestData = $archive->getFromName("manifest.json")) === false){

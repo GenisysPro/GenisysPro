@@ -160,6 +160,8 @@ class ListTag extends NamedTag implements \ArrayAccess, \Countable {
 	/**
 	 * @param NBT  $nbt
 	 * @param bool $network
+	 *
+	 * @return mixed|void
 	 */
 	public function read(NBT $nbt, bool $network = false){
 		$this->value = [];

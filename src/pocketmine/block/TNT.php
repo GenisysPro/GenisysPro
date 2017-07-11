@@ -142,6 +142,8 @@ class TNT extends Solid implements ElectricalAppliance {
 	 * @param float       $fy
 	 * @param float       $fz
 	 * @param Player|null $player
+	 *
+	 * @return bool|void
 	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$this->getLevel()->setBlock($this, $this, true, false);

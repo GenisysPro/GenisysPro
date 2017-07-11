@@ -51,6 +51,8 @@ class WaterPit extends Populator {
 	 * @param              $chunkX
 	 * @param              $chunkZ
 	 * @param Random       $random
+	 *
+	 * @return mixed|void
 	 */
 	public function populate(ChunkManager $level, $chunkX, $chunkZ, Random $random){
 		$this->level = $level;

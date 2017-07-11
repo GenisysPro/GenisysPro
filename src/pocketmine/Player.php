@@ -25,6 +25,7 @@
 namespace pocketmine;
 
 use pocketmine\event\block\ItemFrameDropItemEvent;
+use pocketmine\inventory\CraftingManager;
 use pocketmine\network\protocol\LevelEventPacket;
 use pocketmine\block\Air;
 use pocketmine\block\Block;

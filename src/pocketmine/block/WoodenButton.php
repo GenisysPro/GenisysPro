@@ -77,6 +77,8 @@ class WoodenButton extends RedstoneSource {
 
 	/**
 	 * @param array $ignore
+	 *
+	 * @return bool|void
 	 */
 	public function deactivate(array $ignore = []){
 		parent::deactivate($ignore = []);
@@ -105,6 +107,8 @@ class WoodenButton extends RedstoneSource {
 
 	/**
 	 * @param array $ignore
+	 *
+	 * @return bool|void
 	 */
 	public function activate(array $ignore = []){
 		parent::activate($ignore = []);
@@ -149,6 +153,8 @@ class WoodenButton extends RedstoneSource {
 
 	/**
 	 * @param Item $item
+	 *
+	 * @return mixed|void
 	 */
 	public function onBreak(Item $item){
 		if($this->isActivated()){

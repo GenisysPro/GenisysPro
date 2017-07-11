@@ -268,8 +268,6 @@ class Server {
 	/** @var Level */
 	private $levelDefault = null;
 
-	private $aboutContent = "";
-
 	/** Advanced Config */
 	public $advancedConfig = null;
 

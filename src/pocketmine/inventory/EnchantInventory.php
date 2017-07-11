@@ -87,16 +87,6 @@ class EnchantInventory extends TemporaryInventory {
 		}
 	}
 
-	/**
-	 * @param int $min
-	 * @param int $max
-	 *
-	 * @return int
-	 */
-	private function randomFloat($min = 0, $max = 1){
-		return $min + mt_rand() / mt_getrandmax() * ($max - $min);
-	}
-
 	/*
 	public function onSlotChange($index, $before, $send){
 		parent::onSlotChange($index, $before, $send);

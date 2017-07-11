@@ -51,6 +51,8 @@ class UnpoweredRepeater extends PoweredRepeater {
 
 	/**
 	 * @param Item $item
+	 *
+	 * @return mixed|void
 	 */
 	public function onBreak(Item $item){
 		$this->getLevel()->setBlock($this, new Air(), true);

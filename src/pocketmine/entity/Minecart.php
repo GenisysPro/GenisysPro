@@ -52,7 +52,6 @@ class Minecart extends Vehicle {
 	private $state = Minecart::STATE_INITIAL;
 	private $direction = -1;
 	private $moveVector = [];
-	private $requestedPosition = null;
 
 	public function initEntity(){
 		$this->setMaxHealth(1);

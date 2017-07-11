@@ -64,6 +64,8 @@ class Void extends Generator {
 	/**
 	 * @param ChunkManager $level
 	 * @param Random       $random
+	 *
+	 * @return mixed|void
 	 */
 	public function init(ChunkManager $level, Random $random){
 		$this->level = $level;
@@ -73,6 +75,8 @@ class Void extends Generator {
 	/**
 	 * @param $chunkX
 	 * @param $chunkZ
+	 *
+	 * @return mixed|void
 	 */
 	public function generateChunk($chunkX, $chunkZ){
 		if($this->emptyChunk === null){
@@ -107,6 +111,8 @@ class Void extends Generator {
 	/**
 	 * @param $chunkX
 	 * @param $chunkZ
+	 *
+	 * @return mixed|void
 	 */
 	public function populateChunk($chunkX, $chunkZ){
 

@@ -37,6 +37,8 @@ class ShortTag extends NamedTag {
 	/**
 	 * @param NBT  $nbt
 	 * @param bool $network
+	 *
+	 * @return mixed|void
 	 */
 	public function read(NBT $nbt, bool $network = false){
 		$this->value = $nbt->getShort();
@@ -45,6 +47,8 @@ class ShortTag extends NamedTag {
 	/**
 	 * @param NBT  $nbt
 	 * @param bool $network
+	 *
+	 * @return mixed|void
 	 */
 	public function write(NBT $nbt, bool $network = false){
 		$nbt->putShort($this->value);

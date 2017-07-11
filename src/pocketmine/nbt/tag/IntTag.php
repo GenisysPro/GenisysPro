@@ -37,6 +37,8 @@ class IntTag extends NamedTag {
 	/**
 	 * @param NBT  $nbt
 	 * @param bool $network
+	 *
+	 * @return mixed|void
 	 */
 	public function read(NBT $nbt, bool $network = false){
 		$this->value = $nbt->getInt($network);
@@ -45,6 +47,8 @@ class IntTag extends NamedTag {
 	/**
 	 * @param NBT  $nbt
 	 * @param bool $network
+	 *
+	 * @return mixed|void
 	 */
 	public function write(NBT $nbt, bool $network = false){
 		$nbt->putInt($this->value, $network);
