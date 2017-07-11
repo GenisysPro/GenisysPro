@@ -1,11 +1,17 @@
 <?php
+
 namespace pocketmine\command\defaults;
 
 use pocketmine\command\CommandSender;
 use pocketmine\utils\TextFormat;
 
-class ExtractPharCommand extends VanillaCommand{
+class ExtractPharCommand extends VanillaCommand {
 
+	/**
+	 * ExtractPharCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -15,23 +21,30 @@ class ExtractPharCommand extends VanillaCommand{
 		$this->setPermission("pocketmine.command.extractphar");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $commandLabel
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $commandLabel, array $args){
 		if(!$this->testPermission($sender)){
 			return false;
 		}
 
 		if(count($args) === 0){
-			$sender->sendMessage(TextFormat::RED . "Usage: ".$this->usageMessage);
+			$sender->sendMessage(TextFormat::RED . "Usage: " . $this->usageMessage);
 			return true;
 		}
 		if(!isset($args[0]) or !file_exists($args[0])) return \false;
-		$folderPath = $sender->getServer()->getPluginPath().DIRECTORY_SEPARATOR . "GenisysPro" . DIRECTORY_SEPARATOR . basename($args[0]);
+		$folderPath = $sender->getServer()->getPluginPath() . DIRECTORY_SEPARATOR . "GenisysPro" . DIRECTORY_SEPARATOR . basename($args[0]);
 		if(file_exists($folderPath)){
 			$sender->sendMessage("Phar already exists, overwriting...");
 		}else{
 			@mkdir($folderPath);
 		}
-		
+
 		$pharPath = "phar://$args[0]";
 
 		foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($pharPath)) as $fInfo){

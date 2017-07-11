@@ -27,7 +27,7 @@ use pocketmine\utils\Utils;
 use pocketmine\utils\UUID;
 use pocketmine\utils\VersionString;
 
-class SendUsageTask extends AsyncTask{
+class SendUsageTask extends AsyncTask {
 
 	const TYPE_OPEN = 1;
 	const TYPE_STATUS = 2;
@@ -36,6 +36,13 @@ class SendUsageTask extends AsyncTask{
 	public $endpoint;
 	public $data;
 
+	/**
+	 * SendUsageTask constructor.
+	 *
+	 * @param Server $server
+	 * @param        $type
+	 * @param array  $playerList
+	 */
 	public function __construct(Server $server, $type, $playerList = []){
 		$endpoint = "http://" . $server->getProperty("anonymous-statistics.host", "stats.pocketmine.net") . "/";
 
@@ -142,7 +149,7 @@ class SendUsageTask extends AsyncTask{
 		try{
 			Utils::postURL($this->endpoint, $this->data, 5, [
 				"Content-Type: application/json",
-				"Content-Length: ". strlen($this->data)
+				"Content-Length: " . strlen($this->data)
 			]);
 		}catch(\Throwable $e){
 

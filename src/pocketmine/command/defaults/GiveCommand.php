@@ -30,8 +30,13 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
-class GiveCommand extends VanillaCommand{
+class GiveCommand extends VanillaCommand {
 
+	/**
+	 * GiveCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -41,6 +46,13 @@ class GiveCommand extends VanillaCommand{
 		$this->setPermission("pocketmine.command.give");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;
@@ -66,7 +78,7 @@ class GiveCommand extends VanillaCommand{
 			$data = implode(" ", array_slice($args, 3));
 			try{
 				$tags = NBT::parseJSON($data);
-			}catch (\Throwable $ex){
+			}catch(\Throwable $ex){
 				$exception = $ex;
 			}
 

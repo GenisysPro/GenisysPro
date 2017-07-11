@@ -26,7 +26,7 @@ use pocketmine\item\Item as ItemItem;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Slime extends Living{
+class Slime extends Living {
 	const NETWORK_ID = 37;
 
 	const DATA_SLIME_SIZE = 16;
@@ -36,11 +36,17 @@ class Slime extends Living{
 	public $height = 5;
 
 	public $dropExp = [1, 4];
-	
+
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Slime";
 	}
-	
+
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -57,12 +63,15 @@ class Slime extends Living{
 		$player->dataPacket($pk);
 		parent::spawnTo($player);
 	}
-	
+
+	/**
+	 * @return array
+	 */
 	public function getDrops(){
-		$drops = array(ItemItem::get(ItemItem::SLIMEBALL, 0, 1));
-		if ($this->lastDamageCause instanceof EntityDamageByEntityEvent and $this->lastDamageCause->getEntity() instanceof Player) {
-			if (\mt_rand(0, 199) < 5) {
-				switch (\mt_rand(0, 2)) {
+		$drops = [ItemItem::get(ItemItem::SLIMEBALL, 0, 1)];
+		if($this->lastDamageCause instanceof EntityDamageByEntityEvent and $this->lastDamageCause->getEntity() instanceof Player){
+			if(\mt_rand(0, 199) < 5){
+				switch(\mt_rand(0, 2)){
 					case 0:
 						$drops[] = ItemItem::get(ItemItem::IRON_INGOT, 0, 1);
 						break;

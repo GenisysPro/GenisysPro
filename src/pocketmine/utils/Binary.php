@@ -26,10 +26,14 @@
 namespace pocketmine\utils;
 
 
-class Binary{
+class Binary {
 	const BIG_ENDIAN = 0x00;
 	const LITTLE_ENDIAN = 0x01;
 
+	/**
+	 * @param $str
+	 * @param $expect
+	 */
 	private static function checkLength($str, $expect){
 		assert(($len = strlen($str)) === $expect, "Expected $expect bytes, got $len");
 	}
@@ -218,6 +222,11 @@ class Binary{
 		return pack("v", $value);
 	}
 
+	/**
+	 * @param $str
+	 *
+	 * @return int
+	 */
 	public static function readInt($str){
 		self::checkLength($str, 4);
 		if(PHP_INT_SIZE === 8){
@@ -227,10 +236,20 @@ class Binary{
 		}
 	}
 
+	/**
+	 * @param $value
+	 *
+	 * @return string
+	 */
 	public static function writeInt($value){
 		return pack("N", $value);
 	}
 
+	/**
+	 * @param $str
+	 *
+	 * @return int
+	 */
 	public static function readLInt($str){
 		self::checkLength($str, 4);
 		if(PHP_INT_SIZE === 8){
@@ -240,10 +259,21 @@ class Binary{
 		}
 	}
 
+	/**
+	 * @param $value
+	 *
+	 * @return string
+	 */
 	public static function writeLInt($value){
 		return pack("V", $value);
 	}
 
+	/**
+	 * @param     $str
+	 * @param int $accuracy
+	 *
+	 * @return float
+	 */
 	public static function readFloat($str, int $accuracy = -1){
 		self::checkLength($str, 4);
 		$value = ENDIANNESS === self::BIG_ENDIAN ? unpack("f", $str)[1] : unpack("f", strrev($str))[1];
@@ -254,10 +284,21 @@ class Binary{
 		}
 	}
 
+	/**
+	 * @param $value
+	 *
+	 * @return string
+	 */
 	public static function writeFloat($value){
 		return ENDIANNESS === self::BIG_ENDIAN ? pack("f", $value) : strrev(pack("f", $value));
 	}
 
+	/**
+	 * @param     $str
+	 * @param int $accuracy
+	 *
+	 * @return float
+	 */
 	public static function readLFloat($str, int $accuracy = -1){
 		self::checkLength($str, 4);
 		$value = ENDIANNESS === self::BIG_ENDIAN ? unpack("f", strrev($str))[1] : unpack("f", $str)[1];
@@ -268,34 +309,69 @@ class Binary{
 		}
 	}
 
+	/**
+	 * @param $value
+	 *
+	 * @return string
+	 */
 	public static function writeLFloat($value){
 		return ENDIANNESS === self::BIG_ENDIAN ? strrev(pack("f", $value)) : pack("f", $value);
 	}
 
+	/**
+	 * @param $value
+	 *
+	 * @return mixed
+	 */
 	public static function printFloat($value){
 		return preg_replace("/(\\.\\d+?)0+$/", "$1", sprintf("%F", $value));
 	}
 
+	/**
+	 * @param $str
+	 *
+	 * @return mixed
+	 */
 	public static function readDouble($str){
 		self::checkLength($str, 8);
 
 		return ENDIANNESS === self::BIG_ENDIAN ? unpack("d", $str)[1] : unpack("d", strrev($str))[1];
 	}
 
+	/**
+	 * @param $value
+	 *
+	 * @return string
+	 */
 	public static function writeDouble($value){
 		return ENDIANNESS === self::BIG_ENDIAN ? pack("d", $value) : strrev(pack("d", $value));
 	}
 
+	/**
+	 * @param $str
+	 *
+	 * @return mixed
+	 */
 	public static function readLDouble($str){
 		self::checkLength($str, 8);
 
 		return ENDIANNESS === self::BIG_ENDIAN ? unpack("d", strrev($str))[1] : unpack("d", $str)[1];
 	}
 
+	/**
+	 * @param $value
+	 *
+	 * @return string
+	 */
 	public static function writeLDouble($value){
 		return ENDIANNESS === self::BIG_ENDIAN ? strrev(pack("d", $value)) : pack("d", $value);
 	}
 
+	/**
+	 * @param $x
+	 *
+	 * @return int|string
+	 */
 	public static function readLong($x){
 		self::checkLength($x, 8);
 		if(PHP_INT_SIZE === 8){
@@ -317,6 +393,11 @@ class Binary{
 		}
 	}
 
+	/**
+	 * @param $value
+	 *
+	 * @return string
+	 */
 	public static function writeLong($value){
 		if(PHP_INT_SIZE === 8){
 			return pack("NN", $value >> 32, $value & 0xFFFFFFFF);
@@ -336,16 +417,31 @@ class Binary{
 		}
 	}
 
+	/**
+	 * @param $str
+	 *
+	 * @return int|string
+	 */
 	public static function readLLong($str){
 		return self::readLong(strrev($str));
 	}
 
+	/**
+	 * @param $value
+	 *
+	 * @return string
+	 */
 	public static function writeLLong($value){
 		return strrev(self::writeLong($value));
 	}
 
 	//TODO: proper varlong support
 
+	/**
+	 * @param $stream
+	 *
+	 * @return int
+	 */
 	public static function readVarInt($stream){
 		$shift = PHP_INT_SIZE === 8 ? 63 : 31;
 		$raw = self::readUnsignedVarInt($stream);
@@ -354,6 +450,11 @@ class Binary{
 		return $temp ^ ($raw & (1 << $shift));
 	}
 
+	/**
+	 * @param $stream
+	 *
+	 * @return int
+	 */
 	public static function readUnsignedVarInt($stream){
 		$value = 0;
 		$i = 0;
@@ -368,10 +469,20 @@ class Binary{
 		return $value;
 	}
 
+	/**
+	 * @param $v
+	 *
+	 * @return string
+	 */
 	public static function writeVarInt($v){
 		return self::writeUnsignedVarInt(($v << 1) ^ ($v >> (PHP_INT_SIZE === 8 ? 63 : 31)));
 	}
 
+	/**
+	 * @param $value
+	 *
+	 * @return string
+	 */
 	public static function writeUnsignedVarInt($value){
 		$buf = "";
 		for($i = 0; $i < 10; ++$i){

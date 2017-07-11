@@ -24,7 +24,7 @@ namespace pocketmine\inventory;
 use pocketmine\item\Item;
 use pocketmine\Player;
 
-class DropItemTransaction extends BaseTransaction{
+class DropItemTransaction extends BaseTransaction {
 
 	const TRANSACTION_TYPE = Transaction::TYPE_DROP_ITEM;
 
@@ -41,28 +41,48 @@ class DropItemTransaction extends BaseTransaction{
 		$this->targetItem = $droppedItem;
 	}
 
+	/**
+	 * @param Item $item
+	 */
 	public function setSourceItem(Item $item){
 		//Nothing to update
 	}
 
+	/**
+	 * @return null
+	 */
 	public function getInventory(){
 		return null;
 	}
 
+	/**
+	 * @return null
+	 */
 	public function getSlot(){
 		return null;
 	}
 
+	/**
+	 * @param Player $source
+	 */
 	public function sendSlotUpdate(Player $source){
 		//Nothing to update
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getChange(){
 		return ["in" => $this->getTargetItem(),
-				"out" => null];
+			"out" => null];
 	}
 
-	public function execute(Player $source): bool{
+	/**
+	 * @param Player $source
+	 *
+	 * @return bool
+	 */
+	public function execute(Player $source) : bool{
 		$droppedItem = $this->getTargetItem();
 		if(!$source->getServer()->allowInventoryCheats and !$source->isCreative()){
 			if(!$source->getFloatingInventory()->contains($droppedItem)){

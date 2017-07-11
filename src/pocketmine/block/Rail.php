@@ -15,7 +15,7 @@
  * (at your option) any later version.
  *
  * @author iTX Technologies
- * @link https://itxtech.org
+ * @link   https://itxtech.org
  *
  */
 
@@ -25,7 +25,7 @@ use pocketmine\item\Item;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 
-class Rail extends Flowable{
+class Rail extends Flowable {
 
 	const STRAIGHT_EAST_WEST = 0;
 	const STRAIGHT_NORTH_SOUTH = 1;
@@ -43,20 +43,32 @@ class Rail extends Flowable{
 	/** @var Vector3 [] */
 	protected $connected = [];
 
+	/**
+	 * Rail constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Rail";
 	}
 
+	/**
+	 * @return bool
+	 */
 	protected function update(){
 		return true;
 	}
 
 	/**
 	 * @param Rail $block
+	 *
 	 * @return bool
 	 */
 	public function canConnect(Rail $block){
@@ -70,6 +82,11 @@ class Rail extends Flowable{
 		return $blocks;
 	}
 
+	/**
+	 * @param Block $block
+	 *
+	 * @return bool|Block
+	 */
 	public function isBlock(Block $block){
 		if($block instanceof Air){
 			return false;
@@ -77,6 +94,12 @@ class Rail extends Flowable{
 		return $block;
 	}
 
+	/**
+	 * @param Rail $rail
+	 * @param bool $force
+	 *
+	 * @return bool
+	 */
 	public function connect(Rail $rail, $force = false){
 
 		if(!$force){
@@ -114,6 +137,18 @@ class Rail extends Flowable{
 		return true;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$downBlock = $this->getSide(Vector3::SIDE_DOWN);
 
@@ -172,6 +207,7 @@ class Rail extends Flowable{
 
 	/**
 	 * @param Rail $rail
+	 *
 	 * @return array
 	 */
 	public static function check(Rail $rail){
@@ -211,14 +247,23 @@ class Rail extends Flowable{
 		return $connected;
 	}
 
-	public function getHardness() {
+	/**
+	 * @return float
+	 */
+	public function getHardness(){
 		return 0.7;
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getResistance(){
 		return 3.5;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canPassThrough(){
 		return true;
 	}

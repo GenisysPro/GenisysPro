@@ -22,9 +22,10 @@
 /**
  * Event related classes
  */
+
 namespace pocketmine\event;
 
-abstract class Event{
+abstract class Event {
 
 	/**
 	 * Any callable event must declare the static variable

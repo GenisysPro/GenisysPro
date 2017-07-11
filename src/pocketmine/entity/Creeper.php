@@ -27,7 +27,7 @@ use pocketmine\nbt\tag\ByteTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Creeper extends Monster{
+class Creeper extends Monster {
 	const NETWORK_ID = 33;
 
 	const DATA_SWELL = 19;
@@ -35,7 +35,10 @@ class Creeper extends Monster{
 	const DATA_SWELL_DIRECTION = 21;
 
 	public $dropExp = [5, 5];
-	
+
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Creeper";
 	}
@@ -49,6 +52,10 @@ class Creeper extends Monster{
 		$this->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_POWERED, $this->isPowered());
 	}
 
+	/**
+	 * @param bool           $powered
+	 * @param Lightning|null $lightning
+	 */
 	public function setPowered(bool $powered, Lightning $lightning = null){
 		if($lightning != null){
 			$powered = true;
@@ -63,10 +70,16 @@ class Creeper extends Monster{
 		}
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isPowered() : bool{
 		return (bool) $this->namedtag["powered"];
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

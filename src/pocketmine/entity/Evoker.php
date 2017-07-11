@@ -28,24 +28,30 @@ use pocketmine\item\Item as ItemItem;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Evoker extends Monster{
+class Evoker extends Monster {
 	const NETWORK_ID = 104;
 
 	public $width = 0.6;
 	public $length = 0.6;
 	public $height = 0;
-	
+
 	public $dropExp = [5, 5];
 
+	/**
+	 * @return string
+	 */
 	public function getName(){
 		return "Evoker";
 	}
-	
+
 	public function initEntity(){
 		$this->setMaxHealth(24);
 		parent::initEntity();
 	}
-	
+
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -63,10 +69,13 @@ class Evoker extends Monster{
 
 		parent::spawnTo($player);
 	}
-	
+
+	/**
+	 * @return array
+	 */
 	public function getDrops(){
 		$drops = [
-			ItemItem::get(ItemItem::EMERALD, 0, mt_rand(0 , 1))
+			ItemItem::get(ItemItem::EMERALD, 0, mt_rand(0, 1))
 		];
 		$drops[] = ItemItem::get(ItemItem::TOTEM, 0, 1);
 

@@ -24,28 +24,33 @@
 
 namespace pocketmine\entity;
 
-use pocketmine\item\Item as ItemItem;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class ZombieHorse extends Animal{
+class ZombieHorse extends Animal {
 	const NETWORK_ID = 27;
 
 	public $width = 0.3;
 	public $length = 0.9;
 	public $height = 0;
-	
+
 	public $dropExp = [5, 5];
-	
+
+	/**
+	 * @return string
+	 */
 	public function getName(){
 		return "ZombieHorse";
 	}
-	
+
 	public function initEntity(){
 		$this->setMaxHealth(20);
 		parent::initEntity();
 	}
-	
+
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

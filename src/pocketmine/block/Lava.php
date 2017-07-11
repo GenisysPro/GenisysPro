@@ -30,22 +30,36 @@ use pocketmine\item\Item;
 use pocketmine\Player;
 use pocketmine\Server;
 
-class Lava extends Liquid{
+class Lava extends Liquid {
 
 	protected $id = self::LAVA;
 
+	/**
+	 * Lava constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getLightLevel(){
 		return 15;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Lava";
 	}
 
+	/**
+	 * @param Entity $entity
+	 */
 	public function onEntityCollide(Entity $entity){
 		$entity->fallDistance *= 0.5;
 		$ProtectL = 0;
@@ -66,6 +80,18 @@ class Lava extends Liquid{
 		$entity->resetFallDistance();
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$ret = $this->getLevel()->setBlock($this, $this, true, false);
 		$this->getLevel()->scheduleUpdate($this, $this->tickRate());

@@ -31,7 +31,7 @@ use pocketmine\nbt\tag\StringTag;
 use pocketmine\network\protocol\AddItemEntityPacket;
 use pocketmine\Player;
 
-class Item extends Entity{
+class Item extends Entity {
 	const NETWORK_ID = 64;
 
 	protected $owner = null;
@@ -77,6 +77,12 @@ class Item extends Entity{
 		$this->server->getPluginManager()->callEvent(new ItemSpawnEvent($this));
 	}
 
+	/**
+	 * @param float             $damage
+	 * @param EntityDamageEvent $source
+	 *
+	 * @return bool|void
+	 */
 	public function attack($damage, EntityDamageEvent $source){
 		if(
 			$source->getCause() === EntityDamageEvent::CAUSE_VOID or
@@ -88,13 +94,18 @@ class Item extends Entity{
 		}
 	}
 
+	/**
+	 * @param $currentTick
+	 *
+	 * @return bool
+	 */
 	public function onUpdate($currentTick){
 		if($this->closed){
 			return false;
 		}
-		
+
 		$this->age++;
-		
+
 		$tickDiff = $currentTick - $this->lastUpdate;
 		if($tickDiff <= 0 and !$this->justCreated){
 			return true;
@@ -137,7 +148,7 @@ class Item extends Entity{
 				$this->motionY *= -0.5;
 			}
 
-			if($currentTick % 5 ==0)
+			if($currentTick % 5 == 0)
 				$this->updateMovement();
 
 			if($this->age > 2000){
@@ -178,6 +189,11 @@ class Item extends Entity{
 		return $this->item;
 	}
 
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return bool
+	 */
 	public function canCollideWith(Entity $entity){
 		return false;
 	}
@@ -224,6 +240,9 @@ class Item extends Entity{
 		$this->thrower = $thrower;
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddItemEntityPacket();
 		$pk->eid = $this->getId();

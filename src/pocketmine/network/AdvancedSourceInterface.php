@@ -22,9 +22,10 @@
 /**
  * Network-related classes
  */
+
 namespace pocketmine\network;
 
-interface AdvancedSourceInterface extends SourceInterface{
+interface AdvancedSourceInterface extends SourceInterface {
 
 	/**
 	 * @param string $address

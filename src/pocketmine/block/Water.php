@@ -25,18 +25,29 @@ use pocketmine\entity\Entity;
 use pocketmine\item\Item;
 use pocketmine\Player;
 
-class Water extends Liquid{
+class Water extends Liquid {
 
 	protected $id = self::WATER;
 
+	/**
+	 * Water constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Water";
 	}
 
+	/**
+	 * @param Entity $entity
+	 */
 	public function onEntityCollide(Entity $entity){
 		$entity->resetFallDistance();
 		if($entity->fireTicks > 0){
@@ -46,6 +57,18 @@ class Water extends Liquid{
 		$entity->resetFallDistance();
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$ret = $this->getLevel()->setBlock($this, $this, true, false);
 		$this->getLevel()->scheduleUpdate($this, $this->tickRate());

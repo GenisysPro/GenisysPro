@@ -26,8 +26,13 @@ use pocketmine\event\TranslationContainer;
 use pocketmine\Player;
 
 
-class ListCommand extends VanillaCommand{
+class ListCommand extends VanillaCommand {
 
+	/**
+	 * ListCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -37,6 +42,13 @@ class ListCommand extends VanillaCommand{
 		$this->setPermission("pocketmine.command.list");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;

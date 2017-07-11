@@ -21,6 +21,6 @@
 
 namespace pocketmine\block;
 
-interface SolidLight{
-    
+interface SolidLight {
+
 }

@@ -34,10 +34,9 @@ use pocketmine\network\protocol\Info;
 use pocketmine\plugin\PluginBase;
 use pocketmine\plugin\PluginLoadOrder;
 use pocketmine\utils\Utils;
-use pocketmine\utils\VersionString;
 use raklib\RakLib;
 
-class CrashDump{
+class CrashDump {
 
 	/** @var Server */
 	private $server;
@@ -47,6 +46,11 @@ class CrashDump{
 	private $encodedData = null;
 	private $path;
 
+	/**
+	 * CrashDump constructor.
+	 *
+	 * @param Server $server
+	 */
 	public function __construct(Server $server){
 		$this->time = time();
 		$this->server = $server;
@@ -65,7 +69,7 @@ class CrashDump{
 			$this->addLine("CrashDump crashed while generating base crash data");
 			$this->addLine();
 		}
-		
+
 		$this->generalData();
 		$this->pluginsData();
 
@@ -74,28 +78,25 @@ class CrashDump{
 		//$this->encodeData();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getPath(){
 		return $this->path;
 	}
 
+	/**
+	 * @return null
+	 */
 	public function getEncodedData(){
 		return $this->encodedData;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getData(){
 		return $this->data;
-	}
-
-	private function encodeData(){
-		$this->addLine();
-		$this->addLine("----------------------REPORT THE DATA BELOW THIS LINE-----------------------");
-		$this->addLine();
-		$this->addLine("===BEGIN CRASH DUMP===");
-		$this->encodedData = zlib_encode(json_encode($this->data, JSON_UNESCAPED_SLASHES), ZLIB_ENCODING_DEFLATE, 9);
-		foreach(str_split(base64_encode($this->encodedData), 76) as $line){
-			$this->addLine($line);
-		}
-		$this->addLine("===END CRASH DUMP===");
 	}
 
 	private function pluginsData(){
@@ -193,7 +194,7 @@ class CrashDump{
 		$this->addLine("File: " . $error["file"]);
 		$this->addLine("Line: " . $error["line"]);
 		$this->addLine("Type: " . $error["type"]);
-		
+
 		if(strpos($error["file"], "src/pocketmine/") === false and strpos($error["file"], "src/raklib/") === false and file_exists($error["fullFile"])){
 			$this->addLine();
 			$this->addLine("THIS CRASH WAS CAUSED BY A PLUGIN");
@@ -235,7 +236,6 @@ class CrashDump{
 	}
 
 	private function generalData(){
-		$version = new VersionString();
 		$this->data["general"] = [];
 		$this->data["general"]["protocol"] = Info::CURRENT_PROTOCOL;
 		$this->data["general"]["api"] = \pocketmine\API_VERSION;
@@ -246,7 +246,7 @@ class CrashDump{
 		$this->data["general"]["zend"] = zend_version();
 		$this->data["general"]["php_os"] = PHP_OS;
 		$this->data["general"]["os"] = Utils::getOS();
-		$this->addLine("Genisys version: " . \pocketmine\GIT_COMMIT . " [Protocol " . Info::CURRENT_PROTOCOL . "; API " . API_VERSION . "]");
+		$this->addLine($this->server->getName(). " version: " . \pocketmine\GIT_COMMIT . " [Protocol " . Info::CURRENT_PROTOCOL . "; API " . API_VERSION . "]");
 		$this->addLine("uname -a: " . php_uname("a"));
 		$this->addLine("PHP version: " . phpversion());
 		$this->addLine("Zend version: " . zend_version());
@@ -254,13 +254,19 @@ class CrashDump{
 		$this->addLine();
 		$this->addLine("Server uptime: " . $this->server->getUptime());
 		$this->addLine("Number of loaded worlds: " . count($this->server->getLevels()));
-		$this->addLine("Players online: ".count($this->server->getOnlinePlayers())."/".$this->server->getMaxPlayers());
+		$this->addLine("Players online: " . count($this->server->getOnlinePlayers()) . "/" . $this->server->getMaxPlayers());
 	}
 
+	/**
+	 * @param string $line
+	 */
 	public function addLine($line = ""){
 		fwrite($this->fp, $line . PHP_EOL);
 	}
 
+	/**
+	 * @param $str
+	 */
 	public function add($str){
 		fwrite($this->fp, $str);
 	}

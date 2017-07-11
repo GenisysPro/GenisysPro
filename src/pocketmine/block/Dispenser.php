@@ -32,30 +32,59 @@ use pocketmine\Player;
 use pocketmine\tile\Dispenser as TileDispenser;
 use pocketmine\tile\Tile;
 
-class Dispenser extends Solid{
+class Dispenser extends Solid {
 
 	protected $id = self::DISPENSER;
 
+	/**
+	 * Dispenser constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
-	public function canBeActivated() : bool {
+	/**
+	 * @return bool
+	 */
+	public function canBeActivated() : bool{
 		return true;
 	}
 
-	public function getHardness() {
+	/**
+	 * @return float
+	 */
+	public function getHardness(){
 		return 3.5;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Dispenser";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$dispenser = null;
 		if($player instanceof Player){
@@ -63,8 +92,8 @@ class Dispenser extends Solid{
 			if(abs($pitch) >= 45){
 				if($pitch < 0) $f = 4;
 				else $f = 5;
-			} else $f = $player->getDirection();
-		} else $f = 0;
+			}else $f = $player->getDirection();
+		}else $f = 0;
 		$faces = [
 			3 => 3,
 			0 => 4,
@@ -100,6 +129,9 @@ class Dispenser extends Solid{
 		return true;
 	}
 
+	/**
+	 *
+	 */
 	public function activate(){
 		$tile = $this->getLevel()->getTile($this);
 		if($tile instanceof TileDispenser){
@@ -107,6 +139,12 @@ class Dispenser extends Solid{
 		}
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = null){
 		if($player instanceof Player){
 			$t = $this->getLevel()->getTile($this);
@@ -135,7 +173,12 @@ class Dispenser extends Solid{
 		return true;
 	}
 
-	public function getDrops(Item $item) : array {
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
+	public function getDrops(Item $item) : array{
 		return [
 			[$this->id, 0, 1],
 		];

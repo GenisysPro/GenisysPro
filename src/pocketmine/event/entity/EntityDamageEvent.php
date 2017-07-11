@@ -30,7 +30,7 @@ use pocketmine\item\Item;
 use pocketmine\Player;
 
 
-class EntityDamageEvent extends EntityEvent implements Cancellable{
+class EntityDamageEvent extends EntityEvent implements Cancellable {
 	public static $handlerList = null;
 
 	const MODIFIER_BASE = 0;
@@ -324,6 +324,9 @@ class EntityDamageEvent extends EntityEvent implements Cancellable{
 		}
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getThornsDamage(){
 		return $this->thornsDamage;
 	}

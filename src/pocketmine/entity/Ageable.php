@@ -22,6 +22,6 @@
 namespace pocketmine\entity;
 
 
-interface Ageable{
+interface Ageable {
 	public function isBaby();
 }

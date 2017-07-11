@@ -33,31 +33,51 @@ use pocketmine\Player;
 use pocketmine\tile\Chest as TileChest;
 use pocketmine\tile\Tile;
 
-class Chest extends Transparent{
+class Chest extends Transparent {
 
 	protected $id = self::CHEST;
 
+	/**
+	 * Chest constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
-	public function canBeActivated() : bool {
+	/**
+	 * @return bool
+	 */
+	public function canBeActivated() : bool{
 		return true;
 	}
 
-	public function getHardness() {
+	/**
+	 * @return float
+	 */
+	public function getHardness(){
 		return 2.5;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Chest";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_AXE;
 	}
 
-	protected function recalculateBoundingBox() {
+	/**
+	 * @return AxisAlignedBB
+	 */
+	protected function recalculateBoundingBox(){
 		return new AxisAlignedBB(
 			$this->x + 0.0625,
 			$this->y,
@@ -68,6 +88,18 @@ class Chest extends Transparent{
 		);
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$faces = [
 			0 => 4,
@@ -125,6 +157,11 @@ class Chest extends Transparent{
 		return true;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return bool
+	 */
 	public function onBreak(Item $item){
 		$t = $this->getLevel()->getTile($this);
 		if($t instanceof TileChest){
@@ -135,6 +172,12 @@ class Chest extends Transparent{
 		return true;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = null){
 		if($player instanceof Player){
 			$top = $this->getSide(1);
@@ -173,7 +216,12 @@ class Chest extends Transparent{
 		return true;
 	}
 
-	public function getDrops(Item $item) : array {
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
+	public function getDrops(Item $item) : array{
 		return [
 			[$this->id, 0, 1],
 		];

@@ -29,7 +29,12 @@ use pocketmine\level\Position;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
-class ChunkInfoCommand extends VanillaCommand{
+class ChunkInfoCommand extends VanillaCommand {
+	/**
+	 * ChunkInfoCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -39,6 +44,13 @@ class ChunkInfoCommand extends VanillaCommand{
 		$this->setPermission("pocketmine.command.chunkinfo");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $commandLabel
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $commandLabel, array $args){
 		if(!$this->testPermission($sender)){
 			return true;
@@ -69,7 +81,7 @@ class ChunkInfoCommand extends VanillaCommand{
 			$sender->sendMessage("Region X: $x Region Z: $z");
 		}elseif($args[4] == "regenerate"){
 			foreach($sender->getServer()->getOnlinePlayers() as $p){
-				if($p->getLevel() == $pos->getLevel()){
+				if($p->getLevel() === $pos->getLevel()){
 					$p->kick(TextFormat::AQUA . "A chunk of this chunk is regenerating, please re-login.", false);
 				}
 			}

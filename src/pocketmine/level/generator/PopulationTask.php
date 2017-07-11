@@ -28,7 +28,7 @@ use pocketmine\scheduler\AsyncTask;
 use pocketmine\Server;
 
 
-class PopulationTask extends AsyncTask{
+class PopulationTask extends AsyncTask {
 
 	public $state;
 	public $levelId;
@@ -44,6 +44,12 @@ class PopulationTask extends AsyncTask{
 	public $chunk7;
 	public $chunk8;
 
+	/**
+	 * PopulationTask constructor.
+	 *
+	 * @param Level $level
+	 * @param Chunk $chunk
+	 */
 	public function __construct(Level $level, Chunk $chunk){
 		$this->state = true;
 		$this->levelId = $level->getId();
@@ -145,6 +151,9 @@ class PopulationTask extends AsyncTask{
 		}
 	}
 
+	/**
+	 * @param Server $server
+	 */
 	public function onCompletion(Server $server){
 		$level = $server->getLevel($this->levelId);
 		if($level !== null){

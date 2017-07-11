@@ -22,6 +22,7 @@
 /**
  * Permission related classes
  */
+
 namespace pocketmine\permission;
 
 use pocketmine\Server;
@@ -29,7 +30,7 @@ use pocketmine\Server;
 /**
  * Represents a permission
  */
-class Permission{
+class Permission {
 	const DEFAULT_OP = "op";
 	const DEFAULT_NOT_OP = "notop";
 	const DEFAULT_TRUE = "true";

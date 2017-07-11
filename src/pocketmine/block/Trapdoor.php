@@ -27,31 +27,51 @@ use pocketmine\level\sound\DoorSound;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\Player;
 
-class Trapdoor extends Transparent{
+class Trapdoor extends Transparent {
 
 	protected $id = self::TRAPDOOR;
 
+	/**
+	 * Trapdoor constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Wooden Trapdoor";
 	}
 
-	public function getHardness() {
+	/**
+	 * @return int
+	 */
+	public function getHardness(){
 		return 3;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getResistance(){
 		return 15;
 	}
 
-	public function canBeActivated() : bool {
+	/**
+	 * @return bool
+	 */
+	public function canBeActivated() : bool{
 		return true;
 	}
 
-	protected function recalculateBoundingBox() {
+	/**
+	 * @return AxisAlignedBB
+	 */
+	protected function recalculateBoundingBox(){
 
 		$damage = $this->getDamage();
 
@@ -122,6 +142,18 @@ class Trapdoor extends Transparent{
 		return $bb;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$directions = [
 			0 => 1,
@@ -139,16 +171,30 @@ class Trapdoor extends Transparent{
 		return true;
 	}
 
-	public function getDrops(Item $item) : array {
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
+	public function getDrops(Item $item) : array{
 		return [
 			[$this->id, 0, 1],
 		];
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isOpened(){
 		return (($this->meta & 0b00001000) === 0);
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = \null){
 		$this->meta ^= 0b00001000;
 		$this->getLevel()->setBlock($this, $this, true);
@@ -156,6 +202,9 @@ class Trapdoor extends Transparent{
 		return true;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_AXE;
 	}

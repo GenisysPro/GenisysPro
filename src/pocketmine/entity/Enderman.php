@@ -24,7 +24,7 @@ namespace pocketmine\entity;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Enderman extends Monster{
+class Enderman extends Monster {
 	const NETWORK_ID = 38;
 
 	public $width = 0.3;
@@ -32,11 +32,17 @@ class Enderman extends Monster{
 	public $height = 1.8;
 
 	public $dropExp = [5, 5];
-	
+
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Enderman";
 	}
-	
+
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

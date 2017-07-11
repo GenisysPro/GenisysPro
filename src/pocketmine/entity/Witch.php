@@ -24,20 +24,26 @@ namespace pocketmine\entity;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Witch extends Monster{
+class Witch extends Monster {
 	const NETWORK_ID = 45;
-	
+
 	public $dropExp = [5, 5];
-	
+
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Witch";
 	}
-	
+
 	public function initEntity(){
 		$this->setMaxHealth(26);
 		parent::initEntity();
 	}
-	
+
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -54,7 +60,10 @@ class Witch extends Monster{
 		$player->dataPacket($pk);
 		parent::spawnTo($player);
 	}
-	
+
+	/**
+	 * @return array
+	 */
 	public function getDrops(){
 		//TODO
 		return [];

@@ -23,7 +23,7 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
-class CommandStepPacket extends DataPacket{
+class CommandStepPacket extends DataPacket {
 
 	const NETWORK_ID = Info::COMMAND_STEP_PACKET;
 
@@ -36,6 +36,9 @@ class CommandStepPacket extends DataPacket{
 	public $inputJson;
 	public $outputJson;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->command = $this->getString();
 		$this->overload = $this->getString();
@@ -45,10 +48,13 @@ class CommandStepPacket extends DataPacket{
 		$this->clientId = $this->getUnsignedVarInt(); //TODO: varint64
 		$this->inputJson = json_decode($this->getString());
 		$this->outputJson = $this->getString();
-		
+
 		$this->get(true);
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 
 	}

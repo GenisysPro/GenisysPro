@@ -38,11 +38,14 @@ class MapUtils {
 	public static $idConfig;
 	private static $cachedMaps = [];
 
-	public function __construct() {
+	/**
+	 * MapUtils constructor.
+	 */
+	public function __construct(){
 		$path = Server::getInstance()->getDataPath() . "maps";
 		@mkdir($path);
 		$filename = "idcounts.json";
-		self::$idConfig = new Config($path.'/'.$filename, Config::JSON, ["map" => 0]);
+		self::$idConfig = new Config($path . '/' . $filename, Config::JSON, ["map" => 0]);
 		self::$BaseMapColors = [
 			new Color(0, 0, 0, 0),
 			new Color(127, 178, 56),
@@ -84,22 +87,28 @@ class MapUtils {
 			//new 1.8 colors
 			new Color(126, 84, 48)];
 
-		for ($i = 0; $i < count(self::$BaseMapColors); ++$i) {
+		for($i = 0; $i < count(self::$BaseMapColors); ++$i){
 			/** @var Color $bc */
 			$bc = self::$BaseMapColors[$i];
-			self::$MapColors[$i * 4 + 0] = new Color((int)($bc->getR() * 180.0 / 255.0 + 0.5), (int)($bc->getG() * 180.0 / 255.0 + 0.5), (int)($bc->getB() * 180.0 / 255.0 + 0.5), $bc->getA());
-			self::$MapColors[$i * 4 + 1] = new Color((int)($bc->getR() * 220.0 / 255.0 + 0.5), (int)($bc->getG() * 220.0 / 255.0 + 0.5), (int)($bc->getB() * 220.0 / 255.0 + 0.5), $bc->getA());
+			self::$MapColors[$i * 4 + 0] = new Color((int) ($bc->getR() * 180.0 / 255.0 + 0.5), (int) ($bc->getG() * 180.0 / 255.0 + 0.5), (int) ($bc->getB() * 180.0 / 255.0 + 0.5), $bc->getA());
+			self::$MapColors[$i * 4 + 1] = new Color((int) ($bc->getR() * 220.0 / 255.0 + 0.5), (int) ($bc->getG() * 220.0 / 255.0 + 0.5), (int) ($bc->getB() * 220.0 / 255.0 + 0.5), $bc->getA());
 			self::$MapColors[$i * 4 + 2] = $bc;
-			self::$MapColors[$i * 4 + 3] = new Color((int)($bc->getR() * 135.0 / 255.0 + 0.5), (int)($bc->getG() * 135.0 / 255.0 + 0.5), (int)($bc->getB() * 135.0 / 255.0 + 0.5), $bc->getA());
+			self::$MapColors[$i * 4 + 3] = new Color((int) ($bc->getR() * 135.0 / 255.0 + 0.5), (int) ($bc->getG() * 135.0 / 255.0 + 0.5), (int) ($bc->getB() * 135.0 / 255.0 + 0.5), $bc->getA());
 		}
 	}
 
-	public function getMapColors() {//TODO: make static
+	/**
+	 * @return array
+	 */
+	public function getMapColors(){//TODO: make static
 		return self::$MapColors;
 	}
 
 
-	public static function getNewId() {
+	/**
+	 * @return bool|mixed
+	 */
+	public static function getNewId(){
 		$id = self::$idConfig->get("map", 0);
 		$id++;
 		self::$idConfig->set("map", $id);
@@ -107,10 +116,18 @@ class MapUtils {
 		return $id;
 	}
 
+	/**
+	 * @param Map $map
+	 */
 	public static function cacheMap(Map $map){//TODO: serialize?
 		self::$cachedMaps[$map->getMapId()] = $map;
 	}
 
+	/**
+	 * @param int $uuid
+	 *
+	 * @return int|mixed
+	 */
 	public static function getCachedMap(int $uuid){
 		return self::$cachedMaps[$uuid]??-1;
 	}
@@ -118,18 +135,20 @@ class MapUtils {
 	/**
 	 * Returns the closest map color to a Color
 	 * This will ignore alpha
+	 *
 	 * @param Color $color
+	 *
 	 * @return Color
 	 */
-	public function getClosestMapColor(Color $color) {
-		if ($color->getA() > 128) return self::$MapColors[0];
+	public function getClosestMapColor(Color $color){
+		if($color->getA() > 128) return self::$MapColors[0];
 
 		$index = 0;
 		$best = -1;
 
-		for ($i = 4; $i < count(self::$MapColors); $i++) {
+		for($i = 4; $i < count(self::$MapColors); $i++){
 			$distance = Color::getDistance($color, self::$MapColors[$i]);
-			if ($distance < $best || $best == -1) {
+			if($distance < $best || $best == -1){
 				$best = $distance;
 				$index = $i;
 			}
@@ -138,66 +157,82 @@ class MapUtils {
 		return self::$MapColors[$index];
 	}
 
-	public static function distanceHSV(array $hsv1, array $hsv2) {
+	/**
+	 * @param array $hsv1
+	 * @param array $hsv2
+	 *
+	 * @return mixed
+	 */
+	public static function distanceHSV(array $hsv1, array $hsv2){
 		return ($hsv1['v'] - $hsv2['v']) ** 2
 			+ ($hsv1['s'] * cos($hsv1['h']) - $hsv2['s'] * cos($hsv2['h'])) ** 2
 			+ ($hsv1['s'] * sin($hsv1['h']) - $hsv2['s'] * sin($hsv2['h'])) ** 2;
 	}
 
+	/**
+	 * @param Map $map
+	 *
+	 * @return bool
+	 */
 	public static function exportToPDF(Map $map){
-		if (!extension_loaded("gd")) {
+		if(!extension_loaded("gd")){
 			Server::getInstance()->getLogger()->error("Unable to find the gd extension, can't create PNG image from Map");
 			var_dump(get_loaded_extensions());
 			return false;
 		}
-		@mkdir(Server::getInstance()->getDataPath()."maps");
-		$filename = Server::getInstance()->getDataPath()."maps/map_".$map->getMapId().".png";
+		@mkdir(Server::getInstance()->getDataPath() . "maps");
+		$filename = Server::getInstance()->getDataPath() . "maps/map_" . $map->getMapId() . ".png";
 		$colors = $map->getColors();
 		$width = $map->getWidth();
 		$height = $map->getHeight();
 		$img = imagecreatetruecolor($width, $height);
 		#imagecolortransparent($img, imagecolorallocate($img, 0, 0, 0));
-		for ($y = 0; $y < $height; ++$y) {
-			for ($x = 0; $x < $width; ++$x) {
+		for($y = 0; $y < $height; ++$y){
+			for($x = 0; $x < $width; ++$x){
 				/** @var Color $color */
 				$color = $colors[$y][$x];
-				imagesetpixel($img, $x, $y, imagecolorallocate($img, $color->getR(),$color->getG(),$color->getB()));
+				imagesetpixel($img, $x, $y, imagecolorallocate($img, $color->getR(), $color->getG(), $color->getB()));
 			}
 		}
 		return imagepng($img, $filename);
 	}
 
-/*	public function exportToNBT(string $name) {TODO
-byte[] data;
-Tag.Compound t = new Tag.Compound(name,
-new Tag.Compound("data", new Tag.Short("width", width),
-new Tag.Short("height", height),
-new Tag.Byte("scale", scale),
-new Tag.Byte("dimension", (byte)dimension.getId()),
-new Tag.Int("xCenter", xcenter),
-new Tag.Int("zCenter", zcenter),
-new Tag.ByteArray("colors", data = new byte[width*height])));
-for(int i = 0; i < width; ++i)
-{
-for(int j = 0; j < height; ++j)
-{
-Color c = new Color(colors.getRGB(i, j));
-for(int k = 0; k < MapColors.length; ++k)
-{
-if(c.equals(MapColors[k]))
-{
-data[i + j*width] = (byte)k;
-break;
-}
-}
-}
-}
-return t;
-	}*/
+	/*	public function exportToNBT(string $name) {TODO
+	byte[] data;
+	Tag.Compound t = new Tag.Compound(name,
+	new Tag.Compound("data", new Tag.Short("width", width),
+	new Tag.Short("height", height),
+	new Tag.Byte("scale", scale),
+	new Tag.Byte("dimension", (byte)dimension.getId()),
+	new Tag.Int("xCenter", xcenter),
+	new Tag.Int("zCenter", zcenter),
+	new Tag.ByteArray("colors", data = new byte[width*height])));
+	for(int i = 0; i < width; ++i)
+	{
+	for(int j = 0; j < height; ++j)
+	{
+	Color c = new Color(colors.getRGB(i, j));
+	for(int k = 0; k < MapColors.length; ++k)
+	{
+	if(c.equals(MapColors[k]))
+	{
+	data[i + j*width] = (byte)k;
+	break;
+	}
+	}
+	}
+	}
+	return t;
+		}*/
 
-	public static function getBlockColor(Block $block) {
+	/**
+	 * @param Block $block
+	 *
+	 * @return Color
+	 */
+	public static function getBlockColor(Block $block){
 		$meta = $block->getDamage();
-		switch ($id = $block->getId()) {
+		switch($id = $block->getId()){
 			case Block::GRASS:
 			case Block::SLIME_BLOCK:
 				return new Color(127, 178, 56);

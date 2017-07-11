@@ -27,8 +27,13 @@ use pocketmine\network\protocol\Info;
 use pocketmine\plugin\Plugin;
 use pocketmine\utils\TextFormat;
 
-class VersionCommand extends VanillaCommand{
+class VersionCommand extends VanillaCommand {
 
+	/**
+	 * VersionCommand constructor.
+	 *
+	 * @param string $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -39,6 +44,13 @@ class VersionCommand extends VanillaCommand{
 		$this->setPermission("pocketmine.command.version");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return \true;
@@ -47,22 +59,22 @@ class VersionCommand extends VanillaCommand{
 		if(\count($args) === 0){
 			$sender->sendMessage(new TranslationContainer("pocketmine.server.info.extended.title"));
 			$sender->sendMessage(new TranslationContainer("pocketmine.server.info.extended1", [
-											$sender->getServer()->getName(), 
-											$sender->getServer()->getFormattedVersion("-"),
-											$sender->getServer()->getCodename()
+				$sender->getServer()->getName(),
+				$sender->getServer()->getFormattedVersion("-"),
+				$sender->getServer()->getCodename()
 			]));
 			$sender->sendMessage(new TranslationContainer("pocketmine.server.info.extended2", [
-											phpversion()
+				phpversion()
 			]));
 			$sender->sendMessage(new TranslationContainer("pocketmine.server.info.extended3", [
-											$sender->getServer()->getApiVersion()
-			
+				$sender->getServer()->getApiVersion()
+
 			]));
 			$sender->sendMessage(new TranslationContainer("pocketmine.server.info.extended4", [
-											$sender->getServer()->getVersion()											 
+				$sender->getServer()->getVersion()
 			]));
 			$sender->sendMessage(new TranslationContainer("pocketmine.server.info.extended5", [
-											Info::CURRENT_PROTOCOL
+				Info::CURRENT_PROTOCOL
 			]));
 		}else{
 			$pluginName = \implode(" ", $args);
@@ -91,6 +103,10 @@ class VersionCommand extends VanillaCommand{
 		return \true;
 	}
 
+	/**
+	 * @param Plugin        $plugin
+	 * @param CommandSender $sender
+	 */
 	private function describeToSender(Plugin $plugin, CommandSender $sender){
 		$desc = $plugin->getDescription();
 		$sender->sendMessage(TextFormat::DARK_GREEN . $desc->getName() . TextFormat::WHITE . " version " . TextFormat::DARK_GREEN . $desc->getVersion());

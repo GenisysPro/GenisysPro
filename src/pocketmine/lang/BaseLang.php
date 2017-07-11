@@ -24,7 +24,7 @@ namespace pocketmine\lang;
 use pocketmine\event\TextContainer;
 use pocketmine\event\TranslationContainer;
 
-class BaseLang{
+class BaseLang {
 
 	const FALLBACK_LANGUAGE = "eng";
 
@@ -33,6 +33,13 @@ class BaseLang{
 	protected $lang = [];
 	protected $fallbackLang = [];
 
+	/**
+	 * BaseLang constructor.
+	 *
+	 * @param        $lang
+	 * @param null   $path
+	 * @param string $fallback
+	 */
 	public function __construct($lang, $path = null, $fallback = self::FALLBACK_LANGUAGE){
 
 		$this->langName = strtolower($lang);
@@ -45,14 +52,24 @@ class BaseLang{
 		$this->loadLang($path . $fallback . ".ini", $this->fallbackLang);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return $this->get("language.name");
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getLang(){
 		return $this->langName;
 	}
 
+	/**
+	 * @param       $path
+	 * @param array $d
+	 */
 	protected function loadLang($path, array &$d){
 		if(file_exists($path) and strlen($content = file_get_contents($path)) > 0){
 			foreach(explode("\n", $content) as $line){
@@ -96,6 +113,11 @@ class BaseLang{
 		return str_replace("%0", "", $baseText); //fixes a client bug where %0 in translation will cause freeze
 	}
 
+	/**
+	 * @param TextContainer $c
+	 *
+	 * @return mixed|null|string
+	 */
 	public function translate(TextContainer $c){
 		if($c instanceof TranslationContainer){
 			$baseText = $this->internalGet($c->getText());
@@ -111,6 +133,11 @@ class BaseLang{
 		return $baseText;
 	}
 
+	/**
+	 * @param $id
+	 *
+	 * @return mixed|null
+	 */
 	public function internalGet($id){
 		if(isset($this->lang[$id])){
 			return $this->lang[$id];
@@ -121,6 +148,11 @@ class BaseLang{
 		return null;
 	}
 
+	/**
+	 * @param $id
+	 *
+	 * @return mixed
+	 */
 	public function get($id){
 		if(isset($this->lang[$id])){
 			return $this->lang[$id];
@@ -131,6 +163,12 @@ class BaseLang{
 		return $id;
 	}
 
+	/**
+	 * @param      $text
+	 * @param null $onlyPrefix
+	 *
+	 * @return string
+	 */
 	protected function parseTranslation($text, $onlyPrefix = null){
 		$newString = "";
 

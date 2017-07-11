@@ -26,10 +26,16 @@ use pocketmine\nbt\tag\ListTag as TagEnum;
 
 #include <rules/NBT.h>
 
-class ListTag extends NamedTag implements \ArrayAccess, \Countable{
+class ListTag extends NamedTag implements \ArrayAccess, \Countable {
 
 	private $tagType;
 
+	/**
+	 * ListTag constructor.
+	 *
+	 * @param string $name
+	 * @param array  $value
+	 */
 	public function __construct($name = "", $value = []){
 		$this->__name = $name;
 		foreach($value as $k => $v){
@@ -37,6 +43,9 @@ class ListTag extends NamedTag implements \ArrayAccess, \Countable{
 		}
 	}
 
+	/**
+	 * @return array
+	 */
 	public function &getValue(){
 		$value = [];
 		foreach($this as $k => $v){
@@ -48,6 +57,9 @@ class ListTag extends NamedTag implements \ArrayAccess, \Countable{
 		return $value;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getCount(){
 		$count = 0;
 		foreach($this as $tag){
@@ -59,10 +71,20 @@ class ListTag extends NamedTag implements \ArrayAccess, \Countable{
 		return $count;
 	}
 
+	/**
+	 * @param mixed $offset
+	 *
+	 * @return bool
+	 */
 	public function offsetExists($offset){
 		return isset($this->{$offset});
 	}
 
+	/**
+	 * @param mixed $offset
+	 *
+	 * @return null
+	 */
 	public function offsetGet($offset){
 		if(isset($this->{$offset}) and $this->{$offset} instanceof Tag){
 			if($this->{$offset} instanceof \ArrayAccess){
@@ -75,6 +97,10 @@ class ListTag extends NamedTag implements \ArrayAccess, \Countable{
 		return null;
 	}
 
+	/**
+	 * @param mixed $offset
+	 * @param mixed $value
+	 */
 	public function offsetSet($offset, $value){
 		if($value instanceof Tag){
 			$this->{$offset} = $value;
@@ -83,10 +109,18 @@ class ListTag extends NamedTag implements \ArrayAccess, \Countable{
 		}
 	}
 
+	/**
+	 * @param mixed $offset
+	 */
 	public function offsetUnset($offset){
 		unset($this->{$offset});
 	}
 
+	/**
+	 * @param int $mode
+	 *
+	 * @return int
+	 */
 	public function count($mode = COUNT_NORMAL){
 		for($i = 0; true; $i++){
 			if(!isset($this->{$i})){
@@ -102,18 +136,33 @@ class ListTag extends NamedTag implements \ArrayAccess, \Countable{
 		return $i;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getType(){
 		return NBT::TAG_List;
 	}
 
+	/**
+	 * @param $type
+	 */
 	public function setTagType($type){
 		$this->tagType = $type;
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function getTagType(){
 		return $this->tagType;
 	}
 
+	/**
+	 * @param NBT  $nbt
+	 * @param bool $network
+	 *
+	 * @return mixed|void
+	 */
 	public function read(NBT $nbt, bool $network = false){
 		$this->value = [];
 		$this->tagType = $nbt->getByte();
@@ -179,6 +228,12 @@ class ListTag extends NamedTag implements \ArrayAccess, \Countable{
 		}
 	}
 
+	/**
+	 * @param NBT  $nbt
+	 * @param bool $network
+	 *
+	 * @return bool
+	 */
 	public function write(NBT $nbt, bool $network = false){
 		if(!isset($this->tagType)){
 			$id = null;
@@ -211,6 +266,9 @@ class ListTag extends NamedTag implements \ArrayAccess, \Countable{
 		return true;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function __toString(){
 		$str = get_class($this) . "{\n";
 		foreach($this as $tag){

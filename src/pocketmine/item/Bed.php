@@ -23,7 +23,7 @@ namespace pocketmine\item;
 
 use pocketmine\block\Block;
 
-class Bed extends Item{
+class Bed extends Item {
 
 	const WHITE_BED = 0;
 	const ORANGE_BED = 1;
@@ -42,11 +42,20 @@ class Bed extends Item{
 	const RED_BED = 14;
 	const BLACK_BED = 15;
 
+	/**
+	 * Bed constructor.
+	 *
+	 * @param int $meta
+	 * @param int $count
+	 */
 	public function __construct($meta = self::WHITE_BED, $count = 1){
 		$this->block = Block::get(Item::BED_BLOCK, $meta);
 		parent::__construct(self::BED, $meta, $count, "Bed"); //TODO: Bed Names
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getMaxStackSize() : int{
 		return 1;
 	}

@@ -25,7 +25,7 @@ use LogLevel;
 use pocketmine\Thread;
 use pocketmine\Worker;
 
-class MainLogger extends \AttachableThreadedLogger{
+class MainLogger extends \AttachableThreadedLogger {
 	protected $logFile;
 	protected $logStream;
 	protected $shutdown;
@@ -33,7 +33,7 @@ class MainLogger extends \AttachableThreadedLogger{
 	private $logResource;
 	/** @var MainLogger */
 	public static $logger = null;
-	
+
 	private $consoleCallback;
 
 	/** Extra Settings */
@@ -43,11 +43,17 @@ class MainLogger extends \AttachableThreadedLogger{
 	public $shouldRecordMsg = false;
 	private $lastGet = 0;
 
+	/**
+	 * @param $b
+	 */
 	public function setSendMsg($b){
 		$this->shouldRecordMsg = $b;
 		$this->lastGet = time();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getMessages(){
 		$msg = $this->shouldSendMsg;
 		$this->shouldSendMsg = "";
@@ -80,34 +86,66 @@ class MainLogger extends \AttachableThreadedLogger{
 		return static::$logger;
 	}
 
+	/**
+	 * @param string $message
+	 * @param string $name
+	 */
 	public function emergency($message, $name = "EMERGENCY"){
 		$this->send($message, \LogLevel::EMERGENCY, $name, TextFormat::RED);
 	}
 
+	/**
+	 * @param string $message
+	 * @param string $name
+	 */
 	public function alert($message, $name = "ALERT"){
 		$this->send($message, \LogLevel::ALERT, $name, TextFormat::RED);
 	}
 
+	/**
+	 * @param string $message
+	 * @param string $name
+	 */
 	public function critical($message, $name = "CRITICAL"){
 		$this->send($message, \LogLevel::CRITICAL, $name, TextFormat::RED);
 	}
 
+	/**
+	 * @param string $message
+	 * @param string $name
+	 */
 	public function error($message, $name = "ERROR"){
 		$this->send($message, \LogLevel::ERROR, $name, TextFormat::DARK_RED);
 	}
 
+	/**
+	 * @param string $message
+	 * @param string $name
+	 */
 	public function warning($message, $name = "WARNING"){
 		$this->send($message, \LogLevel::WARNING, $name, TextFormat::YELLOW);
 	}
 
+	/**
+	 * @param string $message
+	 * @param string $name
+	 */
 	public function notice($message, $name = "NOTICE"){
 		$this->send(TextFormat::BOLD . $message, \LogLevel::NOTICE, $name, TextFormat::AQUA);
 	}
 
+	/**
+	 * @param string $message
+	 * @param string $name
+	 */
 	public function info($message, $name = "INFO"){
 		$this->send($message, \LogLevel::INFO, $name, TextFormat::WHITE);
 	}
 
+	/**
+	 * @param string $message
+	 * @param string $name
+	 */
 	public function debug($message, $name = "DEBUG"){
 		if($this->logDebug === false){
 			return;
@@ -122,6 +160,10 @@ class MainLogger extends \AttachableThreadedLogger{
 		$this->logDebug = (bool) $logDebug;
 	}
 
+	/**
+	 * @param \Throwable $e
+	 * @param null       $trace
+	 */
 	public function logException(\Throwable $e, $trace = null){
 		if($trace === null){
 			$trace = $e->getTrace();
@@ -165,6 +207,10 @@ class MainLogger extends \AttachableThreadedLogger{
 		}
 	}
 
+	/**
+	 * @param mixed  $level
+	 * @param string $message
+	 */
 	public function log($level, $message){
 		switch($level){
 			case LogLevel::EMERGENCY:
@@ -198,6 +244,12 @@ class MainLogger extends \AttachableThreadedLogger{
 		$this->shutdown = true;
 	}
 
+	/**
+	 * @param $message
+	 * @param $level
+	 * @param $prefix
+	 * @param $color
+	 */
 	protected function send($message, $level, $prefix, $color){
 		$now = time();
 
@@ -218,9 +270,9 @@ class MainLogger extends \AttachableThreadedLogger{
 			}
 		}
 
-    $message = TextFormat::toANSI(TextFormat::AQUA . "[" . date("H:i:s", $now) . "] " . TextFormat::RESET . $color . "[" . $threadName . "/" . $prefix . "]:" . " " . $message . TextFormat::RESET);
-	//$message = TextFormat::toANSI(TextFormat::AQUA . "[GenisysPro]->[" . date("H:i:s", $now) . "] " . TextFormat::RESET . $color . "[$prefix]:" . " " . $message . TextFormat::RESET);
-	//$message = TextFormat::toANSI(TextFormat::AQUA . "[" . date("H:i:s") . "] ". TextFormat::RESET . $color ."<".$prefix . ">" . " " . $message . TextFormat::RESET);
+		$message = TextFormat::toANSI(TextFormat::AQUA . "[" . date("H:i:s", $now) . "] " . TextFormat::RESET . $color . "[" . $threadName . "/" . $prefix . "]:" . " " . $message . TextFormat::RESET);
+		//$message = TextFormat::toANSI(TextFormat::AQUA . "[GenisysPro]->[" . date("H:i:s", $now) . "] " . TextFormat::RESET . $color . "[$prefix]:" . " " . $message . TextFormat::RESET);
+		//$message = TextFormat::toANSI(TextFormat::AQUA . "[" . date("H:i:s") . "] ". TextFormat::RESET . $color ."<".$prefix . ">" . " " . $message . TextFormat::RESET);
 		$cleanMessage = TextFormat::clean($message);
 
 		if(!Terminal::hasFormattingCodes()){
@@ -304,10 +356,16 @@ class MainLogger extends \AttachableThreadedLogger{
 		}
 	}
 
+	/**
+	 * @param $write
+	 */
 	public function setWrite($write){
 		$this->write = $write;
 	}
-	
+
+	/**
+	 * @param $callback
+	 */
 	public function setConsoleCallback($callback){
 		$this->consoleCallback = $callback;
 	}

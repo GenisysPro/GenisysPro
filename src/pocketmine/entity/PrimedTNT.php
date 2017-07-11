@@ -31,7 +31,7 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class PrimedTNT extends Entity implements Explosive{
+class PrimedTNT extends Entity implements Explosive {
 	const NETWORK_ID = 65;
 
 	public $width = 0.98;
@@ -47,12 +47,25 @@ class PrimedTNT extends Entity implements Explosive{
 
 	private $dropItem = true;
 
+	/**
+	 * PrimedTNT constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 * @param bool        $dropItem
+	 */
 	public function __construct(Level $level, CompoundTag $nbt, bool $dropItem = true){
 		parent::__construct($level, $nbt);
 		$this->dropItem = $dropItem;
 	}
 
 
+	/**
+	 * @param float             $damage
+	 * @param EntityDamageEvent $source
+	 *
+	 * @return bool|void
+	 */
 	public function attack($damage, EntityDamageEvent $source){
 		if($source->getCause() === EntityDamageEvent::CAUSE_VOID){
 			parent::attack($damage, $source);
@@ -73,6 +86,11 @@ class PrimedTNT extends Entity implements Explosive{
 	}
 
 
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return bool
+	 */
 	public function canCollideWith(Entity $entity){
 		return false;
 	}
@@ -82,6 +100,11 @@ class PrimedTNT extends Entity implements Explosive{
 		$this->namedtag->Fuse = new ByteTag("Fuse", $this->fuse);
 	}
 
+	/**
+	 * @param $currentTick
+	 *
+	 * @return bool
+	 */
 	public function onUpdate($currentTick){
 
 		if($this->closed){
@@ -148,6 +171,9 @@ class PrimedTNT extends Entity implements Explosive{
 		}
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->type = PrimedTNT::NETWORK_ID;

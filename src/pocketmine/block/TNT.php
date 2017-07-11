@@ -33,34 +33,55 @@ use pocketmine\nbt\tag\ListTag;
 use pocketmine\Player;
 use pocketmine\utils\Random;
 
-class TNT extends Solid implements ElectricalAppliance{
+class TNT extends Solid implements ElectricalAppliance {
 
 	protected $id = self::TNT;
 
+	/**
+	 * TNT constructor.
+	 */
 	public function __construct(){
 
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "TNT";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHardness(){
 		return 0;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getBurnChance() : int{
 		return 15;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getBurnAbility() : int{
 		return 100;
 	}
 
+	/**
+	 * @param Player|null $player
+	 */
 	public function prime(Player $player = null){
 		$this->meta = 1;
 		if($player != null and $player->isCreative()){
@@ -91,6 +112,11 @@ class TNT extends Solid implements ElectricalAppliance{
 		$this->level->addSound(new TNTPrimeSound($this));
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return bool|int
+	 */
 	public function onUpdate($type){
 		if($type == Level::BLOCK_UPDATE_SCHEDULED){
 			$sides = [0, 1, 2, 3, 4, 5];
@@ -107,12 +133,30 @@ class TNT extends Solid implements ElectricalAppliance{
 		return false;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool|void
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$this->getLevel()->setBlock($this, $this, true, false);
 
 		$this->getLevel()->scheduleUpdate($this, 40);
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = null){
 		if($item->getId() === Item::FLINT_STEEL){
 			$this->prime($player);

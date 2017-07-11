@@ -29,38 +29,58 @@ use pocketmine\level\Level;
 use pocketmine\Player;
 use pocketmine\Server;
 
-class Leaves extends Transparent{
+class Leaves extends Transparent {
 	const OAK = 0;
 	const SPRUCE = 1;
 	const BIRCH = 2;
 	const JUNGLE = 3;
 	const ACACIA = 0;
 	const DARK_OAK = 1;
-	
+
 	const WOOD_TYPE = self::WOOD;
 
 	protected $id = self::LEAVES;
 
+	/**
+	 * Leaves constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
-	public function getHardness() {
+	/**
+	 * @return float
+	 */
+	public function getHardness(){
 		return 0.2;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_SHEARS;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getBurnChance() : int{
 		return 30;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getBurnAbility() : int{
 		return 60;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		static $names = [
 			self::OAK => "Oak Leaves",
@@ -71,6 +91,15 @@ class Leaves extends Transparent{
 		return $names[$this->meta & 0x03];
 	}
 
+	/**
+	 * @param Block $pos
+	 * @param array $visited
+	 * @param       $distance
+	 * @param       $check
+	 * @param null  $fromSide
+	 *
+	 * @return bool
+	 */
 	private function findLog(Block $pos, array $visited, $distance, &$check, $fromSide = null){
 		++$check;
 		$index = $pos->x . "." . $pos->y . "." . $pos->z;
@@ -136,6 +165,11 @@ class Leaves extends Transparent{
 		return false;
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return bool|int
+	 */
 	public function onUpdate($type){
 		if($type === Level::BLOCK_UPDATE_NORMAL){
 			if(($this->meta & 0b00001100) === 0){
@@ -163,23 +197,40 @@ class Leaves extends Transparent{
 		return false;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool|void
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$this->meta |= 0x04;
 		$this->getLevel()->setBlock($this, $this, true);
 	}
 
-	public function getDrops(Item $item) : array {
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
+	public function getDrops(Item $item) : array{
 		$drops = [];
 		if($item->isShears() or $item->getEnchantmentLevel(Enchantment::TYPE_MINING_SILK_TOUCH) > 0){
 			$drops[] = [$this->id, $this->meta & 0x03, 1];
 		}else{
 			$fortunel = $item->getEnchantmentLevel(Enchantment::TYPE_MINING_FORTUNE);
 			$fortunel = min(3, $fortunel);
-			$rates = [20,16,12,10];
+			$rates = [20, 16, 12, 10];
 			if(mt_rand(1, $rates[$fortunel]) === 1){ //Saplings
 				$drops[] = [Item::SAPLING, $this->meta & 0x03, 1];
 			}
-			$rates = [200,180,160,120];
+			$rates = [200, 180, 160, 120];
 			if(($this->meta & 0x03) === self::OAK and mt_rand(1, $rates[$fortunel]) === 1){ //Apples
 				$drops[] = [Item::APPLE, 0, 1];
 			}

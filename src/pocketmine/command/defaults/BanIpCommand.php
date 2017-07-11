@@ -36,8 +36,13 @@ use pocketmine\event\TranslationContainer;
 use pocketmine\Player;
 
 
-class BanIpCommand extends VanillaCommand{
+class BanIpCommand extends VanillaCommand {
 
+	/**
+	 * BanIpCommand constructor.
+	 *
+	 * @param string $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -47,6 +52,13 @@ class BanIpCommand extends VanillaCommand{
 		$this->setPermission("pocketmine.command.ban.ip");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;
@@ -80,6 +92,11 @@ class BanIpCommand extends VanillaCommand{
 		return true;
 	}
 
+	/**
+	 * @param               $ip
+	 * @param CommandSender $sender
+	 * @param               $reason
+	 */
 	private function processIPBan($ip, CommandSender $sender, $reason){
 		$sender->getServer()->getIPBans()->addBan($ip, $reason, null, $sender->getName());
 

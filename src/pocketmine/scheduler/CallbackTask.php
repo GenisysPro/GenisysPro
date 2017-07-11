@@ -27,12 +27,12 @@ namespace pocketmine\scheduler;
  *
  * If you want to do a task in a Plugin, consider extending PluginTask to your needs
  *
- * @deprecated 
+ * @deprecated
  * Do NOT use this anymore, it was deprecated a long time ago at PocketMine
  * and will be removed at some stage in the future.
  */
 
-class CallbackTask extends Task{
+class CallbackTask extends Task {
 
 	/** @var callable */
 	protected $callable;
@@ -57,6 +57,9 @@ class CallbackTask extends Task{
 		return $this->callable;
 	}
 
+	/**
+	 * @param $currentTicks
+	 */
 	public function onRun($currentTicks){
 		call_user_func_array($this->callable, $this->args);
 	}

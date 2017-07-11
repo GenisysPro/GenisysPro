@@ -28,8 +28,13 @@ use pocketmine\level\weather\Weather;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
-class WeatherCommand extends VanillaCommand{
+class WeatherCommand extends VanillaCommand {
 
+	/**
+	 * WeatherCommand constructor.
+	 *
+	 * @param string $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -39,6 +44,13 @@ class WeatherCommand extends VanillaCommand{
 		$this->setPermission("pocketmine.command.weather");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;

@@ -25,8 +25,13 @@ use pocketmine\command\CommandSender;
 use pocketmine\utils\TextFormat;
 
 
-class GarbageCollectorCommand extends VanillaCommand{
+class GarbageCollectorCommand extends VanillaCommand {
 
+	/**
+	 * GarbageCollectorCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -36,6 +41,13 @@ class GarbageCollectorCommand extends VanillaCommand{
 		$this->setPermission("pocketmine.command.gc");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;
@@ -63,7 +75,7 @@ class GarbageCollectorCommand extends VanillaCommand{
 		$sender->sendMessage(TextFormat::GOLD . "%pocketmine.command.gc.entities" . TextFormat::RED . \number_format($entitiesCollected));
 		$sender->sendMessage(TextFormat::GOLD . "%pocketmine.command.gc.tiles" . TextFormat::RED . \number_format($tilesCollected));
 		$sender->sendMessage(TextFormat::GOLD . "%pocketmine.command.gc.cycles" . TextFormat::RED . \number_format($cyclesCollected));
-		$sender->sendMessage(TextFormat::GOLD . "%pocketmine.command.gc.memory" . TextFormat::RED . \number_format(\round((($memory - \memory_get_usage()) / 1024) / 1024, 2))." MB");
+		$sender->sendMessage(TextFormat::GOLD . "%pocketmine.command.gc.memory" . TextFormat::RED . \number_format(\round((($memory - \memory_get_usage()) / 1024) / 1024, 2)) . " MB");
 		return true;
 	}
 }

@@ -24,37 +24,62 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class WoodStairs extends Stair{
+class WoodStairs extends Stair {
 
 	protected $id = self::WOOD_STAIRS;
 
+	/**
+	 * WoodStairs constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Wood Stairs";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_AXE;
 	}
 
-	public function getDrops(Item $item) : array {
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
+	public function getDrops(Item $item) : array{
 		return [
 			[$this->id, 0, 1],
 		];
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getBurnChance() : int{
 		return 5;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getBurnAbility() : int{
 		return 20;
 	}
 
-	public function getHardness() {
+	/**
+	 * @return int
+	 */
+	public function getHardness(){
 		return 2;
 	}
 }

@@ -25,13 +25,16 @@
 namespace pocketmine\command\defaults;
 
 use pocketmine\command\CommandSender;
-use pocketmine\plugin\Plugin;
 use pocketmine\Server;
-use pocketmine\utils\TextFormat;
 use pocketmine\network\protocol\Info;
 
-class MakeServerCommand extends VanillaCommand{
+class MakeServerCommand extends VanillaCommand {
 
+	/**
+	 * MakeServerCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -40,14 +43,21 @@ class MakeServerCommand extends VanillaCommand{
 		);
 		$this->setPermission("pocketmine.command.makeserver");
 	}
-	
+
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $commandLabel
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $commandLabel, array $args){
 		if(!$this->testPermission($sender)){
 			return false;
 		}
 
 		$server = $sender->getServer();
-		$pharPath = Server::getInstance()->getPluginPath().DIRECTORY_SEPARATOR . "GenisysPro" . DIRECTORY_SEPARATOR . $server->getName()."_".$server->getPocketMineVersion()."_".time().".phar";
+		$pharPath = Server::getInstance()->getPluginPath() . DIRECTORY_SEPARATOR . "GenisysPro" . DIRECTORY_SEPARATOR . $server->getName() . "_" . $server->getPocketMineVersion() . "_" . time() . ".phar";
 		if(file_exists($pharPath)){
 			$sender->sendMessage("Phar file already exists, overwriting...");
 			@unlink($pharPath);
@@ -83,7 +93,7 @@ class MakeServerCommand extends VanillaCommand{
 		}
 		$phar->stopBuffering();
 
-	 $license = "
+		$license = "
   _____            _               _____           
  / ____|          (_)             |  __ \          
 | |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
@@ -94,7 +104,7 @@ class MakeServerCommand extends VanillaCommand{
                         |___/         
  ";
 		$sender->sendMessage($license);
-		$sender->sendMessage($server->getName() . " " . $server->getPocketMineVersion() . " Phar file has been created on ".$pharPath);
+		$sender->sendMessage($server->getName() . " " . $server->getPocketMineVersion() . " Phar file has been created on " . $pharPath);
 
 		return true;
 	}

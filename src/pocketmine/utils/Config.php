@@ -20,6 +20,7 @@
 */
 
 namespace pocketmine\utils;
+
 use pocketmine\scheduler\FileWriteTask;
 use pocketmine\Server;
 
@@ -27,7 +28,7 @@ use pocketmine\Server;
 /**
  * Config Class for simple config manipulation of multiple formats.
  */
-class Config{
+class Config {
 	const DETECT = -1; //Detect by file extension
 	const PROPERTIES = 0; // .properties
 	const CNF = Config::PROPERTIES; // .cnf
@@ -327,7 +328,7 @@ class Config{
 		foreach($this->nestedCache as $nestedKey => $nvalue){
 			if(substr($nestedKey, 0, strlen($k) + 1) === ($k . ".")){
 				unset($this->nestedCache[$nestedKey]);
-  			}
+			}
 		}
 	}
 

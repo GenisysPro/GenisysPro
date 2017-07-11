@@ -21,7 +21,7 @@
 
 namespace pocketmine\utils;
 
-abstract class Terminal{
+abstract class Terminal {
 	public static $FORMAT_BOLD = "";
 	public static $FORMAT_OBFUSCATED = "";
 	public static $FORMAT_ITALIC = "";
@@ -49,6 +49,9 @@ abstract class Terminal{
 
 	private static $formattingCodes = null;
 
+	/**
+	 * @return bool|null
+	 */
 	public static function hasFormattingCodes(){
 		if(self::$formattingCodes === null){
 			$opts = getopt("", ["enable-ansi", "disable-ansi"]);

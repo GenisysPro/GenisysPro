@@ -24,27 +24,44 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class Clay extends Solid{
+class Clay extends Solid {
 
 	protected $id = self::CLAY_BLOCK;
 
+	/**
+	 * Clay constructor.
+	 */
 	public function __construct(){
 
 	}
 
-	public function getHardness() {
+	/**
+	 * @return float
+	 */
+	public function getHardness(){
 		return 0.6;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_SHOVEL;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Clay Block";
 	}
 
-	public function getDrops(Item $item) : array {
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
+	public function getDrops(Item $item) : array{
 		return [
 			[Item::CLAY, 0, 4],
 		];

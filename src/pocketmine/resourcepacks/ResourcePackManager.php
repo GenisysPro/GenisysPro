@@ -34,7 +34,7 @@ namespace pocketmine\resourcepacks;
 use pocketmine\Server;
 use pocketmine\utils\Config;
 
-class ResourcePackManager{
+class ResourcePackManager {
 
 	/** @var Server */
 	private $server;
@@ -54,6 +54,12 @@ class ResourcePackManager{
 	/** @var ResourcePack[] */
 	private $uuidList = [];
 
+	/**
+	 * ResourcePackManager constructor.
+	 *
+	 * @param Server $server
+	 * @param string $path
+	 */
 	public function __construct(Server $server, string $path){
 		$this->server = $server;
 		$this->path = $path;

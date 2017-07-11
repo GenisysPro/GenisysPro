@@ -21,7 +21,7 @@
 
 namespace pocketmine\network\protocol;
 
-class AddPlayerPacket extends DataPacket{
+class AddPlayerPacket extends DataPacket {
 
 	const NETWORK_ID = Info::ADD_PLAYER_PACKET;
 
@@ -40,10 +40,16 @@ class AddPlayerPacket extends DataPacket{
 	public $item;
 	public $metadata = [];
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putUUID($this->uuid);

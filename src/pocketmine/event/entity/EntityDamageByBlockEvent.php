@@ -24,7 +24,7 @@ namespace pocketmine\event\entity;
 use pocketmine\block\Block;
 use pocketmine\entity\Entity;
 
-class EntityDamageByBlockEvent extends EntityDamageEvent{
+class EntityDamageByBlockEvent extends EntityDamageEvent {
 
 	/** @var Block */
 	private $damager;

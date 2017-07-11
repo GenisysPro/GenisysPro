@@ -22,6 +22,7 @@
 /**
  * Command handling related classes
  */
+
 namespace pocketmine\command;
 
 use pocketmine\event\TextContainer;
@@ -31,7 +32,7 @@ use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
 
-abstract class Command{
+abstract class Command {
 	/** @var \stdClass */
 	private static $defaultDataTemplate = null;
 
@@ -118,7 +119,10 @@ abstract class Command{
 		return $customData;
 	}
 
-	public function getOverloads(): \stdClass{
+	/**
+	 * @return \stdClass
+	 */
+	public function getOverloads() : \stdClass{
 		return $this->commandData->overloads;
 	}
 
@@ -144,7 +148,7 @@ abstract class Command{
 	public function getPermission(){
 		return $this->commandData->pocketminePermission ?? null;
 	}
-	
+
 
 	/**
 	 * @param string|null $permission
@@ -202,6 +206,11 @@ abstract class Command{
 		return $this->label;
 	}
 
+	/**
+	 * @param $name
+	 *
+	 * @return bool
+	 */
 	public function setLabel($name){
 		$this->nextLabel = $name;
 		if(!$this->isRegistered()){
@@ -323,6 +332,9 @@ abstract class Command{
 		$this->usageMessage = $usage;
 	}
 
+	/**
+	 * @return \stdClass
+	 */
 	public static final function generateDefaultData() : \stdClass{
 		if(self::$defaultDataTemplate === null){
 			self::$defaultDataTemplate = json_decode(file_get_contents(Server::getInstance()->getFilePath() . "src/pocketmine/resources/command_default.json"));
@@ -338,7 +350,7 @@ abstract class Command{
 	public static function broadcastCommandMessage(CommandSender $source, $message, $sendToSource = true){
 		if($message instanceof TextContainer){
 			$m = clone $message;
-			$result = "[".$source->getName().": ".($source->getServer()->getLanguage()->get($m->getText()) !== $m->getText() ? "%" : "") . $m->getText() ."]";
+			$result = "[" . $source->getName() . ": " . ($source->getServer()->getLanguage()->get($m->getText()) !== $m->getText() ? "%" : "") . $m->getText() . "]";
 
 			$users = $source->getServer()->getPluginManager()->getPermissionSubscriptions(Server::BROADCAST_CHANNEL_ADMINISTRATIVE);
 			$colored = TextFormat::GRAY . TextFormat::ITALIC . $result;

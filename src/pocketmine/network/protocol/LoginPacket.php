@@ -27,7 +27,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class LoginPacket extends DataPacket{
+class LoginPacket extends DataPacket {
 	const NETWORK_ID = Info::LOGIN_PACKET;
 
 	const MOJANG_PUBKEY = "MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE8ELkixyLcwlZryUQcu1TvPOmI2B7vX83ndnWRUaXm74wFfa5f/lwQNTfrLVHa2PmenpGI6JhIMUJaWZrjmMj90NoKNFSNBuKdm8rYiXsfaz3K36x/1U26HpG0ZxK/V1V";
@@ -51,6 +51,9 @@ class LoginPacket extends DataPacket{
 	public $deviceModel;
 	public $deviceOS;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->protocol = $this->getInt();
 		if(!in_array($this->protocol, Info::ACCEPTED_PROTOCOLS)){
@@ -120,10 +123,19 @@ class LoginPacket extends DataPacket{
 		}
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 
 	}
 
+	/**
+	 * @param $token
+	 * @param $key
+	 *
+	 * @return array
+	 */
 	public function decodeToken($token, $key){
 		$tokens = explode(".", $token);
 		list($headB64, $payloadB64, $sigB64) = $tokens;
@@ -131,9 +143,11 @@ class LoginPacket extends DataPacket{
 		if($key !== null and extension_loaded("openssl")){
 			$sig = base64_decode(strtr($sigB64, '-_', '+/'), true);
 			$rawLen = 48; // ES384
-			for($i = $rawLen; $i > 0 and $sig[$rawLen - $i] == chr(0); $i--) {}
+			for($i = $rawLen; $i > 0 and $sig[$rawLen - $i] == chr(0); $i--){
+			}
 			$j = $i + (ord($sig[$rawLen - $i]) >= 128 ? 1 : 0);
-			for($k = $rawLen; $k > 0 and $sig[2 * $rawLen - $k] == chr(0); $k--) {}
+			for($k = $rawLen; $k > 0 and $sig[2 * $rawLen - $k] == chr(0); $k--){
+			}
 			$l = $k + (ord($sig[2 * $rawLen - $k]) >= 128 ? 1 : 0);
 			$len = 2 + $j + 2 + $l;
 			$derSig = chr(48);
@@ -152,7 +166,7 @@ class LoginPacket extends DataPacket{
 			$verified = false;
 		}
 
-		return array($verified, json_decode(base64_decode($payloadB64), true));
+		return [$verified, json_decode(base64_decode($payloadB64), true)];
 	}
 
 }

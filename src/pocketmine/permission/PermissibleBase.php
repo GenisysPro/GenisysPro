@@ -26,7 +26,7 @@ use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginException;
 use pocketmine\Server;
 
-class PermissibleBase implements Permissible{
+class PermissibleBase implements Permissible {
 	/** @var ServerOperator */
 	private $opable = null;
 

@@ -33,17 +33,23 @@ namespace pocketmine;
 /**
  * This class must be extended by all custom threading classes
  */
-abstract class Worker extends \Worker{
+abstract class Worker extends \Worker {
 
 	/** @var \ClassLoader */
 	protected $classLoader;
-	
+
 	protected $isKilled = false;
 
+	/**
+	 * @return \ClassLoader
+	 */
 	public function getClassLoader(){
 		return $this->classLoader;
 	}
 
+	/**
+	 * @param \ClassLoader|null $loader
+	 */
 	public function setClassLoader(\ClassLoader $loader = null){
 		if($loader === null){
 			$loader = Server::getInstance()->getLoader();
@@ -61,6 +67,11 @@ abstract class Worker extends \Worker{
 		}
 	}
 
+	/**
+	 * @param int $options
+	 *
+	 * @return bool
+	 */
 	public function start(int $options = PTHREADS_INHERIT_ALL){
 		ThreadManager::getInstance()->add($this);
 
@@ -81,7 +92,7 @@ abstract class Worker extends \Worker{
 		$this->isKilled = true;
 
 		$this->notify();
-		
+
 		if($this->isRunning()){
 			$this->shutdown();
 			$this->notify();
@@ -95,6 +106,9 @@ abstract class Worker extends \Worker{
 		ThreadManager::getInstance()->remove($this);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getThreadName(){
 		return (new \ReflectionClass($this))->getShortName();
 	}

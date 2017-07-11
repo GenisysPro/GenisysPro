@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class UpdateBlockPacket extends DataPacket{
+class UpdateBlockPacket extends DataPacket {
 
 	const NETWORK_ID = Info::UPDATE_BLOCK_PACKET;
 
@@ -44,10 +44,16 @@ class UpdateBlockPacket extends DataPacket{
 	public $blockData;
 	public $flags;
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putBlockCoords($this->x, $this->y, $this->z);

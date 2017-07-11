@@ -27,7 +27,7 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\utils\Color;
 
-abstract class Armor extends Item{
+abstract class Armor extends Item {
 	const TIER_LEATHER = 1;
 	const TIER_GOLD = 2;
 	const TIER_CHAIN = 3;
@@ -39,10 +39,16 @@ abstract class Armor extends Item{
 	const TYPE_LEGGINGS = 2;
 	const TYPE_BOOTS = 3;
 
-	public function getMaxStackSize() : int {
+	/**
+	 * @return int
+	 */
+	public function getMaxStackSize() : int{
 		return 1;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isArmor(){
 		return true;
 	}
@@ -50,7 +56,7 @@ abstract class Armor extends Item{
 	/**
 	 *
 	 * @param Item $object
-	 * @param int $cost
+	 * @param int  $cost
 	 *
 	 * @return bool
 	 */
@@ -75,11 +81,17 @@ abstract class Armor extends Item{
 		return true;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isUnbreakable(){
 		$tag = $this->getNamedTagEntry("Unbreakable");
 		return $tag !== null and $tag->getValue() > 0;
 	}
 
+	/**
+	 * @param Color $color
+	 */
 	public function setCustomColor(Color $color){
 		if(($hasTag = $this->hasCompoundTag())){
 			$tag = $this->getNamedTag();
@@ -90,6 +102,9 @@ abstract class Armor extends Item{
 		$this->setCompoundTag($tag);
 	}
 
+	/**
+	 * @return mixed|null
+	 */
 	public function getCustomColor(){
 		if(!$this->hasCompoundTag()) return null;
 		$tag = $this->getNamedTag();
@@ -108,34 +123,58 @@ abstract class Armor extends Item{
 		$this->setCompoundTag($tag);
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function getArmorTier(){
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function getArmorType(){
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function getMaxDurability(){
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function getArmorValue(){
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isHelmet(){
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isChestplate(){
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isLeggings(){
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isBoots(){
 		return false;
 	}

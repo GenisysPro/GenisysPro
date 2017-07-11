@@ -23,7 +23,7 @@ namespace pocketmine\tile;
 
 use pocketmine\item\Item;
 
-interface Container{
+interface Container {
 
 	/**
 	 * @param int $index

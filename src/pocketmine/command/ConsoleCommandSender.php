@@ -28,10 +28,13 @@ use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 use pocketmine\utils\MainLogger;
 
-class ConsoleCommandSender implements CommandSender{
+class ConsoleCommandSender implements CommandSender {
 
 	private $perm;
 
+	/**
+	 * ConsoleCommandSender constructor.
+	 */
 	public function __construct(){
 		$this->perm = new PermissibleBase($this);
 	}

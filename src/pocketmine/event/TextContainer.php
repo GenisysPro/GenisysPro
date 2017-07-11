@@ -21,15 +21,23 @@
 
 namespace pocketmine\event;
 
-class TextContainer{
+class TextContainer {
 
 	/** @var string $text */
 	protected $text;
 
+	/**
+	 * TextContainer constructor.
+	 *
+	 * @param $text
+	 */
 	public function __construct($text){
 		$this->text = $text;
 	}
 
+	/**
+	 * @param $text
+	 */
 	public function setText($text){
 		$this->text = $text;
 	}

@@ -27,16 +27,26 @@ use pocketmine\level\sound\ButtonClickSound;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 
-class WoodenButton extends RedstoneSource{
+class WoodenButton extends RedstoneSource {
 	protected $id = self::WOODEN_BUTTON;
 
+	/**
+	 * WoodenButton constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return bool|int
+	 */
 	public function onUpdate($type){
 		if($type == Level::BLOCK_UPDATE_SCHEDULED){
-			if($this->isActivated()) {
+			if($this->isActivated()){
 				$this->meta ^= 0x08;
 				$this->getLevel()->setBlock($this, $this, true, false);
 				$this->getLevel()->addSound(new ButtonClickSound($this));
@@ -65,6 +75,11 @@ class WoodenButton extends RedstoneSource{
 		return false;
 	}
 
+	/**
+	 * @param array $ignore
+	 *
+	 * @return bool|void
+	 */
 	public function deactivate(array $ignore = []){
 		parent::deactivate($ignore = []);
 		$faces = [
@@ -87,20 +102,25 @@ class WoodenButton extends RedstoneSource{
 			$this->deactivateBlock($this->getSide($faces[$side], 2));
 		}
 
-		$this->checkTorchOff($this->getSide($faces[$side]),[$this->getOppositeSide($faces[$side])]);
+		$this->checkTorchOff($this->getSide($faces[$side]), [static::getOppositeSide($faces[$side])]);
 	}
 
+	/**
+	 * @param array $ignore
+	 *
+	 * @return bool|void
+	 */
 	public function activate(array $ignore = []){
 		parent::activate($ignore = []);
 		$faces = [
-				0 => 1,
-				1 => 0,
-				2 => 3,
-				3 => 2,
-				4 => 5,
-				5 => 4,
+			0 => 1,
+			1 => 0,
+			2 => 3,
+			3 => 2,
+			4 => 5,
+			5 => 4,
 		];
-		
+
 		$side = $this->meta;
 		if($this->isActivated()) $side ^= 0x08;
 
@@ -114,17 +134,28 @@ class WoodenButton extends RedstoneSource{
 			$this->activateBlock($block);
 		}
 
-		$this->checkTorchOn($this->getSide($faces[$side]),[$this->getOppositeSide($faces[$side])]);
+		$this->checkTorchOn($this->getSide($faces[$side]), [static::getOppositeSide($faces[$side])]);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Wooden Button";
 	}
 
-	public function getHardness() {
+	/**
+	 * @return float
+	 */
+	public function getHardness(){
 		return 0.5;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return mixed|void
+	 */
 	public function onBreak(Item $item){
 		if($this->isActivated()){
 			$this->meta ^= 0x08;
@@ -134,6 +165,18 @@ class WoodenButton extends RedstoneSource{
 		$this->getLevel()->setBlock($this, new Air(), true, false);
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		if($target->isTransparent() === false){
 			$this->meta = $face;
@@ -143,14 +186,28 @@ class WoodenButton extends RedstoneSource{
 		return false;
 	}
 
-	public function canBeActivated() : bool {
+	/**
+	 * @return bool
+	 */
+	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @param Block|null $from
+	 *
+	 * @return bool
+	 */
 	public function isActivated(Block $from = null){
 		return (($this->meta & 0x08) === 0x08);
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = null){
 		if(!$this->isActivated()){
 			$this->meta ^= 0x08;

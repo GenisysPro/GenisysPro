@@ -31,8 +31,13 @@ use pocketmine\item\ItemBlock;
 use pocketmine\item\Item;
 
 
-class SetBlockCommand extends VanillaCommand{
+class SetBlockCommand extends VanillaCommand {
 
+	/**
+	 * SetBlockCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -42,6 +47,13 @@ class SetBlockCommand extends VanillaCommand{
 		$this->setPermission("pocketmine.command.setblock");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;
@@ -55,33 +67,33 @@ class SetBlockCommand extends VanillaCommand{
 		$itemblock = Item::fromString($args[3]);
 		if($itemblock instanceof ItemBlock){
 			$block = $itemblock->getBlock();
-			if(isset($args[4]) and is_numeric($args[4])) $block->setDamage((int)$args[4]);
+			if(isset($args[4]) and is_numeric($args[4])) $block->setDamage((int) $args[4]);
 
 			$x = $args[0];
 			$y = $args[1];
 			$z = $args[2];
 
 			if($x{0} === "~"){
-				if((is_numeric(trim($x, "~")) or trim($x, "~") === "") and ($sender instanceof Player)) $x = (int)round(trim($x, "~") + $sender->x);
+				if((is_numeric(trim($x, "~")) or trim($x, "~") === "") and ($sender instanceof Player)) $x = (int) round(trim($x, "~") + $sender->x);
 			}elseif(is_numeric($x)){
-				$x = (int)round($x);
+				$x = (int) round($x);
 			}else{
 				$sender->sendMessage(new TranslationContainer("commands.generic.usage", [$this->usageMessage]));
 				return false;
 			}
 			if($y{0} === "~"){
-				if((is_numeric(trim($y, "~")) or trim($y, "~") === "") and ($sender instanceof Player)) $y = (int)round(trim($y, "~") + $sender->y);
+				if((is_numeric(trim($y, "~")) or trim($y, "~") === "") and ($sender instanceof Player)) $y = (int) round(trim($y, "~") + $sender->y);
 				if($y < 0 or $y > 256) return false;
 			}elseif(is_numeric($y)){
-				$y = (int)round($y);
+				$y = (int) round($y);
 			}else{
 				$sender->sendMessage(new TranslationContainer("commands.generic.usage", [$this->usageMessage]));
 				return false;
 			}
 			if($z{0} === "~"){
-				if((is_numeric(trim($z, "~")) or trim($z, "~") === "") and ($sender instanceof Player)) $z = (int)round(trim($z, "~") + $sender->z);
+				if((is_numeric(trim($z, "~")) or trim($z, "~") === "") and ($sender instanceof Player)) $z = (int) round(trim($z, "~") + $sender->z);
 			}elseif(is_numeric($z)){
-				$z = (int)round($z);
+				$z = (int) round($z);
 			}else{
 				$sender->sendMessage(new TranslationContainer("commands.generic.usage", [$this->usageMessage]));
 				return false;

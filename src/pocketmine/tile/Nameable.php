@@ -22,7 +22,7 @@
 namespace pocketmine\tile;
 
 
-interface Nameable{
+interface Nameable {
 
 
 	/**

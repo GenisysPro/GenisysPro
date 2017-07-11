@@ -27,15 +27,21 @@ use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\network\protocol\MobEquipmentPacket;
 use pocketmine\Player;
 
-class Stray extends Skeleton{
+class Stray extends Skeleton {
 	const NETWORK_ID = 46;
 
 	public $dropExp = [5, 5];
-	
+
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Stray";
 	}
-	
+
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -52,7 +58,7 @@ class Stray extends Skeleton{
 		$player->dataPacket($pk);
 
 		Entity::spawnTo($player);
-		
+
 		$pk = new MobEquipmentPacket();
 		$pk->eid = $this->getId();
 		$pk->item = new ItemItem(ItemItem::BOW);

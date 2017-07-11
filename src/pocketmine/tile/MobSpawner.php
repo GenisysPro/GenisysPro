@@ -35,8 +35,14 @@ use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\Player;
 
-class MobSpawner extends Spawnable{
+class MobSpawner extends Spawnable {
 
+	/**
+	 * MobSpawner constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 */
 	public function __construct(Level $level, CompoundTag $nbt){
 		if(!isset($nbt->EntityId) or !($nbt->EntityId instanceof IntTag)){
 			$nbt->EntityId = new IntTag("EntityId", 0);
@@ -62,60 +68,102 @@ class MobSpawner extends Spawnable{
 		}
 	}
 
+	/**
+	 * @return null
+	 */
 	public function getEntityId(){
 		return $this->namedtag["EntityId"];
 	}
 
+	/**
+	 * @param int $id
+	 */
 	public function setEntityId(int $id){
 		$this->namedtag->EntityId->setValue($id);
 		$this->onChanged();
 		$this->scheduleUpdate();
 	}
 
+	/**
+	 * @return null
+	 */
 	public function getSpawnCount(){
 		return $this->namedtag["SpawnCount"];
 	}
 
+	/**
+	 * @param int $value
+	 */
 	public function setSpawnCount(int $value){
 		$this->namedtag->SpawnCount->setValue($value);
 	}
 
+	/**
+	 * @return null
+	 */
 	public function getSpawnRange(){
 		return $this->namedtag["SpawnRange"];
 	}
 
+	/**
+	 * @param int $value
+	 */
 	public function setSpawnRange(int $value){
 		$this->namedtag->SpawnRange->setValue($value);
 	}
 
+	/**
+	 * @return null
+	 */
 	public function getMinSpawnDelay(){
 		return $this->namedtag["MinSpawnDelay"];
 	}
 
+	/**
+	 * @param int $value
+	 */
 	public function setMinSpawnDelay(int $value){
 		$this->namedtag->MinSpawnDelay->setValue($value);
 	}
 
+	/**
+	 * @return null
+	 */
 	public function getMaxSpawnDelay(){
 		return $this->namedtag["MaxSpawnDelay"];
 	}
 
+	/**
+	 * @param int $value
+	 */
 	public function setMaxSpawnDelay(int $value){
 		$this->namedtag->MaxSpawnDelay->setValue($value);
 	}
 
+	/**
+	 * @return null
+	 */
 	public function getDelay(){
 		return $this->namedtag["Delay"];
 	}
 
+	/**
+	 * @param int $value
+	 */
 	public function setDelay(int $value){
 		$this->namedtag->Delay->setValue($value);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Monster Spawner";
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canUpdate() : bool{
 		if($this->getEntityId() === 0) return false;
 		$hasPlayer = false;
@@ -134,6 +182,9 @@ class MobSpawner extends Spawnable{
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function onUpdate(){
 		if($this->closed === true){
 			return false;
@@ -189,6 +240,9 @@ class MobSpawner extends Spawnable{
 		return true;
 	}
 
+	/**
+	 * @return CompoundTag
+	 */
 	public function getSpawnCompound(){
 		$c = new CompoundTag("", [
 			new StringTag("id", Tile::MOB_SPAWNER),

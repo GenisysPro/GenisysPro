@@ -27,10 +27,15 @@ use pocketmine\block\Wood;
 use pocketmine\level\ChunkManager;
 use pocketmine\utils\Random;
 
-class BirchTree extends Tree{
+class BirchTree extends Tree {
 
 	protected $superBirch = false;
 
+	/**
+	 * BirchTree constructor.
+	 *
+	 * @param bool $superBirch
+	 */
 	public function __construct($superBirch = false){
 		$this->trunkBlock = Block::LOG;
 		$this->leafBlock = Block::LEAVES;
@@ -39,6 +44,13 @@ class BirchTree extends Tree{
 		$this->superBirch = (bool) $superBirch;
 	}
 
+	/**
+	 * @param ChunkManager $level
+	 * @param              $x
+	 * @param              $y
+	 * @param              $z
+	 * @param Random       $random
+	 */
 	public function placeObject(ChunkManager $level, $x, $y, $z, Random $random){
 		$this->treeHeight = $random->nextBoundedInt(3) + 5;
 		if($this->superBirch){

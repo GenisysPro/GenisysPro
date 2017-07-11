@@ -19,7 +19,7 @@
  *
 */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace pocketmine\level\format\io\region;
 
@@ -28,7 +28,7 @@ use pocketmine\level\format\io\ChunkException;
 use pocketmine\utils\Binary;
 use pocketmine\utils\MainLogger;
 
-class RegionLoader{
+class RegionLoader {
 	const VERSION = 1;
 	const COMPRESSION_GZIP = 1;
 	const COMPRESSION_ZLIB = 2;
@@ -46,6 +46,14 @@ class RegionLoader{
 
 	public $lastUsed;
 
+	/**
+	 * RegionLoader constructor.
+	 *
+	 * @param McRegion $level
+	 * @param int      $regionX
+	 * @param int      $regionZ
+	 * @param string   $fileExtension
+	 */
 	public function __construct(McRegion $level, int $regionX, int $regionZ, string $fileExtension = McRegion::REGION_FILE_EXTENSION){
 		$this->x = $regionX;
 		$this->z = $regionZ;
@@ -74,10 +82,21 @@ class RegionLoader{
 		}
 	}
 
+	/**
+	 * @param int $index
+	 *
+	 * @return bool
+	 */
 	protected function isChunkGenerated(int $index) : bool{
 		return !($this->locationTable[$index][0] === 0 or $this->locationTable[$index][1] === 0);
 	}
 
+	/**
+	 * @param int $x
+	 * @param int $z
+	 *
+	 * @return null|Chunk
+	 */
 	public function readChunk(int $x, int $z){
 		$index = self::getChunkOffset($x, $z);
 		if($index < 0 or $index >= 4096){
@@ -121,14 +140,25 @@ class RegionLoader{
 		}
 	}
 
+	/**
+	 * @param int $x
+	 * @param int $z
+	 *
+	 * @return bool
+	 */
 	public function chunkExists(int $x, int $z) : bool{
 		return $this->isChunkGenerated(self::getChunkOffset($x, $z));
 	}
 
+	/**
+	 * @param int    $x
+	 * @param int    $z
+	 * @param string $chunkData
+	 */
 	protected function saveChunk(int $x, int $z, string $chunkData){
 		$length = strlen($chunkData) + 1;
 		if($length + 4 > self::MAX_SECTOR_LENGTH){
-			throw new ChunkException("Chunk is too big! ".($length + 4)." > ".self::MAX_SECTOR_LENGTH);
+			throw new ChunkException("Chunk is too big! " . ($length + 4) . " > " . self::MAX_SECTOR_LENGTH);
 		}
 		$sectors = (int) ceil(($length + 4) / 4096);
 		$index = self::getChunkOffset($x, $z);
@@ -152,12 +182,19 @@ class RegionLoader{
 		}
 	}
 
+	/**
+	 * @param int $x
+	 * @param int $z
+	 */
 	public function removeChunk(int $x, int $z){
 		$index = self::getChunkOffset($x, $z);
 		$this->locationTable[$index][0] = 0;
 		$this->locationTable[$index][1] = 0;
 	}
 
+	/**
+	 * @param Chunk $chunk
+	 */
 	public function writeChunk(Chunk $chunk){
 		$this->lastUsed = time();
 		$chunkData = $this->levelProvider->nbtSerialize($chunk);
@@ -166,6 +203,12 @@ class RegionLoader{
 		}
 	}
 
+	/**
+	 * @param int $x
+	 * @param int $z
+	 *
+	 * @return int
+	 */
 	protected static function getChunkOffset(int $x, int $z) : int{
 		return $x + ($z << 5);
 	}
@@ -176,6 +219,9 @@ class RegionLoader{
 		$this->levelProvider = null;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function doSlowCleanUp() : int{
 		for($i = 0; $i < 1024; ++$i){
 			if($this->locationTable[$i][0] === 0 or $this->locationTable[$i][1] === 0){
@@ -212,6 +258,9 @@ class RegionLoader{
 		return $n;
 	}
 
+	/**
+	 * @return int
+	 */
 	private function cleanGarbage() : int{
 		$sectors = [];
 		foreach($this->locationTable as $index => $data){ //Calculate file usage
@@ -278,6 +327,9 @@ class RegionLoader{
 		fwrite($this->filePointer, pack("N*", ...$write), 4096 * 2);
 	}
 
+	/**
+	 * @param $index
+	 */
 	protected function writeLocationIndex($index){
 		fseek($this->filePointer, $index << 2);
 		fwrite($this->filePointer, Binary::writeInt(($this->locationTable[$index][0] << 8) | $this->locationTable[$index][1]), 4);
@@ -304,10 +356,16 @@ class RegionLoader{
 		fwrite($this->filePointer, $table, 4096 * 2);
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getX() : int{
 		return $this->x;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getZ() : int{
 		return $this->z;
 	}

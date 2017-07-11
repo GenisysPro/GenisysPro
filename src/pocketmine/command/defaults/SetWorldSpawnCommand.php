@@ -28,8 +28,13 @@ use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
-class SetWorldSpawnCommand extends VanillaCommand{
+class SetWorldSpawnCommand extends VanillaCommand {
 
+	/**
+	 * SetWorldSpawnCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -40,6 +45,13 @@ class SetWorldSpawnCommand extends VanillaCommand{
 		$this->setPermission("pocketmine.command.setworldspawn");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;

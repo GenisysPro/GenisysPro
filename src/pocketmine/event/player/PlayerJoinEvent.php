@@ -27,12 +27,18 @@ use pocketmine\Player;
 /**
  * Called when a player joins the server, after sending all the spawn packets
  */
-class PlayerJoinEvent extends PlayerEvent{
+class PlayerJoinEvent extends PlayerEvent {
 	public static $handlerList = null;
 
 	/** @var string|TextContainer */
 	protected $joinMessage;
 
+	/**
+	 * PlayerJoinEvent constructor.
+	 *
+	 * @param Player $player
+	 * @param        $joinMessage
+	 */
 	public function __construct(Player $player, $joinMessage){
 		$this->player = $player;
 		$this->joinMessage = $joinMessage;

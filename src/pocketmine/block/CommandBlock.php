@@ -24,25 +24,37 @@
 
 namespace pocketmine\block;
 
-use pocketmine\item\Item;
-
-class CommandBlock extends Solid{
+class CommandBlock extends Solid {
 	protected $id = self::COMMAND_BLOCK;
 
+	/**
+	 * CommandBlock constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
-	public function canBeActivated() : bool {
+	/**
+	 * @return bool
+	 */
+	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Command Block";
 	}
 
-	public function getHardness() {
+	/**
+	 * @return int
+	 */
+	public function getHardness(){
 		return -1;
 	}
-	
+
 }

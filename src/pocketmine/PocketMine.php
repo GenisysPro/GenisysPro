@@ -68,6 +68,7 @@ namespace {
 }
 
 namespace pocketmine {
+
 	use pocketmine\utils\Binary;
 	use pocketmine\utils\MainLogger;
 	use pocketmine\utils\ServerKiller;
@@ -176,11 +177,14 @@ namespace pocketmine {
 			$default_timezone = timezone_name_from_abbr($timezone);
 			ini_set("date.timezone", $default_timezone);
 			date_default_timezone_set($default_timezone);
-		} else {
+		}else{
 			date_default_timezone_set($timezone);
 		}
 	}
 
+	/**
+	 * @return bool|string
+	 */
 	function detect_system_timezone(){
 		switch(Utils::getOS()){
 			case 'win':
@@ -309,6 +313,9 @@ namespace pocketmine {
 		}
 	}
 
+	/**
+	 * @param $pid
+	 */
 	function kill($pid){
 		switch(Utils::getOS()){
 			case "win":
@@ -320,7 +327,7 @@ namespace pocketmine {
 				if(function_exists("posix_kill")){
 					posix_kill($pid, SIGKILL);
 				}else{
-					exec("kill -9 " . ((int)$pid) . " > /dev/null 2>&1");
+					exec("kill -9 " . ((int) $pid) . " > /dev/null 2>&1");
 				}
 		}
 	}
@@ -343,6 +350,12 @@ namespace pocketmine {
 		return -1;
 	}
 
+	/**
+	 * @param int  $start
+	 * @param null $trace
+	 *
+	 * @return array
+	 */
 	function getTrace($start = 1, $trace = null){
 		if($trace === null){
 			if(function_exists("xdebug_get_function_stack")){
@@ -373,6 +386,11 @@ namespace pocketmine {
 		return $messages;
 	}
 
+	/**
+	 * @param $path
+	 *
+	 * @return string
+	 */
 	function cleanPath($path){
 		return rtrim(str_replace(["\\", ".php", "phar://", rtrim(str_replace(["\\", "phar://"], ["/", ""], \pocketmine\PATH), "/"), rtrim(str_replace(["\\", "phar://"], ["/", ""], \pocketmine\PLUGIN_PATH), "/")], ["/", "", "", "", ""], $path), "/");
 	}
@@ -411,7 +429,7 @@ namespace pocketmine {
 			++$errors;
 		}
 	}
-	
+
 	if(extension_loaded("xdebug")){
 		$logger->warning("
 

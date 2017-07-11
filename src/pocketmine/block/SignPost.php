@@ -31,31 +31,60 @@ use pocketmine\nbt\tag\StringTag;
 use pocketmine\Player;
 use pocketmine\tile\Tile;
 
-class SignPost extends Transparent{
+class SignPost extends Transparent {
 
 	protected $id = self::SIGN_POST;
 
+	/**
+	 * SignPost constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHardness(){
 		return 1;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isSolid(){
 		return false;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Sign Post";
 	}
 
+	/**
+	 * @return null
+	 */
 	public function getBoundingBox(){
 		return null;
 	}
 
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		if($face !== 0){
 			$nbt = new CompoundTag("", [
@@ -95,23 +124,36 @@ class SignPost extends Transparent{
 		return false;
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return bool|int
+	 */
 	public function onUpdate($type){
 		if($type === Level::BLOCK_UPDATE_NORMAL){
 			if($this->getSide(Vector3::SIDE_DOWN)->getId() === Block::AIR){
 				$this->getLevel()->useBreakOn($this);
-				
+
 				return Level::BLOCK_UPDATE_NORMAL;
 			}
 		}
 		return false;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		return [
 			[Item::SIGN, 0, 1],
 		];
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_AXE;
 	}

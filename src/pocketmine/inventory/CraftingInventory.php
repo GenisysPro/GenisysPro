@@ -27,7 +27,7 @@ namespace pocketmine\inventory;
  *
  * TODO: add small matrix inventory
  */
-class CraftingInventory extends BaseInventory{
+class CraftingInventory extends BaseInventory {
 
 	/** @var Inventory */
 	private $resultInventory;
@@ -54,6 +54,9 @@ class CraftingInventory extends BaseInventory{
 		return $this->resultInventory;
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function getSize(){
 		return $this->getResultInventory()->getSize() + parent::getSize();
 	}

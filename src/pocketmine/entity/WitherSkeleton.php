@@ -28,24 +28,30 @@ use pocketmine\item\Item as ItemItem;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class WitherSkeleton extends Monster{
+class WitherSkeleton extends Monster {
 	const NETWORK_ID = 48;
-	
+
 	public $width = 0.3;
 	public $length = 0.9;
 	public $height = 0;
-	
+
 	public $dropExp = [5, 5];
-	
+
+	/**
+	 * @return string
+	 */
 	public function getName(){
 		return "Wither Skeleton";
 	}
-	
+
 	public function initEntity(){
 		$this->setMaxHealth(20);
 		parent::initEntity();
 	}
-	
+
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -63,12 +69,15 @@ class WitherSkeleton extends Monster{
 
 		parent::spawnTo($player);
 	}
-	
+
+	/**
+	 * @return array
+	 */
 	public function getDrops(){
 		$drops = [
-			ItemItem::get(ItemItem::COAL, 0, mt_rand(0 , 1))
+			ItemItem::get(ItemItem::COAL, 0, mt_rand(0, 1))
 		];
-		$drops[] = ItemItem::get(ItemItem::BONE, 0, mt_rand(0 , 2));
+		$drops[] = ItemItem::get(ItemItem::BONE, 0, mt_rand(0, 2));
 
 		return $drops;
 	}

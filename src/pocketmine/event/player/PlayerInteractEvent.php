@@ -31,7 +31,7 @@ use pocketmine\Player;
 /**
  * Called when a player interacts or touches a block (including air?)
  */
-class PlayerInteractEvent extends PlayerEvent implements Cancellable{
+class PlayerInteractEvent extends PlayerEvent implements Cancellable {
 	public static $handlerList = null;
 
 	const LEFT_CLICK_BLOCK = 0;
@@ -52,9 +52,18 @@ class PlayerInteractEvent extends PlayerEvent implements Cancellable{
 
 	/** @var \pocketmine\item\Item */
 	protected $item;
-	
+
 	protected $action;
 
+	/**
+	 * PlayerInteractEvent constructor.
+	 *
+	 * @param Player  $player
+	 * @param Item    $item
+	 * @param Vector3 $block
+	 * @param         $face
+	 * @param int     $action
+	 */
 	public function __construct(Player $player, Item $item, Vector3 $block, $face, $action = PlayerInteractEvent::RIGHT_CLICK_BLOCK){
 		if($block instanceof Block){
 			$this->blockTouched = $block;

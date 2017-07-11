@@ -34,16 +34,22 @@ use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\StringTag;
 
-class Hopper extends Spawnable implements InventoryHolder, Container, Nameable{
+class Hopper extends Spawnable implements InventoryHolder, Container, Nameable {
 	/** @var HopperInventory */
 	protected $inventory;
 
 	/** @var bool */
 	protected $isLocked = false;
-	
+
 	/** @var bool */
 	protected $isPowered = false;
 
+	/**
+	 * Hopper constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 */
 	public function __construct(Level $level, CompoundTag $nbt){
 		if(!isset($nbt->TransferCooldown) or !($nbt->TransferCooldown instanceof IntTag)){
 			$nbt->TransferCooldown = new IntTag("TransferCooldown", 0);
@@ -73,15 +79,18 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable{
 			parent::close();
 		}
 	}
-	
+
 	public function activate(){
 		$this->isPowered = true;
 	}
-	
+
 	public function deactivate(){
 		$this->isPowered = false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canUpdate(){
 		return $this->namedtag->TransferCooldown->getValue() === 0 and !$this->isPowered;
 	}
@@ -90,6 +99,9 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable{
 		$this->namedtag->TransferCooldown->setValue(8);
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function onUpdate(){
 		if(!($this->getBlock() instanceof HopperBlock)){
 			return false;
@@ -125,7 +137,7 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable{
 			$this->namedtag->TransferCooldown->setValue($this->namedtag->TransferCooldown->getValue() - 1);
 			return true;
 		}
-		
+
 		//Suck items from above tile inventories
 		$source = $this->getLevel()->getTile($this->getBlock()->getSide(Vector3::SIDE_UP));
 		if($source instanceof Tile and $source instanceof InventoryHolder){
@@ -141,7 +153,7 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable{
 				}
 			}
 		}
-		
+
 		//Feed item into target inventory
 		//Do not do this if there's a hopper underneath this hopper, to follow vanilla behaviour
 		if(!($this->getLevel()->getTile($this->getBlock()->getSide(Vector3::SIDE_DOWN)) instanceof Hopper)){
@@ -154,7 +166,7 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable{
 					}
 					$targetItem = clone $item;
 					$targetItem->setCount(1);
-					
+
 					if($inv->canAddItem($targetItem)){
 						$inv->addItem($targetItem);
 						$this->inventory->removeItem($targetItem);
@@ -164,7 +176,7 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable{
 						}
 						break;
 					}
-					
+
 				}
 			}
 		}
@@ -254,14 +266,23 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable{
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return isset($this->namedtag->CustomName) ? $this->namedtag->CustomName->getValue() : "Hopper";
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function hasName(){
 		return isset($this->namedtag->CustomName);
 	}
 
+	/**
+	 * @param void $str
+	 */
 	public function setName($str){
 		if($str === ""){
 			unset($this->namedtag->CustomName);
@@ -271,10 +292,16 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable{
 	}
 
 
+	/**
+	 * @return bool
+	 */
 	public function hasLock(){
 		return isset($this->namedtag->Lock);
 	}
 
+	/**
+	 * @param string $itemName
+	 */
 	public function setLock(string $itemName = ""){
 		if($itemName === ""){
 			unset($this->namedtag->Lock);
@@ -282,11 +309,19 @@ class Hopper extends Spawnable implements InventoryHolder, Container, Nameable{
 		}
 		$this->namedtag->Lock = new StringTag("Lock", $itemName);
 	}
-	
+
+	/**
+	 * @param string $key
+	 *
+	 * @return bool
+	 */
 	public function checkLock(string $key){
 		return $this->namedtag->Lock->getValue() === $key;
 	}
 
+	/**
+	 * @return CompoundTag
+	 */
 	public function getSpawnCompound(){
 		$c = new CompoundTag("", [
 			new StringTag("id", Tile::HOPPER),

@@ -23,8 +23,14 @@ namespace pocketmine\metadata;
 
 use pocketmine\IPlayer;
 
-class PlayerMetadataStore extends MetadataStore{
+class PlayerMetadataStore extends MetadataStore {
 
+	/**
+	 * @param Metadatable $player
+	 * @param string      $metadataKey
+	 *
+	 * @return string
+	 */
 	public function disambiguate(Metadatable $player, $metadataKey){
 		if(!($player instanceof IPlayer)){
 			throw new \InvalidArgumentException("Argument must be an IPlayer instance");

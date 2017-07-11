@@ -19,14 +19,14 @@
  *
 */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace pocketmine\command;
 
 use pocketmine\Thread;
 
 
-class CommandReader extends Thread{
+class CommandReader extends Thread {
 
 	const TYPE_READLINE = 0;
 	const TYPE_STREAM = 1;
@@ -38,6 +38,9 @@ class CommandReader extends Thread{
 
 	private $type = self::TYPE_STREAM;
 
+	/**
+	 * CommandReader constructor.
+	 */
 	public function __construct(){
 		$this->buffer = new \Threaded;
 
@@ -91,6 +94,7 @@ class CommandReader extends Thread{
 	 * Checks if the specified stream is a FIFO pipe.
 	 *
 	 * @param resource $stream
+	 *
 	 * @return bool
 	 */
 	private function isPipe($stream) : bool{
@@ -173,7 +177,7 @@ class CommandReader extends Thread{
 			$this->initStdin();
 		}
 
-		while(!$this->shutdown and $this->readLine());
+		while(!$this->shutdown and $this->readLine()) ;
 
 		if($this->type !== self::TYPE_READLINE){
 			global $stdin;
@@ -182,6 +186,9 @@ class CommandReader extends Thread{
 
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getThreadName(){
 		return "Console";
 	}

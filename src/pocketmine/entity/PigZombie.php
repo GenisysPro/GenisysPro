@@ -28,7 +28,7 @@ use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\network\protocol\MobEquipmentPacket;
 use pocketmine\Player;
 
-class PigZombie extends Monster{
+class PigZombie extends Monster {
 	const NETWORK_ID = 36;
 
 	public $width = 0.6;
@@ -39,11 +39,17 @@ class PigZombie extends Monster{
 	public $gravity = 0.3;
 
 	public $dropExp = [5, 5];
-	
+
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "PigZombie";
 	}
-	
+
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -60,7 +66,7 @@ class PigZombie extends Monster{
 		$player->dataPacket($pk);
 
 		parent::spawnTo($player);
-		
+
 		$pk = new MobEquipmentPacket();
 		$pk->eid = $this->getId();
 		$pk->item = new ItemItem(283);
@@ -70,17 +76,25 @@ class PigZombie extends Monster{
 		$player->dataPacket($pk);
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getDrops(){
 		$cause = $this->lastDamageCause;
-		$drops = [];
-		if($cause instanceof EntityDamageByEntityEvent and $cause->getDamager() instanceof Player){
-			$lootingL = $cause->getDamager()->getItemInHand()->getEnchantmentLevel(Enchantment::TYPE_WEAPON_LOOTING);
-			if(mt_rand(1, 200) <= (5 + 2 * $lootingL)){
-				$drops[] = ItemItem::get(ItemItem::GOLD_INGOT, 0, 1);
+		if($cause instanceof EntityDamageByEntityEvent){
+			$damager = $cause->getDamager();
+			if($damager instanceof Player){
+				$lootingL = $damager->getItemInHand()->getEnchantmentLevel(Enchantment::TYPE_WEAPON_LOOTING);
+				if(mt_rand(1, 200) <= (5 + 2 * $lootingL)){
+					$drops[] = ItemItem::get(ItemItem::GOLD_INGOT, 0, 1);
+				}
+				$drops[] = ItemItem::get(ItemItem::GOLD_NUGGET, 0, mt_rand(0, 1 + $lootingL));
+				$drops[] = ItemItem::get(ItemItem::ROTTEN_FLESH, 0, mt_rand(0, 1 + $lootingL));
+
+				return $drops;
 			}
-			$drops[] = ItemItem::get(ItemItem::GOLD_NUGGET, 0, mt_rand(0, 1 + $lootingL));
-			$drops[] = ItemItem::get(ItemItem::ROTTEN_FLESH, 0, mt_rand(0, 1 + $lootingL));
 		}
-		return $drops;
+
+		return [];
 	}
 }

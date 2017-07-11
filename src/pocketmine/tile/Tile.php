@@ -22,6 +22,7 @@
 /**
  * All the Tile classes and related classes
  */
+
 namespace pocketmine\tile;
 
 use pocketmine\event\Timings;
@@ -32,10 +33,11 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\StringTag;
 
-abstract class Tile extends Position{
-	
+abstract class Tile extends Position {
+
 	const BREWING_STAND = "BrewingStand";
 	const CHEST = "Chest";
+	const DL_DETECTOR = "DayLightDetector";
 	const ENCHANT_TABLE = "EnchantTable";
 	const FLOWER_POT = "FlowerPot";
 	const FURNACE = "Furnace";
@@ -73,7 +75,7 @@ abstract class Tile extends Position{
 
 	/** @var \pocketmine\event\TimingsHandler */
 	public $tickTimer;
-	
+
 	public static function init(){
 		self::registerTile(Beacon::class);
 		self::registerTile(Bed::class);
@@ -81,6 +83,7 @@ abstract class Tile extends Position{
 		self::registerTile(Cauldron::class);
 		self::registerTile(Chest::class);
 		self::registerTile(Dispenser::class);
+		self::registerTile(DLDetector::class);
 		self::registerTile(Dropper::class);
 		self::registerTile(EnchantTable::class);
 		self::registerTile(EnderChest::class);
@@ -94,10 +97,10 @@ abstract class Tile extends Position{
 	}
 
 	/**
-	 * @param string    $type
-	 * @param Level     $level
-	 * @param CompoundTag  $nbt
-	 * @param array $args
+	 * @param string      $type
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 * @param array       $args
 	 *
 	 * @return Tile
 	 */
@@ -135,14 +138,20 @@ abstract class Tile extends Position{
 		return self::$shortNames[static::class];
 	}
 
+	/**
+	 * Tile constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 */
 	public function __construct(Level $level, CompoundTag $nbt){
 		$this->timings = Timings::getTileEntityTimings($this);
 
 		$this->namedtag = $nbt;
-        $this->server = $level->getServer();
-        $this->setLevel($level);
-        $this->chunk = $level->getChunk($this->namedtag["x"] >> 4, $this->namedtag["z"] >> 4, false);
-        assert($this->chunk !== null);
+		$this->server = $level->getServer();
+		$this->setLevel($level);
+		$this->chunk = $level->getChunk($this->namedtag["x"] >> 4, $this->namedtag["z"] >> 4, false);
+		assert($this->chunk !== null);
 
 		$this->name = "";
 		$this->lastUpdate = microtime(true);
@@ -156,6 +165,9 @@ abstract class Tile extends Position{
 		$this->tickTimer = Timings::getTileEntityTimings($this);
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getId(){
 		return $this->id;
 	}
@@ -174,6 +186,9 @@ abstract class Tile extends Position{
 		return $this->level->getBlock($this);
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function onUpdate(){
 		return false;
 	}
@@ -200,6 +215,9 @@ abstract class Tile extends Position{
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return $this->name;
 	}

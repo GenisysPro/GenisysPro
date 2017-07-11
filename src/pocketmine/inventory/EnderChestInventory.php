@@ -29,11 +29,17 @@ use pocketmine\nbt\tag\ListTag;
 use pocketmine\network\protocol\BlockEventPacket;
 use pocketmine\Player;
 
-class EnderChestInventory extends ContainerInventory{
+class EnderChestInventory extends ContainerInventory {
 
 	/** @var Human|Player */
 	private $owner;
 
+	/**
+	 * EnderChestInventory constructor.
+	 *
+	 * @param Human $owner
+	 * @param null  $contents
+	 */
 	public function __construct(Human $owner, $contents = null){
 		$this->owner = $owner;
 		parent::__construct(new FakeBlockMenu($this, $owner->getPosition()), InventoryType::get(InventoryType::ENDER_CHEST));
@@ -49,6 +55,9 @@ class EnderChestInventory extends ContainerInventory{
 		}
 	}
 
+	/**
+	 * @return Human|Player
+	 */
 	public function getOwner(){
 		return $this->owner;
 	}
@@ -72,6 +81,9 @@ class EnderChestInventory extends ContainerInventory{
 		return $this->holder;
 	}
 
+	/**
+	 * @param Player $who
+	 */
 	public function onOpen(Player $who){
 		parent::onOpen($who);
 
@@ -88,6 +100,9 @@ class EnderChestInventory extends ContainerInventory{
 		}
 	}
 
+	/**
+	 * @param Player $who
+	 */
 	public function onClose(Player $who){
 		if(count($this->getViewers()) === 1){
 			$pk = new BlockEventPacket();

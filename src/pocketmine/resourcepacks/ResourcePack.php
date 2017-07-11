@@ -31,17 +31,38 @@
 namespace pocketmine\resourcepacks;
 
 
-interface ResourcePack{
+interface ResourcePack {
 
+	/**
+	 * @return string
+	 */
 	public function getPackName() : string;
 
+	/**
+	 * @return string
+	 */
 	public function getPackId() : string;
 
+	/**
+	 * @return int
+	 */
 	public function getPackSize() : int;
 
+	/**
+	 * @return string
+	 */
 	public function getPackVersion() : string;
 
+	/**
+	 * @return string
+	 */
 	public function getSha256() : string;
 
+	/**
+	 * @param int $start
+	 * @param int $length
+	 *
+	 * @return string
+	 */
 	public function getPackChunk(int $start, int $length) : string;
 }

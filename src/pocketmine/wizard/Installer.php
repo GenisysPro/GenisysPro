@@ -23,12 +23,13 @@
  * Set-up wizard used on the first run
  * Can be disabled with --no-wizard
  */
+
 namespace pocketmine\wizard;
 
 use pocketmine\utils\Config;
 use pocketmine\utils\Utils;
 
-class Installer{
+class Installer {
 	const DEFAULT_NAME = "Minecraft: PE Server";
 	const DEFAULT_PORT = 19132;
 	const DEFAULT_MEMORY = 512;
@@ -36,7 +37,7 @@ class Installer{
 	const DEFAULT_GAMEMODE = 0;
 	const DEFAULT_LEVEL_NAME = "world";
 	const DEFAULT_LEVEL_TYPE = "DEFAULT";
-	
+
 	const LEVEL_TYPES = [
 		"DEFAULT",
 		"FLAT",
@@ -48,10 +49,16 @@ class Installer{
 
 	private $defaultLang;
 
+	/**
+	 * Installer constructor.
+	 */
 	public function __construct(){
 
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function run(){
 		echo "[*] GenisysPro set-up wizard\n";
 		echo "[*] Please select a language:\n";
@@ -95,6 +102,9 @@ class Installer{
 		return $this->defaultLang;
 	}
 
+	/**
+	 * @return bool
+	 */
 	private function showLicense(){
 		echo $this->lang->welcome_to_pocketmine . "\n";
 		echo <<<LICENSE
@@ -138,14 +148,14 @@ LICENSE;
 			}
 		}while($port <= 0 or $port > 65535);
 		$config->set("server-port", $port);
-		
+
 		echo "[*] " . $this->lang->online_mode_info . "\n";
 		echo "[?] " . $this->lang->online_mode . " (y/N): ";
 		$config->set("online-mode", strtolower($this->getInput("y")) == "y");
-		
+
 		echo "[?] " . $this->lang->level_name . " (" . self::DEFAULT_LEVEL_NAME . "): ";
 		$config->set("level-name", $this->getInput(self::DEFAULT_LEVEL_NAME));
-		
+
 		do{
 			echo "[?] " . $this->lang->level_type . " (" . self::DEFAULT_LEVEL_TYPE . "): ";
 			$type = strtoupper((string) $this->getInput(self::DEFAULT_LEVEL_TYPE));
@@ -154,7 +164,7 @@ LICENSE;
 			}
 		}while(!in_array($type, self::LEVEL_TYPES));
 		$config->set("level-type", $type);
-		
+
 		/*echo "[*] " . $this->lang->ram_warning . "\n";
 		echo "[?] " . $this->lang->server_ram . " (" . self::DEFAULT_MEMORY . "): ";
 		$config->set("memory-limit", ((int) $this->getInput(self::DEFAULT_MEMORY)) . "M");*/
@@ -173,7 +183,7 @@ LICENSE;
 		}else{
 			$config->set("spawn-protection", 16);
 		}
-		
+
 		echo "[?] " . $this->lang->announce_player_achievements . " (y/N): ";
 		if(strtolower($this->getInput("n")) === "y"){
 			$config->set("announce-player-achievements", "on");
@@ -255,6 +265,11 @@ LICENSE;
 		sleep(4);
 	}
 
+	/**
+	 * @param string $default
+	 *
+	 * @return string
+	 */
 	private function getInput($default = ""){
 		$input = trim(fgets(STDIN));
 

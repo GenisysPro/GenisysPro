@@ -32,30 +32,53 @@ use pocketmine\Player;
 use pocketmine\tile\Hopper as TileHopper;
 use pocketmine\tile\Tile;
 
-class Hopper extends Transparent{
+class Hopper extends Transparent {
 
 	protected $id = self::HOPPER_BLOCK;
 
+	/**
+	 * Hopper constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
-	public function canBeActivated(): bool{
+	/**
+	 * @return bool
+	 */
+	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Hopper";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHardness(){
 		return 3;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = null){
 		if($player instanceof Player){
 			$t = $this->getLevel()->getTile($this);
@@ -64,20 +87,35 @@ class Hopper extends Transparent{
 					$player->getServer()->getLogger()->debug($player->getName() . " attempted to open a locked hopper");
 					return true;
 				}
-				
+
 				if($player->isCreative() and $player->getServer()->limitedCreative){
-				return true;
-			}
+					return true;
+				}
 				$player->addWindow($t->getInventory());
 			}
 		}
 		return true;
 	}
-	
+
+	/**
+	 *
+	 */
 	public function activate(){
 		//TODO: Hopper content freezing (requires basic redstone system upgrade)
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$faces = [
 			0 => 0,
@@ -109,12 +147,17 @@ class Hopper extends Transparent{
 			}
 		}
 
-		$t = Tile::createTile(Tile::HOPPER, $this->getLevel(), $nbt);
+		Tile::createTile(Tile::HOPPER, $this->getLevel(), $nbt);
 
 		return true;
 	}
 
-	public function getDrops(Item $item) : array {
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
+	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 1){
 			return [
 				[Item::HOPPER, 0, 1],

@@ -22,33 +22,60 @@
 namespace pocketmine\math;
 
 
-class Matrix implements \ArrayAccess{
+class Matrix implements \ArrayAccess {
 	private $matrix = [];
 	private $rows = 0;
 	private $columns = 0;
 
+	/**
+	 * @param mixed $offset
+	 *
+	 * @return bool
+	 */
 	public function offsetExists($offset){
 		return isset($this->matrix[(int) $offset]);
 	}
 
+	/**
+	 * @param mixed $offset
+	 *
+	 * @return mixed
+	 */
 	public function offsetGet($offset){
 		return $this->matrix[(int) $offset];
 	}
 
+	/**
+	 * @param mixed $offset
+	 * @param mixed $value
+	 */
 	public function offsetSet($offset, $value){
 		$this->matrix[(int) $offset] = $value;
 	}
 
+	/**
+	 * @param mixed $offset
+	 */
 	public function offsetUnset($offset){
 		unset($this->matrix[(int) $offset]);
 	}
 
+	/**
+	 * Matrix constructor.
+	 *
+	 * @param       $rows
+	 * @param       $columns
+	 * @param array $set
+	 */
 	public function __construct($rows, $columns, array $set = []){
 		$this->rows = max(1, (int) $rows);
 		$this->columns = max(1, (int) $columns);
 		$this->set($set);
 	}
 
+	/**
+	 * @param array $m
+	 */
 	public function set(array $m){
 		for($r = 0; $r < $this->rows; ++$r){
 			$this->matrix[$r] = [];
@@ -58,14 +85,27 @@ class Matrix implements \ArrayAccess{
 		}
 	}
 
+	/**
+	 * @return int|mixed
+	 */
 	public function getRows(){
 		return ($this->rows);
 	}
 
+	/**
+	 * @return int|mixed
+	 */
 	public function getColumns(){
 		return ($this->columns);
 	}
 
+	/**
+	 * @param $row
+	 * @param $column
+	 * @param $value
+	 *
+	 * @return bool
+	 */
 	public function setElement($row, $column, $value){
 		if($row > $this->rows or $row < 0 or $column > $this->columns or $column < 0){
 			return false;
@@ -75,6 +115,12 @@ class Matrix implements \ArrayAccess{
 		return true;
 	}
 
+	/**
+	 * @param $row
+	 * @param $column
+	 *
+	 * @return bool
+	 */
 	public function getElement($row, $column){
 		if($row > $this->rows or $row < 0 or $column > $this->columns or $column < 0){
 			return false;
@@ -83,10 +129,18 @@ class Matrix implements \ArrayAccess{
 		return $this->matrix[(int) $row][(int) $column];
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isSquare(){
 		return $this->rows === $this->columns;
 	}
 
+	/**
+	 * @param Matrix $matrix
+	 *
+	 * @return bool|Matrix
+	 */
 	public function add(Matrix $matrix){
 		if($this->rows !== $matrix->getRows() or $this->columns !== $matrix->getColumns()){
 			return false;
@@ -101,6 +155,11 @@ class Matrix implements \ArrayAccess{
 		return $result;
 	}
 
+	/**
+	 * @param Matrix $matrix
+	 *
+	 * @return bool|Matrix
+	 */
 	public function substract(Matrix $matrix){
 		if($this->rows !== $matrix->getRows() or $this->columns !== $matrix->getColumns()){
 			return false;
@@ -115,6 +174,11 @@ class Matrix implements \ArrayAccess{
 		return $result;
 	}
 
+	/**
+	 * @param $number
+	 *
+	 * @return Matrix
+	 */
 	public function multiplyScalar($number){
 		$result = clone $this;
 		for($r = 0; $r < $this->rows; ++$r){
@@ -127,6 +191,11 @@ class Matrix implements \ArrayAccess{
 	}
 
 
+	/**
+	 * @param $number
+	 *
+	 * @return Matrix
+	 */
 	public function divideScalar($number){
 		$result = clone $this;
 		for($r = 0; $r < $this->rows; ++$r){
@@ -138,6 +207,9 @@ class Matrix implements \ArrayAccess{
 		return $result;
 	}
 
+	/**
+	 * @return Matrix
+	 */
 	public function transpose(){
 		$result = new Matrix($this->columns, $this->rows);
 		for($r = 0; $r < $this->rows; ++$r){
@@ -150,6 +222,12 @@ class Matrix implements \ArrayAccess{
 	}
 
 	//Naive Matrix product, O(n^3)
+
+	/**
+	 * @param Matrix $matrix
+	 *
+	 * @return bool|Matrix
+	 */
 	public function product(Matrix $matrix){
 		if($this->columns !== $matrix->getRows()){
 			return false;
@@ -171,6 +249,10 @@ class Matrix implements \ArrayAccess{
 
 
 	//Computation of the determinant of 2x2 and 3x3 matrices
+
+	/**
+	 * @return bool|int
+	 */
 	public function determinant(){
 		if($this->isSquare() !== true){
 			return false;
@@ -188,6 +270,9 @@ class Matrix implements \ArrayAccess{
 	}
 
 
+	/**
+	 * @return string
+	 */
 	public function __toString(){
 		$s = "";
 		for($r = 0; $r < $this->rows; ++$r){

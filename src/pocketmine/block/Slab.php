@@ -26,8 +26,8 @@ use pocketmine\item\Tool;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\Player;
 
-class Slab extends Transparent{
-	
+class Slab extends Transparent {
+
 	const STONE = 0;
 	const SANDSTONE = 1;
 	const WOODEN = 2;
@@ -39,14 +39,25 @@ class Slab extends Transparent{
 
 	protected $id = self::SLAB;
 
+	/**
+	 * Slab constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
-	public function getHardness() {
+	/**
+	 * @return int
+	 */
+	public function getHardness(){
 		return 2;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		static $names = [
 			0 => "Stone",
@@ -61,6 +72,9 @@ class Slab extends Transparent{
 		return (($this->meta & 0x08) > 0 ? "Upper " : "") . $names[$this->meta & 0x07] . " Slab";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getBurnChance() : int{
 		$type = $this->meta & 0x07;
 		if($type == self::WOODEN){
@@ -69,6 +83,9 @@ class Slab extends Transparent{
 		return 0;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getBurnAbility() : int{
 		$type = $this->meta & 0x07;
 		if($type == self::WOODEN){
@@ -77,7 +94,10 @@ class Slab extends Transparent{
 		return 0;
 	}
 
-	protected function recalculateBoundingBox() {
+	/**
+	 * @return AxisAlignedBB
+	 */
+	protected function recalculateBoundingBox(){
 
 		if(($this->meta & 0x08) > 0){
 			return new AxisAlignedBB(
@@ -100,6 +120,18 @@ class Slab extends Transparent{
 		}
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$this->meta &= 0x07;
 		if($face === 0){
@@ -149,7 +181,12 @@ class Slab extends Transparent{
 		return true;
 	}
 
-	public function getDrops(Item $item) : array {
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
+	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 1){
 			return [
 				[$this->id, $this->meta & 0x07, 1],
@@ -160,7 +197,9 @@ class Slab extends Transparent{
 	}
 
 
-
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}

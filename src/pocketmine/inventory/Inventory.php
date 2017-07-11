@@ -22,12 +22,13 @@
 /**
  * Handles the creation of virtual inventories or mapped to an InventoryHolder
  */
+
 namespace pocketmine\inventory;
 
 use pocketmine\item\Item;
 use pocketmine\Player;
 
-interface Inventory{
+interface Inventory {
 	const MAX_STACK = 64;
 
 	public function getSize();
@@ -55,8 +56,8 @@ interface Inventory{
 	 * If a plugin refuses the update or $index is invalid, it'll return false
 	 * If a source Player is specified, it won't send a Inventory update to it
 	 *
-	 * @param int    $index
-	 * @param Item   $item
+	 * @param int  $index
+	 * @param Item $item
 	 *
 	 * @return bool
 	 */
@@ -68,9 +69,11 @@ interface Inventory{
 	 *
 	 * Returns the Items that did not fit.
 	 *
-	 * @param Item ...$item
+	 * @param array $slots
 	 *
 	 * @return Item[]
+	 * @internal param Item ...$item
+	 *
 	 */
 	public function addItem(...$slots);
 
@@ -87,9 +90,11 @@ interface Inventory{
 	 * Removes the given Item from the inventory.
 	 * It will return the Items that couldn't be removed.
 	 *
-	 * @param Item ...$item
+	 * @param array $slots
 	 *
 	 * @return Item[]
+	 * @internal param Item ...$item
+	 *
 	 */
 	public function removeItem(...$slots);
 
@@ -161,7 +166,7 @@ interface Inventory{
 	/**
 	 * Will clear a specific slot
 	 *
-	 * @param int    $index
+	 * @param int $index
 	 *
 	 * @return bool
 	 */
@@ -204,6 +209,11 @@ interface Inventory{
 	 */
 	public function open(Player $who);
 
+	/**
+	 * @param Player $who
+	 *
+	 * @return mixed
+	 */
 	public function close(Player $who);
 
 	/**
@@ -212,9 +222,9 @@ interface Inventory{
 	public function onClose(Player $who);
 
 	/**
-	 * @param int    $index
-	 * @param Item   $before
-	 * @param bool   $send
+	 * @param int  $index
+	 * @param Item $before
+	 * @param bool $send
 	 */
 	public function onSlotChange($index, $before, $send);
 }

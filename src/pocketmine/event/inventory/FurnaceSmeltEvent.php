@@ -26,13 +26,20 @@ use pocketmine\event\Cancellable;
 use pocketmine\item\Item;
 use pocketmine\tile\Furnace;
 
-class FurnaceSmeltEvent extends BlockEvent implements Cancellable{
+class FurnaceSmeltEvent extends BlockEvent implements Cancellable {
 	public static $handlerList = null;
 
 	private $furnace;
 	private $source;
 	private $result;
 
+	/**
+	 * FurnaceSmeltEvent constructor.
+	 *
+	 * @param Furnace $furnace
+	 * @param Item    $source
+	 * @param Item    $result
+	 */
 	public function __construct(Furnace $furnace, Item $source, Item $result){
 		parent::__construct($furnace->getBlock());
 		$this->source = clone $source;

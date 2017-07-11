@@ -29,8 +29,11 @@ use pocketmine\level\generator\populator\Sugarcane;
 use pocketmine\level\generator\populator\TallGrass;
 use pocketmine\level\generator\populator\WaterPit;
 
-class PlainBiome extends GrassyBiome{
+class PlainBiome extends GrassyBiome {
 
+	/**
+	 * PlainBiome constructor.
+	 */
 	public function __construct(){
 		parent::__construct();
 
@@ -66,6 +69,9 @@ class PlainBiome extends GrassyBiome{
 		$this->rainfall = 0.4;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Plains";
 	}

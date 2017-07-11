@@ -28,7 +28,7 @@ use pocketmine\math\Vector3;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Minecart extends Vehicle{
+class Minecart extends Vehicle {
 	const NETWORK_ID = 84;
 
 	const TYPE_NORMAL = 1;
@@ -52,7 +52,6 @@ class Minecart extends Vehicle{
 	private $state = Minecart::STATE_INITIAL;
 	private $direction = -1;
 	private $moveVector = [];
-	private $requestedPosition = null;
 
 	public function initEntity(){
 		$this->setMaxHealth(1);
@@ -64,14 +63,25 @@ class Minecart extends Vehicle{
 		parent::initEntity();
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Minecart";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getType() : int{
 		return self::TYPE_NORMAL;
 	}
 
+	/**
+	 * @param $currentTick
+	 *
+	 * @return bool
+	 */
 	public function onUpdate($currentTick){
 		if($this->closed !== false){
 			return false;
@@ -124,10 +134,18 @@ class Minecart extends Vehicle{
 		}
 	}
 
+	/**
+	 * @param Block $rail
+	 *
+	 * @return bool
+	 */
 	private function isRail(Block $rail){
 		return ($rail !== null and in_array($rail->getId(), [Block::RAIL, Block::ACTIVATOR_RAIL, Block::DETECTOR_RAIL, Block::POWERED_RAIL]));
 	}
 
+	/**
+	 * @return null|Block
+	 */
 	private function getCurrentRail(){
 		$block = $this->getLevel()->getBlock($this);
 		if($this->isRail($block)){
@@ -182,7 +200,7 @@ class Minecart extends Vehicle{
 	 * Determine the direction the minecart should move based on the candidate direction (current direction
 	 * minecart is moving, or the direction the player is looking) and the type of rail that the minecart is on.
 	 *
-	 * @param int $railType Type of rail the minecart is on.
+	 * @param int $railType           Type of rail the minecart is on.
 	 * @param int $candidateDirection Direction minecart already moving, or direction player looking.
 	 *
 	 * @return int The direction the minecart should move.
@@ -261,7 +279,7 @@ class Minecart extends Vehicle{
 	 * the rail again so as not to collide with nearby blocks.
 	 *
 	 * @param int $currentDirection Direction minecart currently moving
-	 * @param int $newDirection Direction minecart should turn once has hit the halfway point.
+	 * @param int $newDirection     Direction minecart should turn once has hit the halfway point.
 	 *
 	 * @return int Either the current direction or the new direction depending on haw far across the rail the minecart is.
 	 */
@@ -303,6 +321,12 @@ class Minecart extends Vehicle{
 		return $currentDirection;
 	}
 
+	/**
+	 * @param $railType
+	 * @param $currentDirection
+	 *
+	 * @return bool
+	 */
 	private function checkForVertical($railType, $currentDirection){
 		switch($railType){
 			case Rail::SLOPED_ASCENDING_NORTH:
@@ -463,6 +487,9 @@ class Minecart extends Vehicle{
 		return $nearestRail;
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

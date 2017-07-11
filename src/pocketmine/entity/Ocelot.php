@@ -27,7 +27,7 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Ocelot extends Animal{
+class Ocelot extends Animal {
 	const NETWORK_ID = 22;
 
 	const DATA_CAT_TYPE = 18;
@@ -42,11 +42,20 @@ class Ocelot extends Animal{
 	public $height = 0.75;
 
 	public $dropExp = [1, 3];
-	
+
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Ocelot";
 	}
 
+	/**
+	 * Ocelot constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 */
 	public function __construct(Level $level, CompoundTag $nbt){
 		if(!isset($nbt->CatType)){
 			$nbt->CatType = new ByteTag("CatType", mt_rand(0, 3));
@@ -56,14 +65,23 @@ class Ocelot extends Animal{
 		$this->setDataProperty(self::DATA_CAT_TYPE, self::DATA_TYPE_BYTE, $this->getCatType());
 	}
 
+	/**
+	 * @param int $type
+	 */
 	public function setCatType(int $type){
 		$this->namedtag->CatType = new ByteTag("CatType", $type);
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getCatType() : int{
 		return (int) $this->namedtag["CatType"];
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

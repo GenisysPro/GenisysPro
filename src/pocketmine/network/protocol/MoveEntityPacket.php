@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class MoveEntityPacket extends DataPacket{
+class MoveEntityPacket extends DataPacket {
 
 	const NETWORK_ID = Info::MOVE_ENTITY_PACKET;
 
@@ -37,6 +37,9 @@ class MoveEntityPacket extends DataPacket{
 	public $pitch;
 	public $byte1;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->eid = $this->getEntityId();
 		$this->getVector3f($this->x, $this->y, $this->z);
@@ -46,6 +49,9 @@ class MoveEntityPacket extends DataPacket{
 		$this->byte1 = $this->getByte();
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putEntityId($this->eid);

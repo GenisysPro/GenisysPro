@@ -29,23 +29,40 @@ class PackedIce extends Solid {
 
 	protected $id = self::PACKED_ICE;
 
-	public function __construct() {
+	/**
+	 * PackedIce constructor.
+	 */
+	public function __construct(){
 
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Packed Ice";
 	}
 
-	public function getHardness() {
+	/**
+	 * @return float
+	 */
+	public function getHardness(){
 		return 0.5;
 	}
 
-	public function getToolType() {
+	/**
+	 * @return int
+	 */
+	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
-	public function getDrops(Item $item) : array {
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
+	public function getDrops(Item $item) : array{
 		if($item->getEnchantmentLevel(Enchantment::TYPE_MINING_SILK_TOUCH) > 0){
 			return [
 				[Item::PACKED_ICE, 0, 1],

@@ -28,8 +28,13 @@ use pocketmine\event\TranslationContainer;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
-class KillCommand extends VanillaCommand{
+class KillCommand extends VanillaCommand {
 
+	/**
+	 * KillCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -40,6 +45,13 @@ class KillCommand extends VanillaCommand{
 		$this->setPermission("pocketmine.command.kill.self;pocketmine.command.kill.other");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;

@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class MobEquipmentPacket extends DataPacket{
+class MobEquipmentPacket extends DataPacket {
 
 	const NETWORK_ID = Info::MOB_EQUIPMENT_PACKET;
 
@@ -34,6 +34,9 @@ class MobEquipmentPacket extends DataPacket{
 	public $selectedSlot;
 	public $windowId;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->eid = $this->getEntityId(); //EntityRuntimeID
 		$this->item = $this->getSlot();
@@ -42,6 +45,9 @@ class MobEquipmentPacket extends DataPacket{
 		$this->windowId = $this->getByte();
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putEntityId($this->eid); //EntityRuntimeID

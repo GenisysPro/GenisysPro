@@ -30,7 +30,7 @@ use pocketmine\network\protocol\EntityEventPacket;
 use pocketmine\Player;
 
 
-class FishingHook extends Projectile{
+class FishingHook extends Projectile {
 	const NETWORK_ID = 77;
 
 	public $width = 0.25;
@@ -53,18 +53,36 @@ class FishingHook extends Projectile{
 		}
 	}
 
+	/**
+	 * FishingHook constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 * @param Entity|null $shootingEntity
+	 */
 	public function __construct(Level $level, CompoundTag $nbt, Entity $shootingEntity = null){
 		parent::__construct($level, $nbt, $shootingEntity);
 	}
 
+	/**
+	 * @param $id
+	 */
 	public function setData($id){
 		$this->data = $id;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getData(){
 		return $this->data;
 	}
 
+	/**
+	 * @param $currentTick
+	 *
+	 * @return bool
+	 */
 	public function onUpdate($currentTick){
 		if($this->closed){
 			return false;
@@ -124,6 +142,9 @@ class FishingHook extends Projectile{
 		}
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function reelLine(){
 		$this->damageRod = false;
 
@@ -151,6 +172,9 @@ class FishingHook extends Projectile{
 		return $this->damageRod;
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

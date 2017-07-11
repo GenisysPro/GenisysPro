@@ -26,19 +26,30 @@ use pocketmine\level\Level;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 
-class RedstoneTorch extends RedstoneSource{
+class RedstoneTorch extends RedstoneSource {
 
 	protected $id = self::REDSTONE_TORCH;
 	protected $ignore = "";
 
+	/**
+	 * RedstoneTorch constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getLightLevel(){
 		return 7;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getLastUpdateTime(){
 		return $this->getLevel()->getBlockTempData($this);
 	}
@@ -47,24 +58,41 @@ class RedstoneTorch extends RedstoneSource{
 		$this->getLevel()->setBlockTempData($this, $this->getLevel()->getServer()->getTick());
 	}
 
+	/**
+	 * @return bool|int
+	 */
 	public function canCalcTurn(){
 		if(!parent::canCalc()) return false;
 		if($this->getLevel()->getServer()->getTick() != $this->getLastUpdateTime()) return true;
 		return ($this->canScheduleUpdate() ? Level::BLOCK_UPDATE_SCHEDULED : false);
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canScheduleUpdate(){
 		return $this->getLevel()->getServer()->allowFrequencyPulse;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getFrequency(){
 		return $this->getLevel()->getServer()->pulseFrequency;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Redstone Torch";
 	}
 
+	/**
+	 * @param string $ignore
+	 *
+	 * @return bool
+	 */
 	public function turnOn($ignore = ""){
 		$result = $this->canCalcTurn();
 		$this->setLastUpdateTimeNow();
@@ -90,6 +118,11 @@ class RedstoneTorch extends RedstoneSource{
 		return false;
 	}
 
+	/**
+	 * @param string $ignore
+	 *
+	 * @return bool
+	 */
 	public function turnOff($ignore = ""){
 		$result = $this->canCalcTurn();
 		$this->setLastUpdateTimeNow();
@@ -115,6 +148,10 @@ class RedstoneTorch extends RedstoneSource{
 		return false;
 	}
 
+	/**
+	 * @param array $ignore
+	 * @param array $notCheck
+	 */
 	public function activateTorch(array $ignore = [], $notCheck = []){
 		if($this->canCalc()){
 			$this->activated = true;
@@ -134,14 +171,28 @@ class RedstoneTorch extends RedstoneSource{
 		}
 	}
 
+	/**
+	 * @param array $ignore
+	 *
+	 * @return bool|void
+	 */
 	public function activate(array $ignore = []){
 		$this->activateTorch($ignore);
 	}
 
+	/**
+	 * @param array $ignore
+	 *
+	 * @return bool|void
+	 */
 	public function deactivate(array $ignore = []){
 		$this->deactivateTorch($ignore);
 	}
 
+	/**
+	 * @param array $ignore
+	 * @param array $notCheck
+	 */
 	public function deactivateTorch(array $ignore = [], array $notCheck = []){
 		if($this->canCalc()){
 			$this->activated = false;
@@ -174,6 +225,11 @@ class RedstoneTorch extends RedstoneSource{
 		}
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return bool|int
+	 */
 	public function onUpdate($type){
 		$faces = [
 			1 => 4,
@@ -209,6 +265,11 @@ class RedstoneTorch extends RedstoneSource{
 		return false;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return mixed|void
+	 */
 	public function onBreak(Item $item){
 		$this->getLevel()->setBlock($this, new Air(), true, false);
 		$faces = [
@@ -224,6 +285,18 @@ class RedstoneTorch extends RedstoneSource{
 		$this->getLevel()->setBlockTempData($this);
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$below = $this->getSide(0);
 
@@ -254,12 +327,22 @@ class RedstoneTorch extends RedstoneSource{
 		return false;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		return [
 			[Item::LIT_REDSTONE_TORCH, 0, 1],
 		];
 	}
 
+	/**
+	 * @param Block|null $from
+	 *
+	 * @return bool
+	 */
 	public function isActivated(Block $from = null){
 		return true;
 	}

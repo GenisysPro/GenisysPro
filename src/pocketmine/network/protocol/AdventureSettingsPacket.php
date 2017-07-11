@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class AdventureSettingsPacket extends DataPacket{
+class AdventureSettingsPacket extends DataPacket {
 
 	const NETWORK_ID = Info::ADVENTURE_SETTINGS_PACKET;
 
@@ -49,6 +49,9 @@ class AdventureSettingsPacket extends DataPacket{
 	public $flags = 0;
 	public $userPermission;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->flags = $this->getUnsignedVarInt();
 		$this->userPermission = $this->getUnsignedVarInt();
@@ -66,6 +69,9 @@ class AdventureSettingsPacket extends DataPacket{
 		$this->muted = (bool) ($this->flags & (1 << 10));
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 

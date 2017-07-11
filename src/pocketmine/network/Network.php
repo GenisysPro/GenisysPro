@@ -22,6 +22,7 @@
 /**
  * Network-related classes
  */
+
 namespace pocketmine\network;
 
 use pocketmine\network\protocol\AddEntityPacket;
@@ -36,7 +37,7 @@ use pocketmine\network\protocol\AvailableCommandsPacket;
 use pocketmine\network\protocol\BatchPacket;
 use pocketmine\network\protocol\BlockEntityDataPacket;
 use pocketmine\network\protocol\BlockEventPacket;
-use pocketmine\network\protocol\BossEventPacket; 
+use pocketmine\network\protocol\BossEventPacket;
 use pocketmine\network\protocol\BlockPickRequestPacket;
 use pocketmine\network\protocol\ChangeDimensionPacket;
 use pocketmine\network\protocol\ChunkRadiusUpdatedPacket;
@@ -59,7 +60,6 @@ use pocketmine\network\protocol\EntityEventPacket;
 use pocketmine\network\protocol\ExplodePacket;
 use pocketmine\network\protocol\FullChunkDataPacket;
 use pocketmine\network\protocol\HurtArmorPacket;
-use pocketmine\network\protocol\Info;
 use pocketmine\network\protocol\Info as ProtocolInfo;
 use pocketmine\network\protocol\InteractPacket;
 use pocketmine\network\protocol\InventoryActionPacket;
@@ -137,27 +137,42 @@ class Network {
 
 	private $name;
 
-	public function __construct(Server $server) {
+	/**
+	 * Network constructor.
+	 *
+	 * @param Server $server
+	 */
+	public function __construct(Server $server){
 
 		$this->registerPackets();
 
 		$this->server = $server;
 	}
 
-	public function addStatistics($upload, $download) {
+	/**
+	 * @param $upload
+	 * @param $download
+	 */
+	public function addStatistics($upload, $download){
 		$this->upload += $upload;
 		$this->download += $download;
 	}
 
-	public function getUpload() {
+	/**
+	 * @return int
+	 */
+	public function getUpload(){
 		return $this->upload;
 	}
 
-	public function getDownload() {
+	/**
+	 * @return int
+	 */
+	public function getDownload(){
 		return $this->download;
 	}
 
-	public function resetStatistics() {
+	public function resetStatistics(){
 		$this->upload = 0;
 		$this->download = 0;
 	}
@@ -165,18 +180,18 @@ class Network {
 	/**
 	 * @return SourceInterface[]
 	 */
-	public function getInterfaces() {
+	public function getInterfaces(){
 		return $this->interfaces;
 	}
 
-	public function processInterfaces() {
-		foreach ($this->interfaces as $interface) {
-			try {
+	public function processInterfaces(){
+		foreach($this->interfaces as $interface){
+			try{
 				$interface->process();
-			} catch (\Throwable $e) {
+			}catch(\Throwable $e){
 				$logger = $this->server->getLogger();
-				if (\pocketmine\DEBUG > 1) {
-					if ($logger instanceof MainLogger) {
+				if(\pocketmine\DEBUG > 1){
+					if($logger instanceof MainLogger){
 						$logger->logException($e);
 					}
 				}
@@ -191,9 +206,9 @@ class Network {
 	/**
 	 * @param SourceInterface $interface
 	 */
-	public function registerInterface(SourceInterface $interface) {
+	public function registerInterface(SourceInterface $interface){
 		$this->interfaces[$hash = spl_object_hash($interface)] = $interface;
-		if ($interface instanceof AdvancedSourceInterface) {
+		if($interface instanceof AdvancedSourceInterface){
 			$this->advancedInterfaces[$hash] = $interface;
 			$interface->setNetwork($this);
 		}
@@ -203,7 +218,7 @@ class Network {
 	/**
 	 * @param SourceInterface $interface
 	 */
-	public function unregisterInterface(SourceInterface $interface) {
+	public function unregisterInterface(SourceInterface $interface){
 		unset($this->interfaces[$hash = spl_object_hash($interface)],
 			$this->advancedInterfaces[$hash]);
 	}
@@ -213,19 +228,19 @@ class Network {
 	 *
 	 * @param string $name
 	 */
-	public function setName($name) {
-		$this->name = (string)$name;
-		foreach ($this->interfaces as $interface) {
+	public function setName($name){
+		$this->name = (string) $name;
+		foreach($this->interfaces as $interface){
 			$interface->setName($this->name);
 		}
 	}
 
-	public function getName() {
+	public function getName(){
 		return $this->name;
 	}
 
-	public function updateName() {
-		foreach ($this->interfaces as $interface) {
+	public function updateName(){
+		foreach($this->interfaces as $interface){
 			$interface->setName($this->name);
 		}
 	}
@@ -234,14 +249,21 @@ class Network {
 	 * @param int        $id 0-255
 	 * @param DataPacket $class
 	 */
-	public function registerPacket($id, $class) {
+	public function registerPacket($id, $class){
 		$this->packetPool[$id] = new $class;
 	}
 
-	public function getServer() {
+	/**
+	 * @return Server
+	 */
+	public function getServer(){
 		return $this->server;
 	}
 
+	/**
+	 * @param BatchPacket $packet
+	 * @param Player      $p
+	 */
 	public function processBatch(BatchPacket $packet, Player $p){
 		try{
 			if(strlen($packet->payload) === 0){
@@ -288,10 +310,10 @@ class Network {
 	 *
 	 * @return DataPacket
 	 */
-	public function getPacket($id) {
+	public function getPacket($id){
 		/** @var DataPacket $class */
 		$class = $this->packetPool[$id];
-		if ($class !== null) {
+		if($class !== null){
 			return clone $class;
 		}
 		return null;
@@ -303,8 +325,8 @@ class Network {
 	 * @param int    $port
 	 * @param string $payload
 	 */
-	public function sendPacket($address, $port, $payload) {
-		foreach ($this->advancedInterfaces as $interface) {
+	public function sendPacket($address, $port, $payload){
+		foreach($this->advancedInterfaces as $interface){
 			$interface->sendRawPacket($address, $port, $payload);
 		}
 	}
@@ -315,8 +337,8 @@ class Network {
 	 * @param string $address
 	 * @param int    $timeout
 	 */
-	public function blockAddress($address, $timeout = 300) {
-		foreach ($this->advancedInterfaces as $interface) {
+	public function blockAddress($address, $timeout = 300){
+		foreach($this->advancedInterfaces as $interface){
 			$interface->blockAddress($address, $timeout);
 		}
 	}
@@ -326,13 +348,13 @@ class Network {
 	 *
 	 * @param string $address
 	 */
-	public function unblockAddress($address) {
-		foreach ($this->advancedInterfaces as $interface) {
+	public function unblockAddress($address){
+		foreach($this->advancedInterfaces as $interface){
 			$interface->unblockAddress($address);
 		}
 	}
 
-	private function registerPackets() {
+	private function registerPackets(){
 		$this->packetPool = new \SplFixedArray(256);
 
 		$this->registerPacket(ProtocolInfo::ADD_ENTITY_PACKET, AddEntityPacket::class);
@@ -347,7 +369,7 @@ class Network {
 		$this->registerPacket(0xfe, BatchPacket::class);
 		$this->registerPacket(ProtocolInfo::BLOCK_ENTITY_DATA_PACKET, BlockEntityDataPacket::class);
 		$this->registerPacket(ProtocolInfo::BLOCK_EVENT_PACKET, BlockEventPacket::class);
- 		$this->registerPacket(ProtocolInfo::BOSS_EVENT_PACKET, BossEventPacket::class);
+		$this->registerPacket(ProtocolInfo::BOSS_EVENT_PACKET, BossEventPacket::class);
 		$this->registerPacket(ProtocolInfo::CAMERA_PACKET, CameraPacket::class);
 		$this->registerPacket(ProtocolInfo::CHANGE_DIMENSION_PACKET, ChangeDimensionPacket::class);
 		$this->registerPacket(ProtocolInfo::CHUNK_RADIUS_UPDATED_PACKET, ChunkRadiusUpdatedPacket::class);

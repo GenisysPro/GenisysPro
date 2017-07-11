@@ -24,11 +24,12 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 #ifndef COMPILE
+
 use pocketmine\entity\Attribute;
 
 #endif
 
-class AddEntityPacket extends DataPacket{
+class AddEntityPacket extends DataPacket {
 
 	const NETWORK_ID = Info::ADD_ENTITY_PACKET;
 
@@ -42,14 +43,21 @@ class AddEntityPacket extends DataPacket{
 	public $speedZ;
 	public $yaw;
 	public $pitch;
+	/** @var Attribute[] */
 	public $attributes = [];
 	public $metadata = [];
 	public $links = [];
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putEntityId($this->eid); //EntityUniqueID - TODO: verify this

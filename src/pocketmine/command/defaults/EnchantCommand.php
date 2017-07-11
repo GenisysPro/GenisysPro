@@ -30,8 +30,13 @@ use pocketmine\item\enchantment\Enchantment;
 use pocketmine\utils\TextFormat;
 
 
-class EnchantCommand extends VanillaCommand{
+class EnchantCommand extends VanillaCommand {
 
+	/**
+	 * EnchantCommand constructor.
+	 *
+	 * @param $name
+	 */
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -41,6 +46,13 @@ class EnchantCommand extends VanillaCommand{
 		$this->setPermission("pocketmine.command.enchant");
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $currentAlias
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $currentAlias, array $args){
 		if(!$this->testPermission($sender)){
 			return true;
@@ -65,7 +77,7 @@ class EnchantCommand extends VanillaCommand{
 		if($enchantment->getId() === Enchantment::TYPE_INVALID){
 			$enchantment = Enchantment::getEnchantmentByName($enchantId);
 			if($enchantment->getId() === Enchantment::TYPE_INVALID){
-	    		$sender->sendMessage(new TranslationContainer("commands.enchant.notFound", [$enchantment->getId()]));
+				$sender->sendMessage(new TranslationContainer("commands.enchant.notFound", [$enchantment->getId()]));
 				return true;
 			}
 		}
@@ -83,7 +95,7 @@ class EnchantCommand extends VanillaCommand{
 			$sender->sendMessage(new TranslationContainer("commands.enchant.noItem"));
 			return true;
 		}
-		
+
 		if(Enchantment::getEnchantAbility($item) === 0){
 			$sender->sendMessage(new TranslationContainer(TextFormat::RED . "%commands.enchant.cantEnchant"));
 			return true;

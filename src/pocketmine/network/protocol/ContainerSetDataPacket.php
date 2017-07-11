@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class ContainerSetDataPacket extends DataPacket{
+class ContainerSetDataPacket extends DataPacket {
 
 	const NETWORK_ID = Info::CONTAINER_SET_DATA_PACKET;
 
@@ -32,10 +32,16 @@ class ContainerSetDataPacket extends DataPacket{
 	public $property;
 	public $value;
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putByte($this->windowid);

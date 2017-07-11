@@ -24,7 +24,7 @@ namespace pocketmine\event\entity;
 use pocketmine\entity\Entity;
 use pocketmine\event\Cancellable;
 
-class EntityCombustEvent extends EntityEvent implements Cancellable{
+class EntityCombustEvent extends EntityEvent implements Cancellable {
 	public static $handlerList = null;
 
 	protected $duration;
@@ -41,6 +41,9 @@ class EntityCombustEvent extends EntityEvent implements Cancellable{
 		$this->ProtectLevel = $ProtectLevel;
 	}
 
+	/**
+	 * @return float|int
+	 */
 	public function getDuration(){
 		if($this->ProtectLevel !== 0){
 			return round($this->duration * (1 - 0.15 * $this->ProtectLevel));
@@ -49,10 +52,16 @@ class EntityCombustEvent extends EntityEvent implements Cancellable{
 		}
 	}
 
+	/**
+	 * @param $duration
+	 */
 	public function setDuration($duration){
 		$this->duration = (int) $duration;
 	}
 
+	/**
+	 * @param $ProtectLevel
+	 */
 	public function setProtectLevel($ProtectLevel){
 		$this->ProtectLevel = (int) $ProtectLevel;
 	}

@@ -19,7 +19,7 @@
  *
 */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace pocketmine\level\format\io\region;
 
@@ -37,10 +37,15 @@ use pocketmine\utils\MainLogger;
  * This format is exactly the same as the PC Anvil format, with the only difference being that the stored data order
  * is XZY instead of YZX for more performance loading and saving worlds.
  */
-class PMAnvil extends Anvil{
+class PMAnvil extends Anvil {
 
 	const REGION_FILE_EXTENSION = "mcapm";
 
+	/**
+	 * @param Chunk $chunk
+	 *
+	 * @return string
+	 */
 	public function nbtSerialize(Chunk $chunk) : string{
 		$nbt = new CompoundTag("Level", []);
 		$nbt->xPos = new IntTag("xPos", $chunk->getX());
@@ -60,10 +65,10 @@ class PMAnvil extends Anvil{
 				continue;
 			}
 			$nbt->Sections[++$subChunks] = new CompoundTag(null, [
-				"Y"          => new ByteTag("Y", $y),
-				"Blocks"     => new ByteArrayTag("Blocks",     $subChunk->getBlockIdArray()),
-				"Data"       => new ByteArrayTag("Data",       $subChunk->getBlockDataArray()),
-				"SkyLight"   => new ByteArrayTag("SkyLight",   $subChunk->getSkyLightArray()),
+				"Y" => new ByteTag("Y", $y),
+				"Blocks" => new ByteArrayTag("Blocks", $subChunk->getBlockIdArray()),
+				"Data" => new ByteArrayTag("Data", $subChunk->getBlockDataArray()),
+				"SkyLight" => new ByteArrayTag("SkyLight", $subChunk->getSkyLightArray()),
 				"BlockLight" => new ByteArrayTag("BlockLight", $subChunk->getBlockLightArray())
 			]);
 		}
@@ -101,6 +106,11 @@ class PMAnvil extends Anvil{
 		return $writer->writeCompressed(ZLIB_ENCODING_DEFLATE, RegionLoader::$COMPRESSION_LEVEL);
 	}
 
+	/**
+	 * @param string $data
+	 *
+	 * @return null|Chunk
+	 */
 	public function nbtDeserialize(string $data){
 		$nbt = new NBT(NBT::BIG_ENDIAN);
 		try{
@@ -147,6 +157,9 @@ class PMAnvil extends Anvil{
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	public static function getProviderName() : string{
 		return "pmanvil";
 	}

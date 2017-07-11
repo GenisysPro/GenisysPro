@@ -23,7 +23,7 @@ namespace pocketmine\permission;
 
 use pocketmine\plugin\Plugin;
 
-interface Permissible extends ServerOperator{
+interface Permissible extends ServerOperator {
 
 	/**
 	 * Checks if this instance has a permission overridden

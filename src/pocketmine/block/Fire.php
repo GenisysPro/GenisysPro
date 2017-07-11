@@ -33,13 +33,18 @@ use pocketmine\level\Level;
 use pocketmine\math\Vector3;
 use pocketmine\Server;
 
-class Fire extends Flowable{
+class Fire extends Flowable {
 
 	protected $id = self::FIRE;
 
 	/** @var Vector3 */
 	private $temporalVector = null;
 
+	/**
+	 * Fire constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 		if($this->temporalVector === null){
@@ -47,26 +52,46 @@ class Fire extends Flowable{
 		}
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function hasEntityCollision(){
 		return true;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Fire Block";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getLightLevel(){
 		return 15;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return bool
+	 */
 	public function isBreakable(Item $item){
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeReplaced(){
 		return true;
 	}
 
+	/**
+	 * @param Entity $entity
+	 */
 	public function onEntityCollide(Entity $entity){
 		$ProtectL = 0;
 		if(!$entity->hasEffect(Effect::FIRE_RESISTANCE)){
@@ -87,10 +112,20 @@ class Fire extends Flowable{
 		}
 	}
 
-	public function getDrops(Item $item) : array {
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
+	public function getDrops(Item $item) : array{
 		return [];
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return int
+	 */
 	public function onUpdate($type){
 		if($type == Level::BLOCK_UPDATE_NORMAL or $type == Level::BLOCK_UPDATE_RANDOM or $type == Level::BLOCK_UPDATE_SCHEDULED){
 			if(!$this->getSide(Vector3::SIDE_DOWN)->isTopFacingSurfaceSolid() and !$this->canNeighborBurn()){
@@ -146,7 +181,7 @@ class Fire extends Flowable{
 
 						for($x = ($this->x - 1); $x <= ($this->x + 1); ++$x){
 							for($z = ($this->z - 1); $z <= ($this->z + 1); ++$z){
-								for($y = ($this->y -1); $y <= ($this->y + 4); ++$y){
+								for($y = ($this->y - 1); $y <= ($this->y + 4); ++$y){
 									$k = 100;
 
 									if($y > $this->y + 1){
@@ -177,6 +212,9 @@ class Fire extends Flowable{
 		return 0;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getTickRate() : int{
 		return 30;
 	}
@@ -203,6 +241,11 @@ class Fire extends Flowable{
 		return false;
 	}*/
 
+	/**
+	 * @param Block $block
+	 * @param int   $bound
+	 * @param int   $damage
+	 */
 	private function tryToCatchBlockOnFire(Block $block, int $bound, int $damage){
 		$burnAbility = $block->getBurnAbility();
 
@@ -216,7 +259,7 @@ class Fire extends Flowable{
 					$this->getLevel()->scheduleUpdate($block, $fire->getTickRate());
 				}
 			}else{
-					$this->getLevel()->setBlock($this, new Air(), true);
+				$this->getLevel()->setBlock($this, new Air(), true);
 			}
 
 			if($block instanceof TNT){
@@ -225,6 +268,11 @@ class Fire extends Flowable{
 		}
 	}
 
+	/**
+	 * @param Block $block
+	 *
+	 * @return int|mixed
+	 */
 	private function getChanceOfNeighborsEncouragingFire(Block $block){
 		if($block->getId() !== self::AIR){
 			return 0;

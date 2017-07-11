@@ -29,21 +29,29 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\Player;
-use pocketmine\tile\EnchantTable;
 use pocketmine\tile\Tile;
 
-class EnchantingTable extends Transparent{
+class EnchantingTable extends Transparent {
 
 	protected $id = self::ENCHANTING_TABLE;
 
+	/**
+	 * EnchantingTable constructor.
+	 */
 	public function __construct(){
 
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getLightLevel(){
 		return 12;
 	}
 
+	/**
+	 * @return AxisAlignedBB
+	 */
 	public function getBoundingBox(){
 		return new AxisAlignedBB(
 			$this->x,
@@ -55,6 +63,18 @@ class EnchantingTable extends Transparent{
 		);
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$this->getLevel()->setBlock($block, $this, true, true);
 		$nbt = new CompoundTag("", [
@@ -79,26 +99,47 @@ class EnchantingTable extends Transparent{
 		return true;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getHardness(){
 		return 5;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getResistance(){
 		return 6000;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Enchanting Table";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = null){
 		if(!$this->getLevel()->getServer()->enchantingTableEnabled){
 			return true;
@@ -107,11 +148,7 @@ class EnchantingTable extends Transparent{
 			if($player->isCreative() and $player->getServer()->limitedCreative){
 				return true;
 			}
-			$tile = $this->getLevel()->getTile($this);
 			$enchantTable = null;
-			if($tile instanceof EnchantTable){
-				$enchantTable = $tile;
-			}else{
 				$this->getLevel()->setBlock($this, $this, true, true);
 				$nbt = new CompoundTag("", [
 					new StringTag("id", Tile::ENCHANT_TABLE),
@@ -130,17 +167,20 @@ class EnchantingTable extends Transparent{
 					}
 				}
 
-				/** @var EnchantTable $enchantTable */
-				$enchantTable = Tile::createTile(Tile::ENCHANT_TABLE, $this->getLevel(), $nbt);
+				Tile::createTile(Tile::ENCHANT_TABLE, $this->getLevel(), $nbt);
 			}
 			$player->addWindow(new EnchantInventory($this));
 			$player->craftingType = Player::CRAFTING_ENCHANT;
-		}
 
 
 		return true;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 1){
 			return [

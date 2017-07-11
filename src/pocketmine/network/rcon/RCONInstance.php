@@ -25,7 +25,7 @@ use pocketmine\Thread;
 use pocketmine\utils\Binary;
 use pocketmine\utils\MainLogger;
 
-class RCONInstance extends Thread{
+class RCONInstance extends Thread {
 	public $stop;
 	public $cmd;
 	public $response;
@@ -39,11 +39,22 @@ class RCONInstance extends Thread{
 
 	public $serverStatus;
 
+	/**
+	 * @return bool
+	 */
 	public function isWaiting(){
 		return $this->waiting === true;
 	}
 
 
+	/**
+	 * RCONInstance constructor.
+	 *
+	 * @param     $logger
+	 * @param     $socket
+	 * @param     $password
+	 * @param int $maxClients
+	 */
 	public function __construct($logger, $socket, $password, $maxClients = 50){
 		$this->logger = $logger;
 		$this->stop = false;
@@ -61,6 +72,14 @@ class RCONInstance extends Thread{
 		$this->start();
 	}
 
+	/**
+	 * @param $client
+	 * @param $requestID
+	 * @param $packetType
+	 * @param $payload
+	 *
+	 * @return int
+	 */
 	private function writePacket($client, $requestID, $packetType, $payload){
 		$pk = Binary::writeLInt((int) $requestID)
 			. Binary::writeLInt((int) $packetType)
@@ -69,6 +88,15 @@ class RCONInstance extends Thread{
 		return socket_write($client, Binary::writeLInt(strlen($pk)) . $pk);
 	}
 
+	/**
+	 * @param $client
+	 * @param $size
+	 * @param $requestID
+	 * @param $packetType
+	 * @param $payload
+	 *
+	 * @return bool|null
+	 */
 	private function readPacket($client, &$size, &$requestID, &$packetType, &$payload){
 		socket_set_nonblock($client);
 		$d = @socket_read($client, 4);
@@ -214,6 +242,9 @@ class RCONInstance extends Thread{
 		exit(0);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getThreadName(){
 		return "RCON";
 	}

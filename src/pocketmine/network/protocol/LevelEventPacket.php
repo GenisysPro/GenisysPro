@@ -23,7 +23,7 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
-class LevelEventPacket extends DataPacket{
+class LevelEventPacket extends DataPacket {
 
 	const NETWORK_ID = Info::LEVEL_EVENT_PACKET;
 
@@ -93,10 +93,16 @@ class LevelEventPacket extends DataPacket{
 	public $z = 0;
 	public $data;
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putVarInt($this->evid);

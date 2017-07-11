@@ -25,7 +25,7 @@ use pocketmine\item\Item;
 use pocketmine\Server;
 use pocketmine\utils\UUID;
 
-class BrewingRecipe implements Recipe{
+class BrewingRecipe implements Recipe {
 
 	private $id = null;
 
@@ -35,11 +35,12 @@ class BrewingRecipe implements Recipe{
 	/** @var Item */
 	private $ingredient;
 
-	/** @var Item  */
+	/** @var Item */
 	private $potion;
 
 	/**
 	 * BrewingRecipe constructor.
+	 *
 	 * @param Item $result
 	 * @param Item $ingredient
 	 * @param Item $potion
@@ -50,14 +51,23 @@ class BrewingRecipe implements Recipe{
 		$this->potion = clone $potion;
 	}
 
+	/**
+	 * @return Item
+	 */
 	public function getPotion(){
 		return clone $this->potion;
 	}
 
+	/**
+	 * @return null
+	 */
 	public function getId(){
 		return $this->id;
 	}
 
+	/**
+	 * @param UUID $id
+	 */
 	public function setId(UUID $id){
 		if($this->id !== null){
 			throw new \InvalidStateException("Id is already set");

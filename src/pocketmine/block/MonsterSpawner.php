@@ -30,30 +30,53 @@ use pocketmine\Player;
 use pocketmine\tile\MobSpawner;
 use pocketmine\tile\Tile;
 
-class MonsterSpawner extends Solid{
+class MonsterSpawner extends Solid {
 
 	protected $id = self::MONSTER_SPAWNER;
 
+	/**
+	 * MonsterSpawner constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
-	public function getHardness() {
+	/**
+	 * @return int
+	 */
+	public function getHardness(){
 		return 5;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Monster Spawner";
 	}
 
-	public function canBeActivated() : bool {
+	/**
+	 * @return bool
+	 */
+	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = null){
 		if($this->getDamage() == 0){
 			if($item->getId() == Item::SPAWN_EGG){
@@ -69,6 +92,18 @@ class MonsterSpawner extends Solid{
 		return false;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 
 		$this->getLevel()->setBlock($block, $this, true, true);
@@ -79,18 +114,23 @@ class MonsterSpawner extends Solid{
 			new IntTag("z", $block->z),
 			new IntTag("EntityId", 0),
 		]);
-		
+
 		if($item->hasCustomBlockData()){
 			foreach($item->getCustomBlockData() as $key => $v){
 				$nbt->{$key} = $v;
 			}
 		}
-		
+
 		Tile::createTile(Tile::MOB_SPAWNER, $this->getLevel(), $nbt);
 		return true;
 	}
 
-	public function getDrops(Item $item) : array {
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
+	public function getDrops(Item $item) : array{
 		return [];
 	}
 }

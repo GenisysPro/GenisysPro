@@ -24,7 +24,7 @@ namespace pocketmine\inventory;
 use pocketmine\item\Item;
 use pocketmine\Player;
 
-class BaseTransaction implements Transaction{
+class BaseTransaction implements Transaction {
 	/** @var Inventory */
 	protected $inventory;
 	/** @var int */
@@ -58,26 +58,44 @@ class BaseTransaction implements Transaction{
 		$this->achievements = $achievements;
 	}
 
+	/**
+	 * @return float|mixed
+	 */
 	public function getCreationTime(){
 		return $this->creationTime;
 	}
 
+	/**
+	 * @return Inventory
+	 */
 	public function getInventory(){
 		return $this->inventory;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getSlot(){
 		return $this->slot;
 	}
 
+	/**
+	 * @return Item
+	 */
 	public function getTargetItem(){
 		return clone $this->targetItem;
 	}
 
+	/**
+	 * @param Item $item
+	 */
 	public function setTargetItem(Item $item){
 		$this->targetItem = clone $item;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getFailures(){
 		return $this->failures;
 	}
@@ -86,26 +104,44 @@ class BaseTransaction implements Transaction{
 		$this->failures++;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function succeeded(){
 		return $this->wasSuccessful;
 	}
 
+	/**
+	 * @param bool $value
+	 */
 	public function setSuccess($value = true){
 		$this->wasSuccessful = $value;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getTransactionType(){
 		return $this->transactionType;
 	}
-	
+
+	/**
+	 * @return array|string|\string[]
+	 */
 	public function getAchievements(){
 		return $this->achievements;
 	}
-	
+
+	/**
+	 * @return bool
+	 */
 	public function hasAchievements(){
 		return count($this->achievements) !== 0;
 	}
-	
+
+	/**
+	 * @param string $achievementName
+	 */
 	public function addAchievement(string $achievementName){
 		$this->achievements[] = $achievementName;
 	}
@@ -122,7 +158,6 @@ class BaseTransaction implements Transaction{
 			return;
 		}
 
-		$targets = [];
 		if($this->wasSuccessful){
 			$targets = $this->getInventory()->getViewers();
 			unset($targets[spl_object_hash($source)]);
@@ -134,6 +169,7 @@ class BaseTransaction implements Transaction{
 
 	/**
 	 * Returns the change in inventory resulting from this transaction
+	 *
 	 * @return array ("in" => items added to the inventory, "out" => items removed from the inventory)
 	 * ]
 	 */
@@ -149,13 +185,13 @@ class BaseTransaction implements Transaction{
 			$countDiff = $this->targetItem->getCount() - $sourceItem->getCount();
 			$item->setCount(abs($countDiff));
 
-			if($countDiff < 0){	//Count decreased
+			if($countDiff < 0){     //Count decreased
 				return ["in" => null,
-						"out" => $item];
+					"out" => $item];
 			}elseif($countDiff > 0){ //Count increased
 				return [
-						"in" => $item,
-						"out" => null];
+					"in" => $item,
+					"out" => null];
 			}else{
 				//Should be impossible (identical items and no count change)
 				//This should be caught by the first condition even if it was possible
@@ -164,28 +200,29 @@ class BaseTransaction implements Transaction{
 		}elseif($sourceItem->getId() !== Item::AIR and $this->targetItem->getId() === Item::AIR){
 			//Slot emptied (item removed)
 			return ["in" => null,
-					"out" => clone $sourceItem];
+				"out" => clone $sourceItem];
 
 		}elseif($sourceItem->getId() === Item::AIR and $this->targetItem->getId() !== Item::AIR){
 			//Slot filled (item added)
 			return ["in" => $this->getTargetItem(),
-					"out" => null];
+				"out" => null];
 
 		}else{
 			//Some other slot change - an item swap (tool damage changes will be ignored as they are processed server-side before any change is sent by the client
 			return ["in" => $this->getTargetItem(),
-					"out" => clone $sourceItem];
+				"out" => clone $sourceItem];
 		}
 	}
 
 	/**
 	 * @param Player $source
+	 *
 	 * @return bool
 	 *
 	 * Handles transaction execution. Returns whether transaction was successful or not.
 	 */
 
-	public function execute(Player $source): bool{
+	public function execute(Player $source) : bool{
 		if($this->getInventory()->processSlotChange($this)){ //This means that the transaction should be handled the normal way
 			if(!$source->getServer()->allowInventoryCheats and !$source->isCreative()){
 				$change = $this->getChange();
@@ -217,12 +254,12 @@ class BaseTransaction implements Transaction{
 			}
 			$this->getInventory()->setItem($this->getSlot(), $this->getTargetItem(), false);
 		}
-		
+
 		/* Process transaction achievements, like getting iron from a furnace */
 		foreach($this->achievements as $achievement){
 			$source->awardAchievement($achievement);
 		}
-		
+
 		return true;
 	}
 }

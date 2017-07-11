@@ -26,7 +26,7 @@ use pocketmine\event\Cancellable;
 use pocketmine\item\Item;
 use pocketmine\Player;
 
-class BlockBreakEvent extends BlockEvent implements Cancellable{
+class BlockBreakEvent extends BlockEvent implements Cancellable {
 	public static $handlerList = null;
 
 	/** @var \pocketmine\Player */
@@ -39,11 +39,19 @@ class BlockBreakEvent extends BlockEvent implements Cancellable{
 	protected $instaBreak = false;
 	protected $blockDrops = [];
 
+	/**
+	 * BlockBreakEvent constructor.
+	 *
+	 * @param Player $player
+	 * @param Block  $block
+	 * @param Item   $item
+	 * @param bool   $instaBreak
+	 */
 	public function __construct(Player $player, Block $block, Item $item, $instaBreak = false){
 		$this->block = $block;
 		$this->item = $item;
 		$this->player = $player;
-		$this->instaBreak = (bool)$instaBreak;
+		$this->instaBreak = (bool) $instaBreak;
 		$drops = $player->isSurvival() ? $block->getDrops($item) : [];
 		if($drops != null && is_numeric($drops[0]))
 			$this->blockDrops[] = Item::get($drops[0], $drops[1], $drops[2]);
@@ -53,14 +61,23 @@ class BlockBreakEvent extends BlockEvent implements Cancellable{
 			}
 	}
 
+	/**
+	 * @return Player
+	 */
 	public function getPlayer(){
 		return $this->player;
 	}
 
+	/**
+	 * @return Item
+	 */
 	public function getItem(){
 		return $this->item;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function getInstaBreak(){
 		return $this->instaBreak;
 	}
@@ -83,6 +100,6 @@ class BlockBreakEvent extends BlockEvent implements Cancellable{
 	 * @param bool $instaBreak
 	 */
 	public function setInstaBreak($instaBreak){
-		$this->instaBreak = (bool)$instaBreak;
+		$this->instaBreak = (bool) $instaBreak;
 	}
 }

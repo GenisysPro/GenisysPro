@@ -2,7 +2,7 @@
 
 namespace pocketmine\network\protocol;
 
-class UpdateTradePacket extends DataPacket{
+class UpdateTradePacket extends DataPacket {
 
 	const NETWORK_ID = Info::UPDATE_TRADE_PACKET;
 
@@ -16,6 +16,9 @@ class UpdateTradePacket extends DataPacket{
 	public $displayName;
 	public $offers;
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->byte1 = $this->getByte();
 		$this->byte2 = $this->getByte();
@@ -28,6 +31,9 @@ class UpdateTradePacket extends DataPacket{
 		$this->offers = $this->get(true);
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putByte($this->byte1);

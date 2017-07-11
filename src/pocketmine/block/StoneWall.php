@@ -26,29 +26,46 @@ use pocketmine\item\Tool;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\math\Vector3;
 
-class StoneWall extends Transparent{
-	
+class StoneWall extends Transparent {
+
 	const NONE_MOSSY_WALL = 0;
 	const MOSSY_WALL = 1;
 
 	protected $id = self::STONE_WALL;
 
+	/**
+	 * StoneWall constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isSolid(){
 		return false;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
-	public function getHardness() {
+	/**
+	 * @return int
+	 */
+	public function getHardness(){
 		return 2;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		if($this->meta === 0x01){
 			return "Mossy Cobblestone Wall";
@@ -57,7 +74,10 @@ class StoneWall extends Transparent{
 		return "Cobblestone Wall";
 	}
 
-	protected function recalculateBoundingBox() {
+	/**
+	 * @return AxisAlignedBB
+	 */
+	protected function recalculateBoundingBox(){
 
 		$north = $this->canConnect($this->getSide(Vector3::SIDE_NORTH));
 		$south = $this->canConnect($this->getSide(Vector3::SIDE_SOUTH));
@@ -87,6 +107,11 @@ class StoneWall extends Transparent{
 		);
 	}
 
+	/**
+	 * @param Block $block
+	 *
+	 * @return bool
+	 */
 	public function canConnect(Block $block){
 		return ($block->getId() !== self::COBBLE_WALL and $block->getId() !== self::FENCE_GATE) ? $block->isSolid() and !$block->isTransparent() : true;
 	}

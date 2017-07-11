@@ -22,26 +22,39 @@
 namespace pocketmine\block;
 
 
+abstract class Flowable extends Transparent {
 
-
-abstract class Flowable extends Transparent{
-
+	/**
+	 * @return bool
+	 */
 	public function canBeFlowedInto(){
 		return true;
 	}
 
-	public function getHardness() {
+	/**
+	 * @return int
+	 */
+	public function getHardness(){
 		return 0;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getResistance(){
 		return 0;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isSolid(){
 		return false;
 	}
 
+	/**
+	 * @return null
+	 */
 	public function getBoundingBox(){
 		return null;
 	}

@@ -22,13 +22,15 @@
 /**
  * Various Utilities used around the code
  */
+
 namespace pocketmine\utils;
+
 use pocketmine\ThreadManager;
 
 /**
  * Big collection of functions
  */
-class Utils{
+class Utils {
 	public static $online = true;
 	public static $ip = false;
 	public static $os;
@@ -194,11 +196,14 @@ class Utils{
 				self::$os = "other";
 			}
 		}
-		
+
 		return self::$os;
 	}
 
 
+	/**
+	 * @return array
+	 */
 	public static function getRealMemoryUsage(){
 		$stack = 0;
 		$heap = 0;
@@ -219,6 +224,11 @@ class Utils{
 		return [$heap, $stack];
 	}
 
+	/**
+	 * @param bool $advanced
+	 *
+	 * @return array|int|null
+	 */
 	public static function getMemoryUsage($advanced = false){
 		$reserved = memory_get_usage();
 		$VmSize = null;
@@ -251,6 +261,9 @@ class Utils{
 		return [$reserved, $VmRSS, $VmSize];
 	}
 
+	/**
+	 * @return int
+	 */
 	public static function getThreadCount(){
 		if(Utils::getOS() === "linux" or Utils::getOS() === "android"){
 			if(preg_match("/Threads:[ \t]+([0-9]+)/", file_get_contents("/proc/self/status"), $matches) > 0){
@@ -262,6 +275,11 @@ class Utils{
 		return count(ThreadManager::getInstance()->getAll()) + 3; //RakLib + MainLogger + Main Thread
 	}
 
+	/**
+	 * @param bool $recalculate
+	 *
+	 * @return int
+	 */
 	public static function getCoreCount($recalculate = false){
 		static $processors = 0;
 
@@ -348,8 +366,8 @@ class Utils{
 	/**
 	 * GETs an URL using cURL
 	 *
-	 * @param     $page
-	 * @param int $timeout default 10
+	 * @param       $page
+	 * @param int   $timeout default 10
 	 * @param array $extraHeaders
 	 *
 	 * @return bool|mixed
@@ -382,7 +400,7 @@ class Utils{
 	 * @param              $page
 	 * @param array|string $args
 	 * @param int          $timeout
-	 * @param array $extraHeaders
+	 * @param array        $extraHeaders
 	 *
 	 * @return bool|mixed
 	 */
@@ -410,6 +428,11 @@ class Utils{
 		return $ret;
 	}
 
+	/**
+	 * @param $string
+	 *
+	 * @return int
+	 */
 	public static function javaStringHash($string){
 		$hash = 0;
 		for($i = 0; $i < strlen($string); $i++){

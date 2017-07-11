@@ -36,8 +36,13 @@
 namespace pocketmine\resourcepacks;
 
 
-class ZippedResourcePack implements ResourcePack{
+class ZippedResourcePack implements ResourcePack {
 
+	/**
+	 * @param \stdClass $manifest
+	 *
+	 * @return bool
+	 */
 	public static function verifyManifest(\stdClass $manifest){
 		if(!isset($manifest->format_version) or !isset($manifest->header) or !isset($manifest->modules)){
 			return false;
@@ -62,6 +67,11 @@ class ZippedResourcePack implements ResourcePack{
 	/** @var resource */
 	protected $fileResource;
 
+	/**
+	 * ZippedResourcePack constructor.
+	 *
+	 * @param string $zipPath
+	 */
 	public function __construct(string $zipPath){
 		$this->path = $zipPath;
 
@@ -71,12 +81,12 @@ class ZippedResourcePack implements ResourcePack{
 
 		$archive = new \ZipArchive();
 		if(($openResult = $archive->open($zipPath)) !== true){
-			throw new \InvalidStateException("打开 $zipPath时遇到ZipArchive错误 $openResult");
+			throw new \InvalidStateException("打开 $zipPath $openResult");//Yeah, I don't speak, that...
 		}
 
 		if(($manifestData = $archive->getFromName("manifest.json")) === false){
 			if(($manifestData = $archive->getFromName("pack_manifest.json")) === false){
-			 	throw new \InvalidStateException("无法加载材质包 $zipPath: 找不到主类");
+				throw new \InvalidStateException("无法加载材质包 $zipPath: 找不到主类");
 			}
 		}
 
@@ -92,22 +102,39 @@ class ZippedResourcePack implements ResourcePack{
 		$this->fileResource = fopen($zipPath, "rb");
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getPackName() : string{
 		return $this->manifest->header->name;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getPackVersion() : string{
 		return implode(".", $this->manifest->header->version);
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getPackId() : string{
 		return $this->manifest->header->uuid;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getPackSize() : int{
 		return filesize($this->path);
 	}
 
+	/**
+	 * @param bool $cached
+	 *
+	 * @return string
+	 */
 	public function getSha256(bool $cached = true) : string{
 		if($this->sha256 === null or !$cached){
 			$this->sha256 = hash_file("sha256", $this->path, true);
@@ -115,6 +142,12 @@ class ZippedResourcePack implements ResourcePack{
 		return $this->sha256;
 	}
 
+	/**
+	 * @param int $start
+	 * @param int $length
+	 *
+	 * @return string
+	 */
 	public function getPackChunk(int $start, int $length) : string{
 		fseek($this->fileResource, $start);
 		if(feof($this->fileResource)){

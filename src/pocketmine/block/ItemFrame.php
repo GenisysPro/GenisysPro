@@ -30,21 +30,38 @@ use pocketmine\Player;
 use pocketmine\tile\ItemFrame as TileItemFrame;
 use pocketmine\tile\Tile;
 
-class ItemFrame extends Flowable{
+class ItemFrame extends Flowable {
 	protected $id = Block::ITEM_FRAME_BLOCK;
 
+	/**
+	 * ItemFrame constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Item Frame";
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = null){
 		if(!(($tile = $this->level->getTile($this)) instanceof TileItemFrame)){
 			$nbt = new CompoundTag("", [
@@ -78,6 +95,11 @@ class ItemFrame extends Flowable{
 		return true;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return mixed
+	 */
 	public function onBreak(Item $item){
 		if(($tile = $this->level->getTile($this)) instanceof TileItemFrame){
 			//TODO: add events
@@ -88,6 +110,11 @@ class ItemFrame extends Flowable{
 		return parent::onBreak($item);
 	}
 
+	/**
+	 * @param int $type
+	 *
+	 * @return bool|int
+	 */
 	public function onUpdate($type){
 		if($type === Level::BLOCK_UPDATE_NORMAL){
 			$sides = [
@@ -104,6 +131,18 @@ class ItemFrame extends Flowable{
 		return false;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		if($face === 0 or $face === 1){
 			return false;
@@ -140,6 +179,11 @@ class ItemFrame extends Flowable{
 
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		return [
 			[Item::ITEM_FRAME, 0, 1]

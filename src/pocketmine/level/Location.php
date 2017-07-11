@@ -23,7 +23,7 @@ namespace pocketmine\level;
 
 use pocketmine\math\Vector3;
 
-class Location extends Position{
+class Location extends Position {
 
 	public $yaw;
 	public $pitch;
@@ -57,6 +57,15 @@ class Location extends Position{
 		return new Location($pos->x, $pos->y, $pos->z, $yaw, $pitch, ($level === null) ? (($pos instanceof Position) ? $pos->level : null) : $level);
 	}
 
+	/**
+	 * @param     $x
+	 * @param int $y
+	 * @param int $z
+	 * @param int $yaw
+	 * @param int $pitch
+	 *
+	 * @return Location
+	 */
 	public function add($x, $y = 0, $z = 0, $yaw = 0, $pitch = 0){
 		if($x instanceof Location){
 			return new Location($this->x + $x->x, $this->y + $x->y, $this->z + $x->z, $this->yaw + $x->yaw, $this->pitch + $x->pitch, $this->level);
@@ -65,14 +74,28 @@ class Location extends Position{
 		}
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getYaw(){
 		return $this->yaw;
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getPitch(){
 		return $this->pitch;
 	}
 
+	/**
+	 * @param Vector3 $pos
+	 * @param         $x
+	 * @param         $y
+	 * @param         $z
+	 *
+	 * @return $this
+	 */
 	public function fromObjectAdd(Vector3 $pos, $x, $y, $z){
 		if($pos instanceof Location){
 			$this->yaw = $pos->yaw;
@@ -82,6 +105,9 @@ class Location extends Position{
 		return $this;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function __toString(){
 		return "Location (level=" . ($this->isValid() ? $this->getLevel()->getName() : "null") . ", x=$this->x, y=$this->y, z=$this->z, yaw=$this->yaw, pitch=$this->pitch)";
 	}

@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class SetSpawnPositionPacket extends DataPacket{
+class SetSpawnPositionPacket extends DataPacket {
 
 	const NETWORK_ID = Info::SET_SPAWN_POSITION_PACKET;
 
@@ -34,10 +34,16 @@ class SetSpawnPositionPacket extends DataPacket{
 	public $z;
 	public $unknownBool;
 
+	/**
+	 *
+	 */
 	public function decode(){
 
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putVarInt($this->unknown);

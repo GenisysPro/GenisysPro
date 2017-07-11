@@ -14,7 +14,7 @@ use pocketmine\level\particle\DestroyBlockParticle;
 use pocketmine\network\protocol\AddPaintingPacket;
 use pocketmine\Player;
 
-class Painting extends Hanging{
+class Painting extends Hanging {
 	const NETWORK_ID = 83;
 
 	private $motive;
@@ -28,6 +28,12 @@ class Painting extends Hanging{
 		}else $this->close();
 	}
 
+	/**
+	 * @param float             $damage
+	 * @param EntityDamageEvent $source
+	 *
+	 * @return bool
+	 */
 	public function attack($damage, EntityDamageEvent $source){
 		parent::attack($damage, $source);
 		if($source->isCancelled()) return false;
@@ -36,6 +42,9 @@ class Painting extends Hanging{
 		return true;
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddPaintingPacket();
 		$pk->eid = $this->getId();
@@ -53,6 +62,9 @@ class Painting extends Hanging{
 		//Nothing to update, paintings cannot move.
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getDrops(){
 		return [ItemItem::get(ItemItem::PAINTING, 0, 1)];
 	}

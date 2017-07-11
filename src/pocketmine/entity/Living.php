@@ -36,13 +36,13 @@ use pocketmine\network\protocol\EntityEventPacket;
 use pocketmine\Player;
 use pocketmine\utils\BlockIterator;
 
-abstract class Living extends Entity implements Damageable{
+abstract class Living extends Entity implements Damageable {
 
 	protected $gravity = 0.08;
 	protected $drag = 0.02;
 
 	protected $attackTime = 0;
-	
+
 	protected $invisible = false;
 
 	protected function initEntity(){
@@ -56,12 +56,15 @@ abstract class Living extends Entity implements Damageable{
 		if(!isset($this->namedtag->Health) or !($this->namedtag->Health instanceof ShortTag)){
 			$this->namedtag->Health = new ShortTag("Health", $this->getMaxHealth());
 		}
-		
+
 		if($this->namedtag["Health"] <= 0)
 			$this->setHealth(20);
 		else $this->setHealth($this->namedtag["Health"]);
 	}
 
+	/**
+	 * @param int $amount
+	 */
 	public function setHealth($amount){
 		$wasAlive = $this->isAlive();
 		parent::setHealth($amount);
@@ -78,14 +81,26 @@ abstract class Living extends Entity implements Damageable{
 		$this->namedtag->Health = new ShortTag("Health", $this->getHealth());
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public abstract function getName();
 
+	/**
+	 * @param Entity $entity
+	 *
+	 * @return bool
+	 */
 	public function hasLineOfSight(Entity $entity){
 		//TODO: head height
 		return true;
 		//return $this->getLevel()->rayTraceBlocks(Vector3::createVector($this->x, $this->y + $this->height, $this->z), Vector3::createVector($entity->x, $entity->y + $entity->height, $entity->z)) === null;
 	}
 
+	/**
+	 * @param float                   $amount
+	 * @param EntityRegainHealthEvent $source
+	 */
 	public function heal($amount, EntityRegainHealthEvent $source){
 		parent::heal($amount, $source);
 		if($source->isCancelled()){
@@ -95,19 +110,25 @@ abstract class Living extends Entity implements Damageable{
 		$this->attackTime = 0;
 	}
 
+	/**
+	 * @param float             $damage
+	 * @param EntityDamageEvent $source
+	 *
+	 * @return bool|void
+	 */
 	public function attack($damage, EntityDamageEvent $source){
 		if($this->attackTime > 0 or $this->noDamageTicks > 0){
 			$lastCause = $this->getLastDamageCause();
 			if($lastCause !== null and $lastCause->getDamage() >= $damage){
-                $source->setCancelled();
+				$source->setCancelled();
 			}
 		}
 
-        parent::attack($damage, $source);
+		parent::attack($damage, $source);
 
-        if($source->isCancelled()){
-            return;
-        }
+		if($source->isCancelled()){
+			return;
+		}
 
 		if($source instanceof EntityDamageByEntityEvent){
 			$e = $source->getDamager();
@@ -135,6 +156,13 @@ abstract class Living extends Entity implements Damageable{
 		$this->attackTime = 10; //0.5 seconds cooldown
 	}
 
+	/**
+	 * @param Entity $attacker
+	 * @param        $damage
+	 * @param        $x
+	 * @param        $z
+	 * @param float  $base
+	 */
 	public function knockBack(Entity $attacker, $damage, $x, $z, $base = 0.4){
 		$f = sqrt($x * $x + $z * $z);
 		if($f <= 0){
@@ -170,6 +198,12 @@ abstract class Living extends Entity implements Damageable{
 		}
 	}
 
+	/**
+	 * @param int $tickDiff
+	 * @param int $EnchantL
+	 *
+	 * @return bool
+	 */
 	public function entityBaseTick($tickDiff = 1, $EnchantL = 0){
 		Timings::$timerLivingEntityBaseTick->startTiming();
 		$this->setDataFlag(self::DATA_FLAGS, self::DATA_FLAG_BREATHING, !$this->isInsideOfWater());
@@ -196,7 +230,7 @@ abstract class Living extends Entity implements Damageable{
 						$ev = new EntityDamageEvent($this, EntityDamageEvent::CAUSE_DROWNING, 2);
 						$this->attack($ev->getFinalDamage(), $ev);
 					}
-					$this->setDataProperty(self::DATA_AIR, self::DATA_TYPE_SHORT, min($airTicks,$maxAir));
+					$this->setDataProperty(self::DATA_AIR, self::DATA_TYPE_SHORT, min($airTicks, $maxAir));
 				}
 			}else{
 				if($this instanceof WaterAnimal){
@@ -290,7 +324,7 @@ abstract class Living extends Entity implements Damageable{
 			if($block instanceof Block){
 				return $block;
 			}
-		}catch (\ArrayOutOfBoundsException $e){
+		}catch(\ArrayOutOfBoundsException $e){
 
 		}
 

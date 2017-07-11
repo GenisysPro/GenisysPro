@@ -24,7 +24,7 @@ namespace pocketmine\event\entity;
 use pocketmine\entity\Entity;
 use pocketmine\event\Cancellable;
 
-class EntityRegainHealthEvent extends EntityEvent implements Cancellable{
+class EntityRegainHealthEvent extends EntityEvent implements Cancellable {
 	public static $handlerList = null;
 
 	const CAUSE_REGEN = 0;
@@ -62,6 +62,9 @@ class EntityRegainHealthEvent extends EntityEvent implements Cancellable{
 		$this->amount = $amount;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getRegainReason(){
 		return $this->reason;
 	}

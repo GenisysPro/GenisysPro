@@ -36,7 +36,7 @@ use pocketmine\scheduler\GarbageCollectionTask;
 use pocketmine\utils\Utils;
 
 
-class MemoryManager{
+class MemoryManager {
 
 	/** @var Server */
 	private $server;
@@ -71,6 +71,11 @@ class MemoryManager{
 
 	private $leakSeed = 0;
 
+	/**
+	 * MemoryManager constructor.
+	 *
+	 * @param Server $server
+	 */
 	public function __construct(Server $server){
 		$this->server = $server;
 
@@ -131,10 +136,16 @@ class MemoryManager{
 		gc_enable();
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isLowMemory(){
 		return $this->lowMemory;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canUseChunkCache(){
 		return !($this->lowMemory and $this->chunkTrigger);
 	}
@@ -150,8 +161,14 @@ class MemoryManager{
 		return $this->lowMemory ? min($this->chunkRadiusOverride, $distance) : $distance;
 	}
 
+	/**
+	 * @param      $memory
+	 * @param      $limit
+	 * @param bool $global
+	 * @param int  $triggerCount
+	 */
 	public function trigger($memory, $limit, $global = false, $triggerCount = 0){
-		$this->server->getLogger()->debug("[Memory Manager] ".($global ? "Global " : "") ."Low memory triggered, limit ". round(($limit / 1024) / 1024, 2)."MB, using ". round(($memory / 1024) / 1024, 2)."MB");
+		$this->server->getLogger()->debug("[Memory Manager] " . ($global ? "Global " : "") . "Low memory triggered, limit " . round(($limit / 1024) / 1024, 2) . "MB, using " . round(($memory / 1024) / 1024, 2) . "MB");
 
 		if($this->cacheTrigger){
 			foreach($this->server->getLevels() as $level){
@@ -173,7 +190,7 @@ class MemoryManager{
 			$cycles = $this->triggerGarbageCollector();
 		}
 
-		$this->server->getLogger()->debug("[Memory Manager] Freed " . round(($ev->getMemoryFreed() / 1024) / 1024, 2)."MB, $cycles cycles");
+		$this->server->getLogger()->debug("[Memory Manager] Freed " . round(($ev->getMemoryFreed() / 1024) / 1024, 2) . "MB, $cycles cycles");
 	}
 
 	public function check(){
@@ -213,6 +230,9 @@ class MemoryManager{
 		Timings::$memoryManagerTimer->stopTiming();
 	}
 
+	/**
+	 * @return int
+	 */
 	public function triggerGarbageCollector(){
 		Timings::$garbageCollectorTimer->startTiming();
 
@@ -263,6 +283,11 @@ class MemoryManager{
 		return $id;
 	}
 
+	/**
+	 * @param $id
+	 *
+	 * @return bool
+	 */
 	public function isObjectAlive($id){
 		if(isset($this->leakWatch[$id])){
 			return $this->leakWatch[$id]->valid();
@@ -271,6 +296,9 @@ class MemoryManager{
 		return false;
 	}
 
+	/**
+	 * @param $id
+	 */
 	public function removeObjectWatch($id){
 		if(!isset($this->leakWatch[$id])){
 			return;
@@ -288,6 +316,12 @@ class MemoryManager{
 		}
 	}
 
+	/**
+	 * @param      $id
+	 * @param bool $includeObject
+	 *
+	 * @return array|null
+	 */
 	public function getObjectInformation($id, $includeObject = false){
 		if(!isset($this->leakWatch[$id])){
 			return null;
@@ -315,9 +349,14 @@ class MemoryManager{
 		];
 	}
 
+	/**
+	 * @param $outputFolder
+	 * @param $maxNesting
+	 * @param $maxStringSize
+	 */
 	public function dumpServerMemory($outputFolder, $maxNesting, $maxStringSize){
 		gc_disable();
-		ini_set("memory_limit",-1);
+		ini_set("memory_limit", -1);
 		if(!file_exists($outputFolder)){
 			mkdir($outputFolder, 0777, true);
 		}
@@ -373,7 +412,7 @@ class MemoryManager{
 					$this->continueDump($property->getValue($object), $info["properties"][$property->getName()], $objects, $refCounts, 0, $maxNesting, $maxStringSize);
 				}
 
-				fwrite($obData, "$hash@$className: ". json_encode($info, JSON_UNESCAPED_SLASHES) . "\n");
+				fwrite($obData, "$hash@$className: " . json_encode($info, JSON_UNESCAPED_SLASHES) . "\n");
 
 				if(!isset($objects["staticProperties"][$className])){
 					$staticProperties[$className] = [];
@@ -392,7 +431,7 @@ class MemoryManager{
 
 			echo "[Dump] Wrote " . count($objects) . " objects\n";
 		}while($continue);
-		
+
 		fclose($obData);
 
 		file_put_contents($outputFolder . "/staticProperties.js", json_encode($staticProperties, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
@@ -404,6 +443,15 @@ class MemoryManager{
 		gc_enable();
 	}
 
+	/**
+	 * @param $from
+	 * @param $data
+	 * @param $objects
+	 * @param $refCounts
+	 * @param $recursion
+	 * @param $maxNesting
+	 * @param $maxStringSize
+	 */
 	private function continueDump($from, &$data, &$objects, &$refCounts, $recursion, $maxNesting, $maxStringSize){
 		if($maxNesting <= 0){
 			$data = "(error) NESTING LIMIT REACHED";
@@ -431,7 +479,7 @@ class MemoryManager{
 				$this->continueDump($value, $data[$key], $objects, $refCounts, $recursion + 1, $maxNesting, $maxStringSize);
 			}
 		}elseif(is_string($from)){
-			$data = "(string) len(". strlen($from) .") " . substr(Utils::printable($from), 0, $maxStringSize);
+			$data = "(string) len(" . strlen($from) . ") " . substr(Utils::printable($from), 0, $maxStringSize);
 		}elseif(is_resource($from)){
 			$data = "(resource) " . print_r($from, true);
 		}else{

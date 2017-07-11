@@ -24,22 +24,36 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class DoubleWoodSlab extends Solid{
+class DoubleWoodSlab extends Solid {
 
 	protected $id = self::DOUBLE_WOOD_SLAB;
 
+	/**
+	 * DoubleWoodSlab constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
-	public function getHardness() {
+	/**
+	 * @return int
+	 */
+	public function getHardness(){
 		return 2;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_AXE;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		static $names = [
 			0 => "Oak",
@@ -54,7 +68,12 @@ class DoubleWoodSlab extends Solid{
 		return "Double " . $names[$this->meta & 0x07] . " Wooden Slab";
 	}
 
-	public function getDrops(Item $item) : array {
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
+	public function getDrops(Item $item) : array{
 		return [
 			[Item::WOOD_SLAB, $this->meta & 0x07, 2],
 		];

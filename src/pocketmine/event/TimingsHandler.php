@@ -26,7 +26,7 @@ use pocketmine\entity\Living;
 use pocketmine\plugin\PluginManager;
 use pocketmine\Server;
 
-class TimingsHandler{
+class TimingsHandler {
 
 	/** @var TimingsHandler[] */
 	private static $HANDLERS = [];
@@ -56,6 +56,9 @@ class TimingsHandler{
 		self::$HANDLERS[spl_object_hash($this)] = $this;
 	}
 
+	/**
+	 * @param $fp
+	 */
 	public static function printTimings($fp){
 		fwrite($fp, "Minecraft" . PHP_EOL);
 
@@ -98,6 +101,9 @@ class TimingsHandler{
 		}
 	}
 
+	/**
+	 * @param bool $measure
+	 */
 	public static function tick($measure = true){
 		if(PluginManager::$useTimings){
 			if($measure){

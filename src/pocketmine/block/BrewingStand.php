@@ -33,14 +33,31 @@ use pocketmine\Player;
 use pocketmine\tile\BrewingStand as TileBrewingStand;
 use pocketmine\tile\Tile;
 
-class BrewingStand extends Transparent{
+class BrewingStand extends Transparent {
 
 	protected $id = self::BREWING_STAND_BLOCK;
 
+	/**
+	 * BrewingStand constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		if($block->getSide(Vector3::SIDE_DOWN)->isTransparent() === false){
 			$this->getLevel()->setBlock($block, $this, true, true);
@@ -69,26 +86,47 @@ class BrewingStand extends Transparent{
 		return false;
 	}
 
-	public function canBeActivated() : bool {
+	/**
+	 * @return bool
+	 */
+	public function canBeActivated() : bool{
 		return true;
 	}
 
-	public function getHardness() {
+	/**
+	 * @return float
+	 */
+	public function getHardness(){
 		return 0.5;
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getResistance(){
 		return 2.5;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getLightLevel(){
 		return 1;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Brewing Stand";
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = null){
 		if($player instanceof Player){
 			//TODO lock
@@ -115,7 +153,12 @@ class BrewingStand extends Transparent{
 		return true;
 	}
 
-	public function getDrops(Item $item) : array {
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
+	public function getDrops(Item $item) : array{
 		$drops = [];
 		if($item->isPickaxe() >= Tool::TIER_WOODEN){
 			$drops[] = [Item::BREWING_STAND, 0, 1];

@@ -28,18 +28,30 @@ use pocketmine\utils\Color;
 class Map {
 
 	/**
-	 * @var int $id
+	 * @var int       $id
 	 * @var Color[][] $colors
-	 * @var int $scale
-	 * @var int $width
-	 * @var int $height
-	 * @var array $decorations
-	 * @var int $xOffset
-	 * @var int $yOffset
+	 * @var int       $scale
+	 * @var int       $width
+	 * @var int       $height
+	 * @var array     $decorations
+	 * @var int       $xOffset
+	 * @var int       $yOffset
 	 */
 	public $id, $colors = [], $scale, $width, $height, $decorations = [], $xOffset, $yOffset;
 
-	public function __construct(int $id = -1, array $colors = [], int $scale = 1, int $width = 128, int $height = 128, $decorations = [], int $xOffset = 0, int $yOffset = 0) {
+	/**
+	 * Map constructor.
+	 *
+	 * @param int   $id
+	 * @param array $colors
+	 * @param int   $scale
+	 * @param int   $width
+	 * @param int   $height
+	 * @param array $decorations
+	 * @param int   $xOffset
+	 * @param int   $yOffset
+	 */
+	public function __construct(int $id = -1, array $colors = [], int $scale = 1, int $width = 128, int $height = 128, $decorations = [], int $xOffset = 0, int $yOffset = 0){
 		$this->id = $id;
 		$this->colors = $colors;
 		$this->scale = $scale;
@@ -53,72 +65,116 @@ class Map {
 	/**
 	 * @return int $id
 	 */
-	public function getMapId() {
+	public function getMapId(){
 		return $this->id;
 	}
 
-	public function setMapId(int $id) {
+	/**
+	 * @param int $id
+	 */
+	public function setMapId(int $id){
 		$this->id = $id;
 		//TODO: update?? i guess resend.. client would request?
 	}
 
-	public function getScale() {
+	/**
+	 * @return int
+	 */
+	public function getScale(){
 		return $this->scale;
 	}
 
-	public function setScale(int $scale) {
+	/**
+	 * @param int $scale
+	 */
+	public function setScale(int $scale){
 		$this->scale = $scale;
 		$this->update(ClientboundMapItemDataPacket::BITFLAG_TEXTURE_UPDATE);
 	}
 
-	public function getDecorations() {
+	/**
+	 * @return array
+	 */
+	public function getDecorations(){
 		return $this->decorations;
 	}
 
-	public function addDecoration($decorations) {
+	/**
+	 * @param $decorations
+	 *
+	 * @return mixed
+	 */
+	public function addDecoration($decorations){
 		$this->decorations[] = $decorations;
 		end($this->decorations);
 		$this->update(ClientboundMapItemDataPacket::BITFLAG_DECORATION_UPDATE);
 		return key($this->decorations);
 	}
 
-	public function removeDecoration(int $id) {
+	/**
+	 * @param int $id
+	 */
+	public function removeDecoration(int $id){
 		unset($this->decorations[$id]);
 		$this->update(ClientboundMapItemDataPacket::BITFLAG_DECORATION_UPDATE);
 	}
 
-	public function getWidth() {
+	/**
+	 * @return int
+	 */
+	public function getWidth(){
 		return $this->width;
 	}
 
-	public function setWidth(int $width) {
+	/**
+	 * @param int $width
+	 */
+	public function setWidth(int $width){
 		$this->width = $width;
 		$this->update(ClientboundMapItemDataPacket::BITFLAG_TEXTURE_UPDATE);
 	}
 
-	public function getHeight() {
+	/**
+	 * @return int
+	 */
+	public function getHeight(){
 		return $this->height;
 	}
 
-	public function setHeight(int $height) {
+	/**
+	 * @param int $height
+	 */
+	public function setHeight(int $height){
 		$this->height = $height;
 		$this->update(ClientboundMapItemDataPacket::BITFLAG_TEXTURE_UPDATE);
 	}
 
-	public function getXOffset() {
+	/**
+	 * @return int
+	 */
+	public function getXOffset(){
 		return $this->xOffset;
 	}
 
-	public function setXOffset(int $xOffset) {
+	/**
+	 * @param int $xOffset
+	 */
+	public function setXOffset(int $xOffset){
 		$this->xOffset = $xOffset;
 		$this->update(ClientboundMapItemDataPacket::BITFLAG_TEXTURE_UPDATE);
 	}
 
-	public function getYOffset() {
+	/**
+	 * @return int
+	 */
+	public function getYOffset(){
 		return $this->yOffset;
 	}
 
-	public function setYOffset(int $yOffset) {
+	/**
+	 * @param int $yOffset
+	 */
+	public function setYOffset(int $yOffset){
 		$this->yOffset = $yOffset;
 		$this->update(ClientboundMapItemDataPacket::BITFLAG_TEXTURE_UPDATE);
 	}
@@ -126,21 +182,33 @@ class Map {
 	/**
 	 * @return Color[][]
 	 */
-	public function getColors() {
+	public function getColors(){
 		return $this->colors;
 	}
 
-	public function setColors(array $colors) {
+	/**
+	 * @param array $colors
+	 */
+	public function setColors(array $colors){
 		$this->colors = $colors;
 		$this->update(ClientboundMapItemDataPacket::BITFLAG_TEXTURE_UPDATE);
 	}
 
-	public function setColorAt(Color $color, int $x, int $y) {
+	/**
+	 * @param Color $color
+	 * @param int   $x
+	 * @param int   $y
+	 */
+	public function setColorAt(Color $color, int $x, int $y){
 		$this->colors[$y][$x] = $color;
 		$this->update(ClientboundMapItemDataPacket::BITFLAG_TEXTURE_UPDATE);
 	}
 
-	public function update($type = 0x00, $player = null) {
+	/**
+	 * @param int  $type
+	 * @param null $player
+	 */
+	public function update($type = 0x00, $player = null){
 		$pk = new ClientboundMapItemDataPacket();
 		$pk->mapId = $this->getMapId();
 		$pk->type = $type;
@@ -159,26 +227,29 @@ class Map {
 		}
 	}
 
-	public function fromPng(String $path) {
+	/**
+	 * @param String $path
+	 */
+	public function fromPng(String $path){
 
 		$img = imagecreatefrompng($path);
 		$this->width = $width = imagesx($img);
 		$this->height = $height = imagesy($img);
 		$colors = [];
-		for($y = 0;$y < $height; $y ++){
-			for($x = 0;$x < $width; $x ++){
+		for($y = 0; $y < $height; $y++){
+			for($x = 0; $x < $width; $x++){
 				$r = 0;
 				$g = 0;
 				$b = 0;
-				$rgb = imagecolorat($img,$x,$y);
-				$rgba = imagecolorsforindex($img,$rgb);
+				$rgb = imagecolorat($img, $x, $y);
+				$rgba = imagecolorsforindex($img, $rgb);
 				$r += $rgba['red'];
 				$g += $rgba['green'];
 				$b += $rgba['blue'];
 				if(($r + $g + $b) === 0){
-					$colors[$y][$x] = new Color(255,255,255,0xff);
+					$colors[$y][$x] = new Color(255, 255, 255, 0xff);
 				}else{
-					$colors[$y][$x] = new Color($r,$g,$b,0xff);
+					$colors[$y][$x] = new Color($r, $g, $b, 0xff);
 				}
 			}
 		}
@@ -186,7 +257,7 @@ class Map {
 
 	}
 
-	public function save() {
+	public function save(){
 		//TODO.
 	}
 }

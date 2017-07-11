@@ -17,7 +17,9 @@
  *
  *
 */
+
 namespace pocketmine\network\protocol;
+
 #include <rules/DataPacket.h>
 use pocketmine\network\protocol\Info as ProtocolInfo;
 use pocketmine\utils\Color;
@@ -38,6 +40,10 @@ class ClientboundMapItemDataPacket extends DataPacket {
 	public $yOffset = 0;
 	/** @var Color[][] */
 	public $colors = [];
+
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->mapId = $this->getVarInt();
 		$this->type = $this->getUnsignedVarInt();
@@ -74,6 +80,10 @@ class ClientboundMapItemDataPacket extends DataPacket {
 			}
 		}
 	}
+
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putVarInt($this->mapId); //entity unique ID, signed var-int

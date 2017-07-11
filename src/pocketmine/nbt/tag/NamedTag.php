@@ -22,7 +22,7 @@
 namespace pocketmine\nbt\tag;
 
 
-abstract class NamedTag extends Tag{
+abstract class NamedTag extends Tag {
 
 	protected $__name;
 
@@ -37,10 +37,16 @@ abstract class NamedTag extends Tag{
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName(){
 		return $this->__name;
 	}
 
+	/**
+	 * @param $name
+	 */
 	public function setName($name){
 		$this->__name = $name;
 	}

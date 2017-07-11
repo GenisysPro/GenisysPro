@@ -21,7 +21,13 @@
 
 namespace pocketmine\item;
 
-class Clay extends Item{
+class Clay extends Item {
+	/**
+	 * Clay constructor.
+	 *
+	 * @param int $meta
+	 * @param int $count
+	 */
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::CLAY, $meta, $count, "Clay");
 	}

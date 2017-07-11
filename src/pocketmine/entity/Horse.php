@@ -30,14 +30,20 @@ use pocketmine\Player;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\network\protocol\MobArmorEquipmentPacket;
 
-class Horse extends Living{
+class Horse extends Living {
 
 	const NETWORK_ID = 23;
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Horse";
 	}
-	
+
+	/**
+	 * @param $id
+	 */
 	public function setChestPlate($id){
 		/*	
 		416, 417, 418, 419 only
@@ -45,16 +51,19 @@ class Horse extends Living{
 		$pk = new MobArmorEquipmentPacket();
 		$pk->eid = $this->getId();
 		$pk->slots = [
-		ItemItem::get(0,0),
-		ItemItem::get($id,0),
-		ItemItem::get(0,0),
-		ItemItem::get(0,0)
+			ItemItem::get(0, 0),
+			ItemItem::get($id, 0),
+			ItemItem::get(0, 0),
+			ItemItem::get(0, 0)
 		];
 		foreach($this->level->getPlayers() as $player){
 			$player->dataPacket($pk);
 		}
 	}
-	
+
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

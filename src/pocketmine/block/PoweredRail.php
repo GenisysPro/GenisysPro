@@ -25,20 +25,31 @@ use pocketmine\item\Item;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 
-class PoweredRail extends Rail{
+class PoweredRail extends Rail {
 
 	protected $id = self::POWERED_RAIL;
 	/** @var Vector3 [] */
 	protected $connected = [];
 
+	/**
+	 * PoweredRail constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;//0,1,2,3,4,5
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "PoweredRail";
 	}
 
+	/**
+	 * @return bool
+	 */
 	protected function update(){
 
 		return true;
@@ -46,6 +57,7 @@ class PoweredRail extends Rail{
 
 	/**
 	 * @param Rail $block
+	 *
 	 * @return bool
 	 */
 	public function canConnect(Rail $block){
@@ -66,6 +78,11 @@ class PoweredRail extends Rail{
 		return $blocks;
 	}
 
+	/**
+	 * @param Block $block
+	 *
+	 * @return bool|Block
+	 */
 	public function isBlock(Block $block){
 		if($block instanceof Air){
 			return false;
@@ -73,6 +90,12 @@ class PoweredRail extends Rail{
 		return $block;
 	}
 
+	/**
+	 * @param Rail $rail
+	 * @param bool $force
+	 *
+	 * @return bool
+	 */
 	public function connect(Rail $rail, $force = false){
 
 		if(!$force){
@@ -110,6 +133,18 @@ class PoweredRail extends Rail{
 		return true;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param             $face
+	 * @param             $fx
+	 * @param             $fy
+	 * @param             $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$downBlock = $this->getSide(Vector3::SIDE_DOWN);
 
@@ -178,10 +213,16 @@ class PoweredRail extends Rail{
 		return true;
 	}
 
-	public function getHardness() {
+	/**
+	 * @return float
+	 */
+	public function getHardness(){
 		return 0.7;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canPassThrough(){
 		return true;
 	}

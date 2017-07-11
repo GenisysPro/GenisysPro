@@ -35,39 +35,65 @@ use pocketmine\Player;
 use pocketmine\tile\EnderChest as TileEnderChest;
 use pocketmine\tile\Tile;
 
-class EnderChest extends Transparent{
+class EnderChest extends Transparent {
 
 	protected $id = self::ENDER_CHEST;
 
+	/**
+	 * EnderChest constructor.
+	 *
+	 * @param int $meta
+	 */
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function canBeActivated() : bool{
 		return true;
 	}
 
+	/**
+	 * @return float
+	 */
 	public function getHardness(){
 		return 22.5;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getResistance(){
 		return 3000;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getLightLevel(){
 		return 7;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return "Ender Chest";
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
-	protected function recalculateBoundingBox() {
+	/**
+	 * @return AxisAlignedBB
+	 */
+	protected function recalculateBoundingBox(){
 		return new AxisAlignedBB(
 			$this->x + 0.0625,
 			$this->y,
@@ -78,6 +104,18 @@ class EnderChest extends Transparent{
 		);
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Block       $block
+	 * @param Block       $target
+	 * @param int         $face
+	 * @param float       $fx
+	 * @param float       $fy
+	 * @param float       $fz
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$faces = [
 			0 => 4,
@@ -105,6 +143,12 @@ class EnderChest extends Transparent{
 		return true;
 	}
 
+	/**
+	 * @param Item        $item
+	 * @param Player|null $player
+	 *
+	 * @return bool
+	 */
 	public function onActivate(Item $item, Player $player = null){
 		if($player instanceof Player){
 			$top = $this->getSide(1);
@@ -112,7 +156,7 @@ class EnderChest extends Transparent{
 				return true;
 			}
 
-			if(!($this->getLevel()->getTile($this) instanceof TileEnderChest)) {
+			if(!($this->getLevel()->getTile($this) instanceof TileEnderChest)){
 				$nbt = new CompoundTag("", [
 					new StringTag("id", Tile::ENDER_CHEST),
 					new IntTag("x", $this->x),
@@ -132,6 +176,11 @@ class EnderChest extends Transparent{
 		return true;
 	}
 
+	/**
+	 * @param Item $item
+	 *
+	 * @return array
+	 */
 	public function getDrops(Item $item) : array{
 		if($item->hasEnchantment(Enchantment::TYPE_MINING_SILK_TOUCH)){
 			return [

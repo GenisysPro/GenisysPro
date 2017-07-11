@@ -21,7 +21,7 @@
  *
  *
 */
- 
+
 namespace pocketmine\tile;
 
 use pocketmine\inventory\BeaconInventory;
@@ -41,58 +41,85 @@ class Beacon extends Spawnable implements Nameable, InventoryHolder {
 	protected $currentTick = 0;
 	const POWER_LEVEL_MAX = 4;
 
-	public function __construct(Level $level, CompoundTag $nbt) {
-		if (!isset($nbt->primary)) {
+	/**
+	 * Beacon constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 */
+	public function __construct(Level $level, CompoundTag $nbt){
+		if(!isset($nbt->primary)){
 			$nbt->primary = new IntTag("primary", 0);
 		}
-		if (!isset($nbt->secondary)) {
+		if(!isset($nbt->secondary)){
 			$nbt->secondary = new IntTag("secondary", 0);
 		}
 		$this->inventory = new BeaconInventory($this);
 		parent::__construct($level, $nbt);
 		$this->scheduleUpdate();
 	}
-	
-	public function saveNBT() {
+
+	public function saveNBT(){
 		parent::saveNBT();
 	}
-	
-	public function getSpawnCompound() {
+
+	/**
+	 * @return CompoundTag
+	 */
+	public function getSpawnCompound(){
 		$c = new CompoundTag("", [
 			new StringTag("id", Tile::BEACON),
-			new ByteTag("isMovable", (bool)true),
-			new IntTag("x", (int)$this->x),
-			new IntTag("y", (int)$this->y),
-			new IntTag("z", (int)$this->z),
+			new ByteTag("isMovable", (bool) true),
+			new IntTag("x", (int) $this->x),
+			new IntTag("y", (int) $this->y),
+			new IntTag("z", (int) $this->z),
 			new IntTag("primary", $this->namedtag["primary"]),
 			new IntTag("secondary", $this->namedtag["secondary"])
 		]);
-		if ($this->hasName()) {
+		if($this->hasName()){
 			$c->CustomName = $this->namedtag->CustomName;
 		}
 		return $c;
 	}
-	
+
+	/**
+	 * @return string
+	 */
 	public function getName() : string{
 		return $this->hasName() ? $this->namedtag->CustomName->getValue() : "Beacon";
 	}
-	
-	public function hasName() {
+
+	/**
+	 * @return bool
+	 */
+	public function hasName(){
 		return isset($this->namedtag->CustomName);
 	}
-	
-	public function setName($str) {
-		if ($str === "") {
+
+	/**
+	 * @param void $str
+	 */
+	public function setName($str){
+		if($str === ""){
 			unset($this->namedtag->CustomName);
 			return;
 		}
 		$this->namedtag->CustomName = new StringTag("CustomName", $str);
 	}
-	
-	public function getInventory() {
+
+	/**
+	 * @return BeaconInventory
+	 */
+	public function getInventory(){
 		return $this->inventory;
 	}
 
+	/**
+	 * @param CompoundTag $nbt
+	 * @param Player      $player
+	 *
+	 * @return bool
+	 */
 	public function updateCompoundTag(CompoundTag $nbt, Player $player) : bool{
 		if($nbt["id"] !== Tile::BEACON){
 			return false;
@@ -102,19 +129,20 @@ class Beacon extends Spawnable implements Nameable, InventoryHolder {
 		return true;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function onUpdate(){
 		if($this->closed === true){
 			return false;
 		}
-		if($this->currentTick++ % 100 != 0) {
+		if($this->currentTick++ % 100 != 0){
 			return true;
 		}
 
 		$level = $this->calculatePowerLevel();
 
 		$this->timings->startTiming();
-
-		$ret = false;
 
 		$id = 0;
 
@@ -144,27 +172,30 @@ class Beacon extends Spawnable implements Nameable, InventoryHolder {
 		return true;
 	}
 
+	/**
+	 * @return int
+	 */
 	protected function calculatePowerLevel(){
 		$tileX = $this->getFloorX();
 		$tileY = $this->getFloorY();
 		$tileZ = $this->getFloorZ();
-		for($powerLevel = 1; $powerLevel <= self::POWER_LEVEL_MAX; $powerLevel++) {
+		for($powerLevel = 1; $powerLevel <= self::POWER_LEVEL_MAX; $powerLevel++){
 			$queryY = $tileY - $powerLevel;
-			for ($queryX = $tileX - $powerLevel; $queryX <= $tileX + $powerLevel; $queryX++) {
-				for ($queryZ = $tileZ - $powerLevel; $queryZ <= $tileZ + $powerLevel; $queryZ++) {
+			for($queryX = $tileX - $powerLevel; $queryX <= $tileX + $powerLevel; $queryX++){
+				for($queryZ = $tileZ - $powerLevel; $queryZ <= $tileZ + $powerLevel; $queryZ++){
 					$testBlockId = $this->level->getBlockIdAt($queryX, $queryY, $queryZ);
-						if (
-							$testBlockId != Block::IRON_BLOCK &&
-							$testBlockId != Block::GOLD_BLOCK &&
-							$testBlockId != Block::EMERALD_BLOCK &&
-							$testBlockId != Block::DIAMOND_BLOCK
-						) {
-							return $powerLevel - 1;
-						}
+					if(
+						$testBlockId != Block::IRON_BLOCK &&
+						$testBlockId != Block::GOLD_BLOCK &&
+						$testBlockId != Block::EMERALD_BLOCK &&
+						$testBlockId != Block::DIAMOND_BLOCK
+					){
+						return $powerLevel - 1;
+					}
 				}
 			}
 		}
 		return self::POWER_LEVEL_MAX;
 	}
-	
+
 }

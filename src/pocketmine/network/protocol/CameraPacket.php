@@ -25,14 +25,20 @@
 namespace pocketmine\network\protocol;
 
 
-class CameraPacket extends DataPacket{
+class CameraPacket extends DataPacket {
 
 	const NETWORK_ID = Info::CAMERA_PACKET;
 	public $eid;
 
+	/**
+	 *
+	 */
 	public function decode(){
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putVarInt($this->eid);

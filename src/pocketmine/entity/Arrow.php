@@ -30,7 +30,7 @@ use pocketmine\nbt\tag\ShortTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Arrow extends Projectile{
+class Arrow extends Projectile {
 	const NETWORK_ID = 80;
 
 	public $width = 0.5;
@@ -45,6 +45,14 @@ class Arrow extends Projectile{
 	protected $isCritical;
 	protected $potionId;
 
+	/**
+	 * Arrow constructor.
+	 *
+	 * @param Level       $level
+	 * @param CompoundTag $nbt
+	 * @param Entity|null $shootingEntity
+	 * @param bool        $critical
+	 */
 	public function __construct(Level $level, CompoundTag $nbt, Entity $shootingEntity = null, $critical = false){
 		$this->isCritical = (bool) $critical;
 		if(!isset($nbt->Potion)){
@@ -54,14 +62,25 @@ class Arrow extends Projectile{
 		$this->potionId = $this->namedtag["Potion"];
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isCritical() : bool{
 		return $this->isCritical;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getPotionId() : int{
 		return $this->potionId;
 	}
 
+	/**
+	 * @param $currentTick
+	 *
+	 * @return bool
+	 */
 	public function onUpdate($currentTick){
 		if($this->closed){
 			return false;
@@ -101,6 +120,9 @@ class Arrow extends Projectile{
 		return $hasUpdate;
 	}
 
+	/**
+	 * @param Player $player
+	 */
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->type = Arrow::NETWORK_ID;

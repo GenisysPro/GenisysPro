@@ -26,7 +26,7 @@ use pocketmine\Server;
 use pocketmine\utils\MainLogger;
 use pocketmine\utils\TextFormat;
 
-class FormattedCommandAlias extends Command{
+class FormattedCommandAlias extends Command {
 	private $formatStrings = [];
 
 	/**
@@ -38,6 +38,13 @@ class FormattedCommandAlias extends Command{
 		$this->formatStrings = $formatStrings;
 	}
 
+	/**
+	 * @param CommandSender $sender
+	 * @param string        $commandLabel
+	 * @param array         $args
+	 *
+	 * @return bool
+	 */
 	public function execute(CommandSender $sender, $commandLabel, array $args){
 
 		$commands = [];

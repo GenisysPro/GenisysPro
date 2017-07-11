@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class ContainerSetContentPacket extends DataPacket{
+class ContainerSetContentPacket extends DataPacket {
 
 	const NETWORK_ID = Info::CONTAINER_SET_CONTENT_PACKET;
 
@@ -39,6 +39,9 @@ class ContainerSetContentPacket extends DataPacket{
 	public $slots = [];
 	public $hotbar = [];
 
+	/**
+	 * @return $this
+	 */
 	public function clean(){
 		$this->slots = [];
 		$this->hotbar = [];
@@ -46,6 +49,9 @@ class ContainerSetContentPacket extends DataPacket{
 		return parent::clean();
 	}
 
+	/**
+	 *
+	 */
 	public function decode(){
 		$this->windowid = $this->getUnsignedVarInt();
 		$this->targetEid = $this->getEntityId();
@@ -61,6 +67,9 @@ class ContainerSetContentPacket extends DataPacket{
 		}
 	}
 
+	/**
+	 *
+	 */
 	public function encode(){
 		$this->reset();
 		$this->putUnsignedVarInt($this->windowid);

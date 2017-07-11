@@ -24,7 +24,7 @@ namespace pocketmine\permission;
 use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginException;
 
-class PermissionAttachment{
+class PermissionAttachment {
 	/** @var PermissionRemovedExecutor */
 	private $removed = null;
 

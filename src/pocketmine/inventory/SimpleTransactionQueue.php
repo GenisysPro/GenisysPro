@@ -15,7 +15,7 @@
  * (at your option) any later version.
  *
  * @author iTX Technologies
- * @link https://itxtech.org
+ * @link   https://itxtech.org
  *
  */
 
@@ -24,7 +24,7 @@ namespace pocketmine\inventory;
 use pocketmine\event\inventory\InventoryTransactionEvent;
 use pocketmine\Player;
 
-class SimpleTransactionQueue implements TransactionQueue{
+class SimpleTransactionQueue implements TransactionQueue {
 
 	/** @var Player[] */
 	protected $player = null;
@@ -33,7 +33,7 @@ class SimpleTransactionQueue implements TransactionQueue{
 	protected $transactionQueue;
 	/** @var \SplQueue */
 	protected $transactionsToRetry;
-	
+
 	/** @var Inventory[] */
 	protected $inventories;
 
@@ -59,18 +59,30 @@ class SimpleTransactionQueue implements TransactionQueue{
 		return $this->player;
 	}
 
+	/**
+	 * @return Inventory[]
+	 */
 	public function getInventories(){
 		return $this->inventories;
 	}
 
+	/**
+	 * @return \SplQueue
+	 */
 	public function getTransactions(){
 		return $this->transactionQueue;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getTransactionCount(){
 		return $this->transactionCount;
 	}
 
+	/**
+	 * @param Transaction $transaction
+	 */
 	public function addTransaction(Transaction $transaction){
 		$this->transactionQueue->enqueue($transaction);
 		if($transaction->getInventory() instanceof Inventory){
