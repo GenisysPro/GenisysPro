@@ -115,7 +115,7 @@ use pocketmine\utils\VersionString;
 /**
  * The class that manages everything
  */
-class Server {
+class Server{
 	const BROADCAST_CHANNEL_ADMINISTRATIVE = "pocketmine.broadcast.admin";
 	const BROADCAST_CHANNEL_USERS = "pocketmine.broadcast.user";
 
@@ -189,7 +189,7 @@ class Server {
 	/** @var CraftingManager */
 	private $craftingManager;
 
-	private $resourceManager;
+ private $resourceManager;
 
 	/** @var ConsoleCommandSender */
 	private $consoleSender;
@@ -268,6 +268,8 @@ class Server {
 	/** @var Level */
 	private $levelDefault = null;
 
+	private $aboutContent = "";
+
 	/** Advanced Config */
 	public $advancedConfig = null;
 
@@ -308,7 +310,6 @@ class Server {
 	public $allowInventoryCheats = false;
 	public $folderpluginloader = true;
 	public $mapEnabled = true;//TODO: 配置文件
-	public $absorbWater = false;
 
 	/**
 	 * @return string
@@ -363,13 +364,8 @@ class Server {
 		return \pocketmine\VERSION;
 	}
 
-	/**
-	 * @param string $prefix
-	 *
-	 * @return string
-	 */
 	public function getFormattedVersion($prefix = ""){
-		return (\pocketmine\VERSION !== "" ? $prefix . \pocketmine\VERSION : "");
+		return (\pocketmine\VERSION !== ""? $prefix . \pocketmine\VERSION : "");
 	}
 
 	/**
@@ -383,7 +379,7 @@ class Server {
 	 * @return string
 	 */
 	public function getVersion(){
-		$version = implode(",", ProtocolInfo::MINECRAFT_VERSION);
+		$version = implode(",",ProtocolInfo::MINECRAFT_VERSION);
 		return $version;
 	}
 
@@ -469,9 +465,6 @@ class Server {
 		return $this->getConfigString("server-ip", "0.0.0.0");
 	}
 
-	/**
-	 * @return UUID
-	 */
 	public function getServerUniqueId(){
 		return $this->serverID;
 	}
@@ -711,12 +704,9 @@ class Server {
 		return $this->resourceManager;
 	}
 
-	/**
-	 * @return ResourcePackManager
-	 */
 	public function getResourcePackManager() : ResourcePackManager{
-		return $this->resourceManager;
-	}
+	    return $this->resourceManager;
+    }
 
 	/**
 	 * @return ServerScheduler
@@ -782,16 +772,10 @@ class Server {
 		return $this->playerList;
 	}
 
-	/**
-	 * @param Recipe $recipe
-	 */
 	public function addRecipe(Recipe $recipe){
 		$this->craftingManager->registerRecipe($recipe);
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function shouldSavePlayerData() : bool{
 		return (bool) $this->getProperty("player.save-player-data", true);
 	}
@@ -885,9 +869,9 @@ class Server {
 	}
 
 	/**
-	 * @param string      $name
+	 * @param string   $name
 	 * @param CompoundTag $nbtTag
-	 * @param bool        $async
+	 * @param bool     $async
 	 */
 	public function saveOfflinePlayerData($name, CompoundTag $nbtTag, $async = false){
 		if($this->shouldSavePlayerData()){
@@ -1052,11 +1036,6 @@ class Server {
 		return null;
 	}
 
-	/**
-	 * @param $level
-	 *
-	 * @return mixed
-	 */
 	public function getExpectedExperience($level){
 		if(isset($this->expCache[$level])) return $this->expCache[$level];
 		$levelSquared = $level ** 2;
@@ -1131,7 +1110,7 @@ class Server {
 
 		$level->initLevel();
 
-		$this->getPluginManager()->callEvent(new LevelLoadEvent($level));
+        $this->getPluginManager()->callEvent(new LevelLoadEvent($level));
 
 		$level->setTickRate($this->baseTickRate);
 
@@ -1373,9 +1352,6 @@ class Server {
 		return $this->banByIP;
 	}
 
-	/**
-	 * @return BanList
-	 */
 	public function getCIDBans(){
 		return $this->banByCID;
 	}
@@ -1386,9 +1362,9 @@ class Server {
 	public function addOp($name){
 		$this->operators->set(strtolower($name), true);
 
-		if(($player = $this->getPlayerExact($name)) !== null){
-			$player->recalculatePermissions();
-		}
+	 	if(($player = $this->getPlayerExact($name)) !== null){
+			 $player->recalculatePermissions();
+ 		}
 		$this->operators->save(true);
 	}
 
@@ -1482,9 +1458,6 @@ class Server {
 		return $result;
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getCrashPath(){
 		return $this->dataPath . "crashdumps/";
 	}
@@ -1496,9 +1469,6 @@ class Server {
 		return self::$instance;
 	}
 
-	/**
-	 * @param int $microseconds
-	 */
 	public static function microSleep(int $microseconds){
 		Server::$sleeper->synchronized(function(int $ms){
 			Server::$sleeper->wait($ms);
@@ -1506,7 +1476,7 @@ class Server {
 	}
 
 	public function about(){
-		$version = implode(",", ProtocolInfo::MINECRAFT_VERSION);
+	 $version = implode(",",ProtocolInfo::MINECRAFT_VERSION);
 		$string = "
 
   _____            _               _____           
@@ -1521,12 +1491,12 @@ class Server {
 	Version: §6" . $this->getPocketMineVersion() . '§f
 	Client Version: §b' . $version . '§f
 	PHP Version: §e' . PHP_VERSION . '§f
-	System OS: §6' . PHP_OS . '§f
+	System OS: §6' . PHP_OS .'§f
 	This core was maintain by §dGenisysPro§f
 	Chatroom on QQ: §a559301590 §f
 	Welcome to donate us on QQ: §c1912003473
 	';
-
+	
 		$this->getLogger()->info($string);
 	}
 
@@ -1580,9 +1550,8 @@ class Server {
 		$this->allowInventoryCheats = $this->getAdvancedProperty("inventory.allow-cheats", false);
 		$this->folderpluginloader = $this->getAdvancedProperty("developer.folder-plugin-loader", true);
 
-		$this->absorbWater = $this->getAdvancedProperty("server.absorb-water", false);
 	}
-
+	
 	/**
 	 * @return int
 	 *
@@ -1601,9 +1570,6 @@ class Server {
 		return ($this->dserverPlayers + count($this->getOnlinePlayers()));
 	}
 
-	/**
-	 * @return mixed
-	 */
 	public function isDServerEnabled(){
 		return $this->dserverConfig["enable"];
 	}
@@ -1612,16 +1578,10 @@ class Server {
 		$this->scheduler->scheduleAsyncTask(new DServerTask($this->dserverConfig["serverList"], $this->dserverConfig["retryTimes"]));
 	}
 
-	/**
-	 * @return int
-	 */
 	public function getBuild(){
 		return $this->version->getBuild();
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getGameVersion(){
 		return $this->version->getRelease();
 	}
@@ -1855,9 +1815,9 @@ class Server {
 			$this->pluginManager->setUseTimings($this->getProperty("settings.enable-profiling", false));
 			$this->profilingTickRate = (float) $this->getProperty("settings.profile-report-trigger", 20);
 			$this->pluginManager->registerInterface(PharPluginLoader::class);
-			if($this->folderpluginloader === true){
-				$this->pluginManager->registerInterface(FolderPluginLoader::class);
-			}
+			if($this->folderpluginloader === true) {
+                $this->pluginManager->registerInterface(FolderPluginLoader::class);
+            }
 			$this->pluginManager->registerInterface(ScriptPluginLoader::class);
 
 			//set_exception_handler([$this, "exceptionHandler"]);
@@ -1935,13 +1895,13 @@ class Server {
 				return;
 			}
 
-			if($this->netherEnabled){
-				if(!$this->loadLevel($this->netherName)){
-					$this->logger->info("正在生成地狱 " . $this->netherName);
-					$this->generateLevel($this->netherName, time(), Generator::getGenerator("nether"));
-				}
-				$this->netherLevel = $this->getLevelByName($this->netherName);
+		if($this->netherEnabled){
+			if(!$this->loadLevel($this->netherName)){
+				$this->logger->info("正在生成地狱 ".$this->netherName);
+				$this->generateLevel($this->netherName, time(), Generator::getGenerator("nether"));
 			}
+			$this->netherLevel = $this->getLevelByName($this->netherName);
+		}
 
 			if($this->getProperty("ticks-per.autosave", 6000) > 0){
 				$this->autoSaveTicks = (int) $this->getProperty("ticks-per.autosave", 6000);
@@ -2121,10 +2081,6 @@ class Server {
 		Timings::$playerNetworkTimer->stopTiming();
 	}
 
-	/**
-	 * @param       $data
-	 * @param array $identifiers
-	 */
 	public function broadcastPacketsCallback($data, array $identifiers){
 		$pk = new BatchPacket();
 		$pk->payload = $data;
@@ -2230,9 +2186,9 @@ class Server {
 		}
 
 		$this->pluginManager->registerInterface(PharPluginLoader::class);
-		if($this->folderpluginloader === true){
-			$this->pluginManager->registerInterface(FolderPluginLoader::class);
-		}
+		if($this->folderpluginloader === true) {
+               $this->pluginManager->registerInterface(FolderPluginLoader::class);
+           }
 		$this->pluginManager->registerInterface(ScriptPluginLoader::class);
 		$this->pluginManager->loadPlugins($this->pluginPath);
 		$this->enablePlugins(PluginLoadOrder::STARTUP);
@@ -2242,7 +2198,6 @@ class Server {
 
 	/**
 	 * Shutdowns the server correctly
-	 *
 	 * @param bool   $restart
 	 * @param string $msg
 	 */
@@ -2323,9 +2278,6 @@ class Server {
 
 	}
 
-	/**
-	 * @return QueryRegenerateEvent
-	 */
 	public function getQueryInformation(){
 		return $this->queryRegenerateTask;
 	}
@@ -2375,19 +2327,12 @@ class Server {
 		gc_collect_cycles();
 	}
 
-	/**
-	 * @param $signo
-	 */
 	public function handleSignal($signo){
 		if($signo === SIGTERM or $signo === SIGINT or $signo === SIGHUP){
 			$this->shutdown();
 		}
 	}
 
-	/**
-	 * @param \Throwable $e
-	 * @param null       $trace
-	 */
 	public function exceptionHandler(\Throwable $e, $trace = null){
 		if($e === null){
 			return;
@@ -2491,9 +2436,6 @@ class Server {
 		exit(1);
 	}
 
-	/**
-	 * @return array
-	 */
 	public function __debugInfo(){
 		return [];
 	}
@@ -2509,9 +2451,6 @@ class Server {
 		}
 	}
 
-	/**
-	 * @param Player $player
-	 */
 	public function onPlayerLogin(Player $player){
 		if($this->sendUsageTicker > 0){
 			$this->uniquePlayers[$player->getRawUniqueId()] = $player->getRawUniqueId();
@@ -2521,27 +2460,17 @@ class Server {
 		$player->dataPacket($this->craftingManager->getCraftingDataPacket());
 	}
 
-	/**
-	 * @param        $identifier
-	 * @param Player $player
-	 */
 	public function addPlayer($identifier, Player $player){
 		$this->players[$identifier] = $player;
 		$this->identifiers[spl_object_hash($player)] = $identifier;
 	}
 
-	/**
-	 * @param Player $player
-	 */
 	public function addOnlinePlayer(Player $player){
 		$this->playerList[$player->getRawUniqueId()] = $player;
 
 		$this->updatePlayerListData($player->getUniqueId(), $player->getId(), $player->getDisplayName(), $player->getSkinId(), $player->getSkinData());
 	}
 
-	/**
-	 * @param Player $player
-	 */
 	public function removeOnlinePlayer(Player $player){
 		if(isset($this->playerList[$player->getRawUniqueId()])){
 			unset($this->playerList[$player->getRawUniqueId()]);
@@ -2553,14 +2482,6 @@ class Server {
 		}
 	}
 
-	/**
-	 * @param UUID       $uuid
-	 * @param            $entityId
-	 * @param            $name
-	 * @param            $skinId
-	 * @param            $skinData
-	 * @param array|null $players
-	 */
 	public function updatePlayerListData(UUID $uuid, $entityId, $name, $skinId, $skinData, array $players = null){
 		$pk = new PlayerListPacket();
 		$pk->type = PlayerListPacket::TYPE_ADD;
@@ -2568,10 +2489,6 @@ class Server {
 		$this->broadcastPacket($players === null ? $this->playerList : $players, $pk);
 	}
 
-	/**
-	 * @param UUID       $uuid
-	 * @param array|null $players
-	 */
 	public function removePlayerListData(UUID $uuid, array $players = null){
 		$pk = new PlayerListPacket();
 		$pk->type = PlayerListPacket::TYPE_REMOVE;
@@ -2579,9 +2496,6 @@ class Server {
 		$this->broadcastPacket($players === null ? $this->playerList : $players, $pk);
 	}
 
-	/**
-	 * @param Player $p
-	 */
 	public function sendFullPlayerListData(Player $p){
 		$pk = new PlayerListPacket();
 		$pk->type = PlayerListPacket::TYPE_ADD;
@@ -2595,16 +2509,12 @@ class Server {
 		$p->dataPacket($pk);
 	}
 
-	/**
-	 * @param $currentTick
-	 * @param $tickTime
-	 */
 	private function checkTickUpdates($currentTick, $tickTime){
 		foreach($this->players as $p){
 			if(!$p->loggedIn and ($tickTime - $p->creationTime) >= 10){
-				/*
-					$p->close("", "Login timeout");
-				*/
+			/*
+				$p->close("", "Login timeout");
+			*/
 			}elseif($this->alwaysTickPlayers){
 				$p->onUpdate($currentTick);
 			}
@@ -2666,9 +2576,6 @@ class Server {
 		}
 	}
 
-	/**
-	 * @param int $type
-	 */
 	public function sendUsage($type = SendUsageTask::TYPE_STATUS){
 		$this->scheduler->scheduleAsyncTask(new SendUsageTask($this, $type, $this->uniquePlayers));
 		$this->uniquePlayers = [];
@@ -2752,7 +2659,6 @@ class Server {
 	 * @param             $variable
 	 * @param null        $defaultValue
 	 * @param Config|null $cfg
-	 *
 	 * @return bool|mixed|null
 	 */
 	public function getAdvancedProperty($variable, $defaultValue = null, Config $cfg = null){
@@ -2834,12 +2740,12 @@ class Server {
 				}
 			}
 
-			if($this->dserverConfig["enable"] and $this->dserverConfig["motdPlayers"]){
-				$max = $this->getDServerMaxPlayers();
-				$online = $this->getDServerOnlinePlayers();
-				$name = $this->getNetwork()->getName() . '[' . $online . '/' . $max . ']';
-				$this->getNetwork()->setName($name);
-				//TODO: 检测是否爆满,不同状态颜色
+  if($this->dserverConfig["enable"] and $this->dserverConfig["motdPlayers"]){
+			 $max = $this->getDServerMaxPlayers();
+			 $online = $this->getDServerOnlinePlayers();
+			 $name = $this->getNetwork()->getName().'['.$online.'/'.$max.']';
+			 $this->getNetwork()->setName($name);
+			 //TODO: 检测是否爆满,不同状态颜色
 			}
 			$this->getNetwork()->updateName();
 		}
