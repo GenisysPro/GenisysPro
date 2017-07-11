@@ -52,7 +52,6 @@ class Sponge extends Solid {
 	 */
 	public function absorbWater($block = null){
 		if(Server::getInstance()->absorbWater){
-			if($block == null) $block = $this;
 			$range = $this->absorbRange / 2;
 			for($xx = -$range; $xx <= $range; $xx++){
 				for($yy = -$range; $yy <= $range; $yy++){

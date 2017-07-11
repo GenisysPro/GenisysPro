@@ -22,7 +22,6 @@
 namespace pocketmine\level\sound;
 
 use pocketmine\math\Vector3;
-use pocketmine\network\protocol\LevelEventPacket;
 
 class SpellSound extends Sound {
 	//TODO: fix this

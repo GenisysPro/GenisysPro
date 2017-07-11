@@ -25,7 +25,6 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 use pocketmine\resourcepacks\ResourcePack;
-use pocketmine\resourcepacks\ResourcePackInfoEntry;
 
 class ResourcePackStackPacket extends DataPacket {
 	const NETWORK_ID = Info::RESOURCE_PACK_STACK_PACKET;

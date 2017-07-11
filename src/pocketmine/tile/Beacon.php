@@ -144,8 +144,6 @@ class Beacon extends Spawnable implements Nameable, InventoryHolder {
 
 		$this->timings->startTiming();
 
-		$ret = false;
-
 		$id = 0;
 
 		if($level > 0){

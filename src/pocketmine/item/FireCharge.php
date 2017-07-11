@@ -115,7 +115,6 @@ class FireCharge extends Item {
 
 			$z_max = $tz;
 			$z_min = $tz;
-			$count_z = 0;
 			for($z = $tz + 1; $level->getBlock($this->temporalVector->setComponents($tx, $ty, $z))->getId() == Block::OBSIDIAN; $z++){
 				$z_max++;
 			}

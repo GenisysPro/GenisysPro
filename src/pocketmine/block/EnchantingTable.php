@@ -149,11 +149,7 @@ class EnchantingTable extends Transparent {
 			if($player->isCreative() and $player->getServer()->limitedCreative){
 				return true;
 			}
-			$tile = $this->getLevel()->getTile($this);
 			$enchantTable = null;
-			if($tile instanceof EnchantTable){
-				$enchantTable = $tile;
-			}else{
 				$this->getLevel()->setBlock($this, $this, true, true);
 				$nbt = new CompoundTag("", [
 					new StringTag("id", Tile::ENCHANT_TABLE),
@@ -172,12 +168,10 @@ class EnchantingTable extends Transparent {
 					}
 				}
 
-				/** @var EnchantTable $enchantTable */
-				$enchantTable = Tile::createTile(Tile::ENCHANT_TABLE, $this->getLevel(), $nbt);
+				Tile::createTile(Tile::ENCHANT_TABLE, $this->getLevel(), $nbt);
 			}
 			$player->addWindow(new EnchantInventory($this));
 			$player->craftingType = Player::CRAFTING_ENCHANT;
-		}
 
 
 		return true;

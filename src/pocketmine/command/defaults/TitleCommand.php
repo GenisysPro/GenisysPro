@@ -19,13 +19,15 @@
  * @author GenisysPro
  * @link https://github.com/GenisysPro/GenisysPro
  *
+ * @actualauthor TesseractTeam, not cool to steal code and call it your own...
  *
 */
 
 namespace pocketmine\command\defaults;
 
-use pocketmine\network\protocol\SetTitlePacket;
 use pocketmine\command\CommandSender;
+use pocketmine\event\TranslationContainer;
+use pocketmine\Player;
 
 class TitleCommand extends VanillaCommand {
 
@@ -56,7 +58,7 @@ class TitleCommand extends VanillaCommand {
 				return true;
 			}
 			if(count($args) <= 0){
-				$sender->sendMessage("Usage: /title <title> <subtile> [text]");
+				$sender->sendMessage(new TranslationContainer("%pocketmine.command.title.usage"));
 				return false;
 			}
 		}

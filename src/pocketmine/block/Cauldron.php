@@ -114,7 +114,8 @@ class Cauldron extends Solid {
 			}
 		}
 
-		$tile = Tile::createTile("Cauldron", $this->getLevel(), $nbt);
+		Tile::createTile("Cauldron", $this->getLevel(), $nbt);
+
 		$this->getLevel()->setBlock($block, $this, true, true);
 		return true;
 	}

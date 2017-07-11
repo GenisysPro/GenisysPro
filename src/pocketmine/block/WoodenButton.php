@@ -100,7 +100,7 @@ class WoodenButton extends RedstoneSource {
 			$this->deactivateBlock($this->getSide($faces[$side], 2));
 		}
 
-		$this->checkTorchOff($this->getSide($faces[$side]), [$this->getOppositeSide($faces[$side])]);
+		$this->checkTorchOff($this->getSide($faces[$side]), [static::getOppositeSide($faces[$side])]);
 	}
 
 	/**
@@ -130,7 +130,7 @@ class WoodenButton extends RedstoneSource {
 			$this->activateBlock($block);
 		}
 
-		$this->checkTorchOn($this->getSide($faces[$side]), [$this->getOppositeSide($faces[$side])]);
+		$this->checkTorchOn($this->getSide($faces[$side]), [static::getOppositeSide($faces[$side])]);
 	}
 
 	/**

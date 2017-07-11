@@ -182,7 +182,7 @@ class RedstoneWire extends RedstoneSource {
 		}
 
 		if(count($connected) == 1){
-			return [$this->getOppositeSide($connected[0]), $connected];
+			return [static::getOppositeSide($connected[0]), $connected];
 		}elseif(count($connected) == 3){
 			return [$notConnected[0], $connected];
 		}else return [false, $connected];
@@ -216,13 +216,13 @@ class RedstoneWire extends RedstoneSource {
 			if(!$block->isTransparent()){
 				$sides = [Vector3::SIDE_WEST, Vector3::SIDE_EAST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH, Vector3::SIDE_UP, Vector3::SIDE_DOWN];
 				foreach($sides as $s){
-					if($s != $this->getOppositeSide($side[0])){
+					if($s != static::getOppositeSide($side[0])){
 						$this->activateBlockWithoutWire($block->getSide($s));
 					}
 				}
 			}
 
-			$this->checkTorchOn($block, [$this->getOppositeSide($side)]);
+			$this->checkTorchOn($block, [static::getOppositeSide($side)]);
 
 			unset($connected, $notConnected);
 		}
@@ -257,13 +257,13 @@ class RedstoneWire extends RedstoneSource {
 			if(!$block->isTransparent()){
 				$sides = [Vector3::SIDE_WEST, Vector3::SIDE_EAST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH, Vector3::SIDE_UP, Vector3::SIDE_DOWN];
 				foreach($sides as $s){
-					if($s != $this->getOppositeSide($side[0])){
+					if($s != static::getOppositeSide($side[0])){
 						$this->deactivateBlockWithoutWire($block->getSide($s));
 					}
 				}
 			}
 
-			$this->checkTorchOff($block, [$this->getOppositeSide($side)]);
+			$this->checkTorchOff($block, [static::getOppositeSide($side)]);
 
 			unset($connected, $notConnected);
 		}

@@ -158,7 +158,6 @@ class BaseTransaction implements Transaction {
 			return;
 		}
 
-		$targets = [];
 		if($this->wasSuccessful){
 			$targets = $this->getInventory()->getViewers();
 			unset($targets[spl_object_hash($source)]);

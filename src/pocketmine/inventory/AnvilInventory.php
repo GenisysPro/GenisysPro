@@ -23,7 +23,6 @@ namespace pocketmine\inventory;
 
 use pocketmine\item\Item;
 use pocketmine\item\EnchantedBook;
-use pocketmine\item\enchantment\Enchantment;
 use pocketmine\level\Position;
 use pocketmine\Player;
 use pocketmine\Server;

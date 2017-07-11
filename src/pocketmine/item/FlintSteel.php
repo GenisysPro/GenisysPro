@@ -117,7 +117,6 @@ class FlintSteel extends Tool {
 			//z方向
 			$z_max = $tz;//z最大值
 			$z_min = $tz;//z最小值
-			$count_z = 0;//z方向方块
 			for($z = $tz + 1; $level->getBlock($this->temporalVector->setComponents($tx, $ty, $z))->getId() == Block::OBSIDIAN; $z++){
 				$z_max++;
 			}

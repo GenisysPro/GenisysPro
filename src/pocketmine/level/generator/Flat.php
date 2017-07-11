@@ -117,7 +117,6 @@ class Flat extends Generator {
 	protected function parsePreset($preset, $chunkX, $chunkZ){
 		$this->preset = $preset;
 		$preset = explode(";", $preset);
-		$version = (int) $preset[0];
 		$blocks = $preset[1] ?? "";
 		$biome = $preset[2] ?? 1;
 		$options = $preset[3] ?? "";

@@ -25,9 +25,7 @@
 namespace pocketmine\command\defaults;
 
 use pocketmine\command\CommandSender;
-use pocketmine\plugin\Plugin;
 use pocketmine\Server;
-use pocketmine\utils\TextFormat;
 use pocketmine\network\protocol\Info;
 
 class MakeServerCommand extends VanillaCommand {

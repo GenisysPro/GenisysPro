@@ -81,7 +81,7 @@ class ChunkInfoCommand extends VanillaCommand {
 			$sender->sendMessage("Region X: $x Region Z: $z");
 		}elseif($args[4] == "regenerate"){
 			foreach($sender->getServer()->getOnlinePlayers() as $p){
-				if($p->getLevel() == $pos->getLevel()){
+				if($p->getLevel() === $pos->getLevel()){
 					$p->kick(TextFormat::AQUA . "A chunk of this chunk is regenerating, please re-login.", false);
 				}
 			}

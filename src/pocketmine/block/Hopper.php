@@ -147,7 +147,7 @@ class Hopper extends Transparent {
 			}
 		}
 
-		$t = Tile::createTile(Tile::HOPPER, $this->getLevel(), $nbt);
+		Tile::createTile(Tile::HOPPER, $this->getLevel(), $nbt);
 
 		return true;
 	}

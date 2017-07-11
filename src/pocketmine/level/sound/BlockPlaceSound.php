@@ -22,10 +22,10 @@
 namespace pocketmine\level\sound;
 
 use pocketmine\block\Block;
-use pocketmine\network\protocol\LevelEventPacket;
+use pocketmine\network\protocol\LevelSoundEventPacket;
 
 class BlockPlaceSound extends GenericSound {
-	//TODO: fix this
+	//TODO: confirm if I did this correctly...
 
 	protected $data;
 
@@ -35,22 +35,7 @@ class BlockPlaceSound extends GenericSound {
 	 * @param Block $b
 	 */
 	public function __construct(Block $b){
-		/*parent::__construct($b, LevelEventPacket::EVENT_SOUND_BLOCK_PLACE);
-		$this->data = $b->getId();*/
-	}
-
-	/**
-	 * @return null
-	 */
-	public function encode(){
-		return null;
-		/*$pk = new LevelEventPacket;
-		$pk->evid = $this->id;
-		$pk->x = $this->x;
-		$pk->y = $this->y;
-		$pk->z = $this->z;
-		$pk->data = $this->data;
-		
-		return $pk;*/
+		parent::__construct($b, LevelSoundEventPacket::SOUND_PLACE, 1, $b->getId());
+		$this->data = $b->getId();
 	}
 }

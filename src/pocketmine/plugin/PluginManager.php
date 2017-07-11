@@ -554,8 +554,6 @@ class PluginManager {
 	 * @return Permissible[]
 	 */
 	public function getDefaultPermSubscriptions($op){
-		$subs = [];
-
 		if($op === true){
 			return $this->defSubsOp;
 			foreach($this->defSubsOp as $k => $perm){
