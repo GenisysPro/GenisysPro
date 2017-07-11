@@ -27,6 +27,7 @@ use pocketmine\block\Portal;
 use pocketmine\block\Solid;
 use pocketmine\level\Level;
 use pocketmine\math\Vector3;
+use pocketmine\network\protocol\LevelSoundEventPacket;
 use pocketmine\Player;
 
 class FlintSteel extends Tool {
@@ -160,6 +161,7 @@ class FlintSteel extends Tool {
 
 		if($block->getId() === self::AIR and ($target instanceof Solid)){
 			$level->setBlock($block, new Fire(), true);
+			$player->getLevel()->broadcastLevelSoundEvent($player, LevelSoundEventPacket::SOUND_IGNITE);
 
 			/** @var Fire $block */
 			$block = $level->getBlock($block);
