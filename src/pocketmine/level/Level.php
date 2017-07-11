@@ -2849,11 +2849,9 @@ class Level implements ChunkManager, Metadatable
 
         $this->server->getPluginManager()->callEvent(new ChunkLoadEvent($this, $chunk, !$chunk->isGenerated()));
 
-        //Fast hack for correcting light on old chunks and maps
-        //TODO: This can affect the performance of the server. Need rewrite this or remove after a while
-        //if (!$chunk->isLightPopulated() and $chunk->isPopulated() and $this->getServer()->getProperty("chunk-ticking.light-updates", false)) {
+        if (!$chunk->isLightPopulated() and $chunk->isPopulated() and $this->getServer()->getProperty("chunk-ticking.light-updates", false)) {
             $this->getServer()->getScheduler()->scheduleAsyncTask(new LightPopulationTask($this, $chunk));
-        //}
+        }
 
         if ($this->isChunkInUse($x, $z)) {
             foreach ($this->getChunkLoaders($x, $z) as $loader) {
