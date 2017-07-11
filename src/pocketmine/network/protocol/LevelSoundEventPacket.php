@@ -23,7 +23,7 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
-class LevelSoundEventPacket extends DataPacket{
+class LevelSoundEventPacket extends DataPacket {
 
 	const NETWORK_ID = Info::LEVEL_SOUND_EVENT_PACKET;
 

@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class Redstone extends RedstoneSource{
+class Redstone extends RedstoneSource {
 
 	protected $id = self::REDSTONE_BLOCK;
 
@@ -32,7 +32,7 @@ class Redstone extends RedstoneSource{
 		$this->meta = $meta;
 	}
 
-	public function getBoundingBox() {
+	public function getBoundingBox(){
 		return Block::getBoundingBox();
 	}
 
@@ -48,7 +48,7 @@ class Redstone extends RedstoneSource{
 		return true;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 5;
 	}
 
@@ -60,7 +60,7 @@ class Redstone extends RedstoneSource{
 		return "Block of Redstone";
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 1){
 			return [
 				[Item::REDSTONE_BLOCK, 0, 1],

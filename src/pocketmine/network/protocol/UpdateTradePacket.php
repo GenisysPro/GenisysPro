@@ -2,7 +2,7 @@
 
 namespace pocketmine\network\protocol;
 
-class UpdateTradePacket extends DataPacket{
+class UpdateTradePacket extends DataPacket {
 
 	const NETWORK_ID = Info::UPDATE_TRADE_PACKET;
 

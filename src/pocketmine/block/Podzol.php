@@ -25,7 +25,7 @@ use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class Podzol extends Solid{
+class Podzol extends Solid {
 
 	protected $id = self::PODZOL;
 
@@ -41,7 +41,7 @@ class Podzol extends Solid{
 		return "Podzol";
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 0.5;
 	}
 
@@ -59,6 +59,6 @@ class Podzol extends Solid{
 				[Item::DIRT, 0, 1],
 			];
 		}
-		
+
 	}
 }

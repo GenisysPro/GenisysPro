@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class HurtArmorPacket extends DataPacket{
+class HurtArmorPacket extends DataPacket {
 
 	const NETWORK_ID = Info::HURT_ARMOR_PACKET;
 

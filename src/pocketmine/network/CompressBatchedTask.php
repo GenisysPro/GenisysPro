@@ -25,7 +25,7 @@ namespace pocketmine\network;
 use pocketmine\scheduler\AsyncTask;
 use pocketmine\Server;
 
-class CompressBatchedTask extends AsyncTask{
+class CompressBatchedTask extends AsyncTask {
 
 	public $level = 7;
 	public $data;

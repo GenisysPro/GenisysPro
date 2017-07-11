@@ -29,7 +29,7 @@ use pocketmine\level\Position;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
-class ChunkInfoCommand extends VanillaCommand{
+class ChunkInfoCommand extends VanillaCommand {
 	public function __construct($name){
 		parent::__construct(
 			$name,

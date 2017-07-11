@@ -27,7 +27,7 @@ use pocketmine\block\Wood;
 use pocketmine\level\ChunkManager;
 use pocketmine\utils\Random;
 
-class BirchTree extends Tree{
+class BirchTree extends Tree {
 
 	protected $superBirch = false;
 

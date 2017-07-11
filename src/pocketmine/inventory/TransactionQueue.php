@@ -21,7 +21,7 @@
 
 namespace pocketmine\inventory;
 
-interface TransactionQueue{
+interface TransactionQueue {
 
 	const DEFAULT_ALLOWED_RETRIES = 5;
 

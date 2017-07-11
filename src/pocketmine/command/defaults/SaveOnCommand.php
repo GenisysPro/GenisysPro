@@ -26,7 +26,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
 
 
-class SaveOnCommand extends VanillaCommand{
+class SaveOnCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

@@ -23,7 +23,7 @@ namespace pocketmine\metadata;
 
 use pocketmine\plugin\Plugin;
 
-abstract class MetadataValue{
+abstract class MetadataValue {
 	/** @var \WeakRef<Plugin> */
 	protected $owningPlugin;
 

@@ -25,7 +25,7 @@ use pocketmine\math\Vector3;
 use pocketmine\utils\MainLogger;
 
 
-class Position extends Vector3{
+class Position extends Vector3 {
 
 	/** @var Level */
 	public $level = null;

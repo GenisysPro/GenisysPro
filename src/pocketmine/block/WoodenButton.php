@@ -27,7 +27,7 @@ use pocketmine\level\sound\ButtonClickSound;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 
-class WoodenButton extends RedstoneSource{
+class WoodenButton extends RedstoneSource {
 	protected $id = self::WOODEN_BUTTON;
 
 	public function __construct($meta = 0){
@@ -36,7 +36,7 @@ class WoodenButton extends RedstoneSource{
 
 	public function onUpdate($type){
 		if($type == Level::BLOCK_UPDATE_SCHEDULED){
-			if($this->isActivated()) {
+			if($this->isActivated()){
 				$this->meta ^= 0x08;
 				$this->getLevel()->setBlock($this, $this, true, false);
 				$this->getLevel()->addSound(new ButtonClickSound($this));
@@ -87,20 +87,20 @@ class WoodenButton extends RedstoneSource{
 			$this->deactivateBlock($this->getSide($faces[$side], 2));
 		}
 
-		$this->checkTorchOff($this->getSide($faces[$side]),[$this->getOppositeSide($faces[$side])]);
+		$this->checkTorchOff($this->getSide($faces[$side]), [$this->getOppositeSide($faces[$side])]);
 	}
 
 	public function activate(array $ignore = []){
 		parent::activate($ignore = []);
 		$faces = [
-				0 => 1,
-				1 => 0,
-				2 => 3,
-				3 => 2,
-				4 => 5,
-				5 => 4,
+			0 => 1,
+			1 => 0,
+			2 => 3,
+			3 => 2,
+			4 => 5,
+			5 => 4,
 		];
-		
+
 		$side = $this->meta;
 		if($this->isActivated()) $side ^= 0x08;
 
@@ -114,14 +114,14 @@ class WoodenButton extends RedstoneSource{
 			$this->activateBlock($block);
 		}
 
-		$this->checkTorchOn($this->getSide($faces[$side]),[$this->getOppositeSide($faces[$side])]);
+		$this->checkTorchOn($this->getSide($faces[$side]), [$this->getOppositeSide($faces[$side])]);
 	}
 
 	public function getName() : string{
 		return "Wooden Button";
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 0.5;
 	}
 
@@ -143,7 +143,7 @@ class WoodenButton extends RedstoneSource{
 		return false;
 	}
 
-	public function canBeActivated() : bool {
+	public function canBeActivated() : bool{
 		return true;
 	}
 

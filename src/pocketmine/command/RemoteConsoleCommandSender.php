@@ -24,7 +24,7 @@ namespace pocketmine\command;
 
 use pocketmine\event\TextContainer;
 
-class RemoteConsoleCommandSender extends ConsoleCommandSender{
+class RemoteConsoleCommandSender extends ConsoleCommandSender {
 
 	/** @var string */
 	private $messages = "";

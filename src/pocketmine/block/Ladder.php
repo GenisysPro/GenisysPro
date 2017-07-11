@@ -28,7 +28,7 @@ use pocketmine\level\Level;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\Player;
 
-class Ladder extends Transparent{
+class Ladder extends Transparent {
 
 	protected $id = self::LADDER;
 
@@ -48,7 +48,7 @@ class Ladder extends Transparent{
 		return false;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 0.4;
 	}
 
@@ -57,7 +57,7 @@ class Ladder extends Transparent{
 		$entity->onGround = true;
 	}
 
-	protected function recalculateBoundingBox() {
+	protected function recalculateBoundingBox(){
 
 		$f = 0.125;
 
@@ -135,8 +135,8 @@ class Ladder extends Transparent{
 			return Level::BLOCK_UPDATE_NORMAL;
 			}*/
 		if($type === Level::BLOCK_UPDATE_NORMAL){
-			if(isset($faces[$this->meta])) {
-				if ($this->getSide($faces[$this->meta])->getId() === self::AIR) {
+			if(isset($faces[$this->meta])){
+				if($this->getSide($faces[$this->meta])->getId() === self::AIR){
 					$this->getLevel()->useBreakOn($this);
 				}
 				return Level::BLOCK_UPDATE_NORMAL;
@@ -144,12 +144,12 @@ class Ladder extends Transparent{
 		}
 		return false;
 	}
-	
+
 	public function getToolType(){
 		return Tool::TYPE_AXE;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		return [
 			[$this->id, 0, 1],
 		];

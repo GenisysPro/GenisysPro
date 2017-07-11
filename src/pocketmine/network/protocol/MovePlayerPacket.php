@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class MovePlayerPacket extends DataPacket{
+class MovePlayerPacket extends DataPacket {
 
 	const NETWORK_ID = Info::MOVE_PLAYER_PACKET;
 

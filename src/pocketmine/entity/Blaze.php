@@ -27,7 +27,7 @@ use pocketmine\item\Item as ItemItem;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Blaze extends Monster{
+class Blaze extends Monster {
 	const NETWORK_ID = 43;
 
 	public $width = 0.3;
@@ -35,11 +35,11 @@ class Blaze extends Monster{
 	public $height = 1.8;
 
 	public $dropExp = [10, 10];
-	
+
 	public function getName() : string{
 		return "Blaze";
 	}
-	
+
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

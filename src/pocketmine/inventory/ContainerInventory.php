@@ -26,7 +26,7 @@ use pocketmine\network\protocol\ContainerClosePacket;
 use pocketmine\network\protocol\ContainerOpenPacket;
 use pocketmine\Player;
 
-abstract class ContainerInventory extends BaseInventory{
+abstract class ContainerInventory extends BaseInventory {
 	public function onOpen(Player $who){
 		parent::onOpen($who);
 		$pk = new ContainerOpenPacket();

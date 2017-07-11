@@ -23,7 +23,7 @@ namespace pocketmine\scheduler;
 
 use pocketmine\event\Timings;
 
-class TaskHandler{
+class TaskHandler {
 
 	/** @var Task */
 	protected $task;

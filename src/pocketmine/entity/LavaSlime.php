@@ -24,17 +24,17 @@ namespace pocketmine\entity;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class LavaSlime extends Living{
+class LavaSlime extends Living {
 	const NETWORK_ID = 42;
 
 	const DATA_SLIME_SIZE = 16;
 
 	public $dropExp = [1, 4];
-	
+
 	public function getName() : string{
 		return "LavaSlime";
 	}
-	
+
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

@@ -28,7 +28,7 @@ use pocketmine\level\Position;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
-class SpawnpointCommand extends VanillaCommand{
+class SpawnpointCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

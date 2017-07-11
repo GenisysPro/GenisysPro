@@ -24,7 +24,7 @@ namespace pocketmine\entity;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class MinecartHopper extends Minecart{
+class MinecartHopper extends Minecart {
 	const NETWORK_ID = 96;
 
 	public function getName() : string{

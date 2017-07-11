@@ -44,8 +44,8 @@ use pocketmine\network\protocol\AddPlayerPacket;
 use pocketmine\Player;
 use pocketmine\utils\UUID;
 
-class Human extends Creature implements ProjectileSource, InventoryHolder{
-	
+class Human extends Creature implements ProjectileSource, InventoryHolder {
+
 	const DATA_PLAYER_FLAG_SLEEP = 1;
 	const DATA_PLAYER_FLAG_DEAD = 2; //TODO: CHECK
 
@@ -55,7 +55,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 
 	/** @var PlayerInventory */
 	protected $inventory;
-	
+
 	/** @var EnderChestInventory */
 	protected $enderChestInventory;
 
@@ -262,7 +262,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	/**
 	 * Changes the total exp of a player
 	 *
-	 * @param int $xp
+	 * @param int  $xp
 	 * @param bool $syncLevel This will reset the level to be in sync with the total. Usually you don't want to do this,
 	 *                        because it'll mess up use of xp in anvils and enchanting tables.
 	 *
@@ -418,7 +418,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	public function getInventory(){
 		return $this->inventory;
 	}
-	
+
 	public function getEnderChestInventory(){
 		return $this->enderChestInventory;
 	}
@@ -619,7 +619,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 				}
 			}
 		}
-		
+
 		$this->namedtag->EnderChestInventory = new ListTag("EnderChestInventory", []);
 		$this->namedtag->Inventory->setTagType(NBT::TAG_Compound);
 		if($this->enderChestInventory !== null){

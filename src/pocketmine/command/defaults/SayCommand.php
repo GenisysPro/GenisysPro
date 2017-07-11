@@ -27,7 +27,7 @@ use pocketmine\event\TranslationContainer;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
-class SayCommand extends VanillaCommand{
+class SayCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

@@ -31,7 +31,7 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Rabbit extends Animal{
+class Rabbit extends Animal {
 	const NETWORK_ID = 18;
 
 	const DATA_RABBIT_TYPE = 18;

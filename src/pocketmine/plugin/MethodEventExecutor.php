@@ -24,7 +24,7 @@ namespace pocketmine\plugin;
 use pocketmine\event\Event;
 use pocketmine\event\Listener;
 
-class MethodEventExecutor implements EventExecutor{
+class MethodEventExecutor implements EventExecutor {
 
 	private $method;
 

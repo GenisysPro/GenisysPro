@@ -40,7 +40,7 @@ use pocketmine\level\generator\populator\Flower;
 use pocketmine\level\generator\populator\Populator;
 use pocketmine\utils\Random;
 
-abstract class Biome{
+abstract class Biome {
 
 	const OCEAN = 0;
 	const PLAINS = 1;
@@ -65,7 +65,7 @@ abstract class Biome{
 	const SMALL_MOUNTAINS = 20;
 	const BIRCH_FOREST = 27;
 	const BIRCH_FOREST_HILLS = 28;
-	const ROOFED_FOREST = 29;	
+	const ROOFED_FOREST = 29;
 	const COLD_TAIGA = 30;
 	const COLD_TAIGA_HILLS = 31;
 	const MEGA_TAIGA = 32;
@@ -76,7 +76,7 @@ abstract class Biome{
 	const MESA = 37;
 	const MESA_PLATEAU_F = 38;
 	const MESA_PLATEAU = 39;
-	
+
 	const VOID = 127;
 
 	const MAX_BIOMES = 256;
@@ -125,7 +125,7 @@ abstract class Biome{
 		self::register(self::TAIGA, new TaigaBiome());
 		self::register(self::SWAMP, new SwampBiome());
 		self::register(self::RIVER, new RiverBiome());
-		
+
 		self::register(self::BEACH, new BeachBiome());
 		self::register(self::MESA, new MesaBiome());
 

@@ -24,7 +24,7 @@ namespace pocketmine\event;
 use pocketmine\plugin\Plugin;
 use pocketmine\plugin\RegisteredListener;
 
-class HandlerList{
+class HandlerList {
 
 	/**
 	 * @var RegisteredListener[]

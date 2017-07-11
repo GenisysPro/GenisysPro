@@ -23,7 +23,7 @@ namespace pocketmine\utils;
 
 use pocketmine\Thread;
 
-class ServerKiller extends Thread{
+class ServerKiller extends Thread {
 
 	public $time;
 

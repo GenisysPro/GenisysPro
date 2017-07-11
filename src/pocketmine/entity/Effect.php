@@ -27,7 +27,7 @@ use pocketmine\event\player\PlayerExhaustEvent;
 use pocketmine\network\protocol\MobEffectPacket;
 use pocketmine\Player;
 
-class Effect{
+class Effect {
 	const SPEED = 1;
 	const SLOWNESS = 2;
 	const HASTE = 3;
@@ -82,7 +82,7 @@ class Effect{
 		self::$effects[Effect::NIGHT_VISION] = new Effect(Effect::NIGHT_VISION, "%potion.nightVision", 0, 0, 139);
 		self::$effects[Effect::HUNGER] = new Effect(Effect::HUNGER, "%potion.hunger", 46, 139, 87);
 
-		self::$effects[Effect::WEAKNESS] = new Effect(Effect::WEAKNESS, "%potion.weakness", 72, 77, 72 , true);
+		self::$effects[Effect::WEAKNESS] = new Effect(Effect::WEAKNESS, "%potion.weakness", 72, 77, 72, true);
 		self::$effects[Effect::POISON] = new Effect(Effect::POISON, "%potion.poison", 78, 147, 49, true);
 		self::$effects[Effect::WITHER] = new Effect(Effect::WITHER, "%potion.wither", 53, 42, 39, true);
 		self::$effects[Effect::HEALTH_BOOST] = new Effect(Effect::HEALTH_BOOST, "%potion.healthBoost", 248, 125, 35);
@@ -93,6 +93,7 @@ class Effect{
 
 	/**
 	 * @param int $id
+	 *
 	 * @return $this
 	 */
 	public static function getEffect($id){
@@ -254,27 +255,27 @@ class Effect{
 				break;
 			case Effect::HEALING:
 				$level = $this->amplifier + 1;
-				if(($entity->getHealth() + 4 * $level) <= $entity->getMaxHealth()) {
+				if(($entity->getHealth() + 4 * $level) <= $entity->getMaxHealth()){
 					$ev = new EntityRegainHealthEvent($entity, 4 * $level, EntityRegainHealthEvent::CAUSE_MAGIC);
 					$entity->heal($ev->getAmount(), $ev);
-				} else {
+				}else{
 					$ev = new EntityRegainHealthEvent($entity, $entity->getMaxHealth() - $entity->getHealth(), EntityRegainHealthEvent::CAUSE_MAGIC);
 					$entity->heal($ev->getAmount(), $ev);
 				}
 				break;
 			case Effect::HARMING:
 				$level = $this->amplifier + 1;
-				if(($entity->getHealth() - 6 * $level) >= 0) {
+				if(($entity->getHealth() - 6 * $level) >= 0){
 					$ev = new EntityDamageEvent($entity, EntityDamageEvent::CAUSE_MAGIC, 6 * $level);
 					$entity->attack($ev->getFinalDamage(), $ev);
-				} else {
+				}else{
 					$ev = new EntityDamageEvent($entity, EntityDamageEvent::CAUSE_MAGIC, $entity->getHealth());
 					$entity->attack($ev->getFinalDamage(), $ev);
 				}
 				break;
 			case Effect::SATURATION:
 				if($entity instanceof Player){
-					if($entity->getServer()->foodEnabled) {
+					if($entity->getServer()->foodEnabled){
 						$entity->setFood($entity->getFood() + 1);
 					}
 				}

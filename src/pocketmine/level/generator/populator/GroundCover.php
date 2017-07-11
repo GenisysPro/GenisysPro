@@ -28,13 +28,13 @@ use pocketmine\level\Level;
 use pocketmine\level\SimpleChunkManager;
 use pocketmine\utils\Random;
 
-class GroundCover extends Populator{
+class GroundCover extends Populator {
 
 	public function populate(ChunkManager $level, $chunkX, $chunkZ, Random $random){
 		$chunk = $level->getChunk($chunkX, $chunkZ);
 		if($level instanceof Level or $level instanceof SimpleChunkManager){
 			$waterHeight = $level->getWaterHeight();
-		} else $waterHeight = 0;
+		}else $waterHeight = 0;
 		for($x = 0; $x < 16; ++$x){
 			for($z = 0; $z < 16; ++$z){
 				$biome = Biome::getBiome($chunk->getBiomeId($x, $z));

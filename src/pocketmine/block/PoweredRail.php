@@ -25,7 +25,7 @@ use pocketmine\item\Item;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 
-class PoweredRail extends Rail{
+class PoweredRail extends Rail {
 
 	protected $id = self::POWERED_RAIL;
 	/** @var Vector3 [] */
@@ -46,6 +46,7 @@ class PoweredRail extends Rail{
 
 	/**
 	 * @param Rail $block
+	 *
 	 * @return bool
 	 */
 	public function canConnect(Rail $block){
@@ -178,7 +179,7 @@ class PoweredRail extends Rail{
 		return true;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 0.7;
 	}
 

@@ -28,7 +28,7 @@ use pocketmine\level\sound\GenericSound;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 
-class PressurePlate extends RedstoneSource{
+class PressurePlate extends RedstoneSource {
 	protected $activateTime = 0;
 	protected $canActivate = true;
 
@@ -111,7 +111,7 @@ class PressurePlate extends RedstoneSource{
 		$this->getLevel()->setBlock($this, new Air(), true);
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 0.5;
 	}
 

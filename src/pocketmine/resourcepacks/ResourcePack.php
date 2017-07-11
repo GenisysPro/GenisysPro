@@ -31,7 +31,7 @@
 namespace pocketmine\resourcepacks;
 
 
-interface ResourcePack{
+interface ResourcePack {
 
 	public function getPackName() : string;
 

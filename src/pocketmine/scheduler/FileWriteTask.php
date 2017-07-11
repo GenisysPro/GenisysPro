@@ -21,7 +21,7 @@
 
 namespace pocketmine\scheduler;
 
-class FileWriteTask extends AsyncTask{
+class FileWriteTask extends AsyncTask {
 
 	private $path;
 	private $contents;
@@ -36,7 +36,7 @@ class FileWriteTask extends AsyncTask{
 	public function onRun(){
 		try{
 			file_put_contents($this->path, $this->contents, (int) $this->flags);
-		}catch (\Throwable $e){
+		}catch(\Throwable $e){
 
 		}
 	}

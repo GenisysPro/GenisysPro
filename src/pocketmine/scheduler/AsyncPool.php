@@ -24,7 +24,7 @@ namespace pocketmine\scheduler;
 use pocketmine\event\Timings;
 use pocketmine\Server;
 
-class AsyncPool{
+class AsyncPool {
 
 	/** @var Server */
 	private $server;

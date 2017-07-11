@@ -37,7 +37,7 @@ use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
-class CaveCommand extends VanillaCommand{
+class CaveCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(
@@ -52,12 +52,12 @@ class CaveCommand extends VanillaCommand{
 		if(!$this->testPermission($sender)){
 			return true;
 		}
-		
+
 		if(!$sender instanceof Player){
-		 $sender->sendMessage(TextFormat::RED."Please run this command in-game!");
-		 return true;
+			$sender->sendMessage(TextFormat::RED . "Please run this command in-game!");
+			return true;
 		}
-		
+
 		if($args[0] == "getmypos"){
 			$sender->sendMessage("Your position: ({$sender->getX()}, {$sender->getY()}, {$sender->getZ()}, {$sender->getLevel()->getFolderName()})");
 			return true;
@@ -70,14 +70,14 @@ class CaveCommand extends VanillaCommand{
 			return false;
 		}
 		//是否自动获取玩家位置
-		 $level = isset($args[7]) ? $sender->getServer()->getLevelByName($args[7]) : $sender->getLevel();
-		 if(!$level instanceof Level){
-			 $sender->sendMessage(TextFormat::RED ."Wrong LevelName");
-			 return false;
-		  }
-		 $x = isset($args[4]) ? $args[4] : $sender->getX();
-		 $y = isset($args[5]) ? $args[5] : $sender->getY();
-		 $z = isset($args[6]) ? $args[6] : $sender->getZ();
+		$level = isset($args[7]) ? $sender->getServer()->getLevelByName($args[7]) : $sender->getLevel();
+		if(!$level instanceof Level){
+			$sender->sendMessage(TextFormat::RED . "Wrong LevelName");
+			return false;
+		}
+		$x = isset($args[4]) ? $args[4] : $sender->getX();
+		$y = isset($args[5]) ? $args[5] : $sender->getY();
+		$z = isset($args[6]) ? $args[6] : $sender->getZ();
 
 		$pos = new Position($x, $y, $z, $level);
 		$caves[0] = isset($args[0]) ? $args[0] : mt_rand(1, 360);
@@ -132,7 +132,7 @@ class CaveCommand extends VanillaCommand{
 		for($u = 0; $u <= $ls; $u += $i){
 			if($pitch > 12) $pitch = -45;
 			$pitch += 5 + mt_rand(0, 5);
-			$pos->getLevel()->getServer()->getLogger()->debug("[Caves] ".TextFormat::YELLOW . "yaw: $yaw  pitch: $pitch");
+			$pos->getLevel()->getServer()->getLogger()->debug("[Caves] " . TextFormat::YELLOW . "yaw: $yaw  pitch: $pitch");
 			if($tt) $pitch = mt_rand(0, 100) * 0.05;
 			//$s2[0] = $s1[0] -\sin($yaw / 180 * M_PI) * \cos($pitch / 180 * M_PI) * $i;
 			//$s2[1] = $s1[1] +\sin($pitch / 180 * M_PI) * $i;

@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class Prismarine extends Solid{
+class Prismarine extends Solid {
 
 	const NORMAL = 0;
 	const DARK = 1;

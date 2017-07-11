@@ -30,7 +30,7 @@ use pocketmine\inventory\ShapelessRecipe;
 use pocketmine\item\Item;
 use pocketmine\utils\BinaryStream;
 
-class CraftingDataPacket extends DataPacket{
+class CraftingDataPacket extends DataPacket {
 
 	const NETWORK_ID = Info::CRAFTING_DATA_PACKET;
 

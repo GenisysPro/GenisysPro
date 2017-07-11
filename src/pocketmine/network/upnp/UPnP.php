@@ -22,11 +22,12 @@
 /**
  * UPnP port forwarding support. Only for Windows
  */
+
 namespace pocketmine\network\upnp;
 
 use pocketmine\utils\Utils;
 
-abstract class UPnP{
+abstract class UPnP {
 	public static function PortForward($port){
 		if(Utils::$online === false){
 			return false;

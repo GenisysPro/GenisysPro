@@ -25,7 +25,7 @@ use pocketmine\entity\Entity;
 use pocketmine\item\Item;
 use pocketmine\Player;
 
-class Water extends Liquid{
+class Water extends Liquid {
 
 	protected $id = self::WATER;
 

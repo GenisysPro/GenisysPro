@@ -26,7 +26,7 @@ use pocketmine\event\Cancellable;
 use pocketmine\item\Item;
 use pocketmine\tile\Furnace;
 
-class FurnaceBurnEvent extends BlockEvent implements Cancellable{
+class FurnaceBurnEvent extends BlockEvent implements Cancellable {
 	public static $handlerList = null;
 
 	private $furnace;

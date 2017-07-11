@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class Clay extends Solid{
+class Clay extends Solid {
 
 	protected $id = self::CLAY_BLOCK;
 
@@ -32,7 +32,7 @@ class Clay extends Solid{
 
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 0.6;
 	}
 
@@ -44,7 +44,7 @@ class Clay extends Solid{
 		return "Clay Block";
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		return [
 			[Item::CLAY, 0, 4],
 		];

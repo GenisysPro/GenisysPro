@@ -25,7 +25,7 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
-class BossEventPacket extends DataPacket{
+class BossEventPacket extends DataPacket {
 
 	const NETWORK_ID = Info::BOSS_EVENT_PACKET;
 

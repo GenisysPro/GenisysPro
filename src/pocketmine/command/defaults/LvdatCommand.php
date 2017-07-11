@@ -27,7 +27,7 @@ use pocketmine\event\TranslationContainer;
 use pocketmine\level\format\io\BaseLevelProvider;
 use pocketmine\nbt\tag\StringTag;
 
-class LvdatCommand extends VanillaCommand{
+class LvdatCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

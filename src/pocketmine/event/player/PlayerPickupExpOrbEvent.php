@@ -24,7 +24,7 @@ namespace pocketmine\event\player;
 use pocketmine\event\Cancellable;
 use pocketmine\Player;
 
-class PlayerPickupExpOrbEvent extends PlayerEvent implements Cancellable{
+class PlayerPickupExpOrbEvent extends PlayerEvent implements Cancellable {
 	public static $handlerList = null;
 
 	private $amount;

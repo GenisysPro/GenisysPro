@@ -24,7 +24,7 @@ namespace pocketmine\inventory;
 use pocketmine\item\Item;
 
 //TODO: remove this
-abstract class Fuel{
+abstract class Fuel {
 	public static $duration = [
 		Item::COAL => 1600,
 		Item::COAL_BLOCK => 16000,

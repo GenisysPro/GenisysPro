@@ -15,7 +15,7 @@
  * (at your option) any later version.
  *
  * @author iTX Technologies
- * @link https://itxtech.org
+ * @link   https://itxtech.org
  *
  */
 
@@ -23,7 +23,7 @@ namespace pocketmine\inventory;
 
 use pocketmine\Player;
 
-abstract class TemporaryInventory extends ContainerInventory{
+abstract class TemporaryInventory extends ContainerInventory {
 	//TODO
 
 	abstract public function getResultSlotIndex();

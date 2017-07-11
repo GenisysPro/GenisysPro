@@ -23,7 +23,7 @@ namespace pocketmine\level\generator\noise;
 
 use pocketmine\utils\Random;
 
-class Perlin extends Noise{
+class Perlin extends Noise {
 	public static $grad3 = [
 		[1, 1, 0], [-1, 1, 0], [1, -1, 0], [-1, -1, 0],
 		[1, 0, 1], [-1, 0, 1], [1, 0, -1], [-1, 0, -1],

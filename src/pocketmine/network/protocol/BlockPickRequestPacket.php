@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class BlockPickRequestPacket extends DataPacket{
+class BlockPickRequestPacket extends DataPacket {
 
 	const NETWORK_ID = Info::BLOCK_PICK_REQUEST_PACKET;
 

@@ -22,7 +22,7 @@
 namespace pocketmine\block;
 
 
-class NetherReactor extends Solid{
+class NetherReactor extends Solid {
 
 	protected $id = self::NETHER_REACTOR;
 
@@ -34,7 +34,7 @@ class NetherReactor extends Solid{
 		return "Nether Reactor";
 	}
 
-	public function canBeActivated() : bool {
+	public function canBeActivated() : bool{
 		return true;
 	}
 

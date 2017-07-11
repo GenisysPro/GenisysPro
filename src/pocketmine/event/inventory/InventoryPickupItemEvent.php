@@ -25,7 +25,7 @@ use pocketmine\entity\Item;
 use pocketmine\event\Cancellable;
 use pocketmine\inventory\Inventory;
 
-class InventoryPickupItemEvent extends InventoryEvent implements Cancellable{
+class InventoryPickupItemEvent extends InventoryEvent implements Cancellable {
 	public static $handlerList = null;
 
 	/** @var Item */

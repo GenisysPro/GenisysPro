@@ -23,7 +23,7 @@ namespace pocketmine\level\generator\normal\biome;
 
 use pocketmine\block\Block;
 
-abstract class SnowyBiome extends NormalBiome{
+abstract class SnowyBiome extends NormalBiome {
 
 	public function __construct(){
 		$this->setGroundCover([

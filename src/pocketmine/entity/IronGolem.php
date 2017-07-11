@@ -25,23 +25,23 @@ use pocketmine\item\Item as ItemItem;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class IronGolem extends Animal{
+class IronGolem extends Animal {
 	const NETWORK_ID = 20;
 
 	public $width = 0.3;
 	public $length = 0.9;
 	public $height = 2.8;
-	
+
 	public function initEntity(){
 		$this->setMaxHealth(100);
 		parent::initEntity();
 	}
-	
-	public function getName() {
+
+	public function getName(){
 		return "Iron Golem";
 	}
-	
-	public function spawnTo(Player $player) {
+
+	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
 		$pk->type = self::NETWORK_ID;

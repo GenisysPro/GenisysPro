@@ -26,7 +26,7 @@ use pocketmine\block\Sapling;
 use pocketmine\level\ChunkManager;
 use pocketmine\utils\Random;
 
-abstract class Tree{
+abstract class Tree {
 	public $overridable = [
 		Block::AIR => true,
 		6 => true,

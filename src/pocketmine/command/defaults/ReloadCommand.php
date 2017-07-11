@@ -26,7 +26,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
 use pocketmine\utils\TextFormat;
 
-class ReloadCommand extends VanillaCommand{
+class ReloadCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

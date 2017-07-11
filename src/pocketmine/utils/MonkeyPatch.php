@@ -21,7 +21,7 @@
 
 namespace pocketmine\utils;
 
-class MonkeyPatch{
+class MonkeyPatch {
 	public function __construct(){
 
 	}

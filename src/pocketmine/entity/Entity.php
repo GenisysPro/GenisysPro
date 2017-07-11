@@ -70,7 +70,7 @@ use pocketmine\Player;
 use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 
-abstract class Entity extends Location implements Metadatable{
+abstract class Entity extends Location implements Metadatable {
 
 	const NETWORK_ID = -1;
 
@@ -594,6 +594,7 @@ abstract class Entity extends Location implements Metadatable{
 
 	/**
 	 * Returns whether the entity is able to climb blocks such as ladders or vines.
+	 *
 	 * @return bool
 	 */
 	public function canClimb() : bool{
@@ -602,6 +603,7 @@ abstract class Entity extends Location implements Metadatable{
 
 	/**
 	 * Sets whether the entity is able to climb climbable blocks.
+	 *
 	 * @param bool $value
 	 */
 	public function setCanClimb(bool $value){
@@ -1943,7 +1945,7 @@ abstract class Entity extends Location implements Metadatable{
 				$this->getLevel()->removeEntity($this);
 				//$this->setLevel(null);
 			}
-			
+
 			$this->namedtag = null;
 		}
 

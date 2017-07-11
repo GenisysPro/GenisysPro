@@ -21,7 +21,7 @@
 
 namespace pocketmine\block;
 
-class SpruceWoodStairs extends WoodStairs{
+class SpruceWoodStairs extends WoodStairs {
 
 	protected $id = self::SPRUCE_WOOD_STAIRS;
 

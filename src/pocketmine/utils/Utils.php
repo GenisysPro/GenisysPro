@@ -22,13 +22,15 @@
 /**
  * Various Utilities used around the code
  */
+
 namespace pocketmine\utils;
+
 use pocketmine\ThreadManager;
 
 /**
  * Big collection of functions
  */
-class Utils{
+class Utils {
 	public static $online = true;
 	public static $ip = false;
 	public static $os;
@@ -194,7 +196,7 @@ class Utils{
 				self::$os = "other";
 			}
 		}
-		
+
 		return self::$os;
 	}
 
@@ -348,8 +350,8 @@ class Utils{
 	/**
 	 * GETs an URL using cURL
 	 *
-	 * @param     $page
-	 * @param int $timeout default 10
+	 * @param       $page
+	 * @param int   $timeout default 10
 	 * @param array $extraHeaders
 	 *
 	 * @return bool|mixed
@@ -382,7 +384,7 @@ class Utils{
 	 * @param              $page
 	 * @param array|string $args
 	 * @param int          $timeout
-	 * @param array $extraHeaders
+	 * @param array        $extraHeaders
 	 *
 	 * @return bool|mixed
 	 */

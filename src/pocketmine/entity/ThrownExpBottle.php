@@ -27,7 +27,7 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class ThrownExpBottle extends Projectile{
+class ThrownExpBottle extends Projectile {
 	const NETWORK_ID = 68;
 
 	public $width = 0.25;

@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class NetherBrickFence extends Transparent{
+class NetherBrickFence extends Transparent {
 
 	protected $id = self::NETHER_BRICK_FENCE;
 

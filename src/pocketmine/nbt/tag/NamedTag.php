@@ -22,7 +22,7 @@
 namespace pocketmine\nbt\tag;
 
 
-abstract class NamedTag extends Tag{
+abstract class NamedTag extends Tag {
 
 	protected $__name;
 

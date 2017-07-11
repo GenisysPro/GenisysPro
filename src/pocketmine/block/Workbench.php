@@ -26,7 +26,7 @@ use pocketmine\item\Tool;
 use pocketmine\Player;
 
 //TODO: check orientation
-class Workbench extends Solid{
+class Workbench extends Solid {
 
 	protected $id = self::WORKBENCH;
 
@@ -34,11 +34,11 @@ class Workbench extends Solid{
 		$this->meta = $meta;
 	}
 
-	public function canBeActivated() : bool {
+	public function canBeActivated() : bool{
 		return true;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 2.5;
 	}
 
@@ -59,7 +59,7 @@ class Workbench extends Solid{
 		return true;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		return [
 			[$this->id, 0, 1],
 		];

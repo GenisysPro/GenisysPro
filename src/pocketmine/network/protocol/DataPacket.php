@@ -28,7 +28,7 @@ use pocketmine\item\Item;
 use pocketmine\utils\BinaryStream;
 use pocketmine\utils\Utils;
 
-abstract class DataPacket extends BinaryStream{
+abstract class DataPacket extends BinaryStream {
 
 	const NETWORK_ID = 0;
 

@@ -30,7 +30,7 @@ use pocketmine\item\Item;
 use pocketmine\Player;
 use pocketmine\Server;
 
-class Lava extends Liquid{
+class Lava extends Liquid {
 
 	protected $id = self::LAVA;
 

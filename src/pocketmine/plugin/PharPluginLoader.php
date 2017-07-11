@@ -28,7 +28,7 @@ use pocketmine\Server;
 /**
  * Handles different types of plugins
  */
-class PharPluginLoader implements PluginLoader{
+class PharPluginLoader implements PluginLoader {
 
 	/** @var Server */
 	private $server;

@@ -22,8 +22,7 @@
 namespace pocketmine\level\generator\normal\biome;
 
 
-
-class DesertBiome extends SandyBiome{
+class DesertBiome extends SandyBiome {
 
 	public function __construct(){
 		parent::__construct();

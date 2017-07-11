@@ -26,7 +26,7 @@ use pocketmine\level\Level;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 
-class RedstoneWire extends RedstoneSource{
+class RedstoneWire extends RedstoneSource {
 
 	const ON = 1;
 	const OFF = 2;
@@ -173,7 +173,7 @@ class RedstoneWire extends RedstoneSource{
 
 			$sides = [Vector3::SIDE_WEST, Vector3::SIDE_EAST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH];
 			foreach($sides as $s){
-				if(!in_array($s, $side[1])) {
+				if(!in_array($s, $side[1])){
 					$block = $this->getSide(Vector3::SIDE_DOWN)->getSide($s);
 					$this->activateBlock($block);
 				}
@@ -201,7 +201,7 @@ class RedstoneWire extends RedstoneSource{
 	public function deactivate(array $ignore = []){
 		if($this->canCalc()){
 			$block = $this->getSide(Vector3::SIDE_DOWN);
-			if($block->getId() == Block::ACTIVE_REDSTONE_LAMP) {
+			if($block->getId() == Block::ACTIVE_REDSTONE_LAMP){
 				/** @var ActiveRedstoneLamp $block */
 				if(!$this->checkPower($block, [Vector3::SIDE_UP], true)) $block->turnOff();
 			}
@@ -210,7 +210,7 @@ class RedstoneWire extends RedstoneSource{
 
 			$sides = [Vector3::SIDE_WEST, Vector3::SIDE_EAST, Vector3::SIDE_SOUTH, Vector3::SIDE_NORTH];
 			foreach($sides as $s){
-				if(!in_array($s, $side[1])) {
+				if(!in_array($s, $side[1])){
 					$this->deactivateBlock($this->getSide(Vector3::SIDE_DOWN)->getSide($s));
 				}
 			}
@@ -419,7 +419,7 @@ class RedstoneWire extends RedstoneSource{
 		else $this->getLevel()->setBlock($this, new Air());
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		return [
 			[Item::REDSTONE, 0, 1]
 		];

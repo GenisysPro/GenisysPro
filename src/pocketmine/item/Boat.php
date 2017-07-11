@@ -31,7 +31,7 @@ use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\Player;
 
-class Boat extends Item{
+class Boat extends Item {
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::BOAT, $meta, $count, "Boat");
 	}
@@ -62,7 +62,7 @@ class Boat extends Item{
 		]));
 		$boat->spawnToAll();
 
-		if($player->isSurvival()) {
+		if($player->isSurvival()){
 			$item = $player->getInventory()->getItemInHand();
 			$count = $item->getCount();
 			if(--$count <= 0){
@@ -73,7 +73,7 @@ class Boat extends Item{
 			$item->setCount($count);
 			$player->getInventory()->setItemInHand($item);
 		}
-		
+
 		return true;
 	}
 }

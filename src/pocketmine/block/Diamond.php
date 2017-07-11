@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class Diamond extends Solid{
+class Diamond extends Solid {
 
 	protected $id = self::DIAMOND_BLOCK;
 
@@ -32,7 +32,7 @@ class Diamond extends Solid{
 		$this->meta = $meta;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 5;
 	}
 
@@ -44,7 +44,7 @@ class Diamond extends Solid{
 		return Tool::TYPE_PICKAXE;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 4){
 			return [
 				[Item::DIAMOND_BLOCK, 0, 1],

@@ -30,7 +30,7 @@ use pocketmine\network\protocol\EntityEventPacket;
 use pocketmine\Player;
 
 
-class FishingHook extends Projectile{
+class FishingHook extends Projectile {
 	const NETWORK_ID = 77;
 
 	public $width = 0.25;

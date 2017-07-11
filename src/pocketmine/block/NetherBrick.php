@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class NetherBrick extends Solid{
+class NetherBrick extends Solid {
 
 	protected $id = self::NETHER_BRICKS;
 
@@ -40,11 +40,11 @@ class NetherBrick extends Solid{
 		return "Nether Bricks";
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 2;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 1){
 			return [
 				[Item::NETHER_BRICKS, 0, 1],

@@ -15,7 +15,7 @@
  * (at your option) any later version.
  *
  * @author iTX Technologies
- * @link https://itxtech.org
+ * @link   https://itxtech.org
  *
  */
 
@@ -25,7 +25,7 @@ use pocketmine\item\Item;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 
-class Rail extends Flowable{
+class Rail extends Flowable {
 
 	const STRAIGHT_EAST_WEST = 0;
 	const STRAIGHT_NORTH_SOUTH = 1;
@@ -57,6 +57,7 @@ class Rail extends Flowable{
 
 	/**
 	 * @param Rail $block
+	 *
 	 * @return bool
 	 */
 	public function canConnect(Rail $block){
@@ -172,6 +173,7 @@ class Rail extends Flowable{
 
 	/**
 	 * @param Rail $rail
+	 *
 	 * @return array
 	 */
 	public static function check(Rail $rail){
@@ -211,7 +213,7 @@ class Rail extends Flowable{
 		return $connected;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 0.7;
 	}
 

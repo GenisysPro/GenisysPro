@@ -21,6 +21,6 @@
 
 namespace pocketmine\block;
 
-interface ElectricalAppliance{
+interface ElectricalAppliance {
 
 }

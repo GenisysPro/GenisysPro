@@ -24,7 +24,7 @@ namespace pocketmine\level;
 use pocketmine\entity\Entity;
 use pocketmine\math\Vector3;
 
-class MovingObjectPosition{
+class MovingObjectPosition {
 
 	/** 0 = block, 1 = entity */
 	public $typeOfHit;

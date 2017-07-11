@@ -25,7 +25,7 @@ use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class Ice extends Transparent{
+class Ice extends Transparent {
 
 	protected $id = self::ICE;
 
@@ -37,7 +37,7 @@ class Ice extends Transparent{
 		return "Ice";
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 0.5;
 	}
 
@@ -52,7 +52,7 @@ class Ice extends Transparent{
 		return true;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		if($item->getEnchantmentLevel(Enchantment::TYPE_MINING_SILK_TOUCH) > 0){
 			return [
 				[Item::ICE, 0, 1],

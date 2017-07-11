@@ -22,7 +22,7 @@
 namespace pocketmine\item;
 
 
-class StoneHoe extends Tool{
+class StoneHoe extends Tool {
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::STONE_HOE, $meta, $count, "Stone Hoe");
 	}

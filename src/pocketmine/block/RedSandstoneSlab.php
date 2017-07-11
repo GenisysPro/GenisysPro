@@ -18,13 +18,13 @@
  * @link https://itxtech.org
  *
  */
- 
+
 namespace pocketmine\block;
 
 use pocketmine\item\Item;
 use pocketmine\Player;
 
-class RedSandstoneSlab extends Slab{
+class RedSandstoneSlab extends Slab {
 
 	protected $id = Block::RED_SANDSTONE_SLAB;
 
@@ -65,7 +65,7 @@ class RedSandstoneSlab extends Slab{
 				}
 			}
 		}
-		
+
 		if($block->getId() === self::RED_SANDSTONE_SLAB and ($target->getDamage() & 0x07) !== ($this->meta & 0x07)){
 			return false;
 		}

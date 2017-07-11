@@ -26,7 +26,7 @@ use pocketmine\block\Block;
 use pocketmine\entity\Entity;
 use pocketmine\item\enchantment\Enchantment;
 
-abstract class Tool extends Item{
+abstract class Tool extends Item {
 	const TIER_WOODEN = 1;
 	const TIER_GOLD = 2;
 	const TIER_STONE = 3;
@@ -44,7 +44,7 @@ abstract class Tool extends Item{
 		parent::__construct($id, $meta, $count, $name);
 	}
 
-	public function getMaxStackSize() : int {
+	public function getMaxStackSize() : int{
 		return 1;
 	}
 
@@ -63,40 +63,40 @@ abstract class Tool extends Item{
 
 		$unbreakingl = $this->getEnchantmentLevel(Enchantment::TYPE_MINING_DURABILITY);
 		$unbreakingl = $unbreakingl > 3 ? 3 : $unbreakingl;
-		if (mt_rand(1, $unbreakingl + 1) !== 1) {
+		if(mt_rand(1, $unbreakingl + 1) !== 1){
 			return true;
 		}
 
-		if ($type === 1) {
-			if ($object instanceof Entity) {
-				if ($this->isHoe() !== false or $this->isSword() !== false) {
+		if($type === 1){
+			if($object instanceof Entity){
+				if($this->isHoe() !== false or $this->isSword() !== false){
 					//Hoe and Sword
 					$this->meta++;
 					return true;
-				} elseif ($this->isPickaxe() !== false or $this->isAxe() !== false or $this->isShovel() !== false) {
+				}elseif($this->isPickaxe() !== false or $this->isAxe() !== false or $this->isShovel() !== false){
 					//Pickaxe Axe and Shovel
 					$this->meta += 2;
 					return true;
 				}
 				return true;//Other tool do not lost durability white hitting
-			} elseif ($object instanceof Block) {
-				if ($this->isShears() !== false) {
-					if ($object->getToolType() === Tool::TYPE_SHEARS) {//This should be checked in each block
+			}elseif($object instanceof Block){
+				if($this->isShears() !== false){
+					if($object->getToolType() === Tool::TYPE_SHEARS){//This should be checked in each block
 						$this->meta++;
 					}
 					return true;
-				} elseif ($object->getHardness() > 0) {//Sword Pickaxe Axe and Shovel
-					if ($this->isSword() !== false) {
+				}elseif($object->getHardness() > 0){//Sword Pickaxe Axe and Shovel
+					if($this->isSword() !== false){
 						$this->meta += 2;
 						return true;
-					} elseif ($this->isPickaxe() !== false or $this->isAxe() !== false or $this->isShovel() !== false) {
+					}elseif($this->isPickaxe() !== false or $this->isAxe() !== false or $this->isShovel() !== false){
 						$this->meta += 1;
 						return true;
 					}
 				}
 			}
-		} elseif ($type === 2) {//For Touch. only trigger when OnActivate return true
-			if ($this->isHoe() !== false or $this->id === self::FLINT_STEEL or $this->isShovel() !== false) {
+		}elseif($type === 2){//For Touch. only trigger when OnActivate return true
+			if($this->isHoe() !== false or $this->id === self::FLINT_STEEL or $this->isShovel() !== false){
 				$this->meta++;
 				return true;
 			}

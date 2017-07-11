@@ -35,7 +35,7 @@ use pocketmine\Player;
 use pocketmine\tile\EnderChest as TileEnderChest;
 use pocketmine\tile\Tile;
 
-class EnderChest extends Transparent{
+class EnderChest extends Transparent {
 
 	protected $id = self::ENDER_CHEST;
 
@@ -67,7 +67,7 @@ class EnderChest extends Transparent{
 		return Tool::TYPE_PICKAXE;
 	}
 
-	protected function recalculateBoundingBox() {
+	protected function recalculateBoundingBox(){
 		return new AxisAlignedBB(
 			$this->x + 0.0625,
 			$this->y,
@@ -112,7 +112,7 @@ class EnderChest extends Transparent{
 				return true;
 			}
 
-			if(!($this->getLevel()->getTile($this) instanceof TileEnderChest)) {
+			if(!($this->getLevel()->getTile($this) instanceof TileEnderChest)){
 				$nbt = new CompoundTag("", [
 					new StringTag("id", Tile::ENDER_CHEST),
 					new IntTag("x", $this->x),

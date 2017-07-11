@@ -33,7 +33,7 @@ use pocketmine\Player;
 use pocketmine\tile\FlowerPot as TileFlowerPot;
 use pocketmine\tile\Tile;
 
-class FlowerPot extends Flowable{
+class FlowerPot extends Flowable {
 
 	const STATE_EMPTY = 0;
 	const STATE_FULL = 1;
@@ -48,7 +48,7 @@ class FlowerPot extends Flowable{
 		return "Flower Pot Block";
 	}
 
-	public function canBeActivated(): bool{
+	public function canBeActivated() : bool{
 		return true;
 	}
 

@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class SetEntityLinkPacket extends DataPacket{
+class SetEntityLinkPacket extends DataPacket {
 
 	const NETWORK_ID = Info::SET_ENTITY_LINK_PACKET;
 

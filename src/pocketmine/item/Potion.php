@@ -28,7 +28,7 @@ use pocketmine\event\entity\EntityDrinkPotionEvent;
 use pocketmine\network\protocol\EntityEventPacket;
 use pocketmine\Player;
 
-class Potion extends Item{
+class Potion extends Item {
 
 	//No effects
 	const WATER_BOTTLE = 0;
@@ -81,7 +81,7 @@ class Potion extends Item{
 		self::AWKWARD => false,
 
 		self::NIGHT_VISION => [Effect::NIGHT_VISION, (180 * 20), 0],
-		self::NIGHT_VISION_T =>	[Effect::NIGHT_VISION, (480 * 20), 0],
+		self::NIGHT_VISION_T => [Effect::NIGHT_VISION, (480 * 20), 0],
 
 		self::INVISIBILITY => [Effect::INVISIBILITY, (180 * 20), 0],
 		self::INVISIBILITY_T => [Effect::INVISIBILITY, (480 * 20), 0],
@@ -149,12 +149,13 @@ class Potion extends Item{
 		return $entity instanceof Human;
 	}
 
-	public function getEffects(): array{
+	public function getEffects() : array{
 		return self::getEffectsById($this->meta);
 	}
 
 	/**
 	 * @param int $id
+	 *
 	 * @return Effect[]
 	 */
 	public static function getEffectsById(int $id) : array{

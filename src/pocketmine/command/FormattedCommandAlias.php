@@ -26,7 +26,7 @@ use pocketmine\Server;
 use pocketmine\utils\MainLogger;
 use pocketmine\utils\TextFormat;
 
-class FormattedCommandAlias extends Command{
+class FormattedCommandAlias extends Command {
 	private $formatStrings = [];
 
 	/**

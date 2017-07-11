@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class IronOre extends Solid{
+class IronOre extends Solid {
 
 	protected $id = self::IRON_ORE;
 
@@ -40,11 +40,11 @@ class IronOre extends Solid{
 		return Tool::TYPE_PICKAXE;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 3;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 3){
 			return [
 				[Item::IRON_ORE, 0, 1],

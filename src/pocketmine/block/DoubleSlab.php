@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class DoubleSlab extends Solid{
+class DoubleSlab extends Solid {
 
 	protected $id = self::DOUBLE_SLAB;
 
@@ -32,7 +32,7 @@ class DoubleSlab extends Solid{
 		$this->meta = $meta;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 2;
 	}
 
@@ -54,7 +54,7 @@ class DoubleSlab extends Solid{
 		return "Double " . $names[$this->meta & 0x07] . " Slab";
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 1){
 			return [
 				[Item::SLAB, $this->meta & 0x07, 2],

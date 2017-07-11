@@ -27,7 +27,7 @@ namespace pocketmine\utils;
 
 use pocketmine\item\Item;
 
-class BinaryStream extends \stdClass{
+class BinaryStream extends \stdClass {
 
 	public $offset;
 	public $buffer;

@@ -23,7 +23,7 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
-class ItemFrameDropItemPacket extends DataPacket{
+class ItemFrameDropItemPacket extends DataPacket {
 
 	const NETWORK_ID = Info::ITEM_FRAME_DROP_ITEM_PACKET;
 

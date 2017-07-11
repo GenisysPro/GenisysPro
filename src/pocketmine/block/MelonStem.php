@@ -26,7 +26,7 @@ use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\Server;
 
-class MelonStem extends Crops{
+class MelonStem extends Crops {
 
 	protected $id = self::MELON_STEM;
 
@@ -79,7 +79,7 @@ class MelonStem extends Crops{
 		return false;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		return [
 			[Item::MELON_SEEDS, 0, mt_rand(0, 2)],
 		];

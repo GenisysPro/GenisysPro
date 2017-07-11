@@ -22,6 +22,7 @@
 /**
  * Task scheduling related classes
  */
+
 namespace pocketmine\scheduler;
 
 use pocketmine\plugin\Plugin;
@@ -29,7 +30,7 @@ use pocketmine\plugin\PluginException;
 use pocketmine\Server;
 use pocketmine\utils\ReversePriorityQueue;
 
-class ServerScheduler{
+class ServerScheduler {
 	public static $WORKERS = 2;
 	/**
 	 * @var ReversePriorityQueue<Task>

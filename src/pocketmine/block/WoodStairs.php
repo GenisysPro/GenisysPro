@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class WoodStairs extends Stair{
+class WoodStairs extends Stair {
 
 	protected $id = self::WOOD_STAIRS;
 
@@ -40,7 +40,7 @@ class WoodStairs extends Stair{
 		return Tool::TYPE_AXE;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		return [
 			[$this->id, 0, 1],
 		];
@@ -54,7 +54,7 @@ class WoodStairs extends Stair{
 		return 20;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 2;
 	}
 }

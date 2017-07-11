@@ -29,7 +29,7 @@ use pocketmine\nbt\tag\ListTag;
 use pocketmine\network\protocol\BlockEventPacket;
 use pocketmine\Player;
 
-class EnderChestInventory extends ContainerInventory{
+class EnderChestInventory extends ContainerInventory {
 
 	/** @var Human|Player */
 	private $owner;

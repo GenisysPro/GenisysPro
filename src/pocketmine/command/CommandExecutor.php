@@ -22,7 +22,7 @@
 namespace pocketmine\command;
 
 
-interface CommandExecutor{
+interface CommandExecutor {
 
 	/**
 	 * @param CommandSender $sender

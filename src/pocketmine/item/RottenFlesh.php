@@ -23,11 +23,11 @@ namespace pocketmine\item;
 
 use pocketmine\entity\Effect;
 
-class RottenFlesh extends Food{
+class RottenFlesh extends Food {
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::ROTTEN_FLESH, 0, $count, "Rotten Flesh");
 	}
-	
+
 	public function getFoodRestore() : int{
 		return 4;
 	}

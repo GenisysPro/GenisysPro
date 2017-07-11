@@ -21,7 +21,7 @@
 
 namespace pocketmine\item;
 
-class CookedFish extends Fish{
+class CookedFish extends Fish {
 	public function __construct($meta = 0, $count = 1){
 		Food::__construct(self::COOKED_FISH, $meta, $count, $meta === self::FISH_SALMON ? "Cooked Salmon" : "Cooked Fish");
 	}

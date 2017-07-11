@@ -28,7 +28,7 @@ use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
-class TeleportCommand extends VanillaCommand{
+class TeleportCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

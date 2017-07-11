@@ -29,7 +29,7 @@ use pocketmine\level\Level;
 use pocketmine\math\AxisAlignedBB;
 
 
-class GrassPath extends Transparent{
+class GrassPath extends Transparent {
 
 	protected $id = self::GRASS_PATH;
 
@@ -45,7 +45,7 @@ class GrassPath extends Transparent{
 		return Tool::TYPE_SHOVEL;
 	}
 
-	protected function recalculateBoundingBox() {
+	protected function recalculateBoundingBox(){
 		return new AxisAlignedBB(
 			$this->x,
 			$this->y,
@@ -67,11 +67,11 @@ class GrassPath extends Transparent{
 		return false;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 0.6;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		if($item->getEnchantmentLevel(Enchantment::TYPE_MINING_SILK_TOUCH) > 0){
 			return [
 				[Item::GRASS_PATH, 0, 1],

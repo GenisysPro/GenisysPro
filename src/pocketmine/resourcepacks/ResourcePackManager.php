@@ -34,7 +34,7 @@ namespace pocketmine\resourcepacks;
 use pocketmine\Server;
 use pocketmine\utils\Config;
 
-class ResourcePackManager{
+class ResourcePackManager {
 
 	/** @var Server */
 	private $server;

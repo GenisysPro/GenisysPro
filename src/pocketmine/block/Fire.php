@@ -33,7 +33,7 @@ use pocketmine\level\Level;
 use pocketmine\math\Vector3;
 use pocketmine\Server;
 
-class Fire extends Flowable{
+class Fire extends Flowable {
 
 	protected $id = self::FIRE;
 
@@ -87,7 +87,7 @@ class Fire extends Flowable{
 		}
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		return [];
 	}
 
@@ -146,7 +146,7 @@ class Fire extends Flowable{
 
 						for($x = ($this->x - 1); $x <= ($this->x + 1); ++$x){
 							for($z = ($this->z - 1); $z <= ($this->z + 1); ++$z){
-								for($y = ($this->y -1); $y <= ($this->y + 4); ++$y){
+								for($y = ($this->y - 1); $y <= ($this->y + 4); ++$y){
 									$k = 100;
 
 									if($y > $this->y + 1){
@@ -216,7 +216,7 @@ class Fire extends Flowable{
 					$this->getLevel()->scheduleUpdate($block, $fire->getTickRate());
 				}
 			}else{
-					$this->getLevel()->setBlock($this, new Air(), true);
+				$this->getLevel()->setBlock($this, new Air(), true);
 			}
 
 			if($block instanceof TNT){

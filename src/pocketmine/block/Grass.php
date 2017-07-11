@@ -32,7 +32,7 @@ use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\utils\Random;
 
-class Grass extends Solid{
+class Grass extends Solid {
 
 	protected $id = self::GRASS;
 

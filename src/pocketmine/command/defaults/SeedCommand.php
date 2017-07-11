@@ -26,7 +26,7 @@ use pocketmine\event\TranslationContainer;
 use pocketmine\Player;
 
 
-class SeedCommand extends VanillaCommand{
+class SeedCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

@@ -28,7 +28,7 @@ use pocketmine\math\Vector3;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
-class SetWorldSpawnCommand extends VanillaCommand{
+class SetWorldSpawnCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

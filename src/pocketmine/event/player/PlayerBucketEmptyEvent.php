@@ -25,7 +25,7 @@ use pocketmine\block\Block;
 use pocketmine\item\Item;
 use pocketmine\Player;
 
-class PlayerBucketEmptyEvent extends PlayerBucketEvent{
+class PlayerBucketEmptyEvent extends PlayerBucketEvent {
 	public static $handlerList = null;
 
 	public function __construct(Player $who, Block $blockClicked, $blockFace, Item $bucket, Item $itemInHand){

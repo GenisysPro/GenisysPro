@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\Item;
 
-class Potato extends Crops{
+class Potato extends Crops {
 
 	protected $id = self::POTATO_BLOCK;
 
@@ -36,7 +36,7 @@ class Potato extends Crops{
 		return "Potato Block";
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		$drops = [];
 		if($this->meta >= 0x07){
 			$fortunel = $item->getEnchantmentLevel(Enchantment::TYPE_MINING_FORTUNE);

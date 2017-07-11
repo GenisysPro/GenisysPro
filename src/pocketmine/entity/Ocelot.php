@@ -27,7 +27,7 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Ocelot extends Animal{
+class Ocelot extends Animal {
 	const NETWORK_ID = 22;
 
 	const DATA_CAT_TYPE = 18;
@@ -42,7 +42,7 @@ class Ocelot extends Animal{
 	public $height = 0.75;
 
 	public $dropExp = [1, 3];
-	
+
 	public function getName() : string{
 		return "Ocelot";
 	}

@@ -43,7 +43,7 @@ use pocketmine\level\generator\populator\Ore;
 use pocketmine\math\Vector3;
 use pocketmine\utils\Random;
 
-class Normal2 extends Normal{
+class Normal2 extends Normal {
 	const NAME = "Normal2";
 	/** @var Simplex */
 	private $noiseSeaFloor;

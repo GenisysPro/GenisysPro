@@ -21,7 +21,7 @@
 
 namespace pocketmine\scheduler;
 
-abstract class Task{
+abstract class Task {
 
 	/** @var TaskHandler */
 	private $taskHandler = null;

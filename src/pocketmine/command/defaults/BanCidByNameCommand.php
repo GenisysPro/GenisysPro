@@ -35,7 +35,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
 use pocketmine\Player;
 
-class BanCidByNameCommand extends VanillaCommand{
+class BanCidByNameCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(
@@ -59,8 +59,8 @@ class BanCidByNameCommand extends VanillaCommand{
 
 		$name = array_shift($args);
 		$reason = implode(" ", $args);
-		
-		if ($sender->getServer()->getPlayer($name) instanceof Player) $target = $sender->getServer()->getPlayer($name);
+
+		if($sender->getServer()->getPlayer($name) instanceof Player) $target = $sender->getServer()->getPlayer($name);
 		else return false;
 
 		$sender->getServer()->getCIDBans()->addBan($target->getClientId(), $reason, null, $sender->getName());

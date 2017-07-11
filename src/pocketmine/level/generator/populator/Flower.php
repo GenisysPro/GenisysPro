@@ -26,7 +26,7 @@ use pocketmine\block\Flower as FlowerBlock;
 use pocketmine\level\ChunkManager;
 use pocketmine\utils\Random;
 
-class Flower extends Populator{
+class Flower extends Populator {
 	/** @var ChunkManager */
 	private $level;
 	private $randomAmount;

@@ -27,7 +27,7 @@ use pocketmine\math\Vector3;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\network\protocol\RemoveEntityPacket;
 
-class FloatingTextParticle extends Particle{
+class FloatingTextParticle extends Particle {
 	//TODO: HACK!
 
 	protected $text;
@@ -61,6 +61,7 @@ class FloatingTextParticle extends Particle{
 	public function setTitle($title){
 		$this->title = $title;
 	}
+
 	public function isInvisible(){
 		return $this->invisible;
 	}

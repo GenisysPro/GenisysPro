@@ -26,7 +26,7 @@ use pocketmine\event\Event;
 use pocketmine\event\Listener;
 use pocketmine\event\TimingsHandler;
 
-class RegisteredListener{
+class RegisteredListener {
 
 	/** @var Listener */
 	private $listener;

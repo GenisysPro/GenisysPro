@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class InteractPacket extends DataPacket{
+class InteractPacket extends DataPacket {
 
 	const NETWORK_ID = Info::INTERACT_PACKET;
 

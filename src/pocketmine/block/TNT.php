@@ -33,7 +33,7 @@ use pocketmine\nbt\tag\ListTag;
 use pocketmine\Player;
 use pocketmine\utils\Random;
 
-class TNT extends Solid implements ElectricalAppliance{
+class TNT extends Solid implements ElectricalAppliance {
 
 	protected $id = self::TNT;
 

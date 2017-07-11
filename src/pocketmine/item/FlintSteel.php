@@ -29,7 +29,7 @@ use pocketmine\level\Level;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 
-class FlintSteel extends Tool{
+class FlintSteel extends Tool {
 	/** @var Vector3 */
 	private $temporalVector = null;
 

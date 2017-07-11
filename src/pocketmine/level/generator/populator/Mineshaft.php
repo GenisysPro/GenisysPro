@@ -24,7 +24,7 @@ namespace pocketmine\level\generator\populator;
 use pocketmine\level\ChunkManager;
 use pocketmine\utils\Random;
 
-class Mineshaft extends Populator{
+class Mineshaft extends Populator {
 	private static $DISTANCE = 256;
 	private static $VARIATION = 16;
 	private static $ODD = 3;

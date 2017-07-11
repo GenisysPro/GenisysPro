@@ -25,7 +25,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\utils\TextFormat;
 
 
-class GarbageCollectorCommand extends VanillaCommand{
+class GarbageCollectorCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(
@@ -63,7 +63,7 @@ class GarbageCollectorCommand extends VanillaCommand{
 		$sender->sendMessage(TextFormat::GOLD . "%pocketmine.command.gc.entities" . TextFormat::RED . \number_format($entitiesCollected));
 		$sender->sendMessage(TextFormat::GOLD . "%pocketmine.command.gc.tiles" . TextFormat::RED . \number_format($tilesCollected));
 		$sender->sendMessage(TextFormat::GOLD . "%pocketmine.command.gc.cycles" . TextFormat::RED . \number_format($cyclesCollected));
-		$sender->sendMessage(TextFormat::GOLD . "%pocketmine.command.gc.memory" . TextFormat::RED . \number_format(\round((($memory - \memory_get_usage()) / 1024) / 1024, 2))." MB");
+		$sender->sendMessage(TextFormat::GOLD . "%pocketmine.command.gc.memory" . TextFormat::RED . \number_format(\round((($memory - \memory_get_usage()) / 1024) / 1024, 2)) . " MB");
 		return true;
 	}
 }

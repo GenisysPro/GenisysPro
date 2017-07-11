@@ -25,7 +25,7 @@ namespace pocketmine\inventory;
 use pocketmine\level\Position;
 
 
-class FakeBlockMenu extends Position implements InventoryHolder{
+class FakeBlockMenu extends Position implements InventoryHolder {
 
 	private $inventory;
 

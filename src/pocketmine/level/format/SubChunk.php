@@ -19,11 +19,11 @@
  *
 */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace pocketmine\level\format;
 
-class SubChunk{
+class SubChunk {
 
 	protected $ids;
 	protected $data;
@@ -216,7 +216,7 @@ class SubChunk{
 
 	public static function fastDeserialize(string $data) : SubChunk{
 		return new SubChunk(
-			substr($data,    0, 4096), //ids
+			substr($data, 0, 4096), //ids
 			substr($data, 4096, 2048), //data
 			substr($data, 6144, 2048), //sky light
 			substr($data, 8192, 2048)  //block light

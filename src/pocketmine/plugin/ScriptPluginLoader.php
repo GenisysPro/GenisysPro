@@ -29,7 +29,7 @@ use pocketmine\Server;
  * Simple script loader, not for plugin development
  * For an example see https://gist.github.com/shoghicp/516105d470cf7d140757
  */
-class ScriptPluginLoader implements PluginLoader{
+class ScriptPluginLoader implements PluginLoader {
 
 	/** @var Server */
 	private $server;
@@ -99,7 +99,7 @@ class ScriptPluginLoader implements PluginLoader{
 
 				if($key === "notscript"){
 					return null;
- 				}
+				}
 
 				$data[$key] = $content;
 			}

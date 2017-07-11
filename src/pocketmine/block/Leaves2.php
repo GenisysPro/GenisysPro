@@ -25,7 +25,7 @@ namespace pocketmine\block;
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\Item;
 
-class Leaves2 extends Leaves{
+class Leaves2 extends Leaves {
 
 	const WOOD_TYPE = self::WOOD2;
 
@@ -43,14 +43,14 @@ class Leaves2 extends Leaves{
 		return $names[$this->meta & 0x01];
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		$drops = [];
 		if($item->isShears() or $item->getEnchantmentLevel(Enchantment::TYPE_MINING_SILK_TOUCH) > 0){
 			$drops[] = [$this->id, $this->meta & 0x01, 1];
 		}else{
 			$fortunel = $item->getEnchantmentLevel(Enchantment::TYPE_MINING_FORTUNE);
 			$fortunel = min(3, $fortunel);
-			$rates = [20,16,12,10];
+			$rates = [20, 16, 12, 10];
 			if(mt_rand(1, $rates[$fortunel]) === 1){ //Saplings
 				$drops[] = [Item::SAPLING, ($this->meta & 0x01) | 0x04, 1];
 			}

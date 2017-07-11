@@ -27,7 +27,7 @@ namespace pocketmine\inventory;
  *
  * TODO: add small matrix inventory
  */
-class CraftingInventory extends BaseInventory{
+class CraftingInventory extends BaseInventory {
 
 	/** @var Inventory */
 	private $resultInventory;

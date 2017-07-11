@@ -28,7 +28,7 @@ use pocketmine\math\Vector3;
 /**
  * This class performs ray tracing and iterates along blocks on a line
  */
-class VectorIterator implements \Iterator{
+class VectorIterator implements \Iterator {
 
 	/** @var ChunkManager */
 	private $level;

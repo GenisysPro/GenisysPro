@@ -32,7 +32,7 @@
 namespace pocketmine\network\protocol\types;
 
 
-interface InventoryNetworkIds{
+interface InventoryNetworkIds {
 
 	const INVENTORY = -1;
 	const CONTAINER = 0;

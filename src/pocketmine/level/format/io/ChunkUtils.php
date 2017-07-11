@@ -19,11 +19,11 @@
  *
 */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace pocketmine\level\format\io;
 
-class ChunkUtils{
+class ChunkUtils {
 
 	/**
 	 * Re-orders a byte array (YZX -> XZY and vice versa)
@@ -54,7 +54,7 @@ class ChunkUtils{
 	/**
 	 * Re-orders a nibble array (YZX -> XZY and vice versa)
 	 *
-	 * @param string $array length 2048
+	 * @param string $array       length 2048
 	 * @param string $commonValue length 1 common value to fill the default array with and to expect, may improve sort time
 	 *
 	 * @return string length 2048
@@ -75,7 +75,7 @@ class ChunkUtils{
 						}else{
 							$i1 = ord($array{$j});
 							$i2 = ord($array{$j80});
-							$result{$i}        = chr(($i2 << 4) | ($i1 & 0x0f));
+							$result{$i} = chr(($i2 << 4) | ($i1 & 0x0f));
 							$result{$i | 0x80} = chr(($i1 >> 4) | ($i2 & 0xf0));
 						}
 						$i++;

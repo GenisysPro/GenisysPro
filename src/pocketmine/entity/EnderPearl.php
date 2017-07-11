@@ -27,7 +27,7 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class EnderPearl extends Projectile{
+class EnderPearl extends Projectile {
 
 	const NETWORK_ID = 87;
 

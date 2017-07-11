@@ -30,7 +30,7 @@ use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\utils\Color;
 
-class Cauldron extends Spawnable{
+class Cauldron extends Spawnable {
 
 	public function __construct(Level $level, CompoundTag $nbt){
 		if(!isset($nbt->PotionId) or !($nbt->PotionId instanceof ShortTag)){

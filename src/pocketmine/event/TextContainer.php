@@ -21,7 +21,7 @@
 
 namespace pocketmine\event;
 
-class TextContainer{
+class TextContainer {
 
 	/** @var string $text */
 	protected $text;

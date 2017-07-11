@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class ReplaceItemInSlotPacket extends DataPacket{
+class ReplaceItemInSlotPacket extends DataPacket {
 
 	const NETWORK_ID = Info::REPLACE_ITEM_IN_SLOT_PACKET;
 

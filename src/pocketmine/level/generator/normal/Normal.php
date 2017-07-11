@@ -50,7 +50,7 @@ use pocketmine\level\Level;
 use pocketmine\math\Vector3 as Vector3;
 use pocketmine\utils\Random;
 
-class Normal extends Generator{
+class Normal extends Generator {
 	const NAME = "Normal";
 
 	/** @var Populator[] */

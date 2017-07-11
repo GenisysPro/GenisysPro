@@ -28,7 +28,7 @@ use pocketmine\math\Vector3;
 use pocketmine\math\VectorMath;
 use pocketmine\utils\Random;
 
-class Cave extends Populator{
+class Cave extends Populator {
 	public function populate(ChunkManager $level, $chunkX, $chunkZ, Random $random){
 		$overLap = 8;
 		$firstSeed = $random->nextInt();
@@ -170,7 +170,7 @@ class Cave extends Populator{
 	}
 }
 
-class CaveNode{
+class CaveNode {
 	/** @var ChunkManager */
 	private $level;
 	/** @var Vector3 */

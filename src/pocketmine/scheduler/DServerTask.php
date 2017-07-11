@@ -3,11 +3,12 @@
  * DServerTask 2.0
  * @author MUedsa, PeratX
 */
+
 namespace pocketmine\scheduler;
 
 use pocketmine\Server;
 
-class DServerTask extends AsyncTask{
+class DServerTask extends AsyncTask {
 
 	public $data;
 	public $autotimes;

@@ -27,7 +27,7 @@ use pocketmine\block\Wood;
 use pocketmine\level\ChunkManager;
 use pocketmine\utils\Random;
 
-class OakTree extends Tree{
+class OakTree extends Tree {
 
 	public function __construct(){
 		$this->trunkBlock = Block::LOG;

@@ -28,7 +28,7 @@ use pocketmine\entity\InstantEffect;
 use pocketmine\event\TranslationContainer;
 use pocketmine\utils\TextFormat;
 
-class EffectCommand extends VanillaCommand{
+class EffectCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(
@@ -55,8 +55,8 @@ class EffectCommand extends VanillaCommand{
 			$sender->sendMessage(new TranslationContainer(TextFormat::RED . "%commands.generic.player.notFound"));
 			return true;
 		}
-		
-		if($player->getName()!=$sender->getName() && !$sender->hasPermission("pocketmine.command.effect.other")){
+
+		if($player->getName() != $sender->getName() && !$sender->hasPermission("pocketmine.command.effect.other")){
 			$sender->sendMessage("You don't have permission to give effect to other player .");
 			return true;
 		}
@@ -114,13 +114,13 @@ class EffectCommand extends VanillaCommand{
 				return true;
 			}
 
-			if ($player->removeEffect($effect->getId())) {
+			if($player->removeEffect($effect->getId())){
 				$sender->sendMessage(new TranslationContainer("commands.effect.success.removed", [$effect->getName(), $player->getDisplayName()]));
 			}
 		}else{
 			$effect->setDuration($duration)->setAmplifier($amplification);
 
-			if ($player->addEffect($effect)) {
+			if($player->addEffect($effect)){
 				self::broadcastCommandMessage($sender, new TranslationContainer("%commands.effect.success", [$effect->getName(), $effect->getId(), $effect->getAmplifier(), $player->getDisplayName(), $effect->getDuration() / 20]));
 			}
 		}

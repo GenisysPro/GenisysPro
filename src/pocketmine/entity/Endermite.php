@@ -27,24 +27,24 @@ namespace pocketmine\entity;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Endermite extends Monster{
+class Endermite extends Monster {
 	const NETWORK_ID = 55;
 
 	public $width = 0.3;
 	public $length = 0.9;
 	public $height = 0;
-	
+
 	public $dropExp = [5, 5];
-	
+
 	public function getName(){
 		return "Endermite";
 	}
-	
+
 	public function initEntity(){
 		$this->setMaxHealth(8);
 		parent::initEntity();
 	}
-	
+
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

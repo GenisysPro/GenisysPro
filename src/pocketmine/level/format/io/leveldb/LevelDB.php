@@ -37,7 +37,7 @@ use pocketmine\network\protocol\Info as ProtocolInfo;
 use pocketmine\utils\Binary;
 use pocketmine\utils\MainLogger;
 
-class LevelDB extends BaseLevelProvider{
+class LevelDB extends BaseLevelProvider {
 
 	//According to Tomasso, these aren't supposed to be readable anymore. Thankfully he didn't change the readable ones...
 	const TAG_DATA_2D = "\x2d";
@@ -343,7 +343,7 @@ class LevelDB extends BaseLevelProvider{
 					$offset = 1; //Skip subchunk version byte
 					$subChunkData = $this->db->get($index . self::TAG_SUBCHUNK_PREFIX . chr($y));
 					$subChunks[$y] = new SubChunk(
-						substr($subChunkData, $offset,         4096), //block ids
+						substr($subChunkData, $offset, 4096), //block ids
 						substr($subChunkData, $offset += 4096, 2048), //block meta
 						substr($subChunkData, $offset += 2048, 2048), //sky light
 						substr($subChunkData, $offset += 2048, 2048) //block light
@@ -432,11 +432,11 @@ class LevelDB extends BaseLevelProvider{
 		for($y = $highestIndex; $y >= 0; --$y){ //Subchunks behave like a stack
 
 			$this->db->put($index . self::TAG_SUBCHUNK_PREFIX . chr($y),
-						   "\x00" . //Subchunk version byte
-						   $subChunks[$y]->getBlockIdArray() .
-						   $subChunks[$y]->getBlockDataArray() .
-						   $subChunks[$y]->getSkyLightArray() .
-						   $subChunks[$y]->getBlockLightArray()
+				"\x00" . //Subchunk version byte
+				$subChunks[$y]->getBlockIdArray() .
+				$subChunks[$y]->getBlockDataArray() .
+				$subChunks[$y]->getSkyLightArray() .
+				$subChunks[$y]->getBlockLightArray()
 			);
 		}
 
@@ -492,8 +492,8 @@ class LevelDB extends BaseLevelProvider{
 	}
 
 	/**
-	 * @param int $chunkX
-	 * @param int $chunkZ
+	 * @param int  $chunkX
+	 * @param int  $chunkZ
 	 * @param bool $create
 	 *
 	 * @return Chunk|null

@@ -27,7 +27,7 @@ use pocketmine\entity\Projectile;
 use pocketmine\event\Cancellable;
 use pocketmine\item\Item;
 
-class EntityShootBowEvent extends EntityEvent implements Cancellable{
+class EntityShootBowEvent extends EntityEvent implements Cancellable {
 	public static $handlerList = null;
 
 	/** @var Item */

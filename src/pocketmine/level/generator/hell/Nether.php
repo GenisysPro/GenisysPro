@@ -40,7 +40,7 @@ use pocketmine\level\generator\populator\Populator;
 use pocketmine\math\Vector3 as Vector3;
 use pocketmine\utils\Random;
 
-class Nether extends Generator{
+class Nether extends Generator {
 
 	/** @var Populator[] */
 	private $populators = [];

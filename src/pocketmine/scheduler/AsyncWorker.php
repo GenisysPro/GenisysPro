@@ -23,7 +23,7 @@ namespace pocketmine\scheduler;
 
 use pocketmine\Worker;
 
-class AsyncWorker extends Worker{
+class AsyncWorker extends Worker {
 
 	private $logger;
 	private $id;

@@ -46,7 +46,7 @@ use pocketmine\Server;
 /**
  * Manages all the plugins, Permissions and Permissibles
  */
-class PluginManager{
+class PluginManager {
 
 	/** @var Server */
 	private $server;
@@ -276,12 +276,12 @@ class PluginManager{
 							}
 
 							if($compatible === false){
-							 if($this->server->loadIncompatibleAPI === true){
-			     $this->server->getLogger()->debug("插件{$name}的API与服务器不符,但GenisysPro仍然加载了它");
-			    }else{
-			     $this->server->getLogger()->error($this->server->getLanguage()->translateString("pocketmine.plugin.loadError", [$name, "%pocketmine.plugin.incompatibleAPI"]));
-								 continue;
-			    }
+								if($this->server->loadIncompatibleAPI === true){
+									$this->server->getLogger()->debug("插件{$name}的API与服务器不符,但GenisysPro仍然加载了它");
+								}else{
+									$this->server->getLogger()->error($this->server->getLanguage()->translateString("pocketmine.plugin.loadError", [$name, "%pocketmine.plugin.incompatibleAPI"]));
+									continue;
+								}
 							}
 
 							if($compatiblegeniapi === false){

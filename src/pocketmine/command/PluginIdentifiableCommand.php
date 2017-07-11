@@ -21,7 +21,7 @@
 
 namespace pocketmine\command;
 
-interface PluginIdentifiableCommand{
+interface PluginIdentifiableCommand {
 
 	/**
 	 * @return \pocketmine\plugin\Plugin

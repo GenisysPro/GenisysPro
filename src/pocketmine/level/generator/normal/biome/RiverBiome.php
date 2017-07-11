@@ -24,7 +24,7 @@ namespace pocketmine\level\generator\normal\biome;
 use pocketmine\level\generator\populator\Sugarcane;
 use pocketmine\level\generator\populator\TallGrass;
 
-class RiverBiome extends WateryBiome{
+class RiverBiome extends WateryBiome {
 
 	public function __construct(){
 		parent::__construct();

@@ -28,7 +28,7 @@ use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\network\protocol\MobEquipmentPacket;
 use pocketmine\Player;
 
-class PigZombie extends Monster{
+class PigZombie extends Monster {
 	const NETWORK_ID = 36;
 
 	public $width = 0.6;
@@ -39,11 +39,11 @@ class PigZombie extends Monster{
 	public $gravity = 0.3;
 
 	public $dropExp = [5, 5];
-	
+
 	public function getName() : string{
 		return "PigZombie";
 	}
-	
+
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -60,7 +60,7 @@ class PigZombie extends Monster{
 		$player->dataPacket($pk);
 
 		parent::spawnTo($player);
-		
+
 		$pk = new MobEquipmentPacket();
 		$pk->eid = $this->getId();
 		$pk->item = new ItemItem(283);

@@ -26,7 +26,7 @@ use pocketmine\item\Tool;
 use pocketmine\Player;
 use pocketmine\item\Item;
 
-class WhiteGlazedTerracotta extends Solid{
+class WhiteGlazedTerracotta extends Solid {
 
 	protected $id = self::WHITE_GLAZED_TERRACOTTA;
 
@@ -45,7 +45,7 @@ class WhiteGlazedTerracotta extends Solid{
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
-	
+
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$faces = [
 			0 => 4,

@@ -26,7 +26,7 @@ use pocketmine\event\TimingsHandler;
 use pocketmine\event\TranslationContainer;
 
 
-class TimingsCommand extends VanillaCommand{
+class TimingsCommand extends VanillaCommand {
 
 	public static $timingStart = 0;
 

@@ -25,7 +25,7 @@ use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\Player;
 
-class Torch extends Flowable{
+class Torch extends Flowable {
 
 	protected $id = self::TORCH;
 
@@ -57,11 +57,11 @@ class Torch extends Flowable{
 			];
 
 			if($this->getSide($faces[$side])->isTransparent() === true and
-					!($side === 0 and ($below->getId() === self::FENCE or
-									$below->getId() === self::COBBLE_WALL or
-									$below->getId() == Block::REDSTONE_LAMP or
-									$below->getId() == Block::LIT_REDSTONE_LAMP)
-					)
+				!($side === 0 and ($below->getId() === self::FENCE or
+						$below->getId() === self::COBBLE_WALL or
+						$below->getId() == Block::REDSTONE_LAMP or
+						$below->getId() == Block::LIT_REDSTONE_LAMP)
+				)
 			){
 				$this->getLevel()->useBreakOn($this);
 
@@ -88,10 +88,10 @@ class Torch extends Flowable{
 
 			return true;
 		}elseif(
-				$below->isTransparent() === false or $below->getId() === self::FENCE or
-				$below->getId() === self::COBBLE_WALL or
-				$below->getId() == Block::REDSTONE_LAMP or
-				$below->getId() == Block::LIT_REDSTONE_LAMP
+			$below->isTransparent() === false or $below->getId() === self::FENCE or
+			$below->getId() === self::COBBLE_WALL or
+			$below->getId() == Block::REDSTONE_LAMP or
+			$below->getId() == Block::LIT_REDSTONE_LAMP
 		){
 			$this->meta = 0;
 			$this->getLevel()->setBlock($block, $this, true, true);
@@ -102,7 +102,7 @@ class Torch extends Flowable{
 		return false;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		return [
 			[$this->id, 0, 1],
 		];

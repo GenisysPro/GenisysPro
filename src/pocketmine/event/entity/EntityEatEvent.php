@@ -26,7 +26,7 @@ use pocketmine\entity\Entity;
 use pocketmine\event\Cancellable;
 use pocketmine\item\FoodSource;
 
-class EntityEatEvent extends EntityEvent implements Cancellable{
+class EntityEatEvent extends EntityEvent implements Cancellable {
 	public static $handlerList = null;
 
 	/** @var FoodSource */

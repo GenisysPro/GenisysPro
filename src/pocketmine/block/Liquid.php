@@ -29,7 +29,7 @@ use pocketmine\level\particle\SmokeParticle;
 use pocketmine\level\sound\FizzSound;
 use pocketmine\math\Vector3;
 
-abstract class Liquid extends Transparent{
+abstract class Liquid extends Transparent {
 
 	/** @var Vector3 */
 	private $temporalVector = null;
@@ -370,7 +370,7 @@ abstract class Liquid extends Transparent{
 		return $cost;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 100;
 	}
 
@@ -459,7 +459,7 @@ abstract class Liquid extends Transparent{
 		return null;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		return [];
 	}
 

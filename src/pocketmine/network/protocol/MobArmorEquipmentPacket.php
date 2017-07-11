@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class MobArmorEquipmentPacket extends DataPacket{
+class MobArmorEquipmentPacket extends DataPacket {
 
 	const NETWORK_ID = Info::MOB_ARMOR_EQUIPMENT_PACKET;
 

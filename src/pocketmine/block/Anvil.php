@@ -27,12 +27,12 @@ use pocketmine\item\Tool;
 use pocketmine\Player;
 use pocketmine\network\protocol\LevelEventPacket;
 
-class Anvil extends Fallable{
-	
+class Anvil extends Fallable {
+
 	const NORMAL = 0;
 	const SLIGHTLY_DAMAGED = 4;
 	const VERY_DAMAGED = 8;
-	
+
 	protected $id = self::ANVIL;
 
 	public function isSolid(){
@@ -43,11 +43,11 @@ class Anvil extends Fallable{
 		$this->meta = $meta;
 	}
 
-	public function canBeActivated() : bool {
+	public function canBeActivated() : bool{
 		return true;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 5;
 	}
 
@@ -84,15 +84,15 @@ class Anvil extends Fallable{
 
 		return true;
 	}
-	
+
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
-		$direction = ($player !== null? $player->getDirection(): 0) & 0x03;
+		$direction = ($player !== null ? $player->getDirection() : 0) & 0x03;
 		$this->meta = ($this->meta & 0x0c) | $direction;
 		$this->getLevel()->setBlock($block, $this, true, true);
 		$player->getLevel()->broadcastLevelEvent($player, LevelEventPacket::EVENT_SOUND_ANVIL_FALL);
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 1){
 			return [
 				[$this->id, $this->meta & 0x0c, 1],

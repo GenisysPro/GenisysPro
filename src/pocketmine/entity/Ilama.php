@@ -28,9 +28,9 @@ use pocketmine\item\Item as ItemItem;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Ilama extends Animal{
+class Ilama extends Animal {
 	const NETWORK_ID = 29;
-	
+
 	const CREAMY = 0;
 	const WHITE = 1;
 	const BROWN = 2;
@@ -39,19 +39,19 @@ class Ilama extends Animal{
 	public $width = 0.3;
 	public $length = 0.9;
 	public $height = 0;
-	
+
 	public $dropExp = [1, 3];
-	
+
 	public function getName(){
 		return "Ilama";
 	}
-	
+
 	public function initEntity(){
 		$this->setMaxHealth(30);
-		$this->setDataProperty(Entity::DATA_VARIANT, Entity::DATA_TYPE_INT, rand(0,3));
+		$this->setDataProperty(Entity::DATA_VARIANT, Entity::DATA_TYPE_INT, rand(0, 3));
 		parent::initEntity();
 	}
-	
+
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -69,10 +69,10 @@ class Ilama extends Animal{
 
 		parent::spawnTo($player);
 	}
-	
+
 	public function getDrops(){
 		$drops = [
-			ItemItem::get(ItemItem::LEATHER, 0, mt_rand(0 , 2))
+			ItemItem::get(ItemItem::LEATHER, 0, mt_rand(0, 2))
 		];
 
 		return $drops;

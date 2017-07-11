@@ -26,7 +26,7 @@ use pocketmine\math\Vector2;
 use pocketmine\Server;
 use pocketmine\utils\UUID;
 
-class ShapedRecipeFromJson extends ShapedRecipe{
+class ShapedRecipeFromJson extends ShapedRecipe {
 	/** @var Item */
 	private $output;
 
@@ -41,9 +41,9 @@ class ShapedRecipeFromJson extends ShapedRecipe{
 	private $shapeItems = [];
 
 	/**
-	 * @param Item     $result
-	 * @param int      $height
-	 * @param int      $width
+	 * @param Item $result
+	 * @param int  $height
+	 * @param int  $width
 	 *
 	 * @throws \Exception
 	 */
@@ -132,6 +132,7 @@ class ShapedRecipeFromJson extends ShapedRecipe{
 	/**
 	 * @param $x
 	 * @param $y
+	 *
 	 * @return null|Item
 	 */
 	public function getIngredient($x, $y){

@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class ContainerSetDataPacket extends DataPacket{
+class ContainerSetDataPacket extends DataPacket {
 
 	const NETWORK_ID = Info::CONTAINER_SET_DATA_PACKET;
 

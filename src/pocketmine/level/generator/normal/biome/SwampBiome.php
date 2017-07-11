@@ -26,7 +26,7 @@ use pocketmine\block\Flower as FlowerBlock;
 use pocketmine\level\generator\populator\Flower;
 use pocketmine\level\generator\populator\LilyPad;
 
-class SwampBiome extends GrassyBiome{
+class SwampBiome extends GrassyBiome {
 
 	public function __construct(){
 		parent::__construct();

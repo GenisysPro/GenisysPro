@@ -24,7 +24,7 @@ namespace pocketmine\event\entity;
 use pocketmine\entity\Effect;
 use pocketmine\entity\Entity;
 
-class EntityDamageByEntityEvent extends EntityDamageEvent{
+class EntityDamageByEntityEvent extends EntityDamageEvent {
 
 	/** @var Entity */
 	private $damager;
@@ -51,7 +51,7 @@ class EntityDamageByEntityEvent extends EntityDamageEvent{
 		}
 
 		if($damager->hasEffect(Effect::WEAKNESS)){
-			$eff_level = 1 -  0.2 * ($damager->getEffect(Effect::WEAKNESS)->getAmplifier() + 1);
+			$eff_level = 1 - 0.2 * ($damager->getEffect(Effect::WEAKNESS)->getAmplifier() + 1);
 			if($eff_level < 0){
 				$eff_level = 0;
 			}
@@ -65,12 +65,14 @@ class EntityDamageByEntityEvent extends EntityDamageEvent{
 	public function getDamager(){
 		return $this->damager;
 	}
+
 	/**
 	 * @return float
 	 */
 	public function getKnockBack(){
 		return $this->knockBack;
 	}
+
 	/**
 	 * @param float $knockBack
 	 */

@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class Emerald extends Solid{
+class Emerald extends Solid {
 
 	protected $id = self::EMERALD_BLOCK;
 
@@ -32,7 +32,7 @@ class Emerald extends Solid{
 		$this->meta = $meta;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 5;
 	}
 
@@ -44,7 +44,7 @@ class Emerald extends Solid{
 		return "Emerald Block";
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 4){
 			return [
 				[Item::EMERALD_BLOCK, 0, 1],

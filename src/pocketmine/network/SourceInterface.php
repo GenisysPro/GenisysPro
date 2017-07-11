@@ -22,6 +22,7 @@
 /**
  * Network-related classes
  */
+
 namespace pocketmine\network;
 
 use pocketmine\network\protocol\DataPacket;
@@ -30,7 +31,7 @@ use pocketmine\Player;
 /**
  * Classes that implement this interface will be able to be attached to players
  */
-interface SourceInterface{
+interface SourceInterface {
 
 	/**
 	 * Sends a DataPacket to the interface, returns an unique identifier for the packet if $needACK is true

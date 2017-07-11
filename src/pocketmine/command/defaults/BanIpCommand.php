@@ -36,7 +36,7 @@ use pocketmine\event\TranslationContainer;
 use pocketmine\Player;
 
 
-class BanIpCommand extends VanillaCommand{
+class BanIpCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

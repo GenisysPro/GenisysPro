@@ -25,7 +25,7 @@ use pocketmine\item\Item;
 use pocketmine\Server;
 use pocketmine\utils\UUID;
 
-class FurnaceRecipe implements Recipe{
+class FurnaceRecipe implements Recipe {
 
 	private $id = null;
 

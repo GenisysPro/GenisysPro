@@ -30,7 +30,7 @@ use pocketmine\utils\Random;
  * Stefan Gustavson at
  * http://staffwww.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf
  */
-class Simplex extends Perlin{
+class Simplex extends Perlin {
 	protected static $SQRT_3;
 	protected static $SQRT_5;
 	protected static $F2;

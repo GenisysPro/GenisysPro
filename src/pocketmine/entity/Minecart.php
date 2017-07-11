@@ -28,7 +28,7 @@ use pocketmine\math\Vector3;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Minecart extends Vehicle{
+class Minecart extends Vehicle {
 	const NETWORK_ID = 84;
 
 	const TYPE_NORMAL = 1;
@@ -182,7 +182,7 @@ class Minecart extends Vehicle{
 	 * Determine the direction the minecart should move based on the candidate direction (current direction
 	 * minecart is moving, or the direction the player is looking) and the type of rail that the minecart is on.
 	 *
-	 * @param int $railType Type of rail the minecart is on.
+	 * @param int $railType           Type of rail the minecart is on.
 	 * @param int $candidateDirection Direction minecart already moving, or direction player looking.
 	 *
 	 * @return int The direction the minecart should move.
@@ -261,7 +261,7 @@ class Minecart extends Vehicle{
 	 * the rail again so as not to collide with nearby blocks.
 	 *
 	 * @param int $currentDirection Direction minecart currently moving
-	 * @param int $newDirection Direction minecart should turn once has hit the halfway point.
+	 * @param int $newDirection     Direction minecart should turn once has hit the halfway point.
 	 *
 	 * @return int Either the current direction or the new direction depending on haw far across the rail the minecart is.
 	 */

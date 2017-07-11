@@ -14,7 +14,7 @@ use pocketmine\level\particle\DestroyBlockParticle;
 use pocketmine\network\protocol\AddPaintingPacket;
 use pocketmine\Player;
 
-class Painting extends Hanging{
+class Painting extends Hanging {
 	const NETWORK_ID = 83;
 
 	private $motive;

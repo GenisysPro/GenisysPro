@@ -32,7 +32,7 @@ use pocketmine\nbt\tag\DoubleTag;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\FloatTag;
 
-class SummonCommand extends VanillaCommand{
+class SummonCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

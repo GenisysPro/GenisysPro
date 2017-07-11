@@ -30,7 +30,7 @@ use pocketmine\nbt\tag\ShortTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Arrow extends Projectile{
+class Arrow extends Projectile {
 	const NETWORK_ID = 80;
 
 	public $width = 0.5;

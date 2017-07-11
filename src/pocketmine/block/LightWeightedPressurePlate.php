@@ -21,7 +21,7 @@
 
 namespace pocketmine\block;
 
-class LightWeightedPressurePlate extends PressurePlate{
+class LightWeightedPressurePlate extends PressurePlate {
 	protected $id = self::LIGHT_WEIGHTED_PRESSURE_PLATE;
 
 	public function getName() : string{

@@ -24,7 +24,7 @@ namespace pocketmine\block;
 
 use pocketmine\item\Tool;
 
-class Wool extends Solid{
+class Wool extends Solid {
 	const WHITE = 0;
 	const ORANGE = 1;
 	const MAGENTA = 2;

@@ -27,9 +27,9 @@ use pocketmine\level\Level;
 use pocketmine\Player;
 use pocketmine\Server;
 
-abstract class Crops extends Flowable{
+abstract class Crops extends Flowable {
 
-	public function canBeActivated() : bool {
+	public function canBeActivated() : bool{
 		return true;
 	}
 

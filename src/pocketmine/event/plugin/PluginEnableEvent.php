@@ -25,7 +25,7 @@ namespace pocketmine\event\plugin;
 use pocketmine\plugin\Plugin;
 
 
-class PluginEnableEvent extends PluginEvent{
+class PluginEnableEvent extends PluginEvent {
 	public static $handlerList = null;
 
 	/**

@@ -2,7 +2,7 @@
 
 namespace pocketmine\network\protocol;
 
-class TransferPacket extends DataPacket{
+class TransferPacket extends DataPacket {
 
 	const NETWORK_ID = Info::TRANSFER_PACKET;
 

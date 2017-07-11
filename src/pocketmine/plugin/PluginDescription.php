@@ -23,7 +23,7 @@ namespace pocketmine\plugin;
 
 use pocketmine\permission\Permission;
 
-class PluginDescription{
+class PluginDescription {
 	private $name;
 	private $main;
 	private $api;

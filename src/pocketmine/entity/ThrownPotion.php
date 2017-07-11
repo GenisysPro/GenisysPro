@@ -29,7 +29,7 @@ use pocketmine\nbt\tag\ShortTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class ThrownPotion extends Projectile{
+class ThrownPotion extends Projectile {
 	const NETWORK_ID = 86;
 
 	const DATA_POTION_ID = 16;
@@ -64,9 +64,9 @@ class ThrownPotion extends Projectile{
 			$color = Potion::getColor($this->getPotionId());
 			$this->getLevel()->addParticle(new SpellParticle($this, $color[0], $color[1], $color[2]));
 			$players = $this->getViewers();
-			foreach($players as $p) {
-				if($p->distance($this) <= 6) {
-					foreach(Potion::getEffectsById($this->getPotionId()) as $effect) {
+			foreach($players as $p){
+				if($p->distance($this) <= 6){
+					foreach(Potion::getEffectsById($this->getPotionId()) as $effect){
 						$p->addEffect($effect);
 					}
 				}

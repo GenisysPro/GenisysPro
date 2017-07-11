@@ -28,7 +28,7 @@ use pocketmine\math\Vector3;
 use pocketmine\utils\Random;
 use pocketmine\utils\VectorIterator;
 
-class BigTree extends Tree{
+class BigTree extends Tree {
 	public $overridable = [
 		Block::AIR => true,
 		Block::LEAVES => true,
@@ -77,7 +77,7 @@ class BigTree extends Tree{
 				$this->generateGroupLayer($level, $groupX, $yy, $groupZ, $this->getLeafGroupLayerSize($yy - $groupY));
 			}
 		}
-		$trunk = new VectorIterator($level, new Vector3($x, $y -1, $z), new Vector3($x, $y + $this->trunkHeight, $z));
+		$trunk = new VectorIterator($level, new Vector3($x, $y - 1, $z), new Vector3($x, $y + $this->trunkHeight, $z));
 		while($trunk->valid()){
 			$trunk->next();
 			$pos = $trunk->current();
@@ -156,7 +156,7 @@ class BigTree extends Tree{
 		}
 	}
 
-	private function getRoughLayerSize(int $layer) : float {
+	private function getRoughLayerSize(int $layer) : float{
 		$halfHeight = $this->totalHeight / 2;
 		if($layer < ($this->totalHeight / 3)){
 			return -1;

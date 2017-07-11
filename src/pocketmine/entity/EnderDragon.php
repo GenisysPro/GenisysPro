@@ -26,7 +26,7 @@ namespace pocketmine\entity;
 use pocketmine\Player;
 use pocketmine\network\protocol\AddEntityPacket;
 
-class EnderDragon extends Monster{
+class EnderDragon extends Monster {
 
 	const NETWORK_ID = 53;
 

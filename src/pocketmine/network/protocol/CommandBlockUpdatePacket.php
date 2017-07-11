@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
-class CommandBlockUpdatePacket extends DataPacket{
+class CommandBlockUpdatePacket extends DataPacket {
 	const NETWORK_ID = Info::COMMAND_BLOCK_UPDATE_PACKET;
 
 	public $isBlock;

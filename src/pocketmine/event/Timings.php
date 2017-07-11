@@ -30,7 +30,7 @@ use pocketmine\scheduler\PluginTask;
 use pocketmine\scheduler\TaskHandler;
 use pocketmine\tile\Tile;
 
-abstract class Timings{
+abstract class Timings {
 
 	/** @var TimingsHandler */
 	public static $fullTickTimer;

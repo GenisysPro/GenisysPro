@@ -28,7 +28,7 @@ use pocketmine\scheduler\AsyncTask;
 use pocketmine\Server;
 use pocketmine\tile\Spawnable;
 
-class ChunkRequestTask extends AsyncTask{
+class ChunkRequestTask extends AsyncTask {
 
 	protected $levelId;
 

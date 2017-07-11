@@ -27,9 +27,9 @@ namespace pocketmine\entity;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Vex extends Monster{
+class Vex extends Monster {
 	const NETWORK_ID = 105;
-	
+
 
 	public $width = 0.6;
 	public $length = 0.6;
@@ -40,7 +40,7 @@ class Vex extends Monster{
 	public function getName(){
 		return "Vex";
 	}
-	
+
 	public function initEntity(){
 		$this->setMaxHealth(14);
 		parent::initEntity();

@@ -28,7 +28,7 @@ use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
 
-class GamemodeCommand extends VanillaCommand{
+class GamemodeCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

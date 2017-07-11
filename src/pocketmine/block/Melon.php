@@ -25,7 +25,7 @@ use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class Melon extends Transparent{
+class Melon extends Transparent {
 
 	protected $id = self::MELON_BLOCK;
 
@@ -37,7 +37,7 @@ class Melon extends Transparent{
 		return "Melon Block";
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 1;
 	}
 
@@ -45,7 +45,7 @@ class Melon extends Transparent{
 		return Tool::TYPE_AXE;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		if($item->getEnchantmentLevel(Enchantment::TYPE_MINING_SILK_TOUCH) > 0){
 			return [
 				[Item::MELON_BLOCK, 0, 1],

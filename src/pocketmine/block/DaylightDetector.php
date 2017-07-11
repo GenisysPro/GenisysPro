@@ -29,8 +29,9 @@ use pocketmine\Player;
 use pocketmine\tile\DLDetector;
 use pocketmine\tile\Tile;
 
-class DaylightDetector extends RedstoneSource{
+class DaylightDetector extends RedstoneSource {
 	protected $id = self::DAYLIGHT_SENSOR;
+
 	//protected $hasStartedUpdate = false;
 
 	public function getName() : string{
@@ -48,7 +49,7 @@ class DaylightDetector extends RedstoneSource{
 		return false;
 	}
 
-	public function canBeActivated() : bool {
+	public function canBeActivated() : bool{
 		return true;
 	}
 
@@ -85,7 +86,7 @@ class DaylightDetector extends RedstoneSource{
 		if($this->isActivated()) $this->deactivate();
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 0.2;
 	}
 
@@ -93,7 +94,7 @@ class DaylightDetector extends RedstoneSource{
 		return 1;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		return [
 			[self::DAYLIGHT_SENSOR, 0, 1]
 		];

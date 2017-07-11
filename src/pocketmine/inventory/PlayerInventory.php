@@ -34,7 +34,7 @@ use pocketmine\network\protocol\MobEquipmentPacket;
 use pocketmine\Player;
 use pocketmine\Server;
 
-class PlayerInventory extends BaseInventory{
+class PlayerInventory extends BaseInventory {
 
 	protected $itemInHandIndex = 0;
 	/** @var int[] */
@@ -67,7 +67,7 @@ class PlayerInventory extends BaseInventory{
 					}
 				}
 			}else{
-				throw new \InvalidArgumentException("Expecting ListTag, received ".gettype($contents));
+				throw new \InvalidArgumentException("Expecting ListTag, received " . gettype($contents));
 			}
 		}
 	}
@@ -213,6 +213,7 @@ class PlayerInventory extends BaseInventory{
 
 	/**
 	 * @deprecated
+	 *
 	 * @param int $slot
 	 */
 	public function setHeldItemSlot($slot){
@@ -239,7 +240,7 @@ class PlayerInventory extends BaseInventory{
 		}else{
 			$this->getHolder()->getLevel()->getServer()->broadcastPacket($target, $pk);
 			if($this->getHeldItemSlot() !== -1 and in_array($this->getHolder(), $target)){
-				 $this->sendSlot($this->getHeldItemSlot(), $this->getHolder());	
+				$this->sendSlot($this->getHeldItemSlot(), $this->getHolder());
 			}
 		}
 	}

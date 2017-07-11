@@ -34,7 +34,7 @@ use pocketmine\math\Vector3;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\ShortTag;
 
-abstract class Projectile extends Entity{
+abstract class Projectile extends Entity {
 
 	const DATA_SHOOTER_ID = 17;
 

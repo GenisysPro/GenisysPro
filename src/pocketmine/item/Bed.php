@@ -23,7 +23,7 @@ namespace pocketmine\item;
 
 use pocketmine\block\Block;
 
-class Bed extends Item{
+class Bed extends Item {
 
 	const WHITE_BED = 0;
 	const ORANGE_BED = 1;

@@ -19,7 +19,7 @@
  *
 */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace pocketmine\level\format\io\region;
 
@@ -37,7 +37,7 @@ use pocketmine\nbt\tag\{
 use pocketmine\Player;
 use pocketmine\utils\MainLogger;
 
-class McRegion extends BaseLevelProvider{
+class McRegion extends BaseLevelProvider {
 
 	const REGION_FILE_EXTENSION = "mcr";
 

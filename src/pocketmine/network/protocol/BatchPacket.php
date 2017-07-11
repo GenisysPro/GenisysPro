@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class BatchPacket extends DataPacket{
+class BatchPacket extends DataPacket {
 
 	const NETWORK_ID = 0xfe;
 

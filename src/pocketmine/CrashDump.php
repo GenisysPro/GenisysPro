@@ -37,7 +37,7 @@ use pocketmine\utils\Utils;
 use pocketmine\utils\VersionString;
 use raklib\RakLib;
 
-class CrashDump{
+class CrashDump {
 
 	/** @var Server */
 	private $server;
@@ -65,7 +65,7 @@ class CrashDump{
 			$this->addLine("CrashDump crashed while generating base crash data");
 			$this->addLine();
 		}
-		
+
 		$this->generalData();
 		$this->pluginsData();
 
@@ -193,7 +193,7 @@ class CrashDump{
 		$this->addLine("File: " . $error["file"]);
 		$this->addLine("Line: " . $error["line"]);
 		$this->addLine("Type: " . $error["type"]);
-		
+
 		if(strpos($error["file"], "src/pocketmine/") === false and strpos($error["file"], "src/raklib/") === false and file_exists($error["fullFile"])){
 			$this->addLine();
 			$this->addLine("THIS CRASH WAS CAUSED BY A PLUGIN");
@@ -254,7 +254,7 @@ class CrashDump{
 		$this->addLine();
 		$this->addLine("Server uptime: " . $this->server->getUptime());
 		$this->addLine("Number of loaded worlds: " . count($this->server->getLevels()));
-		$this->addLine("Players online: ".count($this->server->getOnlinePlayers())."/".$this->server->getMaxPlayers());
+		$this->addLine("Players online: " . count($this->server->getOnlinePlayers()) . "/" . $this->server->getMaxPlayers());
 	}
 
 	public function addLine($line = ""){

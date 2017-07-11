@@ -23,7 +23,7 @@ namespace pocketmine\inventory;
 
 use pocketmine\utils\UUID;
 
-interface Recipe{
+interface Recipe {
 
 	/**
 	 * @return \pocketmine\item\Item

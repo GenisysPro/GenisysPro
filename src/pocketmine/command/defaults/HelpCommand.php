@@ -27,7 +27,7 @@ use pocketmine\command\ConsoleCommandSender;
 use pocketmine\event\TranslationContainer;
 use pocketmine\utils\TextFormat;
 
-class HelpCommand extends VanillaCommand{
+class HelpCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

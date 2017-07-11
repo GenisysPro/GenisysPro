@@ -26,7 +26,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
 
 
-class PardonCommand extends VanillaCommand{
+class PardonCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

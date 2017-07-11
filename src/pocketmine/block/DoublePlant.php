@@ -25,10 +25,10 @@ use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\Player;
 
-class DoublePlant extends Flowable{
+class DoublePlant extends Flowable {
 
 	protected $id = self::DOUBLE_PLANT;
-	
+
 	const SUNFLOWER = 0;
 	const LILAC = 1;
 	const DOUBLE_TALLGRASS = 2;

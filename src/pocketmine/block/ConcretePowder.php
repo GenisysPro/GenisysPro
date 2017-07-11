@@ -26,7 +26,7 @@ namespace pocketmine\block;
 
 use pocketmine\item\Tool;
 
-class ConcretePowder extends Fallable{
+class ConcretePowder extends Fallable {
 
 	protected $id = self::CONCRETE_POWDER;
 
@@ -37,7 +37,7 @@ class ConcretePowder extends Fallable{
 	public function getHardness(){
 		return 0.5;
 	}
-	
+
 	public function getResistance(){
 		return 2.5;
 	}

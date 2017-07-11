@@ -23,7 +23,7 @@ namespace pocketmine\item;
 
 use pocketmine\entity\Effect;
 
-class SpiderEye extends Food{
+class SpiderEye extends Food {
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::SPIDER_EYE, $meta, $count, "Spider Eye");
 	}

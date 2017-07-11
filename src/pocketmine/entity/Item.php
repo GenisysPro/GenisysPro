@@ -31,7 +31,7 @@ use pocketmine\nbt\tag\StringTag;
 use pocketmine\network\protocol\AddItemEntityPacket;
 use pocketmine\Player;
 
-class Item extends Entity{
+class Item extends Entity {
 	const NETWORK_ID = 64;
 
 	protected $owner = null;
@@ -92,9 +92,9 @@ class Item extends Entity{
 		if($this->closed){
 			return false;
 		}
-		
+
 		$this->age++;
-		
+
 		$tickDiff = $currentTick - $this->lastUpdate;
 		if($tickDiff <= 0 and !$this->justCreated){
 			return true;
@@ -137,7 +137,7 @@ class Item extends Entity{
 				$this->motionY *= -0.5;
 			}
 
-			if($currentTick % 5 ==0)
+			if($currentTick % 5 == 0)
 				$this->updateMovement();
 
 			if($this->age > 2000){

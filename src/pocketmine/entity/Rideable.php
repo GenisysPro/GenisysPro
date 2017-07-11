@@ -22,6 +22,6 @@
 namespace pocketmine\entity;
 
 
-interface Rideable{
+interface Rideable {
 
 }

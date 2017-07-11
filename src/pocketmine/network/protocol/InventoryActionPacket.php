@@ -23,7 +23,7 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
-class InventoryActionPacket extends DataPacket{
+class InventoryActionPacket extends DataPacket {
 
 	const NETWORK_ID = Info::INVENTORY_ACTION_PACKET;
 

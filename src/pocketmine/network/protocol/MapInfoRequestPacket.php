@@ -21,7 +21,7 @@
 
 namespace pocketmine\network\protocol;
 
-class MapInfoRequestPacket extends DataPacket{
+class MapInfoRequestPacket extends DataPacket {
 	const NETWORK_ID = Info::MAP_INFO_REQUEST_PACKET;
 
 	public $uuid;

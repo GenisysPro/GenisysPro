@@ -27,7 +27,7 @@ namespace pocketmine\block;
 
 use pocketmine\item\Tool;
 
-class PurpurStairs extends Stair{
+class PurpurStairs extends Stair {
 
 	protected $id = self::PURPUR_STAIRS;
 
@@ -44,7 +44,7 @@ class PurpurStairs extends Stair{
 	}
 
 	public function getName() : string{
-		return "Purpur Stairs"; 
+		return "Purpur Stairs";
 	}
 
 } 

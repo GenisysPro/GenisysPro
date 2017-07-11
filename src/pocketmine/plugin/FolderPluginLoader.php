@@ -39,7 +39,7 @@ use pocketmine\utils\MainLogger;
 use pocketmine\utils\TextFormat;
 
 
-class FolderPluginLoader implements PluginLoader{
+class FolderPluginLoader implements PluginLoader {
 
 	/** @var Server */
 	private $server;
@@ -61,7 +61,7 @@ class FolderPluginLoader implements PluginLoader{
 	public function loadPlugin($file){
 		if(is_dir($file) and file_exists($file . "/plugin.yml") and file_exists($file . "/src/")){
 			if(($description = $this->getPluginDescription($file)) instanceof PluginDescription){
-				MainLogger::getLogger()->info(TextFormat::LIGHT_PURPLE."Loading (Source) " . $description->getFullName());
+				MainLogger::getLogger()->info(TextFormat::LIGHT_PURPLE . "Loading (Source) " . $description->getFullName());
 				$dataFolder = dirname($file) . DIRECTORY_SEPARATOR . $description->getName();
 				if(file_exists($dataFolder) and !is_dir($dataFolder)){
 					trigger_error("Projected dataFolder '" . $dataFolder . "' for " . $description->getName() . " exists and is not a directory", E_USER_WARNING);
@@ -111,7 +111,7 @@ class FolderPluginLoader implements PluginLoader{
 	 * Returns the filename patterns that this loader accepts
 	 *
 	 * @return array|string
-     */
+	 */
 	public function getPluginFilters(){
 		return "/[^\\.]/";
 	}

@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\math\AxisAlignedBB;
 
-class EndPortalFrame extends Solid implements SolidLight{
+class EndPortalFrame extends Solid implements SolidLight {
 
 	protected $id = self::END_PORTAL_FRAME;
 
@@ -40,7 +40,7 @@ class EndPortalFrame extends Solid implements SolidLight{
 		return "End Portal Frame";
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return -1;
 	}
 
@@ -52,7 +52,7 @@ class EndPortalFrame extends Solid implements SolidLight{
 		return false;
 	}
 
-	protected function recalculateBoundingBox() {
+	protected function recalculateBoundingBox(){
 
 		return new AxisAlignedBB(
 			$this->x,

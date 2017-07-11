@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class MossStone extends Solid{
+class MossStone extends Solid {
 
 	protected $id = self::MOSS_STONE;
 
@@ -36,7 +36,7 @@ class MossStone extends Solid{
 		return "Moss Stone";
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 2;
 	}
 
@@ -44,7 +44,7 @@ class MossStone extends Solid{
 		return Tool::TYPE_PICKAXE;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 1){
 			return [
 				[Item::MOSS_STONE, $this->meta, 1],

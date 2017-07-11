@@ -27,7 +27,7 @@ use pocketmine\level\sound\DoorSound;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\Player;
 
-class FenceGate extends Transparent implements ElectricalAppliance{
+class FenceGate extends Transparent implements ElectricalAppliance {
 
 	protected $id = self::FENCE_GATE;
 
@@ -39,11 +39,11 @@ class FenceGate extends Transparent implements ElectricalAppliance{
 		return "Oak Fence Gate";
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 2;
 	}
 
-	public function canBeActivated() : bool {
+	public function canBeActivated() : bool{
 		return true;
 	}
 
@@ -52,7 +52,7 @@ class FenceGate extends Transparent implements ElectricalAppliance{
 	}
 
 
-	protected function recalculateBoundingBox() {
+	protected function recalculateBoundingBox(){
 
 		if(($this->getDamage() & 0x04) > 0){
 			return null;
@@ -91,7 +91,7 @@ class FenceGate extends Transparent implements ElectricalAppliance{
 		return (($this->getDamage() & 0x04) > 0);
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		return [
 			[$this->id, 0, 1],
 		];

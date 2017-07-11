@@ -27,7 +27,7 @@ use pocketmine\Player;
 /**
  * Called when a player is sent a message via sendMessage, sendPopup or sendTip
  */
-class PlayerTextPreSendEvent extends PlayerEvent implements Cancellable{
+class PlayerTextPreSendEvent extends PlayerEvent implements Cancellable {
 	const MESSAGE = 0;
 	const POPUP = 1;
 	const TIP = 2;

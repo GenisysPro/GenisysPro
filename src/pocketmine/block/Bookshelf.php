@@ -25,7 +25,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class Bookshelf extends Solid{
+class Bookshelf extends Solid {
 
 	protected $id = self::BOOKSHELF;
 
@@ -37,7 +37,7 @@ class Bookshelf extends Solid{
 		return "Bookshelf";
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 1.5;
 	}
 

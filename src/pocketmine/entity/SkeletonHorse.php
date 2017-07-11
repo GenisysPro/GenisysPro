@@ -28,24 +28,24 @@ use pocketmine\item\Item as ItemItem;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class SkeletonHorse extends Animal{
+class SkeletonHorse extends Animal {
 	const NETWORK_ID = 26;
 
 	public $width = 0.3;
 	public $length = 0.9;
 	public $height = 0;
-	
+
 	public $dropExp = [5, 5];
-	
+
 	public function getName(){
 		return "SkeletonHorse";
 	}
-	
+
 	public function initEntity(){
 		$this->setMaxHealth(30);
 		parent::initEntity();
 	}
-	
+
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

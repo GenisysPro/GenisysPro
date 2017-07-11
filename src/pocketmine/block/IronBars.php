@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class IronBars extends Thin{
+class IronBars extends Thin {
 
 	protected $id = self::IRON_BARS;
 
@@ -36,7 +36,7 @@ class IronBars extends Thin{
 		return "Iron Bars";
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 5;
 	}
 
@@ -44,7 +44,7 @@ class IronBars extends Thin{
 		return Tool::TYPE_PICKAXE;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 1){
 			return [
 				[Item::IRON_BARS, 0, 1],

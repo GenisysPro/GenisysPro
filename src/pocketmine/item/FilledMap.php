@@ -20,14 +20,16 @@
 */
 
 namespace pocketmine\item;
+
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\nbt\tag\CompoundTag;
+
 class FilledMap extends Item {
-	public function __construct($meta = 0, $count = 1) {
+	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::FILLED_MAP, $meta, $count, "Filled Map");
 	}
 
-	public function getMaxStackSize() : int {
+	public function getMaxStackSize() : int{
 		return 1;
 	}
 
@@ -40,7 +42,7 @@ class FilledMap extends Item {
 		$this->setNamedTag($tag);
 	}
 
-	public function getMapId() : string {
+	public function getMapId() : string{
 		return $this->getNamedTagEntry("map_uuid");
 	}
 

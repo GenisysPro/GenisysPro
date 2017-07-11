@@ -22,7 +22,7 @@
 namespace pocketmine\permission;
 
 
-class PermissionAttachmentInfo{
+class PermissionAttachmentInfo {
 	/** @var Permissible */
 	private $permissible;
 

@@ -23,7 +23,7 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
-class ShowCreditsPacket extends DataPacket{
+class ShowCreditsPacket extends DataPacket {
 
 	const NETWORK_ID = Info::SHOW_CREDITS_PACKET;
 

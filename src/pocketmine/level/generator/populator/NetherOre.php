@@ -25,7 +25,7 @@ use pocketmine\level\ChunkManager;
 use pocketmine\level\generator\object\NetherOre as ObjectOre;
 use pocketmine\utils\Random;
 
-class NetherOre extends Populator{
+class NetherOre extends Populator {
 	private $oreTypes = [];
 
 	public function populate(ChunkManager $level, $chunkX, $chunkZ, Random $random){

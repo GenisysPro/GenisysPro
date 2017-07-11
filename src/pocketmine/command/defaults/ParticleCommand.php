@@ -58,7 +58,7 @@ use pocketmine\Player;
 use pocketmine\utils\Random;
 use pocketmine\utils\TextFormat;
 
-class ParticleCommand extends VanillaCommand{
+class ParticleCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(
@@ -130,8 +130,9 @@ class ParticleCommand extends VanillaCommand{
 	 * @param         $yd
 	 * @param         $zd
 	 * @param         $data
+	 *
 	 * @return Particle
-     */
+	 */
 	private function getParticle($name, Vector3 $pos, $xd, $yd, $zd, $data){
 		switch($name){
 			case "explode":

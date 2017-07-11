@@ -28,7 +28,7 @@ use pocketmine\level\format\Chunk;
 /**
  * Chunk-related events
  */
-abstract class ChunkEvent extends LevelEvent{
+abstract class ChunkEvent extends LevelEvent {
 	/** @var Chunk */
 	private $chunk;
 

@@ -27,7 +27,7 @@ namespace pocketmine\command\defaults;
 use pocketmine\command\CommandSender;
 use pocketmine\utils\TextFormat;
 
-class LoadPluginCommand extends VanillaCommand{
+class LoadPluginCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

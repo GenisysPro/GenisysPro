@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class RemoveEntityPacket extends DataPacket{
+class RemoveEntityPacket extends DataPacket {
 
 	const NETWORK_ID = Info::REMOVE_ENTITY_PACKET;
 

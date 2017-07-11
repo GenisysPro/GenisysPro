@@ -23,7 +23,7 @@ namespace pocketmine\math;
 
 use pocketmine\level\MovingObjectPosition;
 
-class AxisAlignedBB{
+class AxisAlignedBB {
 
 	public $minX;
 	public $minY;

@@ -21,7 +21,7 @@
 
 namespace pocketmine\event;
 
-class TranslationContainer extends TextContainer{
+class TranslationContainer extends TextContainer {
 
 	/** @var string[] $params */
 	protected $params = [];

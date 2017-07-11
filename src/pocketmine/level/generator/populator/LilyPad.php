@@ -25,7 +25,7 @@ use pocketmine\block\Block;
 use pocketmine\level\ChunkManager;
 use pocketmine\utils\Random;
 
-class LilyPad extends Populator{
+class LilyPad extends Populator {
 	/** @var ChunkManager */
 	private $level;
 	private $randomAmount;

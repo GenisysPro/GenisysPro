@@ -28,7 +28,7 @@ use pocketmine\level\Position;
  * An event that is called when a level spawn changes.
  * The previous spawn is included
  */
-class SpawnChangeEvent extends LevelEvent{
+class SpawnChangeEvent extends LevelEvent {
 	public static $handlerList = null;
 
 	/** @var Position */

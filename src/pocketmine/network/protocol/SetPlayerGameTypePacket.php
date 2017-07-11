@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class SetPlayerGameTypePacket extends DataPacket{
+class SetPlayerGameTypePacket extends DataPacket {
 
 	const NETWORK_ID = Info::SET_PLAYER_GAME_TYPE_PACKET;
 

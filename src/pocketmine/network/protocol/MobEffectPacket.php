@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class MobEffectPacket extends DataPacket{
+class MobEffectPacket extends DataPacket {
 
 	const NETWORK_ID = Info::MOB_EFFECT_PACKET;
 

@@ -28,7 +28,7 @@ use pocketmine\level\Level;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
-class TimeCommand extends VanillaCommand{
+class TimeCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

@@ -25,7 +25,7 @@ use pocketmine\block\Block;
 use pocketmine\level\ChunkManager;
 use pocketmine\utils\Random;
 
-class NetherLava extends Populator{
+class NetherLava extends Populator {
 	/** @var ChunkManager */
 	private $level;
 	private $randomAmount;

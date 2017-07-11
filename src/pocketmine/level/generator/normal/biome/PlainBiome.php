@@ -29,7 +29,7 @@ use pocketmine\level\generator\populator\Sugarcane;
 use pocketmine\level\generator\populator\TallGrass;
 use pocketmine\level\generator\populator\WaterPit;
 
-class PlainBiome extends GrassyBiome{
+class PlainBiome extends GrassyBiome {
 
 	public function __construct(){
 		parent::__construct();

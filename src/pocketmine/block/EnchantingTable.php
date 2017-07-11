@@ -32,7 +32,7 @@ use pocketmine\Player;
 use pocketmine\tile\EnchantTable;
 use pocketmine\tile\Tile;
 
-class EnchantingTable extends Transparent{
+class EnchantingTable extends Transparent {
 
 	protected $id = self::ENCHANTING_TABLE;
 

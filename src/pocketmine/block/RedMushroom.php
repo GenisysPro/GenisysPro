@@ -25,7 +25,7 @@ use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\Player;
 
-class RedMushroom extends Flowable{
+class RedMushroom extends Flowable {
 
 	protected $id = self::RED_MUSHROOM;
 

@@ -29,8 +29,8 @@ use pocketmine\command\CommandSender;
 use pocketmine\Player;
 use pocketmine\Server;
 
-class TransferServerCommand extends VanillaCommand{
-	
+class TransferServerCommand extends VanillaCommand {
+
 	public function __construct($name){
 		parent::__construct(
 			$name,
@@ -79,7 +79,7 @@ class TransferServerCommand extends VanillaCommand{
 		$address = strtolower($args[1]);
 		$port = (isset($args[2]) && is_numeric($args[2]) ? $args[2] : 19132);
 
-		$sender->sendMessage("Sending ".$player->getName()." to ".$address.":".$port);
+		$sender->sendMessage("Sending " . $player->getName() . " to " . $address . ":" . $port);
 
 		$pk = new TransferPacket();
 		$pk->address = $address;

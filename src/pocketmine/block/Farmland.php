@@ -25,7 +25,7 @@ use pocketmine\item\Item;
 use pocketmine\item\Tool;
 use pocketmine\math\AxisAlignedBB;
 
-class Farmland extends Solid{
+class Farmland extends Solid {
 
 	protected $id = self::FARMLAND;
 
@@ -37,7 +37,7 @@ class Farmland extends Solid{
 		return "Farmland";
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 0.6;
 	}
 
@@ -45,7 +45,7 @@ class Farmland extends Solid{
 		return Tool::TYPE_SHOVEL;
 	}
 
-	protected function recalculateBoundingBox() {
+	protected function recalculateBoundingBox(){
 		return new AxisAlignedBB(
 			$this->x,
 			$this->y,
@@ -56,7 +56,7 @@ class Farmland extends Solid{
 		);
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		return [
 			[Item::DIRT, 0, 1],
 		];

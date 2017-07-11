@@ -25,7 +25,7 @@ use pocketmine\block\Sapling;
 use pocketmine\level\generator\populator\TallGrass;
 use pocketmine\level\generator\populator\Tree;
 
-class ForestBiome extends GrassyBiome{
+class ForestBiome extends GrassyBiome {
 
 	const TYPE_NORMAL = 0;
 	const TYPE_BIRCH = 1;

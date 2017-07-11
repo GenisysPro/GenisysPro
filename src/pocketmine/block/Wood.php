@@ -25,7 +25,7 @@ use pocketmine\item\Item;
 use pocketmine\item\Tool;
 use pocketmine\Player;
 
-class Wood extends Solid{
+class Wood extends Solid {
 	const OAK = 0;
 	const SPRUCE = 1;
 	const BIRCH = 2;
@@ -39,7 +39,7 @@ class Wood extends Solid{
 		$this->meta = $meta;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 2;
 	}
 
@@ -77,7 +77,7 @@ class Wood extends Solid{
 		return true;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		return [
 			[$this->id, $this->meta & 0x03, 1],
 		];

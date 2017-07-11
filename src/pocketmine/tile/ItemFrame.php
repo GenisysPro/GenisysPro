@@ -29,7 +29,7 @@ use pocketmine\nbt\tag\FloatTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\StringTag;
 
-class ItemFrame extends Spawnable{
+class ItemFrame extends Spawnable {
 
 	public $map_uuid = -1;
 

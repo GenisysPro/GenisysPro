@@ -26,7 +26,7 @@ use pocketmine\command\CommandSender;
 use pocketmine\event\TranslationContainer;
 
 
-class StopCommand extends VanillaCommand{
+class StopCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

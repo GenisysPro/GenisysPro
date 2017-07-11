@@ -24,7 +24,7 @@ namespace pocketmine\plugin;
 use LogLevel;
 use pocketmine\Server;
 
-class PluginLogger implements \AttachableLogger{
+class PluginLogger implements \AttachableLogger {
 
 	private $pluginName;
 

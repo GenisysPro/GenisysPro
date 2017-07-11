@@ -23,7 +23,7 @@ namespace pocketmine\inventory;
 
 use pocketmine\utils\UUID;
 
-class MultiRecipe{
+class MultiRecipe {
 
 	private $uuid;
 

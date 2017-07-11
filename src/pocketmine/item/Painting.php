@@ -18,7 +18,7 @@ use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\Player;
 
-class Painting extends Item{
+class Painting extends Item {
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::PAINTING, 0, $count, "Painting");
 	}

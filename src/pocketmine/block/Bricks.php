@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class Bricks extends Solid{
+class Bricks extends Solid {
 
 	protected $id = self::BRICKS_BLOCK;
 
@@ -32,7 +32,7 @@ class Bricks extends Solid{
 
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 2;
 	}
 
@@ -48,7 +48,7 @@ class Bricks extends Solid{
 		return "Bricks";
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 1){
 			return [
 				[Item::BRICKS_BLOCK, 0, 1],

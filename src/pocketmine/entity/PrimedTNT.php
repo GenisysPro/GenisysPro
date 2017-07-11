@@ -31,7 +31,7 @@ use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class PrimedTNT extends Entity implements Explosive{
+class PrimedTNT extends Entity implements Explosive {
 	const NETWORK_ID = 65;
 
 	public $width = 0.98;

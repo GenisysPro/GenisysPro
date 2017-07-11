@@ -30,7 +30,7 @@ use pocketmine\math\Vector3;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Zombie extends Monster{
+class Zombie extends Monster {
 	const NETWORK_ID = 32;
 
 	public $width = 0.6;
@@ -38,10 +38,10 @@ class Zombie extends Monster{
 	public $height = 1.8;
 
 	public $dropExp = [5, 5];
-	
+
 	public $drag = 0.2;
 	public $gravity = 0.3;
-	
+
 	private $moveDirection = null; //移动方向
 	private $moveSpeed = 0.2; //移动速度
 	private $hated = false; //仇恨的玩家
@@ -56,44 +56,44 @@ class Zombie extends Monster{
 	public function getName() : string{
 		return "Zombie";
 	}
-	
+
 	public function initEntity(){
 		$this->setMaxHealth(20);
 		parent::initEntity();
 	}
-	
+
 	public function attack($damage, EntityDamageEvent $source){
 		parent::attack($damage, $source);
-		
+
 		if($source instanceof EntityDamageByEntityEvent){
 			$e = $source->getDamager();
-			
+
 			$deltaX = $this->x - $e->x;
 			$deltaZ = $this->z - $e->z;
 			$this->knockBack($e, $damage, $deltaX / 100, $deltaZ / 100, $source->getKnockBack());
 		}
 	}
 
-	
+
 	private function generateRandomDirection(){
 		return new Vector3(mt_rand(-1000, 1000) / 1000, 0, mt_rand(-1000, 1000) / 1000);
 	}
-	
+
 	/*
 	 * 返回一个一位小数
 	*/
 	private function toFloat($num){
-		while(((abs($num) > 1) or (abs($num) < 0.1)) and (abs($num) > 0)) {
+		while(((abs($num) > 1) or (abs($num) < 0.1)) and (abs($num) > 0)){
 			if(abs($num) > 1) $num /= 10;
 			if(abs($num) < 0.1) $num *= 10;
 		}
 		return $num;
 	}
-	
+
 	private function generateDirection(Vector3 $pos){
 		return new Vector3($this->toFloat($pos->x - $this->x), 0, $this->toFloat($pos->z - $this->z));
 	}
-	
+
 	private function getNearestPlayer(){
 		$dis = PHP_INT_MAX;
 		$player = false;
@@ -105,7 +105,7 @@ class Zombie extends Monster{
 		}
 		return (($dis <= $this->hate_r) ? $player : false);
 	}
-	
+
 	private function getVelY(){
 		$expectedPos = (new Vector3($this->x + $this->moveDirection->x * $this->moveSpeed, $this->y + $this->motionY, $this->z + $this->moveDirection->z * $this->moveSpeed))->round();
 		$block0 = $this->getLevel()->getBlock($expectedPos);
@@ -113,14 +113,14 @@ class Zombie extends Monster{
 		if($block1->getId() != 0) return 1.2;
 		return 0;
 	}
-	
+
 	public function onUpdate($currentTick){
 		if($this->closed !== false){
 			return false;
 		}
-		
+
 		return parent::onUpdate($currentTick);
-		
+
 		$this->lastUpdate = $currentTick;
 
 		$this->timings->startTiming();
@@ -134,11 +134,11 @@ class Zombie extends Monster{
 			 */
 			$timeOfDay = abs($this->getLevel()->getTime() % 24000);
 			if(0 < $timeOfDay and $timeOfDay < 13000) $this->setOnFire(2); //僵尸起火
-			
+
 			$p = $this->getNearestPlayer();//找到最近的可以被仇恨的玩家
-			if(!$p) {
+			if(!$p){
 				$this->hated = false;
-				if(++$this->moveTicker >= 100) {
+				if(++$this->moveTicker >= 100){
 					$this->moveDirection = $this->generateRandomDirection();
 					$this->moveTicker = 0;
 				}
@@ -146,25 +146,25 @@ class Zombie extends Monster{
 				$this->hated = $p;
 				if($p->distance($this) <= $this->fire_r) $p->setOnFire(2); //点燃玩家
 				if(!$this->tempTicking){
-					if(++$this->hateTicker >= 10 or $this->moveDirection == null) { //每0.5秒获取僵尸前进的新方向
+					if(++$this->hateTicker >= 10 or $this->moveDirection == null){ //每0.5秒获取僵尸前进的新方向
 						$this->moveDirection = $this->generateDirection($p);
 						$this->hateTicker = 0;
 					}
 				}
 			}
-			
-			
-			if($this->tempTicking) { //帮助僵尸寻找新的方向走出困境
-				if(++$this->tempTicker >= 20) {
+
+
+			if($this->tempTicking){ //帮助僵尸寻找新的方向走出困境
+				if(++$this->tempTicker >= 20){
 					$this->tempTicking = false;
 					$this->tempTicker = 0;
 				}
 			}
-			
+
 			if($this->hated instanceof Player){ //攻击玩家
 				if($this->hated->distance($this) < $this->attack_r) $this->hated->attack(2, new EntityDamageByEntityEvent($this, $this->hated, EntityDamageEvent::CAUSE_ENTITY_ATTACK, 2));
 			}
-			
+
 			if($this->moveDirection != null){
 				if($this->motionX ** 2 + $this->motionZ ** 2 <= $this->moveDirection->lengthSquared()){
 					$motionY = $this->getVelY(); //僵尸运动计算
@@ -182,11 +182,11 @@ class Zombie extends Monster{
 				$this->moveDirection = $this->generateRandomDirection();
 				$this->moveTicker = 0;
 			}
-			
+
 			//var_dump($this->moveDirection,$this->motionX,$this->motionZ);
-			
+
 			$expectedPos = new Vector3($this->x + $this->motionX, $this->y + $this->motionY, $this->z + $this->motionZ);
-			
+
 			if($this->motionY == 0) $this->motionY -= $this->gravity; //重力计算
 
 			$this->move($this->motionX, $this->motionY, $this->motionZ);
@@ -194,7 +194,7 @@ class Zombie extends Monster{
 			if($expectedPos->distanceSquared($this) > 0){
 				$this->moveDirection = $this->generateRandomDirection();
 			}
-			
+
 			$friction = 1 - $this->drag;
 
 			$this->motionX *= $friction;
@@ -204,10 +204,10 @@ class Zombie extends Monster{
 			$f = sqrt(($this->motionX ** 2) + ($this->motionZ ** 2));
 			$this->yaw = (-atan2($this->motionX, $this->motionZ) * 180 / M_PI); //视角计算
 			//$this->pitch = (-atan2($f, $this->motionY) * 180 / M_PI);
-			
+
 			$this->updateMovement();
 		}
-		
+
 		$this->timings->stopTiming();
 
 		return $hasUpdate or !$this->onGround or abs($this->motionX) > 0.00001 or abs($this->motionY) > 0.00001 or abs($this->motionZ) > 0.00001;

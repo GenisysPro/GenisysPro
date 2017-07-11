@@ -33,7 +33,7 @@ use pocketmine\tile\Skull as SkullTile;
 use pocketmine\tile\Spawnable;
 use pocketmine\tile\Tile;
 
-class MobHead extends Flowable{
+class MobHead extends Flowable {
 
 	protected $id = self::SKULL_BLOCK;
 

@@ -26,6 +26,7 @@
  * Implementation of the GeniRCON Protocol to allow full remote console access
  * Source: https://github.com/iTXTech/GeniRCON
  */
+
 namespace pocketmine\network\rcon;
 
 use pocketmine\command\RemoteConsoleCommandSender;
@@ -33,7 +34,7 @@ use pocketmine\event\server\RemoteServerCommandEvent;
 use pocketmine\Server;
 use pocketmine\utils\Utils;
 
-class RCON{
+class RCON {
 	const PROTOCOL_VERSION = 3;
 
 	/** @var Server */

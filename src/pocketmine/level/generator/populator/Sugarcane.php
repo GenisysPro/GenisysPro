@@ -25,7 +25,7 @@ use pocketmine\block\Block;
 use pocketmine\level\ChunkManager;
 use pocketmine\utils\Random;
 
-class Sugarcane extends Populator{
+class Sugarcane extends Populator {
 	/** @var ChunkManager */
 	private $level;
 	private $randomAmount;

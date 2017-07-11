@@ -26,7 +26,7 @@ use pocketmine\level\Level;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 
-class RedstoneTorch extends RedstoneSource{
+class RedstoneTorch extends RedstoneSource {
 
 	protected $id = self::REDSTONE_TORCH;
 	protected $ignore = "";

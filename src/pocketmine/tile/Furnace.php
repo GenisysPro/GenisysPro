@@ -37,7 +37,7 @@ use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\network\protocol\ContainerSetDataPacket;
 
-class Furnace extends Spawnable implements InventoryHolder, Container, Nameable{
+class Furnace extends Spawnable implements InventoryHolder, Container, Nameable {
 	/** @var FurnaceInventory */
 	protected $inventory;
 
@@ -280,7 +280,7 @@ class Furnace extends Spawnable implements InventoryHolder, Container, Nameable{
 
 		return $ret;
 	}
-	
+
 	public function getSpawnCompound(){
 		$nbt = new CompoundTag("", [
 			new StringTag("id", Tile::FURNACE),
@@ -291,7 +291,7 @@ class Furnace extends Spawnable implements InventoryHolder, Container, Nameable{
 			new ShortTag("CookTime", $this->namedtag["CookTime"]),
 			//new ShortTag("BurnDuration", $this->namedtag["BurnTicks"])
 		]);
-		
+
 		if($this->hasName()){
 			$nbt->CustomName = $this->namedtag->CustomName;
 		}

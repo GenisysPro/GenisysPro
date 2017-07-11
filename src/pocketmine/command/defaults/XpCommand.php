@@ -28,7 +28,7 @@ use pocketmine\level\sound\ExpPickupSound;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
-class XpCommand extends VanillaCommand{
+class XpCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

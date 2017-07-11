@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\Item;
 
-class Snow extends Solid{
+class Snow extends Solid {
 
 	protected $id = self::SNOW_BLOCK;
 
@@ -32,15 +32,15 @@ class Snow extends Solid{
 		$this->meta = $meta;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 0.2;
 	}
 
 	public function getName() : string{
 		return "Snow Block";
 	}
-	
-	public function getDrops(Item $item) : array {
+
+	public function getDrops(Item $item) : array{
 		if($item->isShovel() !== false){
 			if($item->getEnchantmentLevel(Enchantment::TYPE_MINING_SILK_TOUCH) > 0){
 				return [

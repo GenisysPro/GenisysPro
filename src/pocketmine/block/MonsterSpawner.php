@@ -30,7 +30,7 @@ use pocketmine\Player;
 use pocketmine\tile\MobSpawner;
 use pocketmine\tile\Tile;
 
-class MonsterSpawner extends Solid{
+class MonsterSpawner extends Solid {
 
 	protected $id = self::MONSTER_SPAWNER;
 
@@ -38,7 +38,7 @@ class MonsterSpawner extends Solid{
 		$this->meta = $meta;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 5;
 	}
 
@@ -50,7 +50,7 @@ class MonsterSpawner extends Solid{
 		return "Monster Spawner";
 	}
 
-	public function canBeActivated() : bool {
+	public function canBeActivated() : bool{
 		return true;
 	}
 
@@ -79,18 +79,18 @@ class MonsterSpawner extends Solid{
 			new IntTag("z", $block->z),
 			new IntTag("EntityId", 0),
 		]);
-		
+
 		if($item->hasCustomBlockData()){
 			foreach($item->getCustomBlockData() as $key => $v){
 				$nbt->{$key} = $v;
 			}
 		}
-		
+
 		Tile::createTile(Tile::MOB_SPAWNER, $this->getLevel(), $nbt);
 		return true;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		return [];
 	}
 }

@@ -36,7 +36,7 @@
 namespace pocketmine\resourcepacks;
 
 
-class ZippedResourcePack implements ResourcePack{
+class ZippedResourcePack implements ResourcePack {
 
 	public static function verifyManifest(\stdClass $manifest){
 		if(!isset($manifest->format_version) or !isset($manifest->header) or !isset($manifest->modules)){
@@ -76,7 +76,7 @@ class ZippedResourcePack implements ResourcePack{
 
 		if(($manifestData = $archive->getFromName("manifest.json")) === false){
 			if(($manifestData = $archive->getFromName("pack_manifest.json")) === false){
-			 	throw new \InvalidStateException("无法加载材质包 $zipPath: 找不到主类");
+				throw new \InvalidStateException("无法加载材质包 $zipPath: 找不到主类");
 			}
 		}
 

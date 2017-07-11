@@ -30,12 +30,12 @@ use pocketmine\nbt\tag\FloatTag;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\Player;
 
-class Minecart extends Item{
+class Minecart extends Item {
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::MINECART, $meta, $count, "Minecart");
 	}
 
-	public function canBeActivated() : bool {
+	public function canBeActivated() : bool{
 		return true;
 	}
 
@@ -69,7 +69,7 @@ class Minecart extends Item{
 			$item->setCount($count);
 			$player->getInventory()->setItemInHand($item);
 		}
-		
+
 		return true;
 	}
 }

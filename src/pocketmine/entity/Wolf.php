@@ -24,7 +24,7 @@ namespace pocketmine\entity;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Wolf extends Animal{
+class Wolf extends Animal {
 	const NETWORK_ID = 14;
 
 	public $width = 0.3;
@@ -32,11 +32,11 @@ class Wolf extends Animal{
 	public $height = 1.8;
 
 	public $dropExp = [1, 3];
-	
+
 	public function getName() : string{
 		return "Wolf";
 	}
-	
+
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();

@@ -23,7 +23,7 @@ namespace pocketmine\block;
 
 use pocketmine\item\Item;
 
-class Beetroot extends Crops{
+class Beetroot extends Crops {
 
 	protected $id = self::BEETROOT_BLOCK;
 
@@ -35,7 +35,7 @@ class Beetroot extends Crops{
 		return "Beetroot Block";
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		$drops = [];
 		if($this->meta >= 0x07){
 			$drops[] = [Item::BEETROOT, 0, 1];

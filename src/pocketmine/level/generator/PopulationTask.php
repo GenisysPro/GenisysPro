@@ -28,7 +28,7 @@ use pocketmine\scheduler\AsyncTask;
 use pocketmine\Server;
 
 
-class PopulationTask extends AsyncTask{
+class PopulationTask extends AsyncTask {
 
 	public $state;
 	public $levelId;

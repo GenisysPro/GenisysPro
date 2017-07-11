@@ -34,7 +34,7 @@ use pocketmine\nbt\tag\StringTag;
 use pocketmine\network\protocol\ContainerSetDataPacket;
 use pocketmine\Server;
 
-class BrewingStand extends Spawnable implements InventoryHolder, Container, Nameable{
+class BrewingStand extends Spawnable implements InventoryHolder, Container, Nameable {
 	const MAX_BREW_TIME = 400;
 	/** @var BrewingInventory */
 	protected $inventory;

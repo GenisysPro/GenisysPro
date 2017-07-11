@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class JungleDoor extends Door{
+class JungleDoor extends Door {
 
 	protected $id = self::JUNGLE_DOOR_BLOCK;
 
@@ -36,11 +36,11 @@ class JungleDoor extends Door{
 		return "Jungle Door Block";
 	}
 
-	public function canBeActivated() : bool {
+	public function canBeActivated() : bool{
 		return true;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 3;
 	}
 
@@ -48,7 +48,7 @@ class JungleDoor extends Door{
 		return Tool::TYPE_AXE;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		return [
 			[Item::JUNGLE_DOOR, 0, 1],
 		];

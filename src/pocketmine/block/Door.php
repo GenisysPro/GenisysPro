@@ -29,9 +29,9 @@ use pocketmine\math\Vector3;
 use pocketmine\Player;
 
 
-abstract class Door extends Transparent implements ElectricalAppliance{
+abstract class Door extends Transparent implements ElectricalAppliance {
 
-	public function canBeActivated() : bool {
+	public function canBeActivated() : bool{
 		return true;
 	}
 
@@ -60,7 +60,7 @@ abstract class Door extends Transparent implements ElectricalAppliance{
 		return $down & 0x07 | ($isUp ? 8 : 0) | ($isRight ? 0x10 : 0);
 	}
 
-	protected function recalculateBoundingBox() {
+	protected function recalculateBoundingBox(){
 
 		$f = 0.1875;
 		$damage = $this->getFullDamage();
@@ -210,10 +210,10 @@ abstract class Door extends Transparent implements ElectricalAppliance{
 	public function onUpdate($type){
 		if($type === Level::BLOCK_UPDATE_NORMAL){
 			if($this->getSide(Vector3::SIDE_DOWN)->getId() === self::AIR and $this->getSide(Vector3::SIDE_UP) instanceof Door){ //Block underneath the door was broken
-			
+
 				$this->getLevel()->setBlock($this, new Air(), false, false);
 				$this->getLevel()->setBlock($this->getSide(Vector3::SIDE_UP), new Air(), false);
-				
+
 				foreach($this->getDrops(Item::get(Item::DIAMOND_PICKAXE)) as $drop){
 					$this->getLevel()->dropItem($this, Item::get($drop[0], $drop[1], $drop[2]));
 				}

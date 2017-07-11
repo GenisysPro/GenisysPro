@@ -27,7 +27,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class ChorusPlant extends Crops{
+class ChorusPlant extends Crops {
 
 	protected $id = self::CHORUS_PLANT;
 
@@ -35,7 +35,7 @@ class ChorusPlant extends Crops{
 		$this->meta = $meta;
 	}
 
-    	public function getHardness(){
+	public function getHardness(){
 		return 0.4;
 	}
 
@@ -47,7 +47,7 @@ class ChorusPlant extends Crops{
 		return "Chorus Plant";
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		$drops = [];
 		if($this->meta >= 0x07){
 			$drops[] = [Item::CHORUS_FRUIT, 0, 1];

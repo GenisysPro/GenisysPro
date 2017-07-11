@@ -24,7 +24,7 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class Lapis extends Solid{
+class Lapis extends Solid {
 
 	protected $id = self::LAPIS_BLOCK;
 
@@ -40,11 +40,11 @@ class Lapis extends Solid{
 		return Tool::TYPE_PICKAXE;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 3;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 3){
 			return [
 				[Item::LAPIS_BLOCK, 0, 1],

@@ -32,7 +32,7 @@ use pocketmine\Player;
 use pocketmine\tile\Hopper as TileHopper;
 use pocketmine\tile\Tile;
 
-class Hopper extends Transparent{
+class Hopper extends Transparent {
 
 	protected $id = self::HOPPER_BLOCK;
 
@@ -40,7 +40,7 @@ class Hopper extends Transparent{
 		$this->meta = $meta;
 	}
 
-	public function canBeActivated(): bool{
+	public function canBeActivated() : bool{
 		return true;
 	}
 
@@ -64,16 +64,16 @@ class Hopper extends Transparent{
 					$player->getServer()->getLogger()->debug($player->getName() . " attempted to open a locked hopper");
 					return true;
 				}
-				
+
 				if($player->isCreative() and $player->getServer()->limitedCreative){
-				return true;
-			}
+					return true;
+				}
 				$player->addWindow($t->getInventory());
 			}
 		}
 		return true;
 	}
-	
+
 	public function activate(){
 		//TODO: Hopper content freezing (requires basic redstone system upgrade)
 	}
@@ -114,7 +114,7 @@ class Hopper extends Transparent{
 		return true;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 1){
 			return [
 				[Item::HOPPER, 0, 1],

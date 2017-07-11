@@ -27,7 +27,7 @@ use pocketmine\command\PluginIdentifiableCommand;
 use pocketmine\Server;
 use pocketmine\utils\Config;
 
-abstract class PluginBase implements Plugin{
+abstract class PluginBase implements Plugin {
 
 	/** @var PluginLoader */
 	private $loader;

@@ -25,7 +25,7 @@ use pocketmine\event\TranslationContainer;
 use pocketmine\plugin\Plugin;
 
 
-class PluginCommand extends Command implements PluginIdentifiableCommand{
+class PluginCommand extends Command implements PluginIdentifiableCommand {
 
 	/** @var Plugin */
 	private $owningPlugin;

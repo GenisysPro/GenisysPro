@@ -26,7 +26,7 @@ use pocketmine\level\Level;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 
-class PoweredRepeater extends RedstoneSource{
+class PoweredRepeater extends RedstoneSource {
 	protected $id = self::POWERED_REPEATER_BLOCK;
 
 	const ACTION_ACTIVATE = "Repeater Activate";
@@ -66,9 +66,9 @@ class PoweredRepeater extends RedstoneSource{
 		}
 		return $direction;
 	}
-	
+
 	public function getOppositeDirection() : int{
-		return $this->getOppositeSide($this->getDirection());
+		return static::getOppositeSide($this->getDirection());
 	}
 
 	public function getDelayLevel() : int{

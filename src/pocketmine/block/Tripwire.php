@@ -23,7 +23,7 @@ namespace pocketmine\block;
 
 use pocketmine\item\Tool;
 
-class Tripwire extends Transparent{
+class Tripwire extends Transparent {
 
 	protected $id = self::TRIPWIRE;
 

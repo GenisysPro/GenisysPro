@@ -29,7 +29,7 @@ use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\network\protocol\ExplodePacket;
 use pocketmine\Player;
 
-class Lightning extends Animal{
+class Lightning extends Animal {
 	const NETWORK_ID = 93;
 
 	public $width = 0.3;

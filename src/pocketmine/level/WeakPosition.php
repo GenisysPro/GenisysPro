@@ -24,7 +24,7 @@ namespace pocketmine\level;
 use pocketmine\math\Vector3;
 use pocketmine\Server;
 
-class WeakPosition extends Position{
+class WeakPosition extends Position {
 
 	protected $levelId = -1;
 

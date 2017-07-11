@@ -23,7 +23,7 @@ namespace pocketmine\entity;
 
 use pocketmine\Server;
 
-class Attribute{
+class Attribute {
 
 	const ABSORPTION = 0;
 	const SATURATION = 1;

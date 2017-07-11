@@ -25,6 +25,7 @@
 /**
  * All Block classes are in here
  */
+
 namespace pocketmine\block;
 
 use pocketmine\entity\Entity;
@@ -41,7 +42,7 @@ use pocketmine\metadata\MetadataValue;
 use pocketmine\Player;
 use pocketmine\plugin\Plugin;
 
-class Block extends Position implements BlockIds, Metadatable{	
+class Block extends Position implements BlockIds, Metadatable {
 
 	/** @var \SplFixedArray */
 	public static $list = null;
@@ -170,7 +171,7 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::IRON_TRAPDOOR] = IronTrapdoor::class;
 
 			self::$list[self::STONE_BRICKS] = StoneBricks::class;
-			
+
 			self::$list[self::BROWN_MUSHROOM_BLOCK] = BrownMushroomBlock::class;
 			self::$list[self::RED_MUSHROOM_BLOCK] = RedMushroomBlock::class;
 
@@ -261,7 +262,7 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::NETHER_REACTOR] = NetherReactor::class;
 			self::$list[self::CONCRETE] = Concrete::class;
 			self::$list[self::CONCRETE_POWDER] = ConcretePowder::class;
-			
+
 			self::$list[self::BLACK_GLAZED_TERRACOTTA] = BlackGlazedTerracotta::class;
 			self::$list[self::BLUE_GLAZED_TERRACOTTA] = BlueGlazedTerracotta::class;
 			self::$list[self::BROWN_GLAZED_TERRACOTTA] = BrownGlazedTerracotta::class;
@@ -278,7 +279,7 @@ class Block extends Position implements BlockIds, Metadatable{
 			self::$list[self::SILVER_GLAZED_TERRACOTTA] = SilverGlazedTerracotta::class;
 			self::$list[self::WHITE_GLAZED_TERRACOTTA] = WhiteGlazedTerracotta::class;
 			self::$list[self::YELLOW_GLAZED_TERRACOTTA] = YellowGlazedTerracotta::class;
-			
+
 			self::$list[self::NETHER_BRICK_FENCE] = NetherBrickFence::class;
 			self::$list[self::POWERED_RAIL] = PoweredRail::class;
 			self::$list[self::RAIL] = Rail::class;
@@ -495,7 +496,7 @@ class Block extends Position implements BlockIds, Metadatable{
 		if($this->isSolid()){
 			return true;
 		}else{
-			if($this instanceof Stair and ($this->getDamage() &4) == 4){
+			if($this instanceof Stair and ($this->getDamage() & 4) == 4){
 				return true;
 			}elseif($this instanceof Slab and ($this->getDamage() & 8) == 8){
 				return true;

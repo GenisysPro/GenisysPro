@@ -30,7 +30,7 @@ use pocketmine\Player;
  * This class is the power of all redstone blocks!
  */
 
-class RedstoneSource extends Flowable{
+class RedstoneSource extends Flowable {
 	protected $maxStrength = 15;
 	protected $activated = false;
 
@@ -215,7 +215,7 @@ class RedstoneSource extends Flowable{
 						0 => 0,
 					];
 					if($block->getSide($faces[$block->meta])->equals($pos)){
-						$ignoreBlock = $this->getSide($this->getOppositeSide($faces[$block->meta]));
+						$ignoreBlock = $this->getSide(static::getOppositeSide($faces[$block->meta]));
 						$block->turnOff(Level::blockHash($ignoreBlock->x, $ignoreBlock->y, $ignoreBlock->z));
 					}
 				}
@@ -240,7 +240,7 @@ class RedstoneSource extends Flowable{
 						0 => 0,
 					];
 					if($block->getSide($faces[$block->meta])->equals($pos)){
-						$ignoreBlock = $this->getSide($this->getOppositeSide($faces[$block->meta]));
+						$ignoreBlock = $this->getSide(static::getOppositeSide($faces[$block->meta]));
 						$block->turnOn(Level::blockHash($ignoreBlock->x, $ignoreBlock->y, $ignoreBlock->z));
 					}
 				}

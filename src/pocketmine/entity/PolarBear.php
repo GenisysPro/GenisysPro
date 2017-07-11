@@ -28,20 +28,20 @@ use pocketmine\item\Item as ItemItem;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class PolarBear extends Monster{
+class PolarBear extends Monster {
 	const NETWORK_ID = 28;
 
 	public $width = 0.6;
 	public $length = 0.9;
 	public $height = 0;
-	
+
 	public $dropExp = [5, 5];
-	
-	
+
+
 	public function getName(){
 		return "Polar Bear";
 	}
-	
+
 	public function initEntity(){
 		$this->setMaxHealth(30);
 		parent::initEntity();

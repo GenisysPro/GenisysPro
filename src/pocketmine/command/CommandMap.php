@@ -22,7 +22,7 @@
 namespace pocketmine\command;
 
 
-interface CommandMap{
+interface CommandMap {
 
 	/**
 	 * @param string    $fallbackPrefix

@@ -38,7 +38,7 @@ use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
 
-class Dropper extends Spawnable implements InventoryHolder, Container, Nameable{
+class Dropper extends Spawnable implements InventoryHolder, Container, Nameable {
 
 	/** @var DropperInventory */
 	protected $inventory;

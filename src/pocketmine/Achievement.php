@@ -36,7 +36,7 @@ use pocketmine\utils\TextFormat;
 /**
  * Handles the achievement list and a bit more
  */
-abstract class Achievement{
+abstract class Achievement {
 	/**
 	 * @var array[]
 	 */

@@ -35,7 +35,7 @@ use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\Player;
 
-class MobSpawner extends Spawnable{
+class MobSpawner extends Spawnable {
 
 	public function __construct(Level $level, CompoundTag $nbt){
 		if(!isset($nbt->EntityId) or !($nbt->EntityId instanceof IntTag)){

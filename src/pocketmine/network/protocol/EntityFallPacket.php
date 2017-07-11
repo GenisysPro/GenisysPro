@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class EntityFallPacket extends DataPacket{
+class EntityFallPacket extends DataPacket {
 
 	const NETWORK_ID = Info::ENTITY_FALL_PACKET;
 

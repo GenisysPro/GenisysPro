@@ -25,7 +25,7 @@ use pocketmine\block\Block;
 use pocketmine\level\ChunkManager;
 use pocketmine\utils\Random;
 
-class MossStone extends Populator{
+class MossStone extends Populator {
 	/** @var ChunkManager */
 	private $level;
 	private $randomAmount;

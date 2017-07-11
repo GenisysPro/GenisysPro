@@ -28,7 +28,7 @@ use pocketmine\level\weather\Weather;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
-class WeatherCommand extends VanillaCommand{
+class WeatherCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

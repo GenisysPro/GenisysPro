@@ -37,7 +37,7 @@ use pocketmine\level\generator\populator\Populator;
 use pocketmine\math\Vector3;
 use pocketmine\utils\Random;
 
-class Flat extends Generator{
+class Flat extends Generator {
 	/** @var ChunkManager */
 	private $level;
 	/** @var Chunk */

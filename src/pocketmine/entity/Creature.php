@@ -25,7 +25,7 @@ use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\level\Level;
 use pocketmine\math\Vector3;
 
-abstract class Creature extends Living{
+abstract class Creature extends Living {
 	public $attackingTick = 0;
 
 	public function onUpdate($tick){
@@ -86,6 +86,7 @@ abstract class Creature extends Living{
 	 * @param Vector3 $v3
 	 * @param bool    $hate
 	 * @param bool    $reason
+	 *
 	 * @return bool|float|string
 	 * 判断某坐标是否可以行走
 	 * 并给出原因
@@ -284,6 +285,7 @@ abstract class Creature extends Living{
 	/**
 	 * @param $mx
 	 * @param $mz
+	 *
 	 * @return float|int
 	 * 获取yaw角度
 	 */
@@ -320,6 +322,7 @@ abstract class Creature extends Living{
 	/**
 	 * @param Vector3 $from
 	 * @param Vector3 $to
+	 *
 	 * @return float|int
 	 * 获取pitch角度
 	 */

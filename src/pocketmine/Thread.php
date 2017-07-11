@@ -33,7 +33,7 @@ namespace pocketmine;
 /**
  * This class must be extended by all custom threading classes
  */
-abstract class Thread extends \Thread{
+abstract class Thread extends \Thread {
 
 	/** @var \ClassLoader */
 	protected $classLoader;

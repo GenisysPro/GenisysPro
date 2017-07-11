@@ -115,7 +115,7 @@ use pocketmine\utils\VersionString;
 /**
  * The class that manages everything
  */
-class Server{
+class Server {
 	const BROADCAST_CHANNEL_ADMINISTRATIVE = "pocketmine.broadcast.admin";
 	const BROADCAST_CHANNEL_USERS = "pocketmine.broadcast.user";
 
@@ -189,7 +189,7 @@ class Server{
 	/** @var CraftingManager */
 	private $craftingManager;
 
- private $resourceManager;
+	private $resourceManager;
 
 	/** @var ConsoleCommandSender */
 	private $consoleSender;
@@ -310,7 +310,7 @@ class Server{
 	public $allowInventoryCheats = false;
 	public $folderpluginloader = true;
 	public $mapEnabled = true;//TODO: 配置文件
-    public $absorbWater = false;
+	public $absorbWater = false;
 
 	/**
 	 * @return string
@@ -366,7 +366,7 @@ class Server{
 	}
 
 	public function getFormattedVersion($prefix = ""){
-		return (\pocketmine\VERSION !== ""? $prefix . \pocketmine\VERSION : "");
+		return (\pocketmine\VERSION !== "" ? $prefix . \pocketmine\VERSION : "");
 	}
 
 	/**
@@ -380,7 +380,7 @@ class Server{
 	 * @return string
 	 */
 	public function getVersion(){
-		$version = implode(",",ProtocolInfo::MINECRAFT_VERSION);
+		$version = implode(",", ProtocolInfo::MINECRAFT_VERSION);
 		return $version;
 	}
 
@@ -706,8 +706,8 @@ class Server{
 	}
 
 	public function getResourcePackManager() : ResourcePackManager{
-	    return $this->resourceManager;
-    }
+		return $this->resourceManager;
+	}
 
 	/**
 	 * @return ServerScheduler
@@ -870,9 +870,9 @@ class Server{
 	}
 
 	/**
-	 * @param string   $name
+	 * @param string      $name
 	 * @param CompoundTag $nbtTag
-	 * @param bool     $async
+	 * @param bool        $async
 	 */
 	public function saveOfflinePlayerData($name, CompoundTag $nbtTag, $async = false){
 		if($this->shouldSavePlayerData()){
@@ -1363,9 +1363,9 @@ class Server{
 	public function addOp($name){
 		$this->operators->set(strtolower($name), true);
 
-	 	if(($player = $this->getPlayerExact($name)) !== null){
-			 $player->recalculatePermissions();
- 		}
+		if(($player = $this->getPlayerExact($name)) !== null){
+			$player->recalculatePermissions();
+		}
 		$this->operators->save(true);
 	}
 
@@ -1477,7 +1477,7 @@ class Server{
 	}
 
 	public function about(){
-	 $version = implode(",",ProtocolInfo::MINECRAFT_VERSION);
+		$version = implode(",", ProtocolInfo::MINECRAFT_VERSION);
 		$string = "
 
   _____            _               _____           
@@ -1492,12 +1492,12 @@ class Server{
 	Version: §6" . $this->getPocketMineVersion() . '§f
 	Client Version: §b' . $version . '§f
 	PHP Version: §e' . PHP_VERSION . '§f
-	System OS: §6' . PHP_OS .'§f
+	System OS: §6' . PHP_OS . '§f
 	This core was maintain by §dGenisysPro§f
 	Chatroom on QQ: §a559301590 §f
 	Welcome to donate us on QQ: §c1912003473
 	';
-	
+
 		$this->getLogger()->info($string);
 	}
 
@@ -1551,9 +1551,9 @@ class Server{
 		$this->allowInventoryCheats = $this->getAdvancedProperty("inventory.allow-cheats", false);
 		$this->folderpluginloader = $this->getAdvancedProperty("developer.folder-plugin-loader", true);
 
-        $this->absorbWater = $this->getAdvancedProperty("server.absorb-water", false);
-    }
-	
+		$this->absorbWater = $this->getAdvancedProperty("server.absorb-water", false);
+	}
+
 	/**
 	 * @return int
 	 *
@@ -1817,9 +1817,9 @@ class Server{
 			$this->pluginManager->setUseTimings($this->getProperty("settings.enable-profiling", false));
 			$this->profilingTickRate = (float) $this->getProperty("settings.profile-report-trigger", 20);
 			$this->pluginManager->registerInterface(PharPluginLoader::class);
-			if($this->folderpluginloader === true) {
-                $this->pluginManager->registerInterface(FolderPluginLoader::class);
-            }
+			if($this->folderpluginloader === true){
+				$this->pluginManager->registerInterface(FolderPluginLoader::class);
+			}
 			$this->pluginManager->registerInterface(ScriptPluginLoader::class);
 
 			//set_exception_handler([$this, "exceptionHandler"]);
@@ -1897,13 +1897,13 @@ class Server{
 				return;
 			}
 
-		if($this->netherEnabled){
-			if(!$this->loadLevel($this->netherName)){
-				$this->logger->info("正在生成地狱 ".$this->netherName);
-				$this->generateLevel($this->netherName, time(), Generator::getGenerator("nether"));
+			if($this->netherEnabled){
+				if(!$this->loadLevel($this->netherName)){
+					$this->logger->info("正在生成地狱 " . $this->netherName);
+					$this->generateLevel($this->netherName, time(), Generator::getGenerator("nether"));
+				}
+				$this->netherLevel = $this->getLevelByName($this->netherName);
 			}
-			$this->netherLevel = $this->getLevelByName($this->netherName);
-		}
 
 			if($this->getProperty("ticks-per.autosave", 6000) > 0){
 				$this->autoSaveTicks = (int) $this->getProperty("ticks-per.autosave", 6000);
@@ -2188,9 +2188,9 @@ class Server{
 		}
 
 		$this->pluginManager->registerInterface(PharPluginLoader::class);
-		if($this->folderpluginloader === true) {
-               $this->pluginManager->registerInterface(FolderPluginLoader::class);
-           }
+		if($this->folderpluginloader === true){
+			$this->pluginManager->registerInterface(FolderPluginLoader::class);
+		}
 		$this->pluginManager->registerInterface(ScriptPluginLoader::class);
 		$this->pluginManager->loadPlugins($this->pluginPath);
 		$this->enablePlugins(PluginLoadOrder::STARTUP);
@@ -2200,6 +2200,7 @@ class Server{
 
 	/**
 	 * Shutdowns the server correctly
+	 *
 	 * @param bool   $restart
 	 * @param string $msg
 	 */
@@ -2514,9 +2515,9 @@ class Server{
 	private function checkTickUpdates($currentTick, $tickTime){
 		foreach($this->players as $p){
 			if(!$p->loggedIn and ($tickTime - $p->creationTime) >= 10){
-			/*
-				$p->close("", "Login timeout");
-			*/
+				/*
+					$p->close("", "Login timeout");
+				*/
 			}elseif($this->alwaysTickPlayers){
 				$p->onUpdate($currentTick);
 			}
@@ -2661,6 +2662,7 @@ class Server{
 	 * @param             $variable
 	 * @param null        $defaultValue
 	 * @param Config|null $cfg
+	 *
 	 * @return bool|mixed|null
 	 */
 	public function getAdvancedProperty($variable, $defaultValue = null, Config $cfg = null){
@@ -2742,12 +2744,12 @@ class Server{
 				}
 			}
 
-  if($this->dserverConfig["enable"] and $this->dserverConfig["motdPlayers"]){
-			 $max = $this->getDServerMaxPlayers();
-			 $online = $this->getDServerOnlinePlayers();
-			 $name = $this->getNetwork()->getName().'['.$online.'/'.$max.']';
-			 $this->getNetwork()->setName($name);
-			 //TODO: 检测是否爆满,不同状态颜色
+			if($this->dserverConfig["enable"] and $this->dserverConfig["motdPlayers"]){
+				$max = $this->getDServerMaxPlayers();
+				$online = $this->getDServerOnlinePlayers();
+				$name = $this->getNetwork()->getName() . '[' . $online . '/' . $max . ']';
+				$this->getNetwork()->setName($name);
+				//TODO: 检测是否爆满,不同状态颜色
 			}
 			$this->getNetwork()->updateName();
 		}

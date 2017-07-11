@@ -24,7 +24,7 @@ namespace pocketmine\lang;
 use pocketmine\event\TextContainer;
 use pocketmine\event\TranslationContainer;
 
-class BaseLang{
+class BaseLang {
 
 	const FALLBACK_LANGUAGE = "eng";
 

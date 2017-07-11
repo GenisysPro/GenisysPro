@@ -29,7 +29,7 @@ use pocketmine\level\Level;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\Player;
 
-class Cake extends Transparent implements FoodSource{
+class Cake extends Transparent implements FoodSource {
 
 	protected $id = self::CAKE_BLOCK;
 

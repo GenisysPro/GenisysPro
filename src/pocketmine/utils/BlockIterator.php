@@ -28,7 +28,7 @@ use pocketmine\math\Vector3;
 /**
  * This class performs ray tracing and iterates along blocks on a line
  */
-class BlockIterator implements \Iterator{
+class BlockIterator implements \Iterator {
 
 	/** @var Level */
 	private $level;

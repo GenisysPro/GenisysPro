@@ -24,7 +24,7 @@ namespace pocketmine\event\entity;
 use pocketmine\entity\Entity;
 use pocketmine\event\Cancellable;
 
-class EntityCombustEvent extends EntityEvent implements Cancellable{
+class EntityCombustEvent extends EntityEvent implements Cancellable {
 	public static $handlerList = null;
 
 	protected $duration;

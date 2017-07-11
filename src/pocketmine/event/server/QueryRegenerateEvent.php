@@ -24,7 +24,7 @@ namespace pocketmine\event\server;
 use pocketmine\Server;
 use pocketmine\utils\Binary;
 
-class QueryRegenerateEvent extends ServerEvent{
+class QueryRegenerateEvent extends ServerEvent {
 	public static $handlerList = null;
 
 	const GAME_ID = "MINECRAFTPE";

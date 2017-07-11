@@ -24,7 +24,7 @@
 namespace pocketmine\item;
 
 
-class ChorusFruit extends Food{
+class ChorusFruit extends Food {
 	public function __construct($meta = 0, $count = 1){
 		parent::__construct(self::CHORUS_FRUIT, 0, $count, "Chorus Fruit");
 	}

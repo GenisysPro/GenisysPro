@@ -29,19 +29,19 @@ use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
 
-class Guardian extends Animal{
+class Guardian extends Animal {
 	const NETWORK_ID = 49;
 
 	public $width = 0.95;
 	public $length = 0.95;
 	public $height = 0;
-	
+
 	public $dropExp = [5, 5];
 
 	public function getName(){
 		return "Guardian";
 	}
-	
+
 	public function initEntity(){
 		$this->setMaxHealth(30);
 		parent::initEntity();
@@ -67,10 +67,10 @@ class Guardian extends Animal{
 
 	public function getDrops(){
 		$drops = [
-		    ItemItem::get(ItemItem::PRISMARINE_SHARD, 0, mt_rand(1, 2))
-			];
+			ItemItem::get(ItemItem::PRISMARINE_SHARD, 0, mt_rand(1, 2))
+		];
 		$drops[] = ItemItem::get(ItemItem::RAW_FISH, 0, mt_rand(0, 1));
-		
+
 		return $drops;
 	}
 }

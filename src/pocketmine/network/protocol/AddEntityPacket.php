@@ -28,7 +28,7 @@ use pocketmine\entity\Attribute;
 
 #endif
 
-class AddEntityPacket extends DataPacket{
+class AddEntityPacket extends DataPacket {
 
 	const NETWORK_ID = Info::ADD_ENTITY_PACKET;
 

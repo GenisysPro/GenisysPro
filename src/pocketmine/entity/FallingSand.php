@@ -36,7 +36,7 @@ use pocketmine\nbt\tag\IntTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class FallingSand extends Entity{
+class FallingSand extends Entity {
 	const NETWORK_ID = 66;
 
 	const DATA_BLOCK_INFO = 20;

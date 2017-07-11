@@ -22,6 +22,7 @@
 /**
  * Plugin related classes
  */
+
 namespace pocketmine\plugin;
 
 use pocketmine\command\CommandExecutor;
@@ -31,7 +32,7 @@ use pocketmine\command\CommandExecutor;
  * It is recommended to use PluginBase for the actual plugin
  *
  */
-interface Plugin extends CommandExecutor{
+interface Plugin extends CommandExecutor {
 
 	/**
 	 * Called when the plugin is loaded, before calling onEnable()

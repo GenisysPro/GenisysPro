@@ -25,7 +25,7 @@ use pocketmine\Thread;
 use pocketmine\utils\Binary;
 use pocketmine\utils\MainLogger;
 
-class RCONInstance extends Thread{
+class RCONInstance extends Thread {
 	public $stop;
 	public $cmd;
 	public $response;

@@ -28,7 +28,7 @@ use pocketmine\event\TranslationContainer;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
-class KillCommand extends VanillaCommand{
+class KillCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(

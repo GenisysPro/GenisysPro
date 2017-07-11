@@ -27,7 +27,7 @@ use pocketmine\item\Item as ItemItem;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Cow extends Animal{
+class Cow extends Animal {
 	const NETWORK_ID = 11;
 
 	public $width = 0.3;
@@ -35,11 +35,11 @@ class Cow extends Animal{
 	public $height = 1.8;
 
 	public $dropExp = [1, 3];
-	
+
 	public function getName() : string{
 		return "Cow";
 	}
-	
+
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
 		$pk->eid = $this->getId();
@@ -57,7 +57,7 @@ class Cow extends Animal{
 
 		parent::spawnTo($player);
 	}
-	
+
 	public function getDrops(){
 		$lootingL = 0;
 		$cause = $this->lastDamageCause;

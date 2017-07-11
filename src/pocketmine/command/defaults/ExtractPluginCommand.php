@@ -37,7 +37,7 @@ use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 use pocketmine\utils\TextFormat;
 
-class ExtractPluginCommand extends VanillaCommand{
+class ExtractPluginCommand extends VanillaCommand {
 
 	public function __construct($name){
 		parent::__construct(
@@ -54,7 +54,7 @@ class ExtractPluginCommand extends VanillaCommand{
 		}
 
 		if(count($args) === 0){
-			$sender->sendMessage(TextFormat::RED . "Usage: ".$this->usageMessage);
+			$sender->sendMessage(TextFormat::RED . "Usage: " . $this->usageMessage);
 			return true;
 		}
 
@@ -67,11 +67,11 @@ class ExtractPluginCommand extends VanillaCommand{
 		$description = $plugin->getDescription();
 
 		if(!($plugin->getPluginLoader() instanceof PharPluginLoader)){
-			$sender->sendMessage(TextFormat::RED . "Plugin ".$description->getName()." is not in Phar structure.");
+			$sender->sendMessage(TextFormat::RED . "Plugin " . $description->getName() . " is not in Phar structure.");
 			return true;
 		}
 
-		$folderPath = Server::getInstance()->getPluginPath().DIRECTORY_SEPARATOR . "GenisysPro" . DIRECTORY_SEPARATOR . $description->getName()."_v".$description->getVersion()."/";
+		$folderPath = Server::getInstance()->getPluginPath() . DIRECTORY_SEPARATOR . "GenisysPro" . DIRECTORY_SEPARATOR . $description->getName() . "_v" . $description->getVersion() . "/";
 		if(file_exists($folderPath)){
 			$sender->sendMessage("Plugin already exists, overwriting...");
 		}else{
@@ -88,7 +88,7 @@ class ExtractPluginCommand extends VanillaCommand{
 			@mkdir(dirname($folderPath . str_replace($pharPath, "", $path)), 0755, true);
 			file_put_contents($folderPath . str_replace($pharPath, "", $path), file_get_contents($path));
 		}
-			$license = "
+		$license = "
   _____            _               _____           
  / ____|          (_)             |  __ \          
 | |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
@@ -99,7 +99,7 @@ class ExtractPluginCommand extends VanillaCommand{
                         |___/         
  ";
 		$sender->sendMessage($license);
-		$sender->sendMessage("Source plugin ".$description->getName() ." v".$description->getVersion()." has been created on ".$folderPath);
+		$sender->sendMessage("Source plugin " . $description->getName() . " v" . $description->getVersion() . " has been created on " . $folderPath);
 		return true;
 	}
 

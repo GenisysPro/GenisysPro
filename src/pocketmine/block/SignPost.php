@@ -31,7 +31,7 @@ use pocketmine\nbt\tag\StringTag;
 use pocketmine\Player;
 use pocketmine\tile\Tile;
 
-class SignPost extends Transparent{
+class SignPost extends Transparent {
 
 	protected $id = self::SIGN_POST;
 
@@ -99,7 +99,7 @@ class SignPost extends Transparent{
 		if($type === Level::BLOCK_UPDATE_NORMAL){
 			if($this->getSide(Vector3::SIDE_DOWN)->getId() === Block::AIR){
 				$this->getLevel()->useBreakOn($this);
-				
+
 				return Level::BLOCK_UPDATE_NORMAL;
 			}
 		}

@@ -26,8 +26,8 @@ use pocketmine\item\Tool;
 use pocketmine\level\Level;
 use pocketmine\Player;
 
-class TallGrass extends Flowable{
-	
+class TallGrass extends Flowable {
+
 	const NORMAL = 1;
 	const FERN = 2;
 
@@ -83,12 +83,11 @@ class TallGrass extends Flowable{
 		return false;
 	}
 
-	public function getToolType()
-	{
+	public function getToolType(){
 		return Tool::TYPE_SHEARS;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		if(mt_rand(0, 15) === 0){
 			return [
 				[Item::WHEAT_SEEDS, 0, 1]

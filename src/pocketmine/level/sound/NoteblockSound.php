@@ -28,7 +28,7 @@ use pocketmine\math\Vector3;
 use pocketmine\network\protocol\BlockEventPacket;
 use pocketmine\network\protocol\LevelSoundEventPacket;
 
-class NoteblockSound extends GenericSound{
+class NoteblockSound extends GenericSound {
 
 	protected $instrument;
 	protected $pitch;
@@ -61,6 +61,6 @@ class NoteblockSound extends GenericSound{
 		$pk2->extraData = $this->instrument;
 		$pk2->pitch = $this->pitch;
 
-		return array($pk,$pk2);
+		return array($pk, $pk2);
 	}
 }

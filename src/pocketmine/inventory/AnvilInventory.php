@@ -29,7 +29,7 @@ use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\event\inventory\AnvilProcessEvent;
 
-class AnvilInventory extends TemporaryInventory{
+class AnvilInventory extends TemporaryInventory {
 
 	const TARGET = 0;
 	const SACRIFICE = 1;
@@ -42,7 +42,7 @@ class AnvilInventory extends TemporaryInventory{
 
 	/**
 	 * @return FakeBlockMenu|InventoryHolder
-     */
+	 */
 	public function getHolder(){
 		return $this->holder;
 	}
@@ -61,7 +61,7 @@ class AnvilInventory extends TemporaryInventory{
 			return false;
 		}
 		$player->takeXpLevel($resultItem->getRepairCost());
-		
+
 		$this->clearAll();
 		if(!$player->getServer()->allowInventoryCheats and !$player->isCreative()){
 			if(!$player->getFloatingInventory()->canAddItem($resultItem)){
@@ -99,7 +99,7 @@ class AnvilInventory extends TemporaryInventory{
 		}
 	}
 
-	public function processSlotChange(Transaction $transaction): bool{
+	public function processSlotChange(Transaction $transaction) : bool{
 		if($transaction->getSlot() === $this->getResultSlotIndex()){
 			return false;
 		}

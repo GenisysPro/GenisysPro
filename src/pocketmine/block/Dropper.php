@@ -32,7 +32,7 @@ use pocketmine\Player;
 use pocketmine\tile\Dropper as TileDropper;
 use pocketmine\tile\Tile;
 
-class Dropper extends Solid implements ElectricalAppliance{
+class Dropper extends Solid implements ElectricalAppliance {
 
 	protected $id = self::DROPPER;
 
@@ -40,11 +40,11 @@ class Dropper extends Solid implements ElectricalAppliance{
 		$this->meta = $meta;
 	}
 
-	public function canBeActivated() : bool {
+	public function canBeActivated() : bool{
 		return true;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 3.5;
 	}
 
@@ -63,8 +63,8 @@ class Dropper extends Solid implements ElectricalAppliance{
 			if(abs($pitch) >= 45){
 				if($pitch < 0) $f = 4;
 				else $f = 5;
-			} else $f = $player->getDirection();
-		} else $f = 0;
+			}else $f = $player->getDirection();
+		}else $f = 0;
 		$faces = [
 			3 => 3,
 			0 => 4,
@@ -134,7 +134,7 @@ class Dropper extends Solid implements ElectricalAppliance{
 		return true;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		return [
 			[$this->id, 0, 1],
 		];

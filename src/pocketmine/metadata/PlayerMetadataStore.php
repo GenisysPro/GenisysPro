@@ -23,7 +23,7 @@ namespace pocketmine\metadata;
 
 use pocketmine\IPlayer;
 
-class PlayerMetadataStore extends MetadataStore{
+class PlayerMetadataStore extends MetadataStore {
 
 	public function disambiguate(Metadatable $player, $metadataKey){
 		if(!($player instanceof IPlayer)){

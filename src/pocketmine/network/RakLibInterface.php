@@ -35,7 +35,7 @@ use raklib\server\RakLibServer;
 use raklib\server\ServerHandler;
 use raklib\server\ServerInstance;
 
-class RakLibInterface implements ServerInstance, AdvancedSourceInterface{
+class RakLibInterface implements ServerInstance, AdvancedSourceInterface {
 
 	/** @var Server */
 	private $server;
@@ -154,7 +154,7 @@ class RakLibInterface implements ServerInstance, AdvancedSourceInterface{
 	public function blockAddress($address, $timeout = 300){
 		$this->interface->blockAddress($address, $timeout);
 	}
-	
+
 	public function unblockAddress($address){
 		$this->interface->unblockAddress($address);
 	}
@@ -214,7 +214,7 @@ class RakLibInterface implements ServerInstance, AdvancedSourceInterface{
 				$packet->isEncoded = true;
 			}
 
-			 if($packet instanceof BatchPacket){
+			if($packet instanceof BatchPacket){
 				if($needACK){
 					$pk = new EncapsulatedPacket();
 					$pk->buffer = $packet->buffer;

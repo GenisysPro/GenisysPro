@@ -26,8 +26,8 @@ use pocketmine\item\Tool;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\Player;
 
-class Slab extends Transparent{
-	
+class Slab extends Transparent {
+
 	const STONE = 0;
 	const SANDSTONE = 1;
 	const WOODEN = 2;
@@ -43,7 +43,7 @@ class Slab extends Transparent{
 		$this->meta = $meta;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 2;
 	}
 
@@ -77,7 +77,7 @@ class Slab extends Transparent{
 		return 0;
 	}
 
-	protected function recalculateBoundingBox() {
+	protected function recalculateBoundingBox(){
 
 		if(($this->meta & 0x08) > 0){
 			return new AxisAlignedBB(
@@ -149,7 +149,7 @@ class Slab extends Transparent{
 		return true;
 	}
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= 1){
 			return [
 				[$this->id, $this->meta & 0x07, 1],
@@ -158,7 +158,6 @@ class Slab extends Transparent{
 			return [];
 		}
 	}
-
 
 
 	public function getToolType(){

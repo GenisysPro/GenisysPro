@@ -25,7 +25,7 @@ use pocketmine\item\Item;
 use pocketmine\level\Level;
 use pocketmine\Player;
 
-class Dandelion extends Flowable{
+class Dandelion extends Flowable {
 
 	protected $id = self::DANDELION;
 

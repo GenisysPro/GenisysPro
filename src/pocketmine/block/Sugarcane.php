@@ -28,7 +28,7 @@ use pocketmine\math\Vector3 as Vector3;
 use pocketmine\Player;
 use pocketmine\Server;
 
-class Sugarcane extends Flowable{
+class Sugarcane extends Flowable {
 
 	protected $id = self::SUGARCANE_BLOCK;
 
@@ -41,7 +41,7 @@ class Sugarcane extends Flowable{
 	}
 
 
-	public function getDrops(Item $item) : array {
+	public function getDrops(Item $item) : array{
 		return [
 			[Item::SUGARCANE, 0, 1],
 		];

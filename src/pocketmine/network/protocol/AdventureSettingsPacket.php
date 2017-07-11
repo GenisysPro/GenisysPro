@@ -24,7 +24,7 @@ namespace pocketmine\network\protocol;
 #include <rules/DataPacket.h>
 
 
-class AdventureSettingsPacket extends DataPacket{
+class AdventureSettingsPacket extends DataPacket {
 
 	const NETWORK_ID = Info::ADVENTURE_SETTINGS_PACKET;
 

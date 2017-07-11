@@ -25,7 +25,7 @@ use pocketmine\item\Item;
 use pocketmine\item\Tool;
 use pocketmine\Player;
 
-class Dirt extends Solid{
+class Dirt extends Solid {
 
 	protected $id = self::DIRT;
 
@@ -33,11 +33,11 @@ class Dirt extends Solid{
 
 	}
 
-	public function canBeActivated() : bool {
+	public function canBeActivated() : bool{
 		return true;
 	}
 
-	public function getHardness() {
+	public function getHardness(){
 		return 0.5;
 	}
 

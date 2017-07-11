@@ -169,7 +169,7 @@ use pocketmine\utils\UUID;
 /**
  * Main class that handles networking, recovery, and packet sending to the server part
  */
-class Player extends Human implements CommandSender, InventoryHolder, ChunkLoader, IPlayer{
+class Player extends Human implements CommandSender, InventoryHolder, ChunkLoader, IPlayer {
 
 	const SURVIVAL = 0;
 	const CREATIVE = 1;
@@ -230,7 +230,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	/** @var Vector3 */
 	protected $sleeping = null;
 	protected $clientID = null;
-	
+
 	protected $deviceModel;
 	protected $deviceOS;
 
@@ -334,14 +334,14 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		}
 		$this->fishingHook = $entity;
 	}
-	
-	public function getDeviceModel(){
-	    return $this->deviceModel;
-    }
 
-    public function getDeviceOS(){
-	    return $this->deviceOS;
-    }
+	public function getDeviceModel(){
+		return $this->deviceModel;
+	}
+
+	public function getDeviceOS(){
+		return $this->deviceOS;
+	}
 
 	public function getItemInHand(){
 		return $this->inventory->getItemInHand();
@@ -609,6 +609,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	/**
 	 * @param PermissionAttachment $attachment
+	 *
 	 * @return bool
 	 */
 	public function removeAttachment(PermissionAttachment $attachment){
@@ -1299,17 +1300,18 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		return $this->gamemode;
 	}
 
-    /**
-     * @internal
-     *
-     * Returns a client-friendly gamemode of the specified real gamemode
-     * This function takes care of handling gamemodes known to MCPE (as of 1.1.0.3, that includes Survival, Creative and Adventure)
-     *
-     * TODO: remove this when Spectator Mode gets added properly to MCPE
-     *
-     * @param int $gamemode
-     * @return int
-     */
+	/**
+	 * @internal
+	 *
+	 * Returns a client-friendly gamemode of the specified real gamemode
+	 * This function takes care of handling gamemodes known to MCPE (as of 1.1.0.3, that includes Survival, Creative and Adventure)
+	 *
+	 * TODO: remove this when Spectator Mode gets added properly to MCPE
+	 *
+	 * @param int $gamemode
+	 *
+	 * @return int
+	 */
 	public static function getClientFriendlyGamemode(int $gamemode) : int{
 		$gamemode &= 0x03;
 		if($gamemode === Player::SPECTATOR){
@@ -1884,11 +1886,11 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->timings->stopTiming();
 
 		if(count($this->messageQueue) > 0){
-				$pk = new TextPacket();
-				$pk->type = TextPacket::TYPE_RAW;
-				$pk->message = implode("\n", $this->messageQueue);
-				$this->dataPacket($pk);
-				$this->messageQueue = [];
+			$pk = new TextPacket();
+			$pk->type = TextPacket::TYPE_RAW;
+			$pk->message = implode("\n", $this->messageQueue);
+			$this->dataPacket($pk);
+			$this->messageQueue = [];
 		}
 
 		return true;
@@ -2080,13 +2082,13 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$pk->levelId = "";
 		$pk->worldName = $this->server->getMotd();
 		$this->dataPacket($pk);
-		
-        $this->server->getPluginManager()->callEvent($ev = new PlayerLoginEvent($this, "Plugin reason"));
-        if($ev->isCancelled()){
-            $this->close($this->getLeaveMessage(), $ev->getKickMessage());
-            return;
-        }
-		
+
+		$this->server->getPluginManager()->callEvent($ev = new PlayerLoginEvent($this, "Plugin reason"));
+		if($ev->isCancelled()){
+			$this->close($this->getLeaveMessage(), $ev->getKickMessage());
+			return;
+		}
+
 		$pk = new SetTimePacket();
 		$pk->time = $this->level->getTime();
 		$pk->started = $this->level->stopTime == false;
@@ -2257,68 +2259,68 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$this->directDataPacket($pk);
 
 				$infoPacket = new ResourcePacksInfoPacket();
-        		$infoPacket->resourcePackEntries = $this->server->getResourcePackManager()->getResourceStack();
-        		$infoPacket->mustAccept = $this->server->getResourcePackManager()->resourcePacksRequired();
-        		$this->directDataPacket($infoPacket);
+				$infoPacket->resourcePackEntries = $this->server->getResourcePackManager()->getResourceStack();
+				$infoPacket->mustAccept = $this->server->getResourcePackManager()->resourcePacksRequired();
+				$this->directDataPacket($infoPacket);
 
 				/*if($this->isConnected()){
 					$this->processLogin();
 				}*/
 				break;
 
-            case ProtocolInfo::RESOURCE_PACK_CLIENT_RESPONSE_PACKET:
-               	switch($packet->status){
-		 			case ResourcePackClientResponsePacket::STATUS_REFUSED:
-							//Client refused to download the required resource pack
-		  				$this->close("", $this->server->getLanguage()->translateString("disconnectionScreen.refusedResourcePack"), true);
-		  				break;
-		  			case ResourcePackClientResponsePacket::STATUS_SEND_PACKS:
-		 				$manager = $this->server->getResourcePackManager();
-		 				foreach($packet->packIds as $uuid){
-		 					$pack = $manager->getPackById($uuid);
-		 					if(!($pack instanceof ResourcePack)){
-		 						//Client requested a resource pack but we don't have it available on the server
-		 						$this->close("", $this->server->getLanguage()->translateString("disconnectionScreen.unavailableResourcePack"), true);
-		 						break;
-		 					}
+			case ProtocolInfo::RESOURCE_PACK_CLIENT_RESPONSE_PACKET:
+				switch($packet->status){
+					case ResourcePackClientResponsePacket::STATUS_REFUSED:
+						//Client refused to download the required resource pack
+						$this->close("", $this->server->getLanguage()->translateString("disconnectionScreen.refusedResourcePack"), true);
+						break;
+					case ResourcePackClientResponsePacket::STATUS_SEND_PACKS:
+						$manager = $this->server->getResourcePackManager();
+						foreach($packet->packIds as $uuid){
+							$pack = $manager->getPackById($uuid);
+							if(!($pack instanceof ResourcePack)){
+								//Client requested a resource pack but we don't have it available on the server
+								$this->close("", $this->server->getLanguage()->translateString("disconnectionScreen.unavailableResourcePack"), true);
+								break;
+							}
 
-		 					$pk = new ResourcePackDataInfoPacket();
-		 					$pk->packId = $pack->getPackId();
-		 					$pk->maxChunkSize = 1048576; //1MB
-		 					$pk->chunkCount = $pack->getPackSize() / $pk->maxChunkSize;
-		 					$pk->compressedPackSize = $pack->getPackSize();
-		 					$pk->sha256 = $pack->getSha256();
-		 					$this->dataPacket($pk);
-		 				}
-		 				break;
-		 			case ResourcePackClientResponsePacket::STATUS_HAVE_ALL_PACKS:
-		 				$pk = new ResourcePackStackPacket();
-		 				$manager = $this->server->getResourcePackManager();
-		 				$pk->resourcePackStack = $manager->getResourceStack();
-		 				$pk->mustAccept = $manager->resourcePacksRequired();
-		 				$this->dataPacket($pk);
-		  				break;
-		  			case ResourcePackClientResponsePacket::STATUS_COMPLETED:
-		  				$this->processLogin();
-		  				break;
-		  		}
-		  		break;
+							$pk = new ResourcePackDataInfoPacket();
+							$pk->packId = $pack->getPackId();
+							$pk->maxChunkSize = 1048576; //1MB
+							$pk->chunkCount = $pack->getPackSize() / $pk->maxChunkSize;
+							$pk->compressedPackSize = $pack->getPackSize();
+							$pk->sha256 = $pack->getSha256();
+							$this->dataPacket($pk);
+						}
+						break;
+					case ResourcePackClientResponsePacket::STATUS_HAVE_ALL_PACKS:
+						$pk = new ResourcePackStackPacket();
+						$manager = $this->server->getResourcePackManager();
+						$pk->resourcePackStack = $manager->getResourceStack();
+						$pk->mustAccept = $manager->resourcePacksRequired();
+						$this->dataPacket($pk);
+						break;
+					case ResourcePackClientResponsePacket::STATUS_COMPLETED:
+						$this->processLogin();
+						break;
+				}
+				break;
 
-		  	case ProtocolInfo::RESOURCE_PACK_CHUNK_REQUEST_PACKET:
-		  		$manager = $this->server->getResourcePackManager();
- 				$pack = $manager->getPackById($packet->packId);
- 				if(!($pack instanceof ResourcePack)){
- 					$this->close("", "disconnectionScreen.resourcePack", true);
- 					return true;
- 				}
+			case ProtocolInfo::RESOURCE_PACK_CHUNK_REQUEST_PACKET:
+				$manager = $this->server->getResourcePackManager();
+				$pack = $manager->getPackById($packet->packId);
+				if(!($pack instanceof ResourcePack)){
+					$this->close("", "disconnectionScreen.resourcePack", true);
+					return true;
+				}
 
- 				$pk = new ResourcePackChunkDataPacket();
- 				$pk->packId = $pack->getPackId();
- 				$pk->chunkIndex = $packet->chunkIndex;
- 				$pk->data = $pack->getPackChunk(1048576 * $packet->chunkIndex, 1048576);
- 				$pk->progress = (1048576 * $packet->chunkIndex);
- 				$this->dataPacket($pk);
-                break;
+				$pk = new ResourcePackChunkDataPacket();
+				$pk->packId = $pack->getPackId();
+				$pk->chunkIndex = $packet->chunkIndex;
+				$pk->data = $pack->getPackChunk(1048576 * $packet->chunkIndex, 1048576);
+				$pk->progress = (1048576 * $packet->chunkIndex);
+				$this->dataPacket($pk);
+				break;
 
 			case ProtocolInfo::MOVE_PLAYER_PACKET:
 				if($this->linkedEntity instanceof Entity){
@@ -2528,10 +2530,10 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 							}
 							break;
 						case Item::EMPTY_MAP:
-					 	$item = Item::get(Item::FILLED_MAP, 0, 1);
-						 $item->setMapId(1000);
-						 $this->inventory->addItem($item);
-						 break;
+							$item = Item::get(Item::FILLED_MAP, 0, 1);
+							$item->setMapId(1000);
+							$this->inventory->addItem($item);
+							break;
 						case Item::ENDER_PEARL:
 							if(floor(($time = microtime(true)) - $this->lastEnderPearlUse) >= 1){
 								$f = 1.1;
@@ -2786,27 +2788,27 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 						}
 						break 2;
 					case PlayerActionPacket::ACTION_START_GLIDE:
-  						$ev = new PlayerToggleGlideEvent($this, true);
-  						$this->server->getPluginManager()->callEvent($ev);
-  						if($ev->isCancelled()){
-  							$this->sendData($this);
-  						}else{
-  							$this->setGliding(true);
-  						}
-  						break 2;
-  					case PlayerActionPacket::ACTION_STOP_GLIDE:
-  						$ev = new PlayerToggleGlideEvent($this, false);
-  						$this->server->getPluginManager()->callEvent($ev);
-  						if($ev->isCancelled()){
-  							$this->sendData($this);
-  						}else{
-  							$this->setGliding(false);
-  						}
-  						break 2;
+						$ev = new PlayerToggleGlideEvent($this, true);
+						$this->server->getPluginManager()->callEvent($ev);
+						if($ev->isCancelled()){
+							$this->sendData($this);
+						}else{
+							$this->setGliding(true);
+						}
+						break 2;
+					case PlayerActionPacket::ACTION_STOP_GLIDE:
+						$ev = new PlayerToggleGlideEvent($this, false);
+						$this->server->getPluginManager()->callEvent($ev);
+						if($ev->isCancelled()){
+							$this->sendData($this);
+						}else{
+							$this->setGliding(false);
+						}
+						break 2;
 					case PlayerActionPacket::ACTION_CONTINUE_BREAK:
-					 $block = $this->level->getBlock($pos);
-					 $this->level->broadcastLevelEvent($pos, LevelEventPacket::EVENT_PARTICLE_PUNCH_BLOCK, $block->getId() | ($block->getDamage() << 8) | ($packet->face << 16));
-					 break;
+						$block = $this->level->getBlock($pos);
+						$this->level->broadcastLevelEvent($pos, LevelEventPacket::EVENT_PARTICLE_PUNCH_BLOCK, $block->getId() | ($block->getDamage() << 8) | ($packet->face << 16));
+						break;
 					default:
 						assert(false, "Unhandled player action " . $packet->action . " from " . $this->getName());
 				}
@@ -3155,7 +3157,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 							}
 						}
 						if($anvilInventory === null){ //If it's _still_ null, then the player doesn't have a valid anvil window, cannot proceed.
-							$this->getServer()->getLogger()->debug("Couldn't find an anvil window for ".$this->getName().", exiting");
+							$this->getServer()->getLogger()->debug("Couldn't find an anvil window for " . $this->getName() . ", exiting");
 							$this->inventory->sendContents($this);
 							break;
 						}
@@ -3164,18 +3166,17 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					if($recipe === null){
 						if($packet->output[0]->getId() > 0 && $packet->output[1] === 0){ //物品重命名
 							$anvilInventory->onRename($this, $packet->output[0]);
-						}
-						elseif($packet->output[0]->getId() > 0 && $packet->output[1] > 0){ //附魔书
+						}elseif($packet->output[0]->getId() > 0 && $packet->output[1] > 0){ //附魔书
 							$anvilInventory->process($this, $packet->output[0], $packet->output[1]);
 						}
 					}
 					break;
 				}elseif(($recipe instanceof BigShapelessRecipe or $recipe instanceof BigShapedRecipe) and $this->craftingType === 0){
-					$this->server->getLogger()->debug("Received big crafting recipe from ".$this->getName()." with no crafting table open");
+					$this->server->getLogger()->debug("Received big crafting recipe from " . $this->getName() . " with no crafting table open");
 					$this->inventory->sendContents($this);
 					break;
 				}elseif($recipe === null){
-					$this->server->getLogger()->debug("Null (unknown) crafting recipe received from ".$this->getName()." for ".$packet->output[0]);
+					$this->server->getLogger()->debug("Null (unknown) crafting recipe received from " . $this->getName() . " for " . $packet->output[0]);
 					$this->inventory->sendContents($this);
 					break;
 				}
@@ -3198,7 +3199,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					 */
 					$possibleRecipes = $this->server->getCraftingManager()->getRecipesByResult($packet->output[0]);
 					if(!$packet->output[0]->equals($recipe->getResult())){
-						$this->server->getLogger()->debug("Mismatched desktop recipe received from player ".$this->getName().", expected ".$recipe->getResult().", got ".$packet->output[0]);
+						$this->server->getLogger()->debug("Mismatched desktop recipe received from player " . $this->getName() . ", expected " . $recipe->getResult() . ", got " . $packet->output[0]);
 					}
 					$recipe = null;
 					foreach($possibleRecipes as $r){
@@ -3466,9 +3467,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				break;
 			case ProtocolInfo::SET_PLAYER_GAME_TYPE_PACKET:
 				if($packet->gamemode !== $this->gamemode){
-					 //Set this back to default. TODO: handle this properly
- 			$this->sendGamemode();
- 			$this->sendSettings();
+					//Set this back to default. TODO: handle this properly
+					$this->sendGamemode();
+					$this->sendSettings();
 				}
 				break;
 			case ProtocolInfo::ITEM_FRAME_DROP_ITEM_PACKET:
@@ -3478,8 +3479,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 				$tile = $this->level->getTile($this->temporalVector->setComponents($packet->x, $packet->y, $packet->z));
 				if($tile instanceof ItemFrame){
-                    $this->server->getPluginManager()->callEvent($ev = new ItemFrameDropItemEvent($this, $tile->getBlock(), $tile, $tile->getItem()));
-                    if($this->isSpectator() or $ev->isCancelled()){
+					$this->server->getPluginManager()->callEvent($ev = new ItemFrameDropItemEvent($this, $tile->getBlock(), $tile, $tile->getItem()));
+					if($this->isSpectator() or $ev->isCancelled()){
 						$tile->spawnTo($this);
 						break;
 					}
@@ -3570,19 +3571,19 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	 *
 	 * @param string $title
 	 * @param string $subtitle
-	 * @param int    $fadeIn Duration in ticks for fade-in. If -1 is given, client-sided defaults will be used.
-	 * @param int    $stay Duration in ticks to stay on screen for
+	 * @param int    $fadeIn  Duration in ticks for fade-in. If -1 is given, client-sided defaults will be used.
+	 * @param int    $stay    Duration in ticks to stay on screen for
 	 * @param int    $fadeOut Duration in ticks for fade-out.
 	 */
-	 public function sendActionBar(string $title, string $subtitle = "", int $fadeIn = -1, int $stay = -1, int $fadeOut = -1){
-		 $this->setTitleDuration($fadeIn, $stay, $fadeOut);
+	public function sendActionBar(string $title, string $subtitle = "", int $fadeIn = -1, int $stay = -1, int $fadeOut = -1){
+		$this->setTitleDuration($fadeIn, $stay, $fadeOut);
 		if($subtitle !== ""){
 			$this->sendTitleText($subtitle, SetTitlePacket::TYPE_SUB_TITLE);
 		}
 		$this->sendTitleText($title, SetTitlePacket::TYPE_TITLE);
-	 }
+	}
 
-	 /*********/
+	/*********/
 	public function addTitle(string $title, string $subtitle = "", int $fadeIn = -1, int $stay = -1, int $fadeOut = -1){
 		$this->setTitleDuration($fadeIn, $stay, $fadeOut);
 		if($subtitle !== ""){
@@ -3612,8 +3613,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	/**
 	 * Sets the title duration.
 	 *
-	 * @param int $fadeIn Title fade-in time in ticks.
-	 * @param int $stay Title stay time in ticks.
+	 * @param int $fadeIn  Title fade-in time in ticks.
+	 * @param int $stay    Title stay time in ticks.
 	 * @param int $fadeOut Title fade-out time in ticks.
 	 */
 	public function setTitleDuration(int $fadeIn, int $stay, int $fadeOut){
@@ -3631,7 +3632,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	 * Internal function used for sending titles.
 	 *
 	 * @param string $title
-	 * @param int $type
+	 * @param int    $type
 	 */
 	protected function sendTitleText(string $title, int $type){
 		$pk = new SetTitlePacket();
@@ -3639,24 +3640,25 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$pk->title = $title;
 		$this->dataPacket($pk);
 	}
-	
-	/**
-     * @param string $address
-     * @param $port
-     */
-	public function transfer(string $address, $port){
-        $pk = new TransferPacket();
-        $pk->address = $address;
-        $pk->port = $port;
-        $this->dataPacket($pk);
-    }
 
-    /**
-     * Sends a direct chat message to a player
-     *
-     * @param string|TextContainer $message
-     * @return bool
-     */
+	/**
+	 * @param string $address
+	 * @param        $port
+	 */
+	public function transfer(string $address, $port){
+		$pk = new TransferPacket();
+		$pk->address = $address;
+		$pk->port = $port;
+		$this->dataPacket($pk);
+	}
+
+	/**
+	 * Sends a direct chat message to a player
+	 *
+	 * @param string|TextContainer $message
+	 *
+	 * @return bool
+	 */
 	public function sendMessage($message){
 		if($message instanceof TextContainer){
 			if($message instanceof TranslationContainer){
@@ -3716,6 +3718,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	/**
 	 * @param $message
+	 *
 	 * @return bool
 	 */
 	public function sendTip($message){
@@ -3731,16 +3734,17 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		return false;
 	}
 
-    /**
-     * Send a title text or/and with/without a sub title text to a player
-     *
-     * @param $title
-     * @param string $subtitle
-     * @param int $fadein
-     * @param int $fadeout
-     * @param int $duration
-     * @return bool
-     */
+	/**
+	 * Send a title text or/and with/without a sub title text to a player
+	 *
+	 * @param        $title
+	 * @param string $subtitle
+	 * @param int    $fadein
+	 * @param int    $fadeout
+	 * @param int    $duration
+	 *
+	 * @return bool
+	 */
 	public function sendTitle($title, $subtitle = "", $fadein = 20, $fadeout = 20, $duration = 5){
 		return $this->addTitle($title, $subtitle, $fadein, $duration, $fadeout);
 	}
@@ -3750,7 +3754,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	 * flag set to kick without the "Kicked by admin" part instead of this method.
 	 *
 	 * @param string $message Message to be broadcasted
-	 * @param string $reason Reason showed in console
+	 * @param string $reason  Reason showed in console
 	 * @param bool   $notify
 	 */
 	public final function close($message = "", $reason = "generic reason", $notify = true){
@@ -4310,7 +4314,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	public function onChunkChanged(Chunk $chunk){
 		if(isset($this->usedChunks[$hash = Level::chunkHash($chunk->getX(), $chunk->getZ())])){
-		 	$this->usedChunks[$hash] = false;
+			$this->usedChunks[$hash] = false;
 		}
 	}
 
@@ -4338,11 +4342,12 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		return $this->isConnected();
 	}
 
-    /**
-     * @param Effect $effect
-     * @return bool|void
-     * @internal param $Effect
-     */
+	/**
+	 * @param Effect $effect
+	 *
+	 * @return bool|void
+	 * @internal param $Effect
+	 */
 	public function addEffect(Effect $effect){//Overwrite
 		if($effect->isBad() && $this->isCreative()){
 			return;
