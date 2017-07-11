@@ -1110,8 +1110,6 @@ class Server{
 
 		$level->initLevel();
 
-		$level->startUpdatingLight(); //Fast hack for correcting light on old chunks and maps
-
         $this->getPluginManager()->callEvent(new LevelLoadEvent($level));
 
 		$level->setTickRate($this->baseTickRate);

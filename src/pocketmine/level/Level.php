@@ -417,6 +417,9 @@ class Level implements ChunkManager, Metadatable
         if ($this->server->weatherEnabled and $this->getDimension() == self::DIMENSION_NORMAL) {
             $this->weather->setCanCalculate(true);
         } else $this->weather->setCanCalculate(false);
+
+
+        $this->startUpdatingLight(); //Fast hack for correcting light on old chunks and maps
     }
 
     public function setDimension(int $dimension)
