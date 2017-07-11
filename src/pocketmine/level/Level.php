@@ -417,9 +417,6 @@ class Level implements ChunkManager, Metadatable
         if ($this->server->weatherEnabled and $this->getDimension() == self::DIMENSION_NORMAL) {
             $this->weather->setCanCalculate(true);
         } else $this->weather->setCanCalculate(false);
-
-
-        $this->startUpdatingLight(); //Fast hack for correcting light on old chunks and maps
     }
 
     public function setDimension(int $dimension)
@@ -2852,9 +2849,11 @@ class Level implements ChunkManager, Metadatable
 
         $this->server->getPluginManager()->callEvent(new ChunkLoadEvent($this, $chunk, !$chunk->isGenerated()));
 
-        if (!$chunk->isLightPopulated() and $chunk->isPopulated() and $this->getServer()->getProperty("chunk-ticking.light-updates", false)) {
+        //Fast hack for correcting light on old chunks and maps
+        //TODO: This can affect the performance of the server. Need rewrite this or remove after a while
+        //if (!$chunk->isLightPopulated() and $chunk->isPopulated() and $this->getServer()->getProperty("chunk-ticking.light-updates", false)) {
             $this->getServer()->getScheduler()->scheduleAsyncTask(new LightPopulationTask($this, $chunk));
-        }
+        //}
 
         if ($this->isChunkInUse($x, $z)) {
             foreach ($this->getChunkLoaders($x, $z) as $loader) {
@@ -3196,13 +3195,6 @@ class Level implements ChunkManager, Metadatable
         $this->provider->doGarbageCollection();
 
         $this->timings->doChunkGC->stopTiming();
-    }
-
-    public function startUpdatingLight()
-    {
-        foreach ($this->getChunks() as $chunk) {
-            $this->getServer()->getScheduler()->scheduleAsyncTask(new LightPopulationTask($this, $chunk));
-        }
     }
 
     public function unloadChunks(bool $force = false)
