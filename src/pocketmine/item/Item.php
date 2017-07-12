@@ -886,7 +886,7 @@ class Item implements ItemIds, \JsonSerializable {
 	 * @param array $lines
 	 */
 	public function setLore(array $lines){
-		$tag = $this->getNamedTag();
+		$tag = $this->getNamedTag() ?? new CompoundTag("", []);
 		if(!isset($tag->display)){
 			$tag->display = new CompoundTag("display", []);
 		}
