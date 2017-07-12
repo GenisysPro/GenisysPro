@@ -787,8 +787,6 @@ class Level implements ChunkManager, Metadatable
      * Changes to this function won't be recorded on the version.
      *
      * @param int $currentTick
-     *
-     * @return bool
      */
     public function doTick(int $currentTick)
     {
@@ -1462,7 +1460,7 @@ class Level implements ChunkManager, Metadatable
                 $update->setAndUpdateLight($x, $i, $z, 15);
             }
         } else { //No heightmap change, block changed "underground"
-            $update->setAndUpdateLight($x, $y, $z, max(0, $this->getHighestAdjacentBlockSkyLight($x, $y, $z) - Block::$lightFilter[$sourceId]));
+            $update->setAndUpdateLight($x, $y, $z, max(0, $this->getHighestAdjacentBlockLight($x, $y, $z) - Block::$lightFilter[$sourceId]));
         }
         $update->execute();
         $this->timings->doBlockSkyLightUpdates->stopTiming();
