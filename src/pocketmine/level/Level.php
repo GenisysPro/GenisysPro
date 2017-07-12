@@ -1468,7 +1468,7 @@ class Level implements ChunkManager, Metadatable
         $this->timings->doBlockSkyLightUpdates->stopTiming();
     }
 
-    public function getHighestAdjacentBlockSkyLight(int $x, int $y, int $z): int
+    public function getHighestAdjacentBlockLight(int $x, int $y, int $z): int
     {
         return max([
             $this->getBlockLightAt($x + 1, $y, $z),
