@@ -135,8 +135,7 @@ GenisysProを入手する
 * [PHPバイナリーを入手](https://itxtech.org/genisys/get/)
 * インストール手順は [Wiki](https://github.com/GenisysPro/GenisysPro/wiki) をご覧ください。
 
-
-NOTE: **`master`ブランチは公式にサポートされている唯一のブランチです。**  
+注意: **`master`ブランチは公式にサポートされている唯一のブランチです。**  
 他のすべてのブランチはテスト中であり、不安定である可能性があります。 リスクがあることを理解していない限り、他のブランチからビルドを使用しないでください。
 
 
