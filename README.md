@@ -99,22 +99,22 @@ License
 前書き
 -------------
 
-__GenisysProは、*Minecraft：Pocket Edition* および *Minecraft：Windows 10 Edition* 用の豊富な機能を備えたサーバーソフトウェアです。__  
-GenisysProは **[Genisys](https://github.com/iTXTech/Genisys)** をベースとし、拡張機能を備えています。 コードのほとんどは、もともと **[iTXTech](https://github.com/orgs/iTXTech/people)**のメンバーによって書かれたものです。
+__GenisysProは、*Minecraft: Pocket Edition* および *Minecraft: Windows 10 Edition* 用の豊富な機能を備えたサーバーソフトウェアです。__  
+GenisysProは **[Genisys](https://github.com/iTXTech/Genisys)** をベースとし、拡張機能を備えています。 コードのほとんどは、もともと **[iTXTech](https://github.com/orgs/iTXTech/people)** のメンバーによって書かれたものです。
 
 Genisysが提供する機能の一部:
 * 複数のクライアントバージョンのサポート
-* プラグイン用API（GeniAPI）
+* 拡張プラグイン用API（GeniAPI）
 * オプションのXbox Live認証
 * Minecraft: Windows 10 Editionのサポート
 * グローバルリソースパック
 
 サポートされているバージョン
 -------------
-Game versions supported by `master` branch:
+`master` ブランチにてサポートしているバージョン:
 - [x] MCPE v1.1.x Alpha
 
-TODOリスト
+TODO(やること)リスト
 -------------
 
 - [x] ビーコン
@@ -123,20 +123,19 @@ TODOリスト
 - [x] 金床
 - [x] グローバルリソースパック
 
-GenisysProはまだまだ道のりがあります。 皆様のご協力を歓迎し、寄付を歓迎します。  
+GenisysProはまだまだ道のりがあります。 皆様のご協力と寄付を歓迎しております。  
 
 
-GenisysProを入手しよう！
+GenisysProを入手する
 -------------
 * 最新のコードを [GitHub](https://github.com/GenisysPro/GenisysPro/archive/master.zip) からダウンロードする
   *-又は-*  
-  ビルドを [Gitlab CI](https://gitlab.com/GenisysPro/GenisysPro/builds) からダウンロードする。こちらの
+  ビルドを [GitLab CI](https://gitlab.com/GenisysPro/GenisysPro/builds) からダウンロードする。こちらの
   ビルドは最新バージョンではなく、週に数回更新されるだけです。
 * [PHPバイナリーを入手](https://itxtech.org/genisys/get/)
-* インストール手順は [Wiki](https://github.com/GenisysPro/GenisysPro/wiki) にあります。
+* インストール手順は [Wiki](https://github.com/GenisysPro/GenisysPro/wiki) をご覧ください。
 
-
-NOTE: **`master`ブランチは公式にサポートされている唯一のブランチです。**  
+注意: **`master`ブランチは公式にサポートされている唯一のブランチです。**  
 他のすべてのブランチはテスト中であり、不安定である可能性があります。 リスクがあることを理解していない限り、他のブランチからビルドを使用しないでください。
 
 
