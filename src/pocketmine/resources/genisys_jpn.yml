@@ -77,7 +77,7 @@ server:
  advanced-command-selector: false
  #有効にするとResourcePackManagerを設定します
  enable-resource: false
- #This parameter turns on or off the absorption of water by a sponge //TODO: Translation for other languages
+ #この設定はスポンジブロックによる水の吸収の機能をオン または オフ の設定ができます。
  absorb-water: false
 
 enchantment:
