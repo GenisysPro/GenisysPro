@@ -48,7 +48,14 @@ class Minecart extends Item {
 		return true;
 	}
 
-	/**
+    /**
+     * @return int
+     */
+    public function getMaxStackSize(): int{
+	    return 1;
+    }
+
+    /**
 	 * @param Level  $level
 	 * @param Player $player
 	 * @param Block  $block
