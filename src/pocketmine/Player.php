@@ -3306,8 +3306,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 								$this->server->getPluginManager()->callEvent($ev = new PlayerChatEvent($this, $ev->getMessage()));
 								if(!$ev->isCancelled()){
 									$this->server->broadcastMessage($this->getServer()->getLanguage()->translateString($ev->getFormat(), [
-										$ev->getPlayer()->getDisplayName(),
-										$ev->getMessage()
+										$ev->getPlayer()->getDisplayName(),										$ev->getMessage()
 									]), $ev->getRecipients());
 								}
 							}
@@ -3332,8 +3331,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				 * fail and items end up stuck in the crafting inventory.
 				 */
 				foreach($this->getFloatingInventory()->getContents() as $item){
-					$this->getTransactionQueue()->addTransaction(new DropItemTransaction($item));
-				}
+					$this->getFloatingInventory()->removeItem($item);
+                    $this->getInventory()->addItem($item);
+			       }
 				break;
 
 			case ProtocolInfo::CRAFTING_EVENT_PACKET:
