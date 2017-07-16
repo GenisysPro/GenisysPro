@@ -3,11 +3,13 @@ GenisysPro
 
 ![GenisysPro](http://i.imgur.com/R8gExma.jpg)
 
-[![Website](https://img.shields.io/website/http/shields.io.svg?label=official%20website)](https://genisys.pro/)
-[![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/WrKzRNn)
+#### Website/forums [![Website](https://img.shields.io/website/http/shields.io.svg?label=official%20website)](https://genisys.pro/)
 
-[![TravisCI](https://travis-ci.org/GenisysPro/GenisysPro.svg?branch=master)](https://travis-ci.org/GenisysPro/GenisysPro)
-[![build status](https://gitlab.com/GenisysPro/GenisysPro/badges/master/build.svg)](https://gitlab.com/GenisysPro/GenisysPro/commits/master)
+#### Discord [![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/WrKzRNn)
+
+#### TravisCI [![TravisCI](https://travis-ci.org/GenisysPro/GenisysPro.svg?branch=master)](https://travis-ci.org/GenisysPro/GenisysPro)
+
+#### Gitlab [![build status](https://gitlab.com/GenisysPro/GenisysPro/badges/master/build.svg)](https://gitlab.com/GenisysPro/GenisysPro/commits/master)
 
 Languages
 -------------
