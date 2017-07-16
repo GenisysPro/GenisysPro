@@ -29,6 +29,7 @@ use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
 class Minecart extends Vehicle {
+    
 	const NETWORK_ID = 84;
 
 	const TYPE_NORMAL = 1;
@@ -53,8 +54,8 @@ class Minecart extends Vehicle {
 	private $direction = -1;
 	private $moveVector = [];
 
-	public function initEntity(){
-		$this->setMaxHealth(1);
+    public function initEntity(){
+		$this->setMaxHealth(6);
 		$this->setHealth($this->getMaxHealth());
 		$this->moveVector[Entity::NORTH] = new Vector3(-1, 0, 0);
 		$this->moveVector[Entity::SOUTH] = new Vector3(1, 0, 0);
@@ -97,7 +98,6 @@ class Minecart extends Vehicle {
 		$this->timings->startTiming();
 
 		$hasUpdate = false;
-		//parent::onUpdate($currentTick);
 
 		if($this->isAlive()){
 			$p = $this->getLinkedEntity();
@@ -193,6 +193,7 @@ class Minecart extends Vehicle {
 			// Not able to find rail
 			$this->state = Minecart::STATE_INITIAL;
 		}
+
 		return false;
 	}
 
@@ -318,6 +319,7 @@ class Minecart extends Vehicle {
 				}
 				break;
 		}
+
 		return $currentDirection;
 	}
 
@@ -418,6 +420,7 @@ class Minecart extends Vehicle {
 				}
 				break;
 		}
+
 		return false;
 	}
 
@@ -484,6 +487,7 @@ class Minecart extends Vehicle {
 				$minDistance = $dis;
 			}
 		}
+
 		return $nearestRail;
 	}
 
@@ -504,7 +508,6 @@ class Minecart extends Vehicle {
 		$pk->pitch = 0;
 		$pk->metadata = $this->dataProperties;
 		$player->dataPacket($pk);
-
 		parent::spawnTo($player);
 	}
 
