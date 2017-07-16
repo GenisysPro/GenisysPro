@@ -3,6 +3,9 @@ GenisysPro
 
 ![GenisysPro](http://i.imgur.com/R8gExma.jpg)
 
+[![Website](https://img.shields.io/website/http/shields.io.svg?label=Official%20Website)](https://genisys.pro/)
+[![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/WrKzRNn)
+
 [![Build Status](https://travis-ci.org/GenisysPro/GenisysPro.svg?branch=master)](https://travis-ci.org/GenisysPro/GenisysPro)
 [![build status](https://gitlab.com/GenisysPro/GenisysPro/badges/master/build.svg)](https://gitlab.com/GenisysPro/GenisysPro/commits/master)
 
