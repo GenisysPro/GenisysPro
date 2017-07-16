@@ -67,10 +67,11 @@ Help & Support
 -------------
 Official Doxygen-generated Documentation (unavailable yet)
 
-Discussion
+Community
 -------------
-* [QQ group](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
+* [GenisysPro Official Forum](https://genisys.pro/forums/)
 * [Discord Group](https://discord.gg/WrKzRNn)
+* [QQ Group](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
 
 Donating
 -------------
@@ -223,10 +224,11 @@ GenisysPro 还有很长的一段路要走。我们欢迎贡献者，并希望能
 -------------
 Doxygen 生成的官方文档（暂无）
 
-讨论
+社区
 -------------
-* [QQ 群](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
+* [GenisysPro 官方论坛](https://genisys.pro/forums/)
 * [Discord 群组](https://discord.gg/WrKzRNn)
+* [QQ 群](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
 
 捐赠
 -------------
@@ -297,10 +299,11 @@ GenisysPro 還有很長的一段路要走。我們歡迎貢獻者，並希望得
 -------------
 由 Doxygen 產生的官方檔案（暫無）
 
-討論
+社區
 -------------
-* [QQ 群](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
+* [GenisysPro 官方論壇](https://genisys.pro/forums/)
 * [Discord 群組](https://discord.gg/WrKzRNn)
+* [QQ 群](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
 
 捐贈
 -------------
