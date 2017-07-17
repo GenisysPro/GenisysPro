@@ -32,8 +32,8 @@ class Ice extends Transparent {
 	/**
 	 * Ice constructor.
 	 */
-	public function __construct(){
-
+	public function __construct($meta = 0){
+		$this->meta = $meta;
 	}
 
 	/**

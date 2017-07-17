@@ -35,7 +35,8 @@ class Obsidian extends Solid {
 	/**
 	 * Obsidian constructor.
 	 */
-	public function __construct(){
+	public function __construct($meta = 0){
+		$this->meta = $meta;
 		if($this->temporalVector === null){
 			$this->temporalVector = new Vector3(0, 0, 0);
 		}

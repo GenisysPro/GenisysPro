@@ -32,8 +32,8 @@ class GlassPane extends Thin {
 	/**
 	 * GlassPane constructor.
 	 */
-	public function __construct(){
-
+	public function __construct($meta = 0){
+		$this->meta = $meta;
 	}
 
 	/**

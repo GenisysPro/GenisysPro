@@ -32,8 +32,8 @@ class Glowstone extends Transparent implements SolidLight {
 	/**
 	 * Glowstone constructor.
 	 */
-	public function __construct(){
-
+	public function __construct($meta = 0){
+		$this->meta = $meta;
 	}
 
 	/**

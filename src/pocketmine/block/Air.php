@@ -35,8 +35,8 @@ class Air extends Transparent {
 	/**
 	 * Air constructor.
 	 */
-	public function __construct(){
-
+	public function __construct($mata = 0){
+		$this->meta = $meta;
 	}
 
 	/**

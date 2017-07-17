@@ -30,8 +30,8 @@ class InvisibleBedrock extends Transparent {
 	/**
 	 * InvisibleBedrock constructor.
 	 */
-	public function __construct(){
-
+	public function __construct($meta = 0){
+		$this->meta = $meta;
 	}
 
 	/**

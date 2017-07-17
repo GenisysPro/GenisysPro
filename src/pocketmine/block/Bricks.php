@@ -31,8 +31,8 @@ class Bricks extends Solid {
 	/**
 	 * Bricks constructor.
 	 */
-	public function __construct(){
-
+	public function __construct($meta){
+		$this->meta = $meta;
 	}
 
 	/**
