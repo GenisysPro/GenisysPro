@@ -28,8 +28,7 @@ use pocketmine\math\Vector3;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Minecart extends Vehicle{
-
+class Minecart extends Vehicle {
     const NETWORK_ID = 84;
 
     const TYPE_NORMAL = 1;
@@ -508,6 +507,7 @@ class Minecart extends Vehicle{
         $pk->pitch = 0;
         $pk->metadata = $this->dataProperties;
         $player->dataPacket($pk);
+
         parent::spawnTo($player);
     }
 
