@@ -32,7 +32,7 @@ class NetherQuartzOre extends Solid {
 	/**
 	 * NetherQuartzOre constructor.
 	 */
-	public function __construct($meta){
+	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
