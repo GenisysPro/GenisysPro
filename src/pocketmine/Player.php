@@ -99,7 +99,6 @@ use pocketmine\inventory\ShapedRecipe;
 use pocketmine\inventory\ShapelessRecipe;
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\Item;
-use pocketmine\item\Map;
 use pocketmine\level\ChunkLoader;
 use pocketmine\level\format\Chunk;
 use pocketmine\level\Level;
@@ -128,7 +127,6 @@ use pocketmine\network\protocol\BatchPacket;
 use pocketmine\network\protocol\ChangeDimensionPacket;
 use pocketmine\network\protocol\ChunkRadiusUpdatedPacket;
 use pocketmine\network\protocol\ContainerSetContentPacket;
-use pocketmine\network\protocol\ClientboundMapItemDataPacket;
 use pocketmine\network\protocol\DataPacket;
 use pocketmine\network\protocol\DisconnectPacket;
 use pocketmine\network\protocol\EntityEventPacket;
@@ -162,7 +160,6 @@ use pocketmine\plugin\Plugin;
 use pocketmine\resourcepacks\ResourcePack;
 use pocketmine\tile\ItemFrame;
 use pocketmine\tile\Spawnable;
-use pocketmine\utils\MapUtils;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\UUID;
 
@@ -2737,11 +2734,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 								}
 							}
 							break;
-						case Item::EMPTY_MAP:
-							$item = Item::get(Item::FILLED_MAP, 0, 1);
-							$item->setMapId(1000);
-							$this->inventory->addItem($item);
-							break;
 						case Item::ENDER_PEARL:
 							if(floor(($time = microtime(true)) - $this->lastEnderPearlUse) >= 1){
 								$f = 1.1;
@@ -3219,21 +3211,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 							}
 						}
 						break;
-				}
-				break;
-			case ProtocolInfo::MAP_INFO_REQUEST_PACKET:
-				/** @var MapInfoRequestPacket $packet */
-				$path = Server::getInstance()->getFilePath() . "src/pocketmine/resources/map.png";
-				if($this->getServer()->mapEnabled){
-					if($packet->uuid == -1 || !file_exists($path)){
-						$map = new Map($packet->uuid);
-						$map->update(ClientboundMapItemDataPacket::BITFLAG_TEXTURE_UPDATE, $this);
-					}else{
-						$map = new Map($packet->uuid);
-						$map->fromPng($path);
-						$map->update(ClientboundMapItemDataPacket::BITFLAG_TEXTURE_UPDATE, $this);
-						MapUtils::cacheMap($map);
-					}
 				}
 				break;
 			case ProtocolInfo::DROP_ITEM_PACKET:

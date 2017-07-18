@@ -309,7 +309,6 @@ class Server{
 	public $countBookshelf = false;
 	public $allowInventoryCheats = false;
 	public $folderpluginloader = true;
-	public $mapEnabled = true;//TODO: 配置文件
 
 	/**
 	 * @return string
