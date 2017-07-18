@@ -2,14 +2,14 @@
 
 /*
  *
- *  _____            _               _____           
- * / ____|          (_)             |  __ \          
- *| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
- *| | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \ 
+ *  _____            _               _____
+ * / ____|          (_)             |  __ \
+ *| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___
+ *| | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \
  *| |__| |  __/ | | | \__ \ |_| \__ \ |   | | | (_) |
- * \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/ 
- *                         __/ |                    
- *                        |___/                     
+ * \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/
+ *                         __/ |
+ *                        |___/
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -1478,24 +1478,24 @@ class Server{
 	 $version = implode(",",ProtocolInfo::MINECRAFT_VERSION);
 		$string = "
 
-  _____            _               _____           
- / ____|          (_)             |  __ \          
-| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___  
-| | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \ 
+  _____            _               _____
+ / ____|          (_)             |  __ \
+| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___
+| | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \
 | |__| |  __/ | | | \__ \ |_| \__ \ |   | | | (_) |
- \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/ 
-                          __/ |                    
-                         |___/                     
+ \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/
+                          __/ |
+                         |___/
 
 	Version: §6" . $this->getPocketMineVersion() . '§f
 	Client Version: §b' . $version . '§f
 	PHP Version: §e' . PHP_VERSION . '§f
 	System OS: §6' . PHP_OS .'§f
-	This core was maintain by §dGenisysPro§f
+	This core was maintained by §dGenisysPro§f (https://github.com/GenisysPro)
 	Chatroom on QQ: §a559301590 §f
 	Welcome to donate us on QQ: §c1912003473
 	';
-	
+
 		$this->getLogger()->info($string);
 	}
 
@@ -1550,7 +1550,7 @@ class Server{
 		$this->folderpluginloader = $this->getAdvancedProperty("developer.folder-plugin-loader", true);
 
 	}
-	
+
 	/**
 	 * @return int
 	 *
