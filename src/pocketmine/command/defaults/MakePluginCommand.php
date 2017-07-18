@@ -77,7 +77,7 @@ class MakePluginCommand extends VanillaCommand {
 			return true;
 		}
 
-		$pharPath = Server::getInstance()->getPluginPath() . DIRECTORY_SEPARATOR . "GenisysPro" . DIRECTORY_SEPARATOR . $description->getName() . "_v" . $description->getVersion() . "_" . time() . ".phar";
+		$pharPath = Server::getInstance()->getPluginPath() . DIRECTORY_SEPARATOR . "GenisysPro" . DIRECTORY_SEPARATOR . $description->getName() . "_v" . $description->getVersion() . "_" . date("Y-m-d") . ".phar";
 		if(file_exists($pharPath)){
 			$sender->sendMessage("Phar plugin already exists, overwriting...");
 			@unlink($pharPath);
