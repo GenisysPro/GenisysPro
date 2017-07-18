@@ -84,7 +84,7 @@ server:
  advanced-command-selector: false
  #是否加载ResourcePackManager
  enable-resource: false
- #This parameter turns on or off the absorption of water by a sponge //TODO: Translation for other languages
+ #是否开启海绵的吸水功能
  absorb-water: false
 
 enchantment:
