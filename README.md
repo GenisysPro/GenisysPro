@@ -43,11 +43,12 @@ Game versions supported by `master` branch:
 TODO List
 -------------
 
-- [x] Beacon!
-- [x] Folder Plugin Loader
-- [x] More Blocks
-- [x] Anvil
-- [x] Global resource packs
+- [ ] Modify file locations to /src/pocketmine/network/mcpe/ for extended plugin compatibility.
+- [ ] Discover all potential modifications that can enhance plugin backward compatibility.
+- [ ] Re-work how async workers perform tasks to prevent them from hanging and not performing other tasks. 
+- [ ] Make modifications to handle Anvil worlds more efficiently to lower resource usage.
+- [ ] Add Ender world.
+- [ ] Add/Enhance Mob AI with option in yml.
 
 GenisysPro still has a long way to go. We are pleased to receive help from everybody and welcome contributors.  
 
