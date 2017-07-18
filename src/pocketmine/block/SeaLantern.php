@@ -22,6 +22,7 @@
 namespace pocketmine\block;
 
 use pocketmine\item\Item;
+use pocketmine\item\enchantment\Enchantment;
 
 class SeaLantern extends Solid {
 
@@ -63,6 +64,11 @@ class SeaLantern extends Solid {
 	 * @return array
 	 */
 	public function getDrops(Item $item) : array{
+		if($item->hasEnchantment(Enchantment::TYPE_MINING_SILK_TOUCH)){
+			return [
+				[$this->id, 0, 1],
+			];
+		}
 		return [
 			[Item::PRISMARINE_CRYSTALS, 0, 3],
 		];
