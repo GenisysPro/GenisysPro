@@ -43,11 +43,12 @@ Game versions supported by `master` branch:
 TODO List
 -------------
 
-- [x] Beacon!
-- [x] Folder Plugin Loader
-- [x] More Blocks
-- [x] Anvil
-- [x] Global resource packs
+- [ ] Modify file locations to `/src/pocketmine/network/mcpe/` for extended plugin compatibility.
+- [ ] Discover all potential modifications that can enhance plugin backward compatibility.
+- [ ] Re-work how async workers perform tasks to prevent them from hanging and not performing other tasks.
+- [ ] Make modifications to handle Anvil worlds more efficiently to lower resource usage.
+- [ ] Add Ender world.
+- [ ] Add/Enhance Mob AI with option in yml.
 
 GenisysPro still has a long way to go. We are pleased to receive help from everybody and welcome contributors.  
 
@@ -202,11 +203,12 @@ Genisys 的部分特色功能：
 即将支持
 -------------
 
-- [x] 信标！
-- [x] 文件夹插件加载器
-- [x] 更多方块
-- [x] 铁砧
-- [x] 服务器全局资源包
+- [ ] 将与网络相关的文件移动到 `/src/pocketmine/network/mcpe/` 中，增强插件兼容性
+- [ ] 查找所有可能会影响插件向下兼容能力的修改
+- [ ] 改进异步功能，防止单一任务长期占用线程导致其它任务无法执行
+- [ ] 提升 Anvil 地图格式的效率，降低资源占用
+- [ ] 加入末地
+- [ ] 添加/改进生物 AI，在配置文件中添加相关选项
 
 GenisysPro 还有很长的一段路要走。我们欢迎贡献者，并希望能得到帮助！
 
@@ -277,11 +279,12 @@ Genisys 的部分特別機能：
 將要支援
 -------------
 
-- [x] 烽火台！
-- [x] 資料夾插件加載器
-- [x] 更多方塊支援
-- [x] 鐵砧
-- [x] 伺服器全局材質包
+- [ ] 將與網路相關的檔案移動到 `/src/pocketmine/network/mcpe/` 中，加强插件相容性
+- [ ] 查找所有可能會影響插件向下相容能力的修改
+- [ ] 改進異步功能，防止單一任務長期占用執行緒導致其他任務無法執行
+- [ ] 提升 Anvil 地圖格式的效能，降低資源占用
+- [ ] 添加末路之地
+- [ ] 添加/改進生物 AI，在配置檔中添加相關設定
 
 GenisysPro 還有很長的一段路要走。我們歡迎貢獻者，並希望得到幫助！
 
