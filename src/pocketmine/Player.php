@@ -3283,7 +3283,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 								$this->server->getPluginManager()->callEvent($ev = new PlayerChatEvent($this, $ev->getMessage()));
 								if(!$ev->isCancelled()){
 									$this->server->broadcastMessage($this->getServer()->getLanguage()->translateString($ev->getFormat(), [
-										$ev->getPlayer()->getDisplayName(),									
+										$ev->getPlayer()->getDisplayName(),
 										$ev->getMessage()
 									]), $ev->getRecipients());
 								}
