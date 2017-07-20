@@ -197,7 +197,7 @@ class RedstoneWire extends RedstoneSource {
 		if($this->canCalc()){
 			$block = $this->getSide(Vector3::SIDE_DOWN);
 			/** @var ActiveRedstoneLamp $block */
-			if($block->getId() == Block::INACTIVE_REDSTONE_LAMP or $block->getId() == Block::ACTIVE_REDSTONE_LAMP) $block->turnOn();
+			if($block->getId() == Block::REDSTONE_LAMP or $block->getId() == Block::LIT_REDSTONE_LAMP) $block->turnOn();
 
 			$side = $this->getUnconnectedSide();
 
@@ -236,7 +236,7 @@ class RedstoneWire extends RedstoneSource {
 	public function deactivate(array $ignore = []){
 		if($this->canCalc()){
 			$block = $this->getSide(Vector3::SIDE_DOWN);
-			if($block->getId() == Block::ACTIVE_REDSTONE_LAMP){
+			if($block->getId() == Block::LIT_REDSTONE_LAMP){
 				/** @var ActiveRedstoneLamp $block */
 				if(!$this->checkPower($block, [Vector3::SIDE_UP], true)) $block->turnOff();
 			}
@@ -460,7 +460,7 @@ class RedstoneWire extends RedstoneSource {
 	public function onUpdate($type){
 		if($type === Level::BLOCK_UPDATE_NORMAL){
 			$down = $this->getSide(Vector3::SIDE_DOWN);
-			if($down instanceof Transparent and $down->getId() != Block::INACTIVE_REDSTONE_LAMP and $down->getId() != Block::ACTIVE_REDSTONE_LAMP){
+			if($down instanceof Transparent and $down->getId() != Block::REDSTONE_LAMP and $down->getId() != Block::LIT_REDSTONE_LAMP){
 				$this->getLevel()->useBreakOn($this);
 				return Level::BLOCK_UPDATE_NORMAL;
 			}
@@ -482,7 +482,7 @@ class RedstoneWire extends RedstoneSource {
 	 */
 	public function place(Item $item, Block $block, Block $target, $face, $fx, $fy, $fz, Player $player = null){
 		$down = $this->getSide(Vector3::SIDE_DOWN);
-		if($down instanceof Transparent and $down->getId() != Block::INACTIVE_REDSTONE_LAMP and $down->getId() != Block::ACTIVE_REDSTONE_LAMP) return;
+		if($down instanceof Transparent and $down->getId() != Block::REDSTONE_LAMP and $down->getId() != Block::LIT_REDSTONE_LAMP) return;
 		else{
 			$this->getLevel()->setBlock($block, $this, true, false);
 			$this->calcSignal(15, self::PLACE);
