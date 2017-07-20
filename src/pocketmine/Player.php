@@ -1023,11 +1023,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$this->level->registerChunkLoader($this, $X, $Z, false);
 
 			if(!$this->level->populateChunk($X, $Z)){
-				if($this->spawned and $this->teleportPosition === null){
-					continue;
-				}else{
-					break;
-				}
+				continue;
 			}
 
 			unset($this->loadQueue[$index]);
@@ -3310,8 +3306,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				 */
 				foreach($this->getFloatingInventory()->getContents() as $item){
 					$this->getFloatingInventory()->removeItem($item);
-                    $this->getInventory()->addItem($item);
-			       }
+					$this->getInventory()->addItem($item);
+				}
 				break;
 
 			case ProtocolInfo::CRAFTING_EVENT_PACKET:
@@ -4566,6 +4562,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	public function onChunkChanged(Chunk $chunk){
 		if(isset($this->usedChunks[$hash = Level::chunkHash($chunk->getX(), $chunk->getZ())])){
 			$this->usedChunks[$hash] = false;
+		}
+		if(!$this->spawned){
+			$this->nextChunkOrderRun = 0;
 		}
 	}
 
