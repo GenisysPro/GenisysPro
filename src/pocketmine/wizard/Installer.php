@@ -2,11 +2,11 @@
 
 /*
  *
- *  ____            _        _   __  __ _                  __  __ ____  
- * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ *  ____            _        _   __  __ _                  __  __ ____
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \
  * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
- * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
- * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_|
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -15,7 +15,7 @@
  *
  * @author PocketMine Team
  * @link http://www.pocketmine.net/
- * 
+ *
  *
 */
 
@@ -78,6 +78,8 @@ class Installer {
 
 
 		echo "[*] " . $this->lang->get("language_has_been_selected") . "\n";
+
+		$this->relayLangSetting();
 
 		if(!$this->showLicense()){
 			return false;
@@ -256,6 +258,15 @@ LICENSE;
 		echo "[!] " . $this->lang->get("ip_warning", ["{{EXTERNAL_IP}}", "{{INTERNAL_IP}}"], [$externalIP, $internalIP]) . "\n";
 		echo "[!] " . $this->lang->ip_confirm;
 		$this->getInput();
+	}
+
+	private function relayLangSetting(){
+		if(file_exists(\pocketmine\DATA . "lang.txt")){
+			unlink(\pocketmine\DATA . "lang.txt");
+		}
+		$langFile = new Config(\pocketmine\DATA . "lang.txt", Config::ENUM);
+		$langFile->set($this->defaultLang, true);
+		$langFile->save();
 	}
 
 	private function endWizard(){
