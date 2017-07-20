@@ -1,73 +1,73 @@
-# Main configuration file for PocketMine-MP
-# These settings are the ones that cannot be included in server.properties
-# Some of these settings are safe, others can break your server if modified incorrectly
-# New settings/defaults won't appear automatically on this file when upgrading.
+# PocketMine-MP 主配置文件
+# 此处包含 server.properties 中无法包含的设置
+# 某些设置的修改是安全的，而某些设置修改后将导致服务器无法工作
+# 升级服务器后，新的设置或默认值将不会自动在此处显示
 
 settings:
- #Three-letter language code for server-side localization
- #Check your language code on https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes
+ #服务器端本地化翻译所使用语言，由三个字母组成的代码表示
+ #可在 https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes 查询语言代码
  language: "chs"
- #Whether to send all strings translated to server locale or let the device handle them
+ #是否将由服务器端翻译的上面语言的提示信息发送到客户端，还是由客户端根据玩家选择的语言翻译
  force-language: false
- #When server shut down, the players will get kicked and this is what will show on there screen.
- shutdown-message: "Server closed"
- #Allow listing plugins via Query
+ #当服务器关闭时，下列提示信息将在玩家客户端上显示。
+ shutdown-message: "服务器已关闭"
+ #允许通过 Query 查询插件列表
  query-plugins: true
- #Show a console message when a plugin uses deprecated API methods
+ #当有插件使用已启用的 API 方法时，在控制台显示信息
  deprecated-verbose: true
- #Enable plugin and core profiling by default
+ #默认启用插件和核心性能分析
  enable-profiling: false
- #Will only add results when tick measurement is below or equal to given value (default 20)
+ #仅在测量的游戏刻低于或等于设定值时记录结果（默认为 20）
  profile-report-trigger: 20
- #Number of AsyncTask workers.
- #Used for plugin asynchronous tasks, world generation, compression and web communication.
- #Set this approximately to your number of cores.
- #If set to auto, it'll try to detect the number of cores (or use 2)
+ #异步任务的线程数。
+ #用于插件异步任务、世界生成、压缩和网络传输。
+ #将此值设置为大致与您 CPU 的核数相同。
+ #当设置为 auto 时，将会尝试自动检测 CPU 核数（或自动设为 2）
  async-workers: auto
- #Enables use of non-production, development builds. WARNING: DO NOT enable this unless you are sure you know what you are doing.
+ #允许使用非出产的开发版本。警告：除非您知道自己在做什么，否则请勿启用此选项
  enable-testing: false
 
 memory:
- #Global soft memory limit in megabytes. Set to 0 to disable
- #This will trigger low-memory-triggers and fire an event to free memory when the usage goes over this
+ #全局非严格内存限制，以 MB 为单位。设置为 0 可禁用
+ #当全局内存占用超过此限制时，将会激活低可用内存触发器并释放内存
  global-limit: 0
 
- #Main thread soft memory limit in megabytes. Set to 0 to disable
- #This will trigger low-memory-triggers and fire an event to free memory when the usage goes over this
+ #主线程非严格内存限制，以 MB 为单位。设置为 0 可禁用
+ #当主线程内存占用超过此限制时，将会激活低可用内存触发器并释放内存
  main-limit: 0
 
- #Main thread hard memory limit in megabytes. Set to 0 to disable
- #This will stop the server when the limit is surpassed
+ #主线程严格内存限制，以 MB 为单位。设置为 0 可禁用
+ #当主线程内存占用超过此限制时，将会停止服务器
  main-hard-limit: 1024
 
- #Period in ticks to check memory (default 1 second)
+ #检查内存使用的周期，以游戏刻为单位（默认为 1 秒）
  check-rate: 20
 
- #Continue firing low-memory-triggers and event while on low memory
+ #当内存不足时继续执行低可用内存触发器
  continuous-trigger: true
 
- #Only if memory.continuous-trigger is enabled. Specifies the rate in memory.check-rate steps (default 30 seconds)
+ #当 memory.continuous-trigger 选项已启用时，指定 memory.check-rate 步骤的速率（默认为 30 秒）
  continuous-trigger-rate: 30
 
  garbage-collection:
-  #Period in ticks to fire the garbage collector manually (default 30 minutes), set to 0 to disable
-  #This only affect the main thread. Other threads should fire their own collections
+  #垃圾回收的时间间隔（默认为 30 分钟），以游戏刻为单位，设置为 0 可禁用
+  #此设置只影响主线程。其它线程应各自分别进行垃圾回收
   period: 36000
 
-  #Fire asynchronous tasks to collect garbage from workers
+  #执行异步任务，以从各线程回收垃圾
   collect-async-worker: true
 
-  #Trigger on low memory
+  #当内存不足时触发
   low-memory-trigger: true
 
  max-chunks:
-  #Maximum render distance per player when low memory is triggered
+  #当内存不足时每个玩家的最大渲染视距
   chunk-radius: 4
 
-  #Do chunk garbage collection on trigger
+  #触发区块垃圾回收
   trigger-chunk-collect: true
 
-  #Trigger on low memory
+  #当内存不足时触发
   low-memory-trigger: true
 
  world-caches:
@@ -76,76 +76,76 @@ memory:
 
 
 network:
- #Threshold for batching packets, in bytes. Only these packets will be compressed
- #Set to 0 to compress everything, -1 to disable.
+ #批量处理数据包的阈值，以字节为单位。只有大小大于该阈值的数据包会被压缩
+ #设置为 0 可压缩所有数据包，设置为 -1 可禁用。
  batch-threshold: 256
- #Compression level used when sending batched packets. Higher = Uses More CPU, Less = More Bandwidth Usage
+ #批量处理数据包时的压缩级别。更高级别 = 更多 CPU 占用，更低级别 = 更多带宽占用
  compression-level: 2
- #Use AsyncTasks for compression. Adds half/one tick delay, less CPU load on main thread
+ #使用异步任务进行压缩。将会导致额外 0.5~1 刻的延迟，降低主线程的 CPU 占用
  async-compression: true
- #Experimental, only for Windows. Tries to use UPnP to automatically port forward
+ #实验性功能，仅适用于 Windows。尝试使用 UPnP 进行自动端口转发
  upnp-forwarding: false
 
 debug:
- #To enable assertion execution, set zend.assertions in your php.ini to 1
+ #若要启用断言执行，请在 php.ini 中将 zend.assertions 设为 1
  assertions:
-  #Warn if assertions are enabled in php.ini, due to assertions may impact on runtime performance if enabled.
+  #当 php.ini 中启用断言时发出警告，因为断言可能会影响运行时性能。
   warn-if-enabled: true
-  #Enable throwing exceptions when assertions fail, will allow obtaining more detailed information on the failed assertion, but may cause a server crash.
-  #If set to false, a warning will be raised instead of throwing an exception.
+  #当断言失败时抛出异常，可允许收集与断言失败相关的更详细的信息，但可能导致服务器崩溃。
+  #当设置为 false 时，将不会抛出异常，而是显示警告信息。
   throw-exception: false
- #If > 1, it will show debug messages in the console
+ #当设置的值大于 1 时，将会在控制台显示调试信息
  level: 1
- #Enables /status, /gc
+ #启用 /status、/gc 命令
  commands: true
 
 player:
- #Choose whether to enable player data saving.
+ #选择是否保存玩家数据。
  save-player-data: true
  anti-cheat:
-  #If false, will try to prevent speed and noclip cheats. May cause movement issues with some blocks which are not yet properly implemented.
+  #当设置为 false 时，将会尝试阻止疾跑和穿墙作弊。可能导致与某些尚未适配的方块有关的问题。
   allow-movement-cheats: false
-  #If false, times block breaks to ensure players are not cheating. May cause issues with some blocks which are not yet properly implemented.
+  #当设置为 false 时，将会检查玩家破坏方块的时间，阻止相关作弊。可能导致与某些尚未适配的方块有关的问题。
   allow-instabreak: false
 
 level-settings:
- #The default format that levels will use when created
+ #创建地图时使用的默认格式
  default-format: pmanvil
- #Automatically change levels tick rate to maintain 20 ticks per second
+ #自动更改地图的刷新速度，以维持 20 游戏刻每秒
  auto-tick-rate: false
  auto-tick-rate-limit: 20
- #Sets the base tick rate (1 = 20 ticks per second, 2 = 10 ticks per second, etc.)
+ #设定基础刷新速度（1 = 20 游戏刻每秒，2 = 10 游戏刻每秒）
  base-tick-rate: 1
- #Tick all players each tick even when other settings disallow this.
+ #每游戏刻都刷新所有玩家，即使其它设置不允许这样做。
  always-tick-players: false
 
 chunk-sending:
- #To change server normal render distance, change view-distance in server.properties.
- #Amount of chunks sent to players per tick
+ #若要更改服务器正常渲染视距，请在 server.properties 中修改 view-distance。
+ #每游戏刻发送给玩家的区块数量
  per-tick: 1
- #Radius of chunks that need to be sent before spawning the player
+ #需要在玩家出生前发送的区块半径
  spawn-radius: 4
- #Save a serialized copy of the chunk in memory for faster sending
- #Useful in mostly-static worlds where lots of players join at the same time
+ #为提高区块发送速度，在内存中保存一份区块的序列副本
+ #适合在几乎静止、但在同一时间有许多玩家加入的世界使用
  cache-chunks: false
- #Use AsyncTasks for serializing chunks for sending.
+ #使用异步任务排序要发送的区块。
  async-chunk-request: false
 
 chunk-ticking:
- #Max amount of chunks processed each tick
+ #每游戏刻处理的区块数量上限
  per-tick: 16
- #Radius of chunks around a player to tick
+ #玩家周围随游戏刻更新的区块半径
  tick-radius: 3
  light-updates: false
  clear-tick-list: true
- #IDs of blocks not to perform random ticking on.
+ #禁用随机刻的方块 ID
  disable-block-ticking:
   #- 2 # grass
 
 chunk-generation:
- #Max. amount of chunks in the waiting queue to be generated
+ #等待生成的区块队列的最大长度
  queue-size: 2
- #Max. amount of chunks in the waiting queue to be populated
+ #等待填充的区块队列的最大长度
  population-queue-size: 2
 
 ticks-per:
@@ -160,7 +160,7 @@ spawn-limits:
   ambient: 15
 
 auto-report:
- #Send crash reports for processing
+ #发送错误报告
  enabled: false
  send-code: true
  send-settings: true
@@ -168,33 +168,33 @@ auto-report:
  host: crash.pocketmine.net
 
 anonymous-statistics:
- #Sends anonymous statistics for data aggregation, plugin usage tracking
+ #发送用于数据收集和插件使用情况统计的匿名数据
  enabled: true
  host: stats.pocketmine.net
 
 commands:
- #Here you can customize server commands
- #Specify command names to override the default set here.
- #If no custom value is defined for a command, the default will be used.
- #NOTE: Some commands cannot be disabled here, such as the important ones like /stop, /reload, etc.
+ #您可以在此处自定义服务器的指令
+ #在此处指定指令的名称，以覆盖默认值。
+ #如果没有为某个指令设定自定义值，将会为该指令应用默认值。
+ #注意：部分指令无法在此被禁用，例如 /stop、/reload 等重要指令。
  default: true
- #Set override values per command here
- #For example, uncommenting the below will disable /plugins and /version
+ #在此处禁用指令
+ #例如，删除下面注释前的井号将会禁用 /version 和 /plugins 指令
  #version: false
  #plugins: false
 
 timings:
- #Choose the host to use for viewing your timings results.
+ #选择查看您的计时数据的主机。
  host: timings.pmmp.io
 
 aliases:
- #Examples:
+ #示例：
  #showtheversion: version
  #savestop: [save-all, stop]
 
 worlds:
- #These settings will override the generator set in server.properties and allows loading multiple levels
- #Example:
+ #这些设置将会覆盖 server.properties 中的生成器设置，并允许加载多个世界。
+ #示例：
  #world:
  # seed: 404
  # generator: FLAT:2;7,59x1,3x3,2;1;decoration(treecount=80 grasscount=45)
