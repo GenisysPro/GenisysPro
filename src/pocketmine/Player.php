@@ -2344,7 +2344,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	 * @param DataPacket $packet
 	 */
 	public function handleDataPacket(DataPacket $packet){
-
 		if($this->connected === false){
 			return;
 		}
@@ -2467,7 +2466,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					$this->processLogin();
 				}*/
 				break;
-
 			case ProtocolInfo::RESOURCE_PACK_CLIENT_RESPONSE_PACKET:
 				switch($packet->status){
 					case ResourcePackClientResponsePacket::STATUS_REFUSED:
@@ -2505,7 +2503,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 						break;
 				}
 				break;
-
 			case ProtocolInfo::RESOURCE_PACK_CHUNK_REQUEST_PACKET:
 				$manager = $this->server->getResourcePackManager();
 				$pack = $manager->getPackById($packet->packId);
@@ -2521,18 +2518,12 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$pk->progress = (1048576 * $packet->chunkIndex);
 				$this->dataPacket($pk);
 				break;
-
 			case ProtocolInfo::MOVE_PLAYER_PACKET:
 				if($this->linkedEntity instanceof Entity){
 					$entity = $this->linkedEntity;
 					if($entity instanceof Boat){
 						$entity->setPosition($this->temporalVector->setComponents($packet->x, $packet->y - 0.3, $packet->z));
 					}
-					/*if($entity instanceof Minecart){
-						$entity->isFreeMoving = true;
-						$entity->motionX = -sin($packet->yaw / 180 * M_PI);
-						$entity->motionZ = cos($packet->yaw / 180 * M_PI);
-					}*/
 				}
 
 				$newPos = new Vector3($packet->x, $packet->y - $this->getEyeHeight(), $packet->z);
@@ -3079,12 +3070,12 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					}elseif($packet->action === InteractPacket::ACTION_LEAVE_VEHICLE){
 						$this->setLinked(0, $target);
 					}
-					return;
+					break;
 				}
 
 				if($packet->action === InteractPacket::ACTION_RIGHT_CLICK){
-					if($target instanceof Animal and $this->getInventory()->getItemInHand()){
-						//TODO: Feed
+					if($target instanceof Animal){
+					    //TODO add Feed
 					}
 					break;
 				}elseif($packet->action === InteractPacket::ACTION_MOUSEOVER){
@@ -3464,7 +3455,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 										}
 									}
 								}
-
 								if($item->getCount() > 0){
 									$canCraft = false;
 									break;
@@ -3696,7 +3686,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			if($isAdmin){
 				$message = "Kicked by admin." . ($reason !== "" ? " Reason: " . $reason : "");
 			}else{
-				if($reason === ""){
+				if($reason === "" or $reason === " "){
 					$message = "disconnectionScreen.noReason";
 				}else{
 					$message = $reason;
@@ -3765,7 +3755,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->sendTitleText($title, SetTitlePacket::TYPE_TITLE);
 	}
 
-	/*********/
 	/**
 	 * @param string $title
 	 * @param string $subtitle
@@ -4000,8 +3989,6 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				unset($this->usedChunks[$index]);
 			}
 
-			parent::close();
-
 			$this->interface->close($this, $notify ? $reason : "");
 
 			if($this->loggedIn){
@@ -4049,6 +4036,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->chunk = null;
 
 		$this->server->removePlayer($this);
+
+        parent::close();
 	}
 
 	/**
@@ -4267,6 +4256,15 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$this->getAttributeMap()->getAttribute(Attribute::HEALTH)->setMaxValue($this->getMaxHealth())->setValue($amount, true);
 		}
 	}
+
+    /**
+     * @param $amount
+     */
+    public function setMovementSpeed($amount){
+        if($this->spawned === true){
+            $this->getAttributeMap()->getAttribute(Attribute::MOVEMENT_SPEED)->setValue($amount, true);
+        }
+    }
 
 	/**
 	 * @param float             $damage
