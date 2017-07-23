@@ -1,0 +1,200 @@
+# PocketMine-MP 主配置檔案
+# 此處包含 server.properties 中無法包含的設定
+# 某些設定的修改是安全的，而某些設定修改後將導致伺服器無法工作
+# 升級伺服器後，新的設定或預設值將不會自動在此處顯示
+
+settings:
+ #伺服器端本土化翻譯所使用語言，由三個字母組成的代碼表示
+ #可在 https://en.wikipedia.org/wiki/List_of_ISO_639-2_codes 查詢語言代碼
+ language: "zho"
+ #是否將由伺服器端翻譯的上面語言的提示訊息發送到客戶端，還是由客戶端根據玩家選擇的語言翻譯
+ force-language: false
+ #當伺服器關閉時，下列提示訊息將在玩家客戶端上顯示。
+ shutdown-message: "伺服器已關閉"
+ #允許通過 Query 查詢插件列表
+ query-plugins: true
+ #當有插件使用已啟用的 API 方法時，在控制台顯示訊息
+ deprecated-verbose: true
+ #預設啟用插件和核心性能分析
+ enable-profiling: false
+ #僅在測量的遊戲刻低於或等於設定值時記錄結果（預設為 20）
+ profile-report-trigger: 20
+ #異步處理的線程數。
+ #用於插件異步處理、世界生成、壓縮和網絡傳輸。
+ #將此值設定為大致與您 CPU 的核數相同。
+ #當設定為 auto 時，將會嘗試自動檢測 CPU 核數（或自動設為 2）
+ async-workers: auto
+ #允許使用非出產的開發版本。警告：除非您知道自己在做什麼，否則請勿啟用此選項
+ enable-testing: false
+
+memory:
+ #全域非嚴格記憶體限制，以 MB 為單位。設定為 0 可停用
+ #當全域記憶體占用超過此限制時，將會激活低可用記憶體觸發器並釋放記憶體
+ global-limit: 0
+
+ #主線程非嚴格記憶體限制，以 MB 為單位。設定為 0 可停用
+ #當主線程記憶體占用超過此限制時，將會激活低可用記憶體觸發器並釋放記憶體
+ main-limit: 0
+
+ #主線程嚴格記憶體限制，以 MB 為單位。設定為 0 可停用
+ #當主線程記憶體占用超過此限制時，將會停止伺服器
+ main-hard-limit: 1024
+
+ #檢查記憶體使用的周期，以遊戲刻為單位（預設為 1 秒）
+ check-rate: 20
+
+ #當記憶體不足時繼續執行低可用記憶體觸發器
+ continuous-trigger: true
+
+ #當 memory.continuous-trigger 選項已啟用時，指定 memory.check-rate 步驟的速率（預設為 30 秒）
+ continuous-trigger-rate: 30
+
+ garbage-collection:
+  #垃圾回收的時間間隔（預設為 30 分鐘），以遊戲刻為單位，設定為 0 可停用
+  #此設定只影響主線程。其它線程應各自分別進行垃圾回收
+  period: 36000
+
+  #執行異步處理，以從各線程回收垃圾
+  collect-async-worker: true
+
+  #當記憶體不足時觸發
+  low-memory-trigger: true
+
+ max-chunks:
+  #當記憶體不足時每個玩家的最大渲染視距
+  chunk-radius: 4
+
+  #觸發區塊垃圾回收
+  trigger-chunk-collect: true
+
+  #當記憶體不足時觸發
+  low-memory-trigger: true
+
+ world-caches:
+  disable-chunk-cache: true
+  low-memory-trigger: true
+
+
+network:
+ #批次處理數據包的閾值，以字節為單位。只有大小大於該閾值的數據包會被壓縮
+ #設定為 0 可壓縮所有數據包，設定為 -1 可停用。
+ batch-threshold: 256
+ #批次處理數據包時的壓縮級別。更高級別 = 更多 CPU 占用，更低級別 = 更多流量占用
+ compression-level: 2
+ #使用異步處理進行壓縮。將會導致額外 0.5~1 刻的延遲，降低主線程的 CPU 占用
+ async-compression: true
+ #實驗性功能，僅適用於 Windows。嘗試使用 UPnP 進行自動端口轉發
+ upnp-forwarding: false
+
+debug:
+ #若要啟用斷言執行，請在 php.ini 中將 zend.assertions 設為 1
+ assertions:
+  #當 php.ini 中啟用斷言時發出警告，因為斷言可能會影響運行時性能。
+  warn-if-enabled: true
+  #當斷言失敗時拋出異常，可允許收集與斷言失敗相關的更詳細的訊息，但可能導致伺服器無回應。
+  #當設定為 false 時，將不會拋出異常，而是顯示警告訊息。
+  throw-exception: false
+ #當設定的值大於 1 時，將會在控制台顯示調試訊息
+ level: 1
+ #啟用 /status、/gc 指令
+ commands: true
+
+player:
+ #選擇是否儲存玩家數據。
+ save-player-data: true
+ anti-cheat:
+  #當設定為 false 時，將會嘗試阻止疾跑和穿墻作弊。可能導致與某些尚未適配的方塊有關的問題。
+  allow-movement-cheats: false
+  #當設定為 false 時，將會檢查玩家破壞方塊的時間，阻止相關作弊。可能導致與某些尚未適配的方塊有關的問題。
+  allow-instabreak: false
+
+level-settings:
+ #創建地圖時使用的預設格式
+ default-format: pmanvil
+ #自動更改地圖的刷新速度，以維持 20 遊戲刻每秒
+ auto-tick-rate: false
+ auto-tick-rate-limit: 20
+ #設定基礎刷新速度（1 = 20 遊戲刻每秒，2 = 10 遊戲刻每秒）
+ base-tick-rate: 1
+ #每遊戲刻都刷新所有玩家，即使其它設定不允許這樣做。
+ always-tick-players: false
+
+chunk-sending:
+ #若要更改伺服器正常渲染視距，請在 server.properties 中修改 view-distance。
+ #每遊戲刻發送給玩家的區塊數量
+ per-tick: 1
+ #需要在玩家出生前發送的區塊半徑
+ spawn-radius: 4
+ #為提高區塊發送速度，在記憶體中儲存一份區塊的序列副本
+ #適合在幾乎靜止、但在同一時間有許多玩家加入的世界使用
+ cache-chunks: false
+ #使用異步處理排序要發送的區塊。
+ async-chunk-request: false
+
+chunk-ticking:
+ #每遊戲刻處理的區塊數量上限
+ per-tick: 16
+ #玩家周圍隨遊戲刻更新的區塊半徑
+ tick-radius: 3
+ light-updates: false
+ clear-tick-list: true
+ #停用隨機刻的方塊 ID
+ disable-block-ticking:
+  #- 2 # grass
+
+chunk-generation:
+ #等待生成的區塊隊列的最大長度
+ queue-size: 2
+ #等待填充的區塊隊列的最大長度
+ population-queue-size: 2
+
+ticks-per:
+ animal-spawns: 400
+ monster-spawns: 1
+ autosave: 6000
+ cache-cleanup: 900
+spawn-limits:
+  monsters: 70
+  animals: 15
+  water-animals: 5
+  ambient: 15
+
+auto-report:
+ #發送錯誤報告
+ enabled: false
+ send-code: true
+ send-settings: true
+ send-phpinfo: false
+ host: crash.pocketmine.net
+
+anonymous-statistics:
+ #發送用於數據收集和插件使用情況統計的匿名數據
+ enabled: true
+ host: stats.pocketmine.net
+
+commands:
+ #您可以在此處自訂伺服器的指令
+ #在此處指定指令的名稱，以覆蓋預設值。
+ #如果沒有為某個指令設定自訂值，將會為該指令應用預設值。
+ #註意：部分指令無法在此被停用，例如 /stop、/reload 等重要指令。
+ default: true
+ #在此處停用指令
+ #例如，刪除下面註釋前的井號將會停用 /version 和 /plugins 指令
+ #version: false
+ #plugins: false
+
+timings:
+ #選擇查看您的計時數據的主機。
+ host: timings.pmmp.io
+
+aliases:
+ #範例：
+ #showtheversion: version
+ #savestop: [save-all, stop]
+
+worlds:
+ #這些設定將會覆蓋 server.properties 中的生成器設定，並允許讀取多個世界。
+ #範例：
+ #world:
+ # seed: 404
+ # generator: FLAT:2;7,59x1,3x3,2;1;decoration(treecount=80 grasscount=45)
