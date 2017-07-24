@@ -1722,7 +1722,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 		if(($distanceSquared / ($tickDiff ** 2)) > 100){
 			$this->server->getLogger()->warning($this->getName() . " moved too fast, reverting movement");
-			//$this->server->getLogger()->debug("Old position: " . $this->asVector3() . ", new position: " . $this->newPosition); Causes Crashes Due To Vector3() Been Removed
+			$this->server->getLogger()->debug("Old position: " . $this->asVector3() . ", new position: " . $this->newPosition);
 			$revert = true;
 		}else{
 			if($this->chunk === null or !$this->chunk->isGenerated()){
@@ -1761,7 +1761,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				if(!$ev->isCancelled()){
 					$revert = true;
 					$this->server->getLogger()->warning($this->getServer()->getLanguage()->translateString("pocketmine.player.invalidMove", [$this->getName()]));
-					//$this->server->getLogger()->debug("Old position: " . $this->asVector3() . ", new position: " . $this->newPosition); Causes Crashes Due To Vector3() Been Removed
+					$this->server->getLogger()->debug("Old position: " . $this->asVector3() . ", new position: " . $this->newPosition);
 				}
 			}
 

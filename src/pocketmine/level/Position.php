@@ -54,6 +54,15 @@ class Position extends Vector3 {
 	}
 
 	/**
+	 * Return a Position instance
+	 * 
+	 * @return Position
+	 */
+	public function asPosition() : Position{
+		return new Position($this->x, $this->y, $this->z, $this->level);
+	}
+
+	/**
 	 * @param int|Vector3 $x
 	 * @param int         $y
 	 * @param int         $z
