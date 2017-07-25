@@ -2132,10 +2132,10 @@ abstract class Entity extends Location implements Metadatable {
 	 *
 	 * @return bool
 	 */
-	public function teleport(Vector3 $pos, $yaw = null, $pitch = null){
+	public function teleport(Vector3 $pos, float $yaw = null, float $pitch = null) : bool{
 		if($pos instanceof Location){
-			$yaw = $yaw === null ? $pos->yaw : $yaw;
-			$pitch = $pitch === null ? $pos->pitch : $pitch;
+			$yaw = $yaw ?? $pos->yaw;
+			$pitch = $pitch ?? $pos->pitch;
 		}
 		$from = Position::fromObject($this, $this->level);
 		$to = Position::fromObject($pos, $pos instanceof Position ? $pos->getLevel() : $this->level);
@@ -2147,7 +2147,7 @@ abstract class Entity extends Location implements Metadatable {
 		$pos = $ev->getTo();
 
 		$this->setMotion($this->temporalVector->setComponents(0, 0, 0));
-		if($this->setPositionAndRotation($pos, $yaw === null ? $this->yaw : $yaw, $pitch === null ? $this->pitch : $pitch) !== false){
+		if($this->setPositionAndRotation($pos, $yaw ?? $this->yaw, $pitch ?? $this->pitch) !== false){
 			$this->resetFallDistance();
 			$this->onGround = true;
 
