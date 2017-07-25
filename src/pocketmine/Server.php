@@ -36,7 +36,7 @@ use pocketmine\entity\Entity;
 use pocketmine\event\HandlerList;
 use pocketmine\event\level\LevelInitEvent;
 use pocketmine\event\level\LevelLoadEvent;
-use pocketmine\event\player\PlayerAddOpEvent;
+//use pocketmine\event\player\PlayerAddOpEvent;
 use pocketmine\event\server\QueryRegenerateEvent;
 use pocketmine\event\server\ServerCommandEvent;
 use pocketmine\event\Timings;
@@ -173,7 +173,7 @@ class Server{
 
 	private $dispatchSignals = false;
 
-	/** @var \AttachableThreadedLogger */
+	/** @var MainLogger */
 	private $logger;
 
 	/** @var MemoryManager */
@@ -189,7 +189,7 @@ class Server{
 	/** @var CraftingManager */
 	private $craftingManager;
 
- private $resourceManager;
+	private $resourceManager;
 
 	/** @var ConsoleCommandSender */
 	private $consoleSender;
@@ -205,6 +205,8 @@ class Server{
 
 	/** @var EntityMetadataStore */
 	private $entityMetadata;
+
+	private $expCache;
 
 	/** @var PlayerMetadataStore */
 	private $playerMetadata;
@@ -268,7 +270,7 @@ class Server{
 	/** @var Level */
 	private $levelDefault = null;
 
-	private $aboutContent = "";
+	//private $aboutContent = "";
 
 	/** Advanced Config */
 	public $advancedConfig = null;
@@ -309,6 +311,7 @@ class Server{
 	public $countBookshelf = false;
 	public $allowInventoryCheats = false;
 	public $folderpluginloader = true;
+	public $loadIncompatibleAPI = true;
 
 	/**
 	 * @return string
@@ -1352,8 +1355,8 @@ class Server{
 	/**
 	 * @param string $name
 	 *
-	 * @return PluginIdentifiableCommand
-	 */
+	 * @return command\Command
+     */
 	public function getPluginCommand($name){
 		if(($command = $this->commandMap->getCommand($name)) instanceof PluginIdentifiableCommand){
 			return $command;
@@ -1644,7 +1647,7 @@ class Server{
 			$this->dataPath = realpath($dataPath) . DIRECTORY_SEPARATOR;
 			$this->pluginPath = realpath($pluginPath) . DIRECTORY_SEPARATOR;
 
-			$this->console = new CommandReader($logger);
+			$this->console = new CommandReader();
 
 			$version = new VersionString($this->getPocketMineVersion());
 			$this->version = $version;
@@ -1655,6 +1658,7 @@ class Server{
 			if(!file_exists($this->dataPath . "pocketmine.yml")){
 				if(file_exists($this->dataPath . "lang.txt")){
 					$langFile = new Config($configPath = $this->dataPath . "lang.txt", Config::ENUM, []);
+                    $wizardLang = null;
 					foreach ($langFile->getAll(true) as $langName) {
 						$wizardLang = $langName;
 						break;
