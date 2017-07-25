@@ -23,6 +23,7 @@ namespace pocketmine\entity;
 
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\level\Level;
+use pocketmine\level\sound\EndermanTeleportSound;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
@@ -55,7 +56,7 @@ class EnderPearl extends Projectile {
 		if(!$this->hasTeleportedShooter){
 			$this->hasTeleportedShooter = true;
 			if($this->shootingEntity instanceof Player and $this->y > 0){
-				$this->shootingEntity->attack(5, new EntityDamageEvent($this->shootingEntity, EntityDamageEvent::CAUSE_FALL, 5));
+				$this->getLevel()->addSound(new EndermanTeleportSound($this->getPosition()), array($this->shootingEntity));
 				$this->shootingEntity->teleport($this->getPosition());
 			}
 
