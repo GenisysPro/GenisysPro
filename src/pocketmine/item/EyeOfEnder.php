@@ -20,7 +20,7 @@
 */
 
 namespace pocketmine\item;
-
+//TODO: Add portal activation
 
 class EyeOfEnder extends Item {
 	/**

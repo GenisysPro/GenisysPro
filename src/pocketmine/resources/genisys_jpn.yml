@@ -14,7 +14,7 @@
 
 #ファイルのバージョン
 config:
- version: 27
+ version: 28
 
 level:
  #有効にすると天気を設定します（雨が降ると古い端末の動作が遅くなる場合があります）
@@ -54,6 +54,10 @@ nether:
  allow-nether: true
  #ネザーの名前
  level-name: "nether"
+
+ender:
+ allow-ender: true
+ level-name: "ender"
 
 server:
  #有効にするとアイアンゴーレムのスポーンを許可します
