@@ -80,6 +80,7 @@ use pocketmine\level\generator\PopulationTask;
 use pocketmine\level\particle\DestroyBlockParticle;
 use pocketmine\level\particle\Particle;
 use pocketmine\level\sound\Sound;
+use pocketmine\level\sound\BlockPlaceSound;
 use pocketmine\level\weather\Weather;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\math\Math;
@@ -1963,6 +1964,8 @@ class Level implements ChunkManager, Metadatable
             if ($ev->isCancelled()) {
                 return false;
             }
+			
+			$this->addSound(new BlockPlaceSound($hand));
         }
 
         if ($hand->place($item, $block, $target, $face, $fx, $fy, $fz, $player) === false) {
