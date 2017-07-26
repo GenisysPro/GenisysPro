@@ -104,7 +104,7 @@ player:
  save-player-data: true
  anti-cheat:
   #当设置为 false 时，将会尝试阻止疾跑和穿墙作弊。可能导致与某些尚未适配的方块有关的问题。
-  allow-movement-cheats: false
+  allow-movement-cheats: true
   #当设置为 false 时，将会检查玩家破坏方块的时间，阻止相关作弊。可能导致与某些尚未适配的方块有关的问题。
   allow-instabreak: false
 
@@ -122,12 +122,12 @@ level-settings:
 chunk-sending:
  #若要更改服务器正常渲染视距，请在 server.properties 中修改 view-distance。
  #每游戏刻发送给玩家的区块数量
- per-tick: 1
+ per-tick: 2
  #需要在玩家出生前发送的区块半径
  spawn-radius: 4
  #为提高区块发送速度，在内存中保存一份区块的序列副本
  #适合在几乎静止、但在同一时间有许多玩家加入的世界使用
- cache-chunks: false
+ cache-chunks: true
  #使用异步任务排序要发送的区块。
  async-chunk-request: false
 
