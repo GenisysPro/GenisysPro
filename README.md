@@ -34,7 +34,7 @@ Some of the functionality that Genisys offers:
 * Optional Xbox Live authentication
 * Support for Minecraft: Windows 10 Edition
 * Global resource packs
-* Generators for **ALL** world types i.e., Normal, Nether, and Ender.
+* Generators for **ALL** world types i.e., **Normal**, **Nether**, and **Ender**.
 
 Supported Version
 -------------
