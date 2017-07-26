@@ -104,7 +104,7 @@ player:
  save-player-data: true
  anti-cheat:
   #If false, will try to prevent speed and noclip cheats. May cause movement issues with some blocks which are not yet properly implemented.
-  allow-movement-cheats: false
+  allow-movement-cheats: true
   #If false, times block breaks to ensure players are not cheating. May cause issues with some blocks which are not yet properly implemented.
   allow-instabreak: false
 
@@ -122,12 +122,12 @@ level-settings:
 chunk-sending:
  #To change server normal render distance, change view-distance in server.properties.
  #Amount of chunks sent to players per tick
- per-tick: 1
+ per-tick: 2
  #Radius of chunks that need to be sent before spawning the player
  spawn-radius: 4
  #Save a serialized copy of the chunk in memory for faster sending
  #Useful in mostly-static worlds where lots of players join at the same time
- cache-chunks: false
+ cache-chunks: true
  #Use AsyncTasks for serializing chunks for sending.
  async-chunk-request: false
 
