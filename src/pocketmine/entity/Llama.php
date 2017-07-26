@@ -28,7 +28,7 @@ use pocketmine\item\Item as ItemItem;
 use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
-class Ilama extends Animal {
+class Llama extends Animal {
 	const NETWORK_ID = 29;
 
 	const CREAMY = 0;
@@ -46,7 +46,7 @@ class Ilama extends Animal {
 	 * @return string
 	 */
 	public function getName(){
-		return "Ilama";
+		return "Llama";
 	}
 
 	public function initEntity(){
