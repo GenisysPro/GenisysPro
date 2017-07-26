@@ -48,7 +48,7 @@ TODO List
 - [ ] Discover all potential modifications that can enhance plugin backward compatibility.
 - [ ] Re-work how async workers perform tasks to prevent them from hanging and not performing other tasks.
 - [ ] Make modifications to handle Anvil worlds more efficiently to lower resource usage.
-- [x] Add Ender world.
+**- [x] Add Ender world.**
 - [ ] Add/Enhance Mob AI with option in yml.
 
 GenisysPro still has a long way to go. We are pleased to receive help from everybody and welcome contributors.  
