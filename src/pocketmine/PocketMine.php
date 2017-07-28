@@ -461,9 +461,18 @@ namespace pocketmine {
 		exit(1); //Exit with error
 	}
 
-	if(file_exists(\pocketmine\PATH . ".git/refs/heads/master")){ //Found Git information!
-		define('pocketmine\GIT_COMMIT', strtolower(trim(file_get_contents(\pocketmine\PATH . ".git/refs/heads/master"))));
-	}else{
+	if(file_exists(\pocketmine\PATH . ".git/HEAD")){ //Found Git information!
+		$ref = trim(file_get_contents(\pocketmine\PATH . ".git/HEAD"));
+		if(preg_match('/^[0-9a-f]{40}$/i', $ref)){
+			define('pocketmine\GIT_COMMIT', strtolower($ref));
+		}elseif(substr($ref, 0, 5) === "ref: "){
+			$refFile = \pocketmine\PATH . ".git/" . substr(trim(file_get_contents(\pocketmine\PATH . ".git/HEAD")), 5);
+			if(is_file($refFile)){
+				define('pocketmine\GIT_COMMIT', strtolower(trim(file_get_contents($refFile))));
+			}
+		}
+	}
+	if(!defined('pocketmine\GIT_COMMIT')){
 		define('pocketmine\GIT_COMMIT', "0000000000000000000000000000000000000000");
 	}
 
