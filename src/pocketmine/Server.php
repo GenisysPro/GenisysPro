@@ -1532,7 +1532,7 @@ class Server{
                           __/ |
                          |___/
 
-	Version: §6" . $this->getPocketMineVersion() . '§f
+	Version: §6" . $this->getPocketMineVersion() . ' (' . $this->getShortGitCommit() . ')§f
 	Client Version: §b' . $version . '§f
 	PHP Version: §e' . PHP_VERSION . '§f
 	System OS: §6' . PHP_OS .'§f
