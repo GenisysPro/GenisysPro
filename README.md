@@ -260,15 +260,17 @@ GenisysProは **[Genisys](https://github.com/iTXTech/Genisys)** をベースと�
 
 Genisysが提供する機能の一部:
 * 複数のクライアントバージョンのサポート
-* 拡張プラグイン用API（GeniAPI）
+* 拡張プラグイン用のAPI（GeniAPI）
 * オプションのXbox Live認証
-* Minecraft: Windows 10 Editionのサポート
+* Minecraftのサポート：Windows 10 Edition
 * グローバルリソースパック
+* 世界のすべてのタイプ、すなわち、Overworld、Nether、Enderの成形機
+* 組み込まれたDevTools
 
 サポートされているバージョン
 -------------
 `master` ブランチにてサポートしているバージョン:
-- [x] MCPE v1.1.x Alpha
+- [x] Minecraft PE/Windows 10 v1.1.x
 
 GenisysProを入手する
 -------------
@@ -281,7 +283,8 @@ GenisysProを入手する
 
 討論
 -------------
-* [Discordグループ](https://discord.gg/WrKzRNn)
+* [GenisysPro Official Forums](https://genisys.pro/forums/)
+* [Discordグループ](https://discord.gg/WrKzRNn) Japaneseチャンネルでは日本語で質問をすることができます。
 * [QQグループ](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
 
 寄付
@@ -292,11 +295,12 @@ GenisysProはフリーソフトウェアです。 寄付をいただきありが
 TODO(やること)リスト
 -------------
 
-- [x] ビーコン
-- [x] フォルダプラグインの読み込み
-- [x] もっと多くのブロック
-- [x] 金床
-- [x] グローバルリソースパック
+- [ ] 拡張されたプラグインの互換性のため、ファイルの場所を `/src/pocketmine/network/mcpe/`に変更
+- [ ] プラグインの下位互換性を向上させる可能性のあるすべての修正を発見してください。
+- [ ] 非同期作業者がハングしたり他のタスクを実行したりしないようにするために、非同期作業者がタスクを実行する方法を再調整できるようにする
+- [ ] Anvilの世界をより効率的に処理するための修正を行い、リソースの使用量を削減できるようにする
+- [x] Endの成形機の追加
+- [ ] yamlのオプションでMob AIを追加/強化できるようにする
 
 GenisysProはまだまだ道のりがあります。 皆様のご協力と寄付を歓迎しております。  
 
