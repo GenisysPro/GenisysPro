@@ -58,7 +58,9 @@ nether:
  level-name: "nether"
 
 ender:
+ #是否允许末地，打开此选项会自动生成下界地图
  allow-ender: true
+ #末地地图名
  level-name: "ender"
  
 server:

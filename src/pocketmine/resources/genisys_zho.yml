@@ -52,13 +52,15 @@ developer:
   load-incompatible-api: true
 
 nether:
- #是否允許地獄，打開此選項會自動生成地獄地圖
+ #是否允許下界，打開此選項會自動生成下界地圖
  allow-nether: true
- #地獄地圖名
+ #下界地圖名
  level-name: "nether"
 
 ender:
+ #是否允許末路之地，打開此選項會自動生成末路之地地圖
  allow-ender: true
+ #末路之地地圖名
  level-name: "ender"
  
 server:
