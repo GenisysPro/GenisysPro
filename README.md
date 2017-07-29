@@ -347,7 +347,7 @@ Enkele functies die Genisys biedt:
 Ondersteunde versie
 -------------
 Game-versies ondersteund door `master` -fork:
-- [x] MCPE v1.1.x Alpha
+- [x] Minecraft PE/Windows 10 v1.1.x
 
 GenisysPro krijgen
 -------------
@@ -421,7 +421,7 @@ GenisysPro основан на **[Genisys](https://github.com/iTXTech/Genisys)**
 Поддерживаемая версия
 -------------
 Игровые версии, поддерживаемые ветвью `master`:
-- [x] MCPE v1.1.x Alpha
+- [x] Minecraft PE/Windows 10 v1.1.x
 
 Установка и получение GenisysPro
 -------------
