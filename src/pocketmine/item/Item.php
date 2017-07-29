@@ -894,6 +894,7 @@ class Item implements ItemIds, \JsonSerializable {
 		foreach($lines as $line){
 			$tag->display->Lore[$count++] = new StringTag("", $line);
 		}
+		$this->setNamedTag($tag);
 	}
 
 
