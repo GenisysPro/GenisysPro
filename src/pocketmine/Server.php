@@ -1535,8 +1535,9 @@ class Server{
 	Version: §6" . $this->getPocketMineVersion() . ' (' . $this->getShortGitCommit() . ')§f
 	Client Version: §b' . $version . '§f
 	PHP Version: §e' . PHP_VERSION . '§f
-	System OS: §6' . PHP_OS .'§f
-	This core was maintained by §dGenisysPro§f (https://github.com/GenisysPro)
+	OS: §6' . PHP_OS .'§f
+	This core is maintained by §dGenisysPro§f (https://github.com/GenisysPro)
+	Discord Group chat: §ehttps://discord.gg/WrKzRNn §f
 	Chatroom on QQ: §a559301590 §f
 	Welcome to donate us on QQ: §c1912003473
 	';
