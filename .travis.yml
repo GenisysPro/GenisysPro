@@ -17,7 +17,7 @@ notifications:
   email: false
 
 before_deploy:
- - mv plugins/GenisysPro/*.phar plugins/GenisysPro/GenisysPro.phar
+ - mv plugins/GenisysPro/GenisysPro*.phar plugins/GenisysPro/GenisysPro.phar
 
 deploy:
   - provider: releases
