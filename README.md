@@ -7,9 +7,9 @@ GenisysPro
 | :---: | :---: | :---: |
 | [![Download](https://img.shields.io/badge/download-latest-blue.svg)](https://genisyspro.github.io/GenisysPro/GenisysPro.phar) | [![Travis CI](https://travis-ci.org/GenisysPro/GenisysPro.svg?branch=master)](https://travis-ci.org/GenisysPro/GenisysPro) | [![GitLab](https://gitlab.com/GenisysPro/GenisysPro/badges/master/build.svg)](https://gitlab.com/GenisysPro/GenisysPro/commits/master) |
 
-| ![Website](https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_public_black_18px.svg) | ![Chat](https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_chat_black_18px.svg) | ![Forum](https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_forum_black_18px.svg) |
+| ![Website](https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_public_black_18px.svg) | ![Chat](https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_chat_black_18px.svg) | ![Forums](https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_forum_black_18px.svg) |
 | :---: | :---: | :---: |
-| [![Website](https://img.shields.io/website-up-down-green-red/http/genisys.pro.svg?label=website)](https://discord.gg/WrKzRNn) | [![Discord](https://img.shields.io/badge/chat-on%20discord-brightgreen.svg)](https://discord.gg/WrKzRNn) | [![Forums](https://img.shields.io/website-up-down-green-red/http/genisys.pro/forums.svg?label=forum)](https://genisys.pro/forums) |
+| [![Website](https://img.shields.io/website-up-down-green-red/http/genisys.pro.svg?label=website)](https://discord.gg/WrKzRNn) | [![Discord](https://img.shields.io/badge/chat-on%20discord-brightgreen.svg)](https://discord.gg/WrKzRNn) | [![Forums](https://img.shields.io/website-up-down-green-red/http/genisys.pro/forums.svg?label=forums)](https://genisys.pro/forums) |
 
 
 [English](#english)  
