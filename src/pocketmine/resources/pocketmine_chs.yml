@@ -13,7 +13,7 @@ settings:
  shutdown-message: "服务器已关闭"
  #允许通过 Query 查询插件列表
  query-plugins: true
- #当有插件使用已启用的 API 方法时，在控制台显示信息
+ #当有插件使用已弃用的 API 方法时，在控制台显示信息
  deprecated-verbose: true
  #默认启用插件和核心性能分析
  enable-profiling: false
