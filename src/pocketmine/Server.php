@@ -1242,7 +1242,7 @@ class Server{
 
 		return true;
 	}
-	
+
 	/**
 	 * Searches all levels for the entity with the specified ID.
 	 * Useful for tracking entities across multiple worlds without needing strong references.
@@ -1257,14 +1257,14 @@ class Server{
 		if($expectedLevel !== null){
 			array_unshift($levels, $expectedLevel);
 		}
-		
+
 		foreach($levels as $level){
 			assert(!$level->isClosed());
 			if(($entity = $level->getEntity($entityId)) instanceof Entity){
 				return $entity;
 			}
 		}
-		
+
 		return null;
 	}
 
@@ -1759,10 +1759,12 @@ class Server{
 
 			$onlineMode = $this->getConfigBoolean("online-mode", false);
 			if(!extension_loaded("openssl")){
-				$this->logger->warning("找不到 OpenSSL 扩展,请重新安装PHP,否则无法使用XBox验证 && 材质包功能(开发中).");
+				$this->logger->warning("OpenSSL extension not found");
+				$this->logger->warning("Please configure OpenSSL extension for PHP if you want to use Xbox Live authentication or global resource pack.");
 				$this->setConfigBool("online-mode", false);
 			}elseif(!$onlineMode){
-				$this->logger->warning("服务器处在离线模式!");
+				$this->logger->warning("Online mode has been turned off in server.properties");
+				$this->logger->warning("Xbox Live authentication is disabled.");
 			}
 
 			$this->forceLanguage = $this->getProperty("settings.force-language", false);
