@@ -3,6 +3,8 @@
 - This template helps you provide details about your pull request, so we can know how it will work and merge it as fast as possible.
   You may choose not to follow this template, but if your change is too complicated to be understood without your explanation, we may ask you to explain. If you still cannot do that, this pull request may be CLOSED!
 
+- One pull request should only contain commits for one topic. If you want to make two changes that are irrelevant to each other (e.g. fixing a bug and adding translation), please open multiple pull requests, one for each topic.
+
 - Thank you for your contribution, it makes GenisysPro better!
 
 -->
