@@ -36,7 +36,6 @@ use pocketmine\entity\Entity;
 use pocketmine\event\HandlerList;
 use pocketmine\event\level\LevelInitEvent;
 use pocketmine\event\level\LevelLoadEvent;
-use pocketmine\event\player\PlayerAddOpEvent;
 use pocketmine\event\server\QueryRegenerateEvent;
 use pocketmine\event\server\ServerCommandEvent;
 use pocketmine\event\Timings;
@@ -55,6 +54,7 @@ use pocketmine\level\format\io\region\Anvil;
 use pocketmine\level\format\io\region\McRegion;
 use pocketmine\level\format\io\region\PMAnvil;
 use pocketmine\level\generator\biome\Biome;
+use pocketmine\level\generator\ender\Ender;
 use pocketmine\level\generator\Flat;
 use pocketmine\level\generator\Generator;
 use pocketmine\level\generator\hell\Nether;
@@ -173,7 +173,7 @@ class Server{
 
 	private $dispatchSignals = false;
 
-	/** @var \AttachableThreadedLogger */
+	/** @var MainLogger */
 	private $logger;
 
 	/** @var MemoryManager */
@@ -189,7 +189,7 @@ class Server{
 	/** @var CraftingManager */
 	private $craftingManager;
 
- private $resourceManager;
+	private $resourceManager;
 
 	/** @var ConsoleCommandSender */
 	private $consoleSender;
@@ -205,6 +205,8 @@ class Server{
 
 	/** @var EntityMetadataStore */
 	private $entityMetadata;
+
+	private $expCache;
 
 	/** @var PlayerMetadataStore */
 	private $playerMetadata;
@@ -268,7 +270,7 @@ class Server{
 	/** @var Level */
 	private $levelDefault = null;
 
-	private $aboutContent = "";
+	//private $aboutContent = "";
 
 	/** Advanced Config */
 	public $advancedConfig = null;
@@ -309,6 +311,10 @@ class Server{
 	public $countBookshelf = false;
 	public $allowInventoryCheats = false;
 	public $folderpluginloader = true;
+	public $loadIncompatibleAPI = true;
+	public $enderEnabled = true;
+	public $enderName = "ender";
+	public $enderLevel = null;
 
 	/**
 	 * @return string
@@ -365,6 +371,20 @@ class Server{
 
 	public function getFormattedVersion($prefix = ""){
 		return (\pocketmine\VERSION !== ""? $prefix . \pocketmine\VERSION : "");
+	}
+
+	/**
+		* @return string
+		*/
+	public function getGitCommit(){
+		return \pocketmine\GIT_COMMIT;
+	}
+
+	/**
+		* @return string
+		*/
+	public function getShortGitCommit(){
+		return substr(\pocketmine\GIT_COMMIT, 0, 7);
 	}
 
 	/**
@@ -1222,7 +1242,7 @@ class Server{
 
 		return true;
 	}
-	
+
 	/**
 	 * Searches all levels for the entity with the specified ID.
 	 * Useful for tracking entities across multiple worlds without needing strong references.
@@ -1237,14 +1257,14 @@ class Server{
 		if($expectedLevel !== null){
 			array_unshift($levels, $expectedLevel);
 		}
-		
+
 		foreach($levels as $level){
 			assert(!$level->isClosed());
 			if(($entity = $level->getEntity($entityId)) instanceof Entity){
 				return $entity;
 			}
 		}
-		
+
 		return null;
 	}
 
@@ -1352,8 +1372,8 @@ class Server{
 	/**
 	 * @param string $name
 	 *
-	 * @return PluginIdentifiableCommand
-	 */
+	 * @return command\Command
+     */
 	public function getPluginCommand($name){
 		if(($command = $this->commandMap->getCommand($name)) instanceof PluginIdentifiableCommand){
 			return $command;
@@ -1512,11 +1532,12 @@ class Server{
                           __/ |
                          |___/
 
-	Version: §6" . $this->getPocketMineVersion() . '§f
+	Version: §6" . $this->getPocketMineVersion() . ' (' . $this->getShortGitCommit() . ')§f
 	Client Version: §b' . $version . '§f
 	PHP Version: §e' . PHP_VERSION . '§f
-	System OS: §6' . PHP_OS .'§f
-	This core was maintained by §dGenisysPro§f (https://github.com/GenisysPro)
+	OS: §6' . PHP_OS .'§f
+	This core is maintained by §dGenisysPro§f (https://github.com/GenisysPro)
+	Discord Group chat: §ehttps://discord.gg/WrKzRNn §f
 	Chatroom on QQ: §a559301590 §f
 	Welcome to donate us on QQ: §c1912003473
 	';
@@ -1536,6 +1557,8 @@ class Server{
 		$this->loadIncompatibleAPI = $this->getAdvancedProperty("developer.load-incompatible-api", true);
 		$this->netherEnabled = $this->getAdvancedProperty("nether.allow-nether", false);
 		$this->netherName = $this->getAdvancedProperty("nether.level-name", "nether");
+		$this->enderEnabled = $this->getAdvancedProperty("ender.allow-ender", false);
+		$this->enderName = $this->getAdvancedProperty("ender.level-name", "ender");
 		$this->weatherRandomDurationMin = $this->getAdvancedProperty("level.weather-random-duration-min", 6000);
 		$this->weatherRandomDurationMax = $this->getAdvancedProperty("level.weather-random-duration-max", 12000);
 		$this->lightningTime = $this->getAdvancedProperty("level.lightning-time", 200);
@@ -1644,7 +1667,7 @@ class Server{
 			$this->dataPath = realpath($dataPath) . DIRECTORY_SEPARATOR;
 			$this->pluginPath = realpath($pluginPath) . DIRECTORY_SEPARATOR;
 
-			$this->console = new CommandReader($logger);
+			$this->console = new CommandReader();
 
 			$version = new VersionString($this->getPocketMineVersion());
 			$this->version = $version;
@@ -1655,6 +1678,7 @@ class Server{
 			if(!file_exists($this->dataPath . "pocketmine.yml")){
 				if(file_exists($this->dataPath . "lang.txt")){
 					$langFile = new Config($configPath = $this->dataPath . "lang.txt", Config::ENUM, []);
+                    $wizardLang = null;
 					foreach ($langFile->getAll(true) as $langName) {
 						$wizardLang = $langName;
 						break;
@@ -1735,10 +1759,12 @@ class Server{
 
 			$onlineMode = $this->getConfigBoolean("online-mode", false);
 			if(!extension_loaded("openssl")){
-				$this->logger->warning("找不到 OpenSSL 扩展,请重新安装PHP,否则无法使用XBox验证 && 材质包功能(开发中).");
+				$this->logger->warning("OpenSSL extension not found");
+				$this->logger->warning("Please configure OpenSSL extension for PHP if you want to use Xbox Live authentication or global resource pack.");
 				$this->setConfigBool("online-mode", false);
 			}elseif(!$onlineMode){
-				$this->logger->warning("服务器处在离线模式!");
+				$this->logger->warning("Online mode has been turned off in server.properties");
+				$this->logger->warning("Xbox Live authentication is disabled.");
 			}
 
 			$this->forceLanguage = $this->getProperty("settings.force-language", false);
@@ -1882,11 +1908,12 @@ class Server{
 
 			Generator::addGenerator(Flat::class, "flat");
 			Generator::addGenerator(Normal::class, "normal");
-			Generator::addGenerator(Normal2::class, "default");
+			Generator::addGenerator(Normal::class, "default");
 			Generator::addGenerator(Nether::class, "hell");
 			Generator::addGenerator(Nether::class, "nether");
 			Generator::addGenerator(Void::class, "void");
 			Generator::addGenerator(Normal2::class, "normal2");
+			Generator::addGenerator(Ender::class, "ender");
 
 			foreach((array) $this->getProperty("worlds", []) as $name => $worldSetting){
 				if($this->loadLevel($name) === false){
@@ -1935,13 +1962,19 @@ class Server{
 				return;
 			}
 
-		if($this->netherEnabled){
-			if(!$this->loadLevel($this->netherName)){
-				$this->logger->info("正在生成地狱 ".$this->netherName);
-				$this->generateLevel($this->netherName, time(), Generator::getGenerator("nether"));
+			if($this->netherEnabled){
+				if(!$this->loadLevel($this->netherName)){
+					$this->generateLevel($this->netherName, time(), Generator::getGenerator("nether"));
+				}
+				$this->netherLevel = $this->getLevelByName($this->netherName);
 			}
-			$this->netherLevel = $this->getLevelByName($this->netherName);
-		}
+
+			if($this->enderEnabled){
+				if(!$this->loadLevel($this->enderName)){
+					$this->generateLevel($this->enderName, time(), Generator::getGenerator("ender"));
+				}
+				$this->enderLevel = $this->getLevelByName($this->enderName);
+			}
 
 			if($this->getProperty("ticks-per.autosave", 6000) > 0){
 				$this->autoSaveTicks = (int) $this->getProperty("ticks-per.autosave", 6000);

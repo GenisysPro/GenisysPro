@@ -13,7 +13,7 @@ settings:
  shutdown-message: "伺服器已關閉"
  #允許通過 Query 查詢插件列表
  query-plugins: true
- #當有插件使用已啟用的 API 方法時，在控制台顯示訊息
+ #當有插件使用已棄用的 API 方法時，在控制台顯示訊息
  deprecated-verbose: true
  #預設啟用插件和核心性能分析
  enable-profiling: false
@@ -104,7 +104,7 @@ player:
  save-player-data: true
  anti-cheat:
   #當設定為 false 時，將會嘗試阻止疾跑和穿墻作弊。可能導致與某些尚未適配的方塊有關的問題。
-  allow-movement-cheats: false
+  allow-movement-cheats: true
   #當設定為 false 時，將會檢查玩家破壞方塊的時間，阻止相關作弊。可能導致與某些尚未適配的方塊有關的問題。
   allow-instabreak: false
 
@@ -122,12 +122,12 @@ level-settings:
 chunk-sending:
  #若要更改伺服器正常渲染視距，請在 server.properties 中修改 view-distance。
  #每遊戲刻發送給玩家的區塊數量
- per-tick: 1
+ per-tick: 2
  #需要在玩家出生前發送的區塊半徑
  spawn-radius: 4
  #為提高區塊發送速度，在記憶體中儲存一份區塊的序列副本
  #適合在幾乎靜止、但在同一時間有許多玩家加入的世界使用
- cache-chunks: false
+ cache-chunks: true
  #使用異步處理排序要發送的區塊。
  async-chunk-request: false
 

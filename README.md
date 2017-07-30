@@ -1,18 +1,17 @@
 GenisysPro
 ====================
 
-![GenisysPro](http://i.imgur.com/R8gExma.jpg)
+[![GenisysPro](http://i.imgur.com/R8gExma.jpg)](https://genisys.pro)
 
-### Website/forums: [![Website](https://img.shields.io/website/http/shields.io.svg?label=official%20website)](https://genisys.pro/)
+| ![Download icon](https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_file_download_black_18px.svg) PHAR |  Travis CI | GitLab |
+| :---: | :---: | :---: |
+| [![Download](https://img.shields.io/badge/download-latest-blue.svg)](https://genisyspro.github.io/GenisysPro/GenisysPro.phar) | [![Travis CI](https://travis-ci.org/GenisysPro/GenisysPro.svg?branch=master)](https://travis-ci.org/GenisysPro/GenisysPro) | [![GitLab](https://gitlab.com/GenisysPro/GenisysPro/badges/master/build.svg)](https://gitlab.com/GenisysPro/GenisysPro/commits/master) |
 
-### Discord: [![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discord.gg/WrKzRNn)
+| ![Website](https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_public_black_18px.svg) | ![Chat](https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_chat_black_18px.svg) | ![Forums](https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_forum_black_18px.svg) |
+| :---: | :---: | :---: |
+| [![Website](https://img.shields.io/website-up-down-green-red/http/genisys.pro.svg?label=website)](https://genisys.pro) | [![Discord](https://img.shields.io/badge/chat-on%20discord-brightgreen.svg)](https://discord.gg/WrKzRNn) | [![Forums](https://img.shields.io/website-up-down-green-red/http/genisys.pro/forums.svg?label=forums)](https://genisys.pro/forums) |
 
-### TravisCI: [![TravisCI](https://travis-ci.org/GenisysPro/GenisysPro.svg?branch=master)](https://travis-ci.org/GenisysPro/GenisysPro)
 
-### Gitlab: [![build status](https://gitlab.com/GenisysPro/GenisysPro/badges/master/build.svg)](https://gitlab.com/GenisysPro/GenisysPro/commits/master)
-
-Languages
--------------
 [English](#english)  
 [简体中文](#简体中文)  
 [繁體中文](#繁體中文)  
@@ -34,11 +33,35 @@ Some of the functionality that Genisys offers:
 * Optional Xbox Live authentication
 * Support for Minecraft: Windows 10 Edition
 * Global resource packs
+* Generators for **ALL** world types i.e., **Overworld**, **Nether**, and **Ender**
+* Integrated DevTools
 
 Supported Version
 -------------
 Game versions supported by `master` branch:
-- [x] MCPE v1.1.x Alpha
+- [x] Minecraft PE/Windows 10 v1.1.x
+
+Get GenisysPro
+-------------
+* Download the latest code from [GitHub](https://genisyspro.github.io/GenisysPro/GenisysPro.phar).  
+* Get [PHP binaries](https://genisys.pro/info/download/) and other necessary components.
+* Installation instructions can be found in the [Wiki](https://github.com/GenisysPro/GenisysPro/wiki).
+
+
+NOTE: **The `master` branch is the only officially-supported branch.**  
+All other branches are in testing and may be unstable. Do not use builds from other branches unless you are sure you understand the risks.
+
+
+Communities
+-------------
+* [GenisysPro Official Forums](https://genisys.pro/forums/)
+* [Discord Group](https://discord.gg/WrKzRNn)
+* [QQ Group](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
+
+Donating
+-------------
+**Head developer's QQ: 1912003473**  
+GenisysPro is free software. We appreciate your donation because it helps us make GenisysPro better.
 
 TODO List
 -------------
@@ -47,39 +70,14 @@ TODO List
 - [ ] Discover all potential modifications that can enhance plugin backward compatibility.
 - [ ] Re-work how async workers perform tasks to prevent them from hanging and not performing other tasks.
 - [ ] Make modifications to handle Anvil worlds more efficiently to lower resource usage.
-- [ ] Add Ender world.
+- [x] Add Ender generator.
 - [ ] Add/Enhance Mob AI with option in yml.
 
 GenisysPro still has a long way to go. We are pleased to receive help from everybody and welcome contributors.  
 
-
-Get GenisysPro
--------------
-* Download the latest code from [GitHub](https://github.com/GenisysPro/GenisysPro/archive/master.zip)  
-  *-or-*  
-  Download a build from [Gitlab CI](https://gitlab.com/GenisysPro/GenisysPro/builds). The build might not be the latest version, and it is only updated a few times a week.
-* Get [PHP binaries](https://itxtech.org/genisys/get/) and other necessary components.
-* Installation instructions can be found in the [Wiki](https://github.com/GenisysPro/GenisysPro/wiki).
-
-
-NOTE: **The `master` branch is the only officially-supported branch.**  
-All other branches are in testing and may be unstable. Do not use builds from other branches unless you are sure you understand the risks.
-
-
 Help & Support
 -------------
 Official Doxygen-generated Documentation (unavailable yet)
-
-Community
--------------
-* [GenisysPro Official Forum](https://genisys.pro/forums/)
-* [Discord Group](https://discord.gg/WrKzRNn)
-* [QQ Group](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
-
-Donating
--------------
-**Head developer's QQ: 1912003473**  
-GenisysPro is free software. We appreciate your donation because it helps us make GenisysPro better.
 
 Other Tools
 -------------
@@ -101,87 +99,6 @@ License
   	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# 日本語
-
-前書き
--------------
-
-__GenisysProは、*Minecraft: Pocket Edition* および *Minecraft: Windows 10 Edition* 用の豊富な機能を備えたサーバーソフトウェアです。__  
-GenisysProは **[Genisys](https://github.com/iTXTech/Genisys)** をベースとし、拡張機能を備えています。 コードのほとんどは、もともと **[iTXTech](https://github.com/orgs/iTXTech/people)** のメンバーによって書かれたものです。
-
-Genisysが提供する機能の一部:
-* 複数のクライアントバージョンのサポート
-* 拡張プラグイン用API（GeniAPI）
-* オプションのXbox Live認証
-* Minecraft: Windows 10 Editionのサポート
-* グローバルリソースパック
-
-サポートされているバージョン
--------------
-`master` ブランチにてサポートしているバージョン:
-- [x] MCPE v1.1.x Alpha
-
-TODO(やること)リスト
--------------
-
-- [x] ビーコン
-- [x] フォルダプラグインの読み込み
-- [x] もっと多くのブロック
-- [x] 金床
-- [x] グローバルリソースパック
-
-GenisysProはまだまだ道のりがあります。 皆様のご協力と寄付を歓迎しております。  
-
-
-GenisysProを入手する
--------------
-* 最新のコードを [GitHub](https://github.com/GenisysPro/GenisysPro/archive/master.zip) からダウンロードする
-  *-又は-*  
-  ビルドを [GitLab CI](https://gitlab.com/GenisysPro/GenisysPro/builds) からダウンロードする。こちらの
-  ビルドは最新バージョンではなく、週に数回更新されるだけです。
-* [PHPバイナリーを入手](https://itxtech.org/genisys/get/)
-* インストール手順は [Wiki](https://github.com/GenisysPro/GenisysPro/wiki) をご覧ください。
-
-注意: **`master`ブランチは公式にサポートされている唯一のブランチです。**  
-他のすべてのブランチはテスト中であり、不安定である可能性があります。 リスクがあることを理解していない限り、他のブランチからビルドを使用しないでください。
-
-
-ヘルプ & サポート
--------------
-Doxygenで生成された公式文書（まだ入手できません）
-
-討論
--------------
-* [QQグループ](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
-* [Discordグループ](https://discord.gg/WrKzRNn)
-
-寄付
--------------
-**Head developer's QQ: 1912003473**  
-GenisysProはフリーソフトウェアです。 寄付をいただきありがとうございます。GenisysProをより良くするためです。
-
-その他のツール
--------------
-* [Pocket Server](https://github.com/fengberd/MinecraftPEServer) - PocketMine-MPをAndroid端末上で動かせるようにします。
-
-ライセンス
--------------
-   このプログラムはフリーソフトウェアです：
-   あなたはそれを再配布したり、変更したりすることができます
-   GNU一般公衆利用許諾契約書の条項の下で
-   フリーソフトウェア財団、ライセンスのバージョン3、または
-   （あなたのオプションで）すべてのそれ以降のバージョン。
-
-   このプログラムは有用であることを願って配布されており、
-   ただし、いかなる保証もありません。 黙示の保証なしでも
-   商品性または特定の目的への適合性を保証するものではありません。 を参照してください
-   詳細については、GNU General Public Licenseを参照してください。
-
-   このプログラムと共にGNU General Public Licenseのコピーを受け取ったはずです。
-   そうでない場合は、<http://www.gnu.org/licenses/licenses.ja.html>を参照してください。
-
-
-
 # 简体中文
 
 简介
@@ -194,39 +111,23 @@ Genisys 的部分特色功能：
 * 插件扩展 API (GeniAPI)
 * Xbox Live 验证（可选）
 * 支持 Minecraft: Windows 10 版
-* 支援全域材质
+* 支持全局资源包
+* 可生成 **所有** 世界类型的生成器，包括 **主世界**、**下界** 和 **末地**
+* 自带 DevTools 开发者工具
 
 支持版本
 -------------
-点击[这里](https://github.com/GenisysPro/GenisysPro#supported-version)查看 `master` 分支目前支持的版本。
-
-即将支持
--------------
-
-- [ ] 将与网络相关的文件移动到 `/src/pocketmine/network/mcpe/` 中，增强插件兼容性
-- [ ] 查找所有可能会影响插件向下兼容能力的修改
-- [ ] 改进异步功能，防止单一任务长期占用线程导致其它任务无法执行
-- [ ] 提升 Anvil 地图格式的效率，降低资源占用
-- [ ] 加入末地
-- [ ] 添加/改进生物 AI，在配置文件中添加相关选项
-
-GenisysPro 还有很长的一段路要走。我们欢迎贡献者，并希望能得到帮助！
-
+`master` 分支目前支持的版本：
+- [x] Minecraft PE/Windows 10 v1.1.x
 
 获取 GenisysPro
 -------------
-* 从  [GitHub](https://github.com/GenisysPro/GenisysPro/archive/master.zip) 获取最新版本  
-  *-或-*  
-  从 [Gitlab CI](https://gitlab.com/GenisysPro/GenisysPro/builds) 下载已打包的核心文件。下载的文件通常不是最新的，每周只会更新数次。  
-* 获取 [PHP 运行时](https://itxtech.org/genisys/get/) 和其它必要组件。
+* 从 [GitHub](https://genisyspro.github.io/GenisysPro/GenisysPro.phar) 获取最新版本。  
+* 获取 [PHP 运行时](https://genisys.pro/info/download/)和其它必要组件。
 * 您可在 [Wiki](https://github.com/GenisysPro/GenisysPro/wiki) 上找到安装指南。
 
 注意：**`master` 分支是唯一支持的分支！**  
 所有其它分支都是不稳定的测试分支。除非您确定您了解使用测试分支的风险，否则请不要使用 `master` 以外的任何分支。
-
-帮助与支持
--------------
-Doxygen 生成的官方文档（暂无）
 
 社区
 -------------
@@ -238,6 +139,22 @@ Doxygen 生成的官方文档（暂无）
 -------------
 **开发者 QQ：1912003473**  
 GenisysPro 是一个免费、开源的自由软件。我们欢迎并感谢您的捐赠，这将是我们前进的动力。
+
+即将支持
+-------------
+
+- [ ] 将与网络相关的文件移动到 `/src/pocketmine/network/mcpe/` 中，增强插件兼容性
+- [ ] 查找所有可能会影响插件向下兼容能力的修改
+- [ ] 改进异步功能，防止单一任务长期占用线程导致其它任务无法执行
+- [ ] 提升 Anvil 地图格式的效率，降低资源占用
+- [x] 加入末地生成器
+- [ ] 添加/改进生物 AI，在配置文件中添加相关选项
+
+GenisysPro 还有很长的一段路要走。我们欢迎贡献者，并希望能得到帮助！
+
+帮助与支持
+-------------
+Doxygen 生成的官方文档（暂无）
 
 其它工具
 -------------
@@ -270,39 +187,23 @@ Genisys 的部分特別機能：
 * 插件擴充 API (GeniAPI)
 * 選擇性的 Xbox Live 驗證開關
 * 支援 Minecraft: Windows 10 Edition
-* 支援全域材質包
+* 支援全球資源包
+* 可生成 **所有** 世界類型的生成器，包含 **主世界**、**下界** 和 **末路之地**
+* 集成 DevTools 開發人員工具
 
 支援的版本
 -------------
-點選[這裏](https://github.com/GenisysPro/GenisysPro#supported-version)查看 `master` 分支當前支援的版本。
-
-將要支援
--------------
-
-- [ ] 將與網路相關的檔案移動到 `/src/pocketmine/network/mcpe/` 中，加强插件相容性
-- [ ] 查找所有可能會影響插件向下相容能力的修改
-- [ ] 改進異步功能，防止單一任務長期占用執行緒導致其他任務無法執行
-- [ ] 提升 Anvil 地圖格式的效能，降低資源占用
-- [ ] 添加末路之地
-- [ ] 添加/改進生物 AI，在配置檔中添加相關設定
-
-GenisysPro 還有很長的一段路要走。我們歡迎貢獻者，並希望得到幫助！
-
+`master` 分支當前支援的版本：
+- [x] Minecraft PE/Windows 10 v1.1.x
 
 獲得 GenisysPro
 -------------
-* 在  [GitHub](https://github.com/GenisysPro/GenisysPro/archive/master.zip) 下載最新版  
-  *-或者-*  
-  在 [Gitlab CI](https://gitlab.com/GenisysPro/GenisysPro/builds) 下載預先製作的核心。下載的核心通常不會是最新的，每個禮拜頂多更新個幾次。
-* 下載 [PHP 二進制碼](https://itxtech.org/genisys/get/) 和其他必備的插件。
+* 在 [GitHub](https://genisyspro.github.io/GenisysPro/GenisysPro.phar) 下載最新版。  
+* 下載 [PHP 二進制碼](https://genisys.pro/info/download/)和其他必備的組件。
 * 您可以在 [Wiki](https://github.com/GenisysPro/GenisysPro/wiki) 找到配置指南。
 
 注意：**`master` 分支是唯一支援的分支！**  
 所有其它分支皆爲不穩定的測試分支。除非您確定您知曉使用測試分支的風險，否則請勿使用非 `master` 的任何分支。
-
-幫助與支援
--------------
-由 Doxygen 產生的官方檔案（暫無）
 
 社區
 -------------
@@ -314,6 +215,22 @@ GenisysPro 還有很長的一段路要走。我們歡迎貢獻者，並希望得
 -------------
 **開發者 QQ：1912003473**  
 GenisysPro 是一款免費、開放源代碼的自由軟體。我們歡迎並感謝您的捐贈，這是我們前進的動力。
+
+將要支援
+-------------
+
+- [ ] 將與網路相關的檔案移動到 `/src/pocketmine/network/mcpe/` 中，加强插件相容性
+- [ ] 查找所有可能會影響插件向下相容能力的修改
+- [ ] 改進異步功能，防止單一任務長期占用執行緒導致其他任務無法執行
+- [ ] 提升 Anvil 地圖格式的效能，降低資源占用
+- [x] 添加末路之地生成器
+- [ ] 添加/改進生物 AI，在配置檔中添加相關設定
+
+GenisysPro 還有很長的一段路要走。我們歡迎貢獻者，並希望得到幫助！
+
+幫助與支援
+-------------
+由 Doxygen 產生的官方檔案（暫無）
 
 其它實用程式
 -------------
@@ -331,6 +248,85 @@ GenisysPro 是一款免費、開放源代碼的自由軟體。我們歡迎並感
 
     您應該已經和程式一起收到一份 GNU 通用公共許可證的副本。如果還
     沒有，請造訪 <http://www.gnu.org/licenses/>。
+
+
+# 日本語
+
+前書き
+-------------
+
+__GenisysProは、*Minecraft: Pocket Edition* および *Minecraft: Windows 10 Edition* 用の豊富な機能を備えたサーバーソフトウェアです。__  
+GenisysProは **[Genisys](https://github.com/iTXTech/Genisys)** をベースとし、拡張機能を備えています。 コードのほとんどは、もともと **[iTXTech](https://github.com/orgs/iTXTech/people)** のメンバーによって書かれたものです。
+
+Genisysが提供する機能の一部:
+* 複数のクライアントバージョンのサポート
+* 拡張プラグイン用のAPI（GeniAPI）
+* オプションのXbox Live認証
+* Minecraftのサポート：Windows 10 Edition
+* グローバルリソースパック
+* 世界のすべてのタイプ、すなわち、Overworld、Nether、Enderの成形機
+* 組み込まれたDevTools
+
+サポートされているバージョン
+-------------
+`master` ブランチにてサポートしているバージョン:
+- [x] Minecraft PE/Windows 10 v1.1.x
+
+GenisysProを入手する
+-------------
+* 最新のコードを [GitHub](https://genisyspro.github.io/GenisysPro/GenisysPro.phar) からダウンロードする。
+* [PHPバイナリーを入手](https://genisys.pro/info/download/)
+* インストール手順は [Wiki](https://github.com/GenisysPro/GenisysPro/wiki) をご覧ください。
+
+注意: **`master`ブランチは公式にサポートされている唯一のブランチです。**  
+他のすべてのブランチはテスト中であり、不安定である可能性があります。 リスクがあることを理解していない限り、他のブランチからビルドを使用しないでください。
+
+討論
+-------------
+* [GenisysPro Official Forums](https://genisys.pro/forums/)
+* [Discordグループ](https://discord.gg/WrKzRNn) Japaneseチャンネルでは日本語で質問をすることができます。
+* [QQグループ](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
+
+寄付
+-------------
+**Head developer's QQ: 1912003473**  
+GenisysProはフリーソフトウェアです。 寄付をいただきありがとうございます。GenisysProをより良くするためです。
+
+TODO(やること)リスト
+-------------
+
+- [ ] 拡張されたプラグインの互換性のため、ファイルの場所を `/src/pocketmine/network/mcpe/`に変更
+- [ ] プラグインの下位互換性を向上させる可能性のあるすべての修正を発見してください。
+- [ ] 非同期作業者がハングしたり他のタスクを実行したりしないようにするために、非同期作業者がタスクを実行する方法を再調整できるようにする
+- [ ] Anvilの世界をより効率的に処理するための修正を行い、リソースの使用量を削減できるようにする
+- [x] Endの成形機の追加
+- [ ] yamlのオプションでMob AIを追加/強化できるようにする
+
+GenisysProはまだまだ道のりがあります。 皆様のご協力と寄付を歓迎しております。  
+
+ヘルプ & サポート
+-------------
+Doxygenで生成された公式文書（まだ入手できません）
+
+その他のツール
+-------------
+* [Pocket Server](https://github.com/fengberd/MinecraftPEServer) - PocketMine-MPをAndroid端末上で動かせるようにします。
+
+ライセンス
+-------------
+	このプログラムはフリーソフトウェアです：
+	あなたはそれを再配布したり、変更したりすることができます
+	GNU一般公衆利用許諾契約書の条項の下で
+	フリーソフトウェア財団、ライセンスのバージョン3、または
+	（あなたのオプションで）すべてのそれ以降のバージョン。
+
+	このプログラムは有用であることを願って配布されており、
+	ただし、いかなる保証もありません。 黙示の保証なしでも
+	商品性または特定の目的への適合性を保証するものではありません。 を参照してください
+	詳細については、GNU General Public Licenseを参照してください。
+
+	このプログラムと共にGNU General Public Licenseのコピーを受け取ったはずです。
+	そうでない場合は、<http://www.gnu.org/licenses/licenses.ja.html>を参照してください。
 
 
 # Dutch
@@ -351,7 +347,27 @@ Enkele functies die Genisys biedt:
 Ondersteunde versie
 -------------
 Game-versies ondersteund door `master` -fork:
-- [x] MCPE v1.1.x Alpha
+- [x] Minecraft PE/Windows 10 v1.1.x
+
+GenisysPro krijgen
+-------------
+* Download de laatste code van [GitHub](https://genisyspro.github.io/GenisysPro/GenisysPro.phar).  
+* Krijg [PHP binaries](https://genisys.pro/info/download/) en andere benodigde componenten.
+* Installatie-instructies zijn te vinden in de [Wiki](https://github.com/GenisysPro/GenisysPro/wiki).
+
+
+OPMERKING: ** De `master`-fork is de enige officieel ondersteunde fork. **
+Alle andere takken zijn in het testen en kunnen instabiel zijn. Gebruik geen bouwwerken van andere takken, tenzij u zeker weet dat u de risico's begrijpt.
+
+Discussie
+-------------
+* [Discord Group](https://discord.gg/WrKzRNn)
+* [QQ groep](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
+
+Het doneren
+-------------
+** Hoofdontwikkelaar QQ: 1912003473 **
+GenisysPro is gratis software. We waarderen uw donatie, omdat het ons helpt om GenisysPro beter te maken.
 
 Te doen lijst
 -------------
@@ -364,33 +380,9 @@ Te doen lijst
 
 GenisysPro heeft nog een lange weg. We zijn blij om hulp van iedereen te ontvangen en welkom medewerkers.
 
-
-GenisysPro krijgen
--------------
-* Download de laatste code van [GitHub](https://github.com/GenisysPro/GenisysPro/archive/master.zip)
-  *-of-*
-  Download een bouwen van [Gitlab CI](https://gitlab.com/GenisysPro/GenisysPro/builds). Het gebouw is mogelijk niet de laatste versie, en wordt pas een paar keer per week bijgewerkt.
-* Krijg [PHP binaries](https://itxtech.org/genisys/get/) en andere benodigde componenten.
-* Installatie-instructies zijn te vinden in de [Wiki](https://github.com/GenisysPro/GenisysPro/wiki).
-
-
-OPMERKING: ** De `master`-fork is de enige officieel ondersteunde fork. **
-Alle andere takken zijn in het testen en kunnen instabiel zijn. Gebruik geen bouwwerken van andere takken, tenzij u zeker weet dat u de risico's begrijpt.
-
-
 Hulp & Ondersteuning
 -------------
 Officiële Doxygen-gegenereerde Documentatie (nog niet beschikbaar)
-
-Discussie
--------------
-* [QQ groep](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
-* [Discord Group](https://discord.gg/WrKzRNn)
-
-Het doneren
--------------
-** Hoofdontwikkelaar QQ: 1912003473 **
-GenisysPro is gratis software. We waarderen uw donatie, omdat het ons helpt om GenisysPro beter te maken.
 
 Overige gereedschappen
 -------------
@@ -429,7 +421,27 @@ GenisysPro основан на **[Genisys](https://github.com/iTXTech/Genisys)**
 Поддерживаемая версия
 -------------
 Игровые версии, поддерживаемые ветвью `master`:
-- [x] MCPE v1.1.x Alpha
+- [x] Minecraft PE/Windows 10 v1.1.x
+
+Установка и получение GenisysPro
+-------------
+* Загрузите исходный код из [GitHub](https://genisyspro.github.io/GenisysPro/GenisysPro.phar).  
+* Загрузите [PHP библиотеки](https://genisys.pro/info/download/) и другие необходимые компоненты.
+* Инструкции по установке можно найти на [Вики](https://github.com/GenisysPro/GenisysPro/wiki).
+
+
+Заметка: **Ветка `master` является единственной официально поддерживаемой ветвью.**  
+Все остальные ветви тестируются и могут быть нестабильными. Не используйте сборки из других веток, если вы не уверены, что понимаете риски.
+
+Обсуждение
+-------------
+* [Группа Discord](https://discord.gg/WrKzRNn)
+* [Группа QQ](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
+
+Пожертвование
+-------------
+**Главный разработчик QQ: 1912003473**  
+GenisysPro - бесплатное программное обеспечение. Мы ценим ваше пожертвование, потому что это помогает нам улучшить GenisysPro.
 
 Список задач
 -------------
@@ -442,33 +454,10 @@ GenisysPro основан на **[Genisys](https://github.com/iTXTech/Genisys)**
 
 GenisysPro еще предстоит пройти долгий путь. Мы рады получить помощь от всех и приветствовать участников.
 
-
-Установка и получение GenisysPro
--------------
-* Загрузите исходный код из [GitHub](https://github.com/GenisysPro/GenisysPro/archive/master.zip)  
-  *или*  
-  Загрузите сборку из [Gitlab CI](https://gitlab.com/GenisysPro/GenisysPro/builds). Возможно, сборка не самая последняя версия, и она обновляется только несколько раз в неделю.
-* Загрузите [PHP библиотеки](https://itxtech.org/genisys/get/) и другие необходимые компоненты.
-* Инструкции по установке можно найти на [Вики](https://github.com/GenisysPro/GenisysPro/wiki).
-
-
-Заметка: **Ветка `master` является единственной официально поддерживаемой ветвью.**  
-Все остальные ветви тестируются и могут быть нестабильными. Не используйте сборки из других веток, если вы не уверены, что понимаете риски.
-
-
 Помощь и Поддержка
 -------------
 Официальная документация, созданная Doxygen (пока недоступна)
 
-Обсуждение
--------------
-* [Группа QQ](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
-* [Группа Discord](https://discord.gg/WrKzRNn)
-
-Пожертвование
--------------
-**Главный разработчик QQ: 1912003473**  
-GenisysPro - бесплатное программное обеспечение. Мы ценим ваше пожертвование, потому что это помогает нам улучшить GenisysPro.
 
 Другие Инструменты
 -------------
@@ -476,15 +465,15 @@ GenisysPro - бесплатное программное обеспечение.
 
 Лицензия
 -------------
-  Эта программа является свободным программным обеспечением: вы можете распространять ее и / или изменять
-  Это в соответствии с условиями GNU General Public License, опубликованной
-  Фондом бесплатного программного обеспечения, либо вариант 3 лицензии, либо
-  (По вашему выбору) любой более поздней версии.
+	Эта программа является свободным программным обеспечением: вы можете распространять ее и / или изменять
+	Это в соответствии с условиями GNU General Public License, опубликованной
+	Фондом бесплатного программного обеспечения, либо вариант 3 лицензии, либо
+	(По вашему выбору) любой более поздней версии.
 
-  Эта программа распространяется в надежде, что она будет полезна,
-  Но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; Без подразумеваемой гарантии
-  КОММЕРЧЕСКОЙ ЦЕННОСТИ или ПРИГОДНОСТИ ДЛЯ ОПРЕДЕЛЕННОЙ ЦЕЛИ. См.
-  GNU General Public License для получения более подробной информации.
+	Эта программа распространяется в надежде, что она будет полезна,
+	Но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ; Без подразумеваемой гарантии
+	КОММЕРЧЕСКОЙ ЦЕННОСТИ или ПРИГОДНОСТИ ДЛЯ ОПРЕДЕЛЕННОЙ ЦЕЛИ. См.
+	GNU General Public License для получения более подробной информации.
 
-  Вы должны были получить копию общедоступной лицензии GNU
-  Наряду с этой программой. Если нет, см. <http://www.gnu.org/licenses/>.
+	Вы должны были получить копию общедоступной лицензии GNU
+	Наряду с этой программой. Если нет, см. <http://www.gnu.org/licenses/>.

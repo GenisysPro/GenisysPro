@@ -14,7 +14,7 @@
 
 #配置文件版本
 config:
- version: 27
+ version: 28
  
 level:
  #设置是否变换天气
@@ -56,6 +56,12 @@ nether:
  allow-nether: true
  #地狱地图名
  level-name: "nether"
+
+ender:
+ #是否允许末地，打开此选项会自动生成下界地图
+ allow-ender: true
+ #末地地图名
+ level-name: "ender"
  
 server:
  #是否允许生成铁傀儡

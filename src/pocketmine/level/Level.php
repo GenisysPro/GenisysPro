@@ -80,6 +80,7 @@ use pocketmine\level\generator\PopulationTask;
 use pocketmine\level\particle\DestroyBlockParticle;
 use pocketmine\level\particle\Particle;
 use pocketmine\level\sound\Sound;
+use pocketmine\level\sound\BlockPlaceSound;
 use pocketmine\level\weather\Weather;
 use pocketmine\math\AxisAlignedBB;
 use pocketmine\math\Math;
@@ -141,6 +142,7 @@ class Level implements ChunkManager, Metadatable
 
     const DIMENSION_NORMAL = 0;
     const DIMENSION_NETHER = 1;
+    const DIMENSION_END = 2;
 
     /** @var Tile[] */
     private $tiles = [];
@@ -410,10 +412,15 @@ class Level implements ChunkManager, Metadatable
         $this->temporalPosition = new Position(0, 0, 0, $this);
         $this->temporalVector = new Vector3(0, 0, 0);
         $this->tickRate = 1;
-
         $this->weather = new Weather($this, 0);
-        if ($this->server->netherEnabled and $this->server->netherName == $this->folderName) $this->setDimension(self::DIMENSION_NETHER);
-        else $this->setDimension(self::DIMENSION_NORMAL);
+
+	    $this->setDimension(self::DIMENSION_NORMAL);
+
+        if ($this->server->netherEnabled and $this->server->netherName == $this->folderName)
+            $this->setDimension(self::DIMENSION_NETHER);
+        elseif ($this->server->enderEnabled and $this->server->enderName == $this->folderName)
+            $this->setDimension(self::DIMENSION_END);
+
         if ($this->server->weatherEnabled and $this->getDimension() == self::DIMENSION_NORMAL) {
             $this->weather->setCanCalculate(true);
         } else $this->weather->setCanCalculate(false);
@@ -481,7 +488,7 @@ class Level implements ChunkManager, Metadatable
     {
         $size = $this->server->getScheduler()->getAsyncTaskPoolSize();
         for ($i = 0; $i < $size; ++$i) {
-            $this->server->getScheduler()->scheduleAsyncTaskToWorker(new GeneratorUnregisterTask($this, $this->generatorInstance), $i);
+            $this->server->getScheduler()->scheduleAsyncTaskToWorker(new GeneratorUnregisterTask($this), $i);
         }
     }
 
@@ -1490,7 +1497,8 @@ class Level implements ChunkManager, Metadatable
         $this->timings->doBlockLightUpdates->stopTiming();
     }
 
-    private function computeRemoveBlockLight(int $x, int $y, int $z, int $currentLight, \SplQueue $queue, \SplQueue $spreadQueue, array &$visited, array &$spreadVisited)
+    //unused!
+    /*private function computeRemoveBlockLight(int $x, int $y, int $z, int $currentLight, \SplQueue $queue, \SplQueue $spreadQueue, array &$visited, array &$spreadVisited)
     {
         if ($y < 0) return;
         $current = $this->getBlockLightAt($x, $y, $z);
@@ -1528,7 +1536,7 @@ class Level implements ChunkManager, Metadatable
                 }
             }
         }
-    }
+    }*/
 
     /**
      * Sets on Vector3 the data from a Block object,
@@ -1963,6 +1971,8 @@ class Level implements ChunkManager, Metadatable
             if ($ev->isCancelled()) {
                 return false;
             }
+			
+			$this->addSound(new BlockPlaceSound($hand));
         }
 
         if ($hand->place($item, $block, $target, $face, $fx, $fy, $fz, $player) === false) {

@@ -243,10 +243,10 @@ abstract class Entity extends Location implements Metadatable {
 		Entity::registerEntity(Guardian::class);
 		Entity::registerEntity(Horse::class);
 		Entity::registerEntity(Husk::class);
-		Entity::registerEntity(Ilama::class);
 		Entity::registerEntity(IronGolem::class);
 		Entity::registerEntity(LavaSlime::class); //Magma Cube
 		Entity::registerEntity(Lightning::class);
+		Entity::registerEntity(Llama::class);
 		Entity::registerEntity(Minecart::class);
 		Entity::registerEntity(MinecartChest::class);
 		Entity::registerEntity(MinecartHopper::class);
@@ -443,8 +443,6 @@ abstract class Entity extends Location implements Metadatable {
 			$this->namedtag->Rotation[1]
 		);
 		$this->setMotion($this->temporalVector->setComponents($this->namedtag["Motion"][0], $this->namedtag["Motion"][1], $this->namedtag["Motion"][2]));
-
-		$this->resetLastMovements();
 
 		assert(!is_nan($this->x) and !is_infinite($this->x) and !is_nan($this->y) and !is_infinite($this->y) and !is_nan($this->z) and !is_infinite($this->z));
 
@@ -2067,13 +2065,6 @@ abstract class Entity extends Location implements Metadatable {
 		$this->checkChunks();
 
 		return true;
-	}
-
-	//TODO: Php doc blocks
-	protected function resetLastMovements(){
-		list($this->lastX, $this->lastY, $this->lastZ) = [$this->x, $this->y, $this->z];
-		list($this->lastYaw, $this->lastPitch) = [$this->yaw, $this->pitch];
-		list($this->lastMotionX, $this->lastMotionY, $this->lastMotionZ) = [$this->motionX, $this->motionY, $this->motionZ];
 	}
 
 	/**

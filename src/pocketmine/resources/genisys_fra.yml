@@ -13,7 +13,7 @@
 
 #Version de ce fichier
 config:
- version: 27
+ version: 28
 
 level:
  #Réglez si la météo est activée (la pluie peut provoquer un retard sur les périphériques plus anciens)
@@ -53,6 +53,10 @@ nether:
  allow-nether: true
  #Recommandé qu'il reste "nether"
  level-name: "nether"
+
+ender:
+ allow-ender: true
+ level-name: "ender"
 
 server:
  #Choisissez si le golem de génie est autorisé

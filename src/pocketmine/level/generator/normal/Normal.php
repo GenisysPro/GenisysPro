@@ -73,11 +73,6 @@ class Normal extends Generator {
 	private static $GAUSSIAN_KERNEL = null;
 	private static $SMOOTH_SIZE = 2;
 
-	/**
-	 * Normal constructor.
-	 *
-	 * @param array $options
-	 */
 	public function __construct(array $options = []){
 		if(self::$GAUSSIAN_KERNEL === null){
 			self::generateKernel();
@@ -101,33 +96,18 @@ class Normal extends Generator {
 		}
 	}
 
-	/**
-	 * @return string
-	 */
 	public function getName() : string{
 		return self::NAME;
 	}
 
-	/**
-	 * @return int
-	 */
 	public function getWaterHeight() : int{
 		return $this->waterHeight;
 	}
 
-	/**
-	 * @return array
-	 */
 	public function getSettings(){
 		return [];
 	}
 
-	/**
-	 * @param $x
-	 * @param $z
-	 *
-	 * @return Biome
-	 */
 	public function pickBiome($x, $z){
 		$hash = $x * 2345803 ^ $z * 9236449 ^ $this->level->getSeed();
 		$hash *= $hash + 223;
@@ -143,19 +123,47 @@ class Normal extends Generator {
 		return $this->selector->pickBiome($x + $xNoise - 1, $z + $zNoise - 1);
 	}
 
-	/**
-	 * @param ChunkManager $level
-	 * @param Random       $random
-	 *
-	 * @return mixed|void
-	 */
 	public function init(ChunkManager $level, Random $random){
 		$this->level = $level;
 		$this->random = $random;
 		$this->random->setSeed($this->level->getSeed());
 		$this->noiseBase = new Simplex($this->random, 4, 1 / 4, 1 / 32);
 		$this->random->setSeed($this->level->getSeed());
-		$this->selector = new BiomeSelector($this->random, Biome::getBiome(Biome::OCEAN));
+		$this->selector = new BiomeSelector($this->random, function($temperature, $rainfall){
+			if($rainfall < 0.25){
+				if($temperature < 0.7){
+					return Biome::OCEAN;
+				}elseif($temperature < 0.85){
+					return Biome::RIVER;
+				}else{
+					return Biome::SWAMP;
+				}
+			}elseif($rainfall < 0.60){
+				if($temperature < 0.25){
+					return Biome::ICE_PLAINS;
+				}elseif($temperature < 0.75){
+					return Biome::PLAINS;
+				}else{
+					return Biome::DESERT;
+				}
+			}elseif($rainfall < 0.80){
+				if($temperature < 0.25){
+					return Biome::TAIGA;
+				}elseif($temperature < 0.75){
+					return Biome::FOREST;
+				}else{
+					return Biome::BIRCH_FOREST;
+				}
+			}else{
+				if($temperature < 0.25){
+					return Biome::MOUNTAINS;
+				}elseif($temperature < 0.70){
+					return Biome::SMALL_MOUNTAINS;
+				}else{
+					return Biome::RIVER;
+				}
+			}
+		}, Biome::getBiome(Biome::OCEAN));
 
 		$this->selector->addBiome(Biome::getBiome(Biome::OCEAN));
 		$this->selector->addBiome(Biome::getBiome(Biome::PLAINS));
@@ -168,6 +176,8 @@ class Normal extends Generator {
 		$this->selector->addBiome(Biome::getBiome(Biome::ICE_PLAINS));
 		$this->selector->addBiome(Biome::getBiome(Biome::SMALL_MOUNTAINS));
 		$this->selector->addBiome(Biome::getBiome(Biome::BIRCH_FOREST));
+		$this->selector->addBiome(Biome::getBiome(Biome::BEACH));
+		$this->selector->addBiome(Biome::getBiome(Biome::MESA));
 
 		$this->selector->recalculate();
 
@@ -194,12 +204,6 @@ class Normal extends Generator {
 		$this->populators[] = $ores;
 	}
 
-	/**
-	 * @param $chunkX
-	 * @param $chunkZ
-	 *
-	 * @return mixed|void
-	 */
 	public function generateChunk($chunkX, $chunkZ){
 		$this->random->setSeed(0xdeadbeef ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
 
@@ -278,12 +282,6 @@ class Normal extends Generator {
 		}
 	}
 
-	/**
-	 * @param $chunkX
-	 * @param $chunkZ
-	 *
-	 * @return mixed|void
-	 */
 	public function populateChunk($chunkX, $chunkZ){
 		$this->random->setSeed(0xdeadbeef ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
 		foreach($this->populators as $populator){
@@ -295,9 +293,6 @@ class Normal extends Generator {
 		$biome->populateChunk($this->level, $chunkX, $chunkZ, $this->random);
 	}
 
-	/**
-	 * @return Vector3
-	 */
 	public function getSpawn(){
 		return new Vector3(127.5, 128, 127.5);
 	}

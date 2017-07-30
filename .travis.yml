@@ -16,12 +16,22 @@ script:
 notifications:
   email: false
 
+before_deploy:
+ - mv plugins/GenisysPro/GenisysPro*.phar plugins/GenisysPro/GenisysPro.phar
+
 deploy:
-  provider: releases
-  api_key:
-    secure: nxnGrZK3qlUJFLeSbXb8tjCA1TZ/6GNV7aiJqpipLGXyiqHWiE589uAdnZm9xK3GV+PJViFXQ0L8vuF5cstwABo4KBq3JbMjN+lxHP4G9dBrUO3mrg5AvblZ3K0Xm8nXYF1M9QSX77XavaZSrKBhnAXEvfqJcYY7hxnXJYpHmAGYOoBGYTEd64YKaWEMXT9WmSKe0rkbG6LU5lVG9sKieBsIi5z6Fcn7aRI/47PCM9DywoDPiLTYeJsor5io9OzLMJCtrwy2+YunLU+GUcgSGy9eEp82nInGKIKX9RiUKKybg/sajik7syLXz3/9P716BgFgHx/i0jrm6pg7lkQw5HrH4OJYh/bKOS6GK6vyYQZiqk3VlAnd2A1KvdZnsgDNm+Oa+ePAfZH9g67wdVOSc0xvJASHg6eY6kjxPTbLLahKfDv1aEIwYPU1U1685Vjiyd/2f2CTM0YqMuGjBEpiDgoQ3xISC28UJeSETjemkPqFtBsyKmbalrWsfoM6veOjFD3+12/MrfFvMgh5JjmidpHWCQupKd+jd97rPmlkReEOWDuRvaXuTrnPhOGFR0UBTw8qTglnyObYy4HD5CmTwSmujBd2DvNpSw4cWJN1f5Qxxl1+DFrhjkt+HD/NILechqjlFQ45q6eKF/7CkVNLLkCY0DQC0c2JYkmYeq/Oj8A=
-  file_glob: true
-  file: plugins/GenisysPro/*
-  skip_cleanup: true
-  on:
-    tags: true
+  - provider: releases
+    api_key:
+      secure: nxnGrZK3qlUJFLeSbXb8tjCA1TZ/6GNV7aiJqpipLGXyiqHWiE589uAdnZm9xK3GV+PJViFXQ0L8vuF5cstwABo4KBq3JbMjN+lxHP4G9dBrUO3mrg5AvblZ3K0Xm8nXYF1M9QSX77XavaZSrKBhnAXEvfqJcYY7hxnXJYpHmAGYOoBGYTEd64YKaWEMXT9WmSKe0rkbG6LU5lVG9sKieBsIi5z6Fcn7aRI/47PCM9DywoDPiLTYeJsor5io9OzLMJCtrwy2+YunLU+GUcgSGy9eEp82nInGKIKX9RiUKKybg/sajik7syLXz3/9P716BgFgHx/i0jrm6pg7lkQw5HrH4OJYh/bKOS6GK6vyYQZiqk3VlAnd2A1KvdZnsgDNm+Oa+ePAfZH9g67wdVOSc0xvJASHg6eY6kjxPTbLLahKfDv1aEIwYPU1U1685Vjiyd/2f2CTM0YqMuGjBEpiDgoQ3xISC28UJeSETjemkPqFtBsyKmbalrWsfoM6veOjFD3+12/MrfFvMgh5JjmidpHWCQupKd+jd97rPmlkReEOWDuRvaXuTrnPhOGFR0UBTw8qTglnyObYy4HD5CmTwSmujBd2DvNpSw4cWJN1f5Qxxl1+DFrhjkt+HD/NILechqjlFQ45q6eKF/7CkVNLLkCY0DQC0c2JYkmYeq/Oj8A=
+    file_glob: true
+    file: plugins/GenisysPro/*
+    skip_cleanup: true
+    on:
+      tags: true
+  - provider: pages
+    github_token:
+      secure: nxnGrZK3qlUJFLeSbXb8tjCA1TZ/6GNV7aiJqpipLGXyiqHWiE589uAdnZm9xK3GV+PJViFXQ0L8vuF5cstwABo4KBq3JbMjN+lxHP4G9dBrUO3mrg5AvblZ3K0Xm8nXYF1M9QSX77XavaZSrKBhnAXEvfqJcYY7hxnXJYpHmAGYOoBGYTEd64YKaWEMXT9WmSKe0rkbG6LU5lVG9sKieBsIi5z6Fcn7aRI/47PCM9DywoDPiLTYeJsor5io9OzLMJCtrwy2+YunLU+GUcgSGy9eEp82nInGKIKX9RiUKKybg/sajik7syLXz3/9P716BgFgHx/i0jrm6pg7lkQw5HrH4OJYh/bKOS6GK6vyYQZiqk3VlAnd2A1KvdZnsgDNm+Oa+ePAfZH9g67wdVOSc0xvJASHg6eY6kjxPTbLLahKfDv1aEIwYPU1U1685Vjiyd/2f2CTM0YqMuGjBEpiDgoQ3xISC28UJeSETjemkPqFtBsyKmbalrWsfoM6veOjFD3+12/MrfFvMgh5JjmidpHWCQupKd+jd97rPmlkReEOWDuRvaXuTrnPhOGFR0UBTw8qTglnyObYy4HD5CmTwSmujBd2DvNpSw4cWJN1f5Qxxl1+DFrhjkt+HD/NILechqjlFQ45q6eKF/7CkVNLLkCY0DQC0c2JYkmYeq/Oj8A=
+    local_dir: plugins/GenisysPro
+    skip_cleanup: true
+    on:
+      branch: master

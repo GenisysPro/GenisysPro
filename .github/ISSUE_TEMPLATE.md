@@ -5,9 +5,7 @@
 
 - Before you submit this issue, please have a look at all other existing issues, especially THOSE THAT HAVE BEEN CLOSED, and make sure this issue does not duplicate any other issue. Otherwise, this issue may be CLOSED!
 
-- If your issue is about a specific plugin, please download other PocketMine-MP forks, such as the vanilla PMMP one (https://github.com/pmmp/PocketMine-MP), then install your plugin on the fork, and test if the problem persists.
-  Only if the issue IS NOT observed on other forks should you report it, because in this case, the problem's root cause is likely to be on GenisysPro, not on the plugin.
-  We may REJECT a request asking for solution to a plugin issue that is totally the fault of plugin developer. Please directly contact plugin developer for support. GenisysPro is general-purpose software which should not be tailored specifically for any plugin.
+- If your issue is about a specific plugin, DO NOT SUBMIT YOUR ISSUE HERE. Please move to https://github.com/GenisysProPlugins and submit your issue or request there.
 
 - We DO NOT provide support for issues relating to 3rd-party mods or modded clients in any way, shape or form. GenisysPro is designed for VANILLA MC:PE/Win10 ONLY. Issues submitted relating to modded clients may be CLOSED!
 
@@ -20,10 +18,9 @@
 
 
 #### Platform information
-<!-- Please provide hash of the latest Git commit WHEN YOU DOWNLOADED YOUR GENISYSPRO COPY, e.g. 7e3c49b
-If you cannot find the hash or have forgotten it, please download the latest version and try to reproduce your issue again. If your issue still exists, report hash of the latest Git commit AT THIS TIME.
-DO NOT SAY "LATEST"! Otherwise, we may still ask you to provide a specific version tag, or even CLOSE this issue! -->
-* GenisysPro version:
+<!-- Please provide the Git commit SHA-1 of your GenisysPro copy. It should be a 7-character string with hexadecimal symbols, e.g. 7e3c49b
+You can get this information from the start-up prompt or by using `/version` command. -->
+* Git commit:
 
 <!-- Please provide version of PHP binary you are using, e.g. 7.0.21 -->
 * PHP binary version:

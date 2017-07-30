@@ -14,7 +14,7 @@
 
 #Version of this file
 config:
- version: 27
+ version: 28
 
 level:
  #Set if weather is enabled (rain may cause lag to older devices)
@@ -54,6 +54,10 @@ nether:
  allow-nether: true
  #The name of nether's level
  level-name: "nether"
+
+ender:
+ allow-ender: true
+ level-name: "ender"
 
 server:
  #Choose if spawning iron golem is allowed

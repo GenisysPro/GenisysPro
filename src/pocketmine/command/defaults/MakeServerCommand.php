@@ -77,6 +77,17 @@ class MakeServerCommand extends VanillaCommand {
 
 		$filePath = substr(\pocketmine\PATH, 0, 7) === "phar://" ? \pocketmine\PATH : realpath(\pocketmine\PATH) . "/";
 		$filePath = rtrim(str_replace("\\", "/", $filePath), "/") . "/";
+		if(is_dir($filePath . ".git")){
+			// Add some Git files as they are required in getting GIT_COMMIT
+			foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($filePath . ".git")) as $file){
+				$path = ltrim(str_replace(["\\", $filePath], ["/", ""], $file), "/");
+				if((strpos($path, ".git/HEAD") === false and strpos($path, ".git/refs/heads") === false) or strpos($path, "/.") !== false){
+					continue;
+				}
+				$phar->addFile($file, $path);
+				$sender->sendMessage("[GenisysPro] Adding $path");
+			}
+		}
 		foreach(new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($filePath . "src")) as $file){
 			$path = ltrim(str_replace(["\\", $filePath], ["/", ""], $file), "/");
 			if($path{0} === "." or strpos($path, "/.") !== false or substr($path, 0, 4) !== "src/"){
