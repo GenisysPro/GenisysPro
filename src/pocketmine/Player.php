@@ -3957,8 +3957,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		if($this->connected and !$this->closed){
 			if($notify and strlen((string) $reason) > 0){
 				$pk = new DisconnectPacket;
+				$pk->hideDisconnectionScreen = null;
 				$pk->message = $reason;
-				$this->directDataPacket($pk);
+				$this->dataPacket($pk);
 			}
 
 			//$this->setLinked();
