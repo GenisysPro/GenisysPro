@@ -72,7 +72,13 @@ class ResourcePackManager {
 		}
 
 		if(!file_exists($this->path . "resource_packs.yml")){
-			file_put_contents($this->path . "resource_packs.yml", file_get_contents($this->server->getFilePath() . "src/pocketmine/resources/resource_packs.yml"));
+			$lang = $this->server->getProperty("settings.language");
+			if(file_exists($this->server->getFilePath() . "src/pocketmine/resources/resource_packs_$lang.yml")){
+				$content = file_get_contents($file = $this->server->getFilePath() . "src/pocketmine/resources/resource_packs_$lang.yml");
+			}else{
+				$content = file_get_contents($file = $this->server->getFilePath() . "src/pocketmine/resources/resource_packs_eng.yml");
+			}
+			file_put_contents($this->path . "resource_packs.yml", $content);
 		}
 
 		$this->resourcePacksConfig = new Config($this->path . "resource_packs.yml", Config::YAML, []);

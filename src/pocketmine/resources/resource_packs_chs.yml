@@ -1,0 +1,10 @@
+# 全局资源包配置文件
+# 编辑这个配置文件以在你的 GenisysPro 服务器使用全局资源包。
+
+# 选择玩家是否需要接受全局资源包才能进入游戏。
+force_resources: false
+# 资源包列表。此处添加的资源包应存放在 `resource_packs` 文件夹下。
+resource_stack:
+ # 示例
+ # - 苦力怕材质.mcpack
+ # - 原版资源包.zip

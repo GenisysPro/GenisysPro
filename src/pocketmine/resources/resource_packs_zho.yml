@@ -1,0 +1,10 @@
+# 全球資源包配置檔案
+# 編輯這個配置檔以在你的 GenisysPro 伺服器上套用全球資源包。
+
+# 決定玩家是否需要接受全球資源包才能進入游戲。
+force_resources: false
+# 資源包列表。此處添加的資源包應存儲于 `resource_packs` 資料夾下。
+resource_stack:
+ # 示例
+ # - 爬行者材質.mcpack
+ # - 原版資源包.zip

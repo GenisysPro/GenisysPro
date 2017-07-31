@@ -1,0 +1,10 @@
+# Global resource pack configuration
+# Configure this file to use global resource packs on your GenisysPro server.
+
+# Choose whether players have to accept downloading your resource pack(s) to join the game.
+force_resources: false
+# List of your resource packs. They should be put under `resource_packs` folder.
+resource_stack:
+ # e.g.
+ # - Creeper_texture_pack.mcpack
+ # - vanilla.zip
