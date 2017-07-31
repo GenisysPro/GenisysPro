@@ -83,6 +83,8 @@ class Human extends Creature implements ProjectileSource, InventoryHolder {
 	protected $xpSeed;
 	protected $xpCooldown = 0;
 
+	protected $baseOffset = 1.62;
+
 	/**
 	 * @return mixed
 	 */
