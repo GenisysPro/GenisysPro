@@ -65,7 +65,7 @@ class TeleportCommand extends VanillaCommand {
 		$target = null;
 		$origin = $sender;
 
-		if(count($args) === 1 or count($args) === 3){
+		if(count($args) === 1 or count($args) === 3 or count($args) === 5){
 			if($sender instanceof Player){
 				$target = $sender;
 			}else{
