@@ -72,7 +72,7 @@ server:
  login-msg: "§3@player joined the game"
  logout-msg: "§3@player left the game"
  #Set if limited creative is enabled (cannot drop items from hotbar, cannot open chests, and so on)
- limited-creative: true
+ limited-creative: false
  #Set if add DestroyBlockParticle
  destroy-block-particle: true
  #Set if splash potions are enabled

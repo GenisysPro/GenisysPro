@@ -78,10 +78,8 @@ server:
  player-msg-type: 0
  login-msg: "§3@player 加入了遊戲"
  logout-msg: "§3@player 退出了遊戲"
- #是否進行移動檢測(不再拉回了)
- check-movement: true
  #是否限制創造某些功能(禁止丟物品, 禁止操作箱子等等)
- limited-creative: true
+ limited-creative: false
  #是否開啟方塊破壞粒子
  destroy-block-particle: true
  #是否允許噴濺型藥水

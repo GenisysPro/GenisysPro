@@ -74,7 +74,7 @@ server:
  login-msg: "§3@player が参加しました"
  logout-msg: "§3@player が退出しました"
  #有効にするとクリエイティブモードを制限します（インベントリからアイテムをドロップできず、チェストを開けることができません）
- limited-creative: true
+ limited-creative: false
  #有効にするとブロックを破壊したときにパーティクルを表示します
  destroy-block-particle: true
  #有効にするとスプラッシュポーションを許可します
