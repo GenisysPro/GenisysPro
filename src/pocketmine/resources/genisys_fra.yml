@@ -71,7 +71,7 @@ server:
  login-msg: "§3@player rejoint la partie"
  logout-msg: "§3@player quitte la partie"
  #Définir si la création limitée est activée (ne peut pas supprimer les éléments de la barre hotbar, ne pas ouvrir les coffres, etc.)
- limited-creative: true
+ limited-creative: false
  #Définir si ajouter DestroyBlockParticle
  destroy-block-particle: true
  #Réglez si les potions d'éclaboussures sont activées
