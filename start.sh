@@ -48,10 +48,10 @@ if [ "$PHP_BINARY" == "" ]; then
 fi
 
 if [ "$POCKETMINE_FILE" == "" ]; then
-	if [ -f ./PocketMine-iTX.phar ]; then
-		POCKETMINE_FILE="./PocketMine-iTX.phar"
-	elif [ -f ./Genisys*.phar ]; then
-	    	POCKETMINE_FILE="./Genisys*.phar"
+	if [ -f ./GenisysPro*.phar ]; then
+		POCKETMINE_FILE="./GenisysPro*.phar"
+	elif [ -f ./GenisysPro.phar ]; then
+	    	POCKETMINE_FILE="./GenisysPro.phar"
 	elif [ -f ./PocketMine-MP.phar ]; then
 		POCKETMINE_FILE="./PocketMine-MP.phar"
 	elif [ -f ./src/pocketmine/PocketMine.php ]; then
