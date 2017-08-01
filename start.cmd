@@ -12,14 +12,14 @@ if exist bin\php\php.exe (
 if exist GenisysPro*.phar (
 	set POCKETMINE_FILE=GenisysPro*.phar
 ) else (
-	if exist PocketMine-MP.phar (
-		set POCKETMINE_FILE=PocketMine-MP.phar
+	if exist GenisysPro.phar (
+		set POCKETMINE_FILE=GenisysPro.phar
 	) else (
-	    if exist src\pocketmine\PocketMine.php (
-	        set POCKETMINE_FILE=src\pocketmine\PocketMine.php
+		if exist PocketMine-MP.phar (
+			set POCKETMINE_FILE=PocketMine-MP.phar
 		) else (
-			if exist GenisysPro.phar (
-				set POCKETMINE_FILE=GenisysPro.phar
+		    if exist src\pocketmine\PocketMine.php (
+		        set POCKETMINE_FILE=src\pocketmine\PocketMine.php
 			) else (
 		        echo "[ERROR] Couldn't find a valid GenisysPro installation."
 		        pause

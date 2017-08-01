@@ -16,12 +16,12 @@ if(Test-Path "GenisysPro*.phar"){
         $file = "'$filename'" # This allows the file name to contain space
         break
     }
+}elseif(Test-Path "GenisysPro.phar"){
+	$file = "GenisysPro.phar"
 }elseif(Test-Path "PocketMine-MP.phar"){
 	$file = "PocketMine-MP.phar"
 }elseif(Test-Path "src\pocketmine\PocketMine.php"){
 	$file = "src\pocketmine\PocketMine.php"
-}elseif(Test-Path "GenisysPro.phar"){
-	$file = "GenisysPro.phar"
 }else{
 	echo "[ERROR] Couldn't find a valid GenisysPro installation."
 	pause
