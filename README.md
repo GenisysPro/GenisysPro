@@ -1,16 +1,32 @@
+<!-- Notice to GenisysPro collaborators: please do not push any commit to this README when finally merging this Beta branch into `master`, thank you! -->
+
+# Branch for Minecraft PE/Windows 10 v1.2 Beta Testing Versions
+
+|  Travis CI |
+| :---: |
+| [![Travis CI](https://api.travis-ci.org/GenisysPro/GenisysPro.svg?branch=mcpe-1.2-beta)](https://travis-ci.org/GenisysPro/GenisysPro) |
+
+This is the branch for Minecraft PE/Windows v1.2 Beta.   
+**We DO NOT suggest any production use of this branch!** Both Minecraft Beta clients and this branch might be unstable.  
+As Mojang is still developing v1.2 and may introduce any big change to the beta version at any time, this branch is **not intended to fully support v1.2 Beta yet**.  
+
+## Submitting Pull Requests
+If you would like to fix a problem or improve something that we have not done yet, feel free to send us a pull request.  
+When submitting a pull request, please make sure you follow these guidelines:
+* **Select `mcpe-1.2-beta` as the base branch**. Your commits for the beta version must not be merged into the `master` branch. You can do this when creating your pull request.
+* If your pull request resolves an undocumented issue (neither noted by us nor reported in Issues), please **describe the issue in details** as if you are submitting an issue.
+* Please **explain your changes thoroughly**, such as why you decide to modify a line, what will happen after we merge your pull request, how we should test your code, etc.
+
+## Submitting Issues
+We expect more issues on this branch, so we will be very strict when processing your issue. When submitting issues of code in this branch, please make sure you provide specific and sufficient information.  
+* **Check if your issue duplicates any other issue**. Sometimes there are multiple users reporting the same bug. Also, **remember to check closed issues** that we might have fixed.
+* No matter how easy your issue can be described, please **always provide a detailed description**. Do not merely say "players can't join server"; instead, try to provide more information beyond that, such as whether your players can see your server running in the server list.
+* Please kindly **report the Git commit SHA-1** of GenisysPro you are using, so we can know not only you are using code from this beta branch but also whether a patch that fixes your issue is included in your GenisysPro copy.
+
 GenisysPro
 ====================
 
 [![GenisysPro](http://i.imgur.com/R8gExma.jpg)](https://genisys.pro)
-
-| ![Download icon](https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_file_download_black_18px.svg) PHAR |  Travis CI | GitLab |
-| :---: | :---: | :---: |
-| [![Download](https://img.shields.io/badge/download-latest-blue.svg)](https://genisyspro.github.io/GenisysPro/GenisysPro.phar) | [![Travis CI](https://travis-ci.org/GenisysPro/GenisysPro.svg?branch=master)](https://travis-ci.org/GenisysPro/GenisysPro) | [![GitLab](https://gitlab.com/GenisysPro/GenisysPro/badges/master/build.svg)](https://gitlab.com/GenisysPro/GenisysPro/commits/master) |
-
-| ![Website](https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_public_black_18px.svg) | ![Chat](https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_chat_black_18px.svg) | ![Forums](https://storage.googleapis.com/material-icons/external-assets/v4/icons/svg/ic_forum_black_18px.svg) |
-| :---: | :---: | :---: |
-| [![Website](https://img.shields.io/website-up-down-green-red/http/genisys.pro.svg?label=website)](https://genisys.pro) | [![Discord](https://img.shields.io/badge/chat-on%20discord-brightgreen.svg)](https://discord.gg/WrKzRNn) | [![Forums](https://img.shields.io/website-up-down-green-red/http/genisys.pro/forums.svg?label=forums)](https://genisys.pro/forums) |
-
 
 [English](#english)  
 [简体中文](#简体中文)  
@@ -38,19 +54,14 @@ Some of the functionality that Genisys offers:
 
 Supported Version
 -------------
-Game versions supported by `master` branch:
-- [x] Minecraft PE/Windows 10 v1.1.x
+Game versions supported by this branch:
+- [x] Minecraft PE/Windows 10 v1.2 Beta
 
 Get GenisysPro
 -------------
-* Download the latest code from [GitHub](https://genisyspro.github.io/GenisysPro/GenisysPro.phar).  
+* Download the latest code of this branch from [GitHub](https://github.com/GenisysPro/GenisysPro/archive/mcpe-1.2-beta.zip)  
 * Get [PHP binaries](https://genisys.pro/info/download/) and other necessary components.
 * Installation instructions can be found in the [Wiki](https://github.com/GenisysPro/GenisysPro/wiki).
-
-
-NOTE: **The `master` branch is the only officially-supported branch.**  
-All other branches are in testing and may be unstable. Do not use builds from other branches unless you are sure you understand the risks.
-
 
 Communities
 -------------
@@ -117,12 +128,12 @@ Genisys 的部分特色功能：
 
 支持版本
 -------------
-`master` 分支目前支持的版本：
-- [x] Minecraft PE/Windows 10 v1.1.x
+此分支目前支持的版本：
+- [x] Minecraft PE/Windows 10 v1.2 Beta
 
 获取 GenisysPro
 -------------
-* 从 [GitHub](https://genisyspro.github.io/GenisysPro/GenisysPro.phar) 获取最新版本。  
+* 从 [GitHub](https://github.com/GenisysPro/GenisysPro/archive/mcpe-1.2-beta.zip) 获取此分支的最新版本。  
 * 获取 [PHP 运行时](https://genisys.pro/info/download/)和其它必要组件。
 * 您可在 [Wiki](https://github.com/GenisysPro/GenisysPro/wiki) 上找到安装指南。
 
@@ -193,12 +204,12 @@ Genisys 的部分特別機能：
 
 支援的版本
 -------------
-`master` 分支當前支援的版本：
-- [x] Minecraft PE/Windows 10 v1.1.x
+此分支當前支援的版本：
+- [x] Minecraft PE/Windows 10 v1.2 Beta
 
 獲得 GenisysPro
 -------------
-* 在 [GitHub](https://genisyspro.github.io/GenisysPro/GenisysPro.phar) 下載最新版。  
+* 在 [GitHub](https://github.com/GenisysPro/GenisysPro/archive/mcpe-1.2-beta.zip) 下載此分支的最新版。  
 * 下載 [PHP 二進制碼](https://genisys.pro/info/download/)和其他必備的組件。
 * 您可以在 [Wiki](https://github.com/GenisysPro/GenisysPro/wiki) 找到配置指南。
 
@@ -269,12 +280,12 @@ Genisysが提供する機能の一部:
 
 サポートされているバージョン
 -------------
-`master` ブランチにてサポートしているバージョン:
-- [x] Minecraft PE/Windows 10 v1.1.x
+<!-- `master` ブランチにてサポートしているバージョン: -->
+- [x] Minecraft PE/Windows 10 v1.2 Beta
 
 GenisysProを入手する
 -------------
-* 最新のコードを [GitHub](https://genisyspro.github.io/GenisysPro/GenisysPro.phar) からダウンロードする。
+* 最新のコードを [GitHub](https://github.com/GenisysPro/GenisysPro/archive/mcpe-1.2-beta.zip) からダウンロードする。
 * [PHPバイナリーを入手](https://genisys.pro/info/download/)
 * インストール手順は [Wiki](https://github.com/GenisysPro/GenisysPro/wiki) をご覧ください。
 
@@ -346,12 +357,12 @@ Enkele functies die Genisys biedt:
 
 Ondersteunde versie
 -------------
-Game-versies ondersteund door `master` -fork:
-- [x] Minecraft PE/Windows 10 v1.1.x
+<!-- Game-versies ondersteund door `master` -fork: -->
+- [x] Minecraft PE/Windows 10 v1.2 Beta
 
 GenisysPro krijgen
 -------------
-* Download de laatste code van [GitHub](https://genisyspro.github.io/GenisysPro/GenisysPro.phar).  
+* Download de laatste code van [GitHub](https://github.com/GenisysPro/GenisysPro/archive/mcpe-1.2-beta.zip).  
 * Krijg [PHP binaries](https://genisys.pro/info/download/) en andere benodigde componenten.
 * Installatie-instructies zijn te vinden in de [Wiki](https://github.com/GenisysPro/GenisysPro/wiki).
 
@@ -420,18 +431,14 @@ GenisysPro основан на **[Genisys](https://github.com/iTXTech/Genisys)**
 
 Поддерживаемая версия
 -------------
-Игровые версии, поддерживаемые ветвью `master`:
-- [x] Minecraft PE/Windows 10 v1.1.x
+<!-- Игровые версии, поддерживаемые ветвью `master`: -->
+- [x] Minecraft PE/Windows 10 v1.2 Beta
 
 Установка и получение GenisysPro
 -------------
-* Загрузите исходный код из [GitHub](https://genisyspro.github.io/GenisysPro/GenisysPro.phar).  
+* Загрузите исходный код из [GitHub](https://github.com/GenisysPro/GenisysPro/archive/mcpe-1.2-beta.zip).  
 * Загрузите [PHP библиотеки](https://genisys.pro/info/download/) и другие необходимые компоненты.
 * Инструкции по установке можно найти на [Вики](https://github.com/GenisysPro/GenisysPro/wiki).
-
-
-Заметка: **Ветка `master` является единственной официально поддерживаемой ветвью.**  
-Все остальные ветви тестируются и могут быть нестабильными. Не используйте сборки из других веток, если вы не уверены, что понимаете риски.
 
 Обсуждение
 -------------
