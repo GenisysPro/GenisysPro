@@ -281,7 +281,7 @@ Genisysが提供する機能の一部:
 サポートされているバージョン
 -------------
 <!-- `master` ブランチにてサポートしているバージョン: -->
-- [x] Minecraft PE/Windows 10 v1.2 Beta
+- [x] Minecraft PE/Windows 10 v1.2 ベータ版
 
 GenisysProを入手する
 -------------
