@@ -23,6 +23,7 @@ namespace pocketmine\block;
 
 use pocketmine\item\Item;
 use pocketmine\level\Level;
+use pocketmine\level\sound\ButtonClickSound;
 use pocketmine\math\Vector3;
 use pocketmine\Player;
 
@@ -182,6 +183,7 @@ class Lever extends RedstoneSource {
 	public function onActivate(Item $item, Player $player = null){
 		$this->meta ^= 0x08;
 		$this->getLevel()->setBlock($this, $this, true, false);
+		$this->getLevel()->addSound(new ButtonClickSound($this));
 		if($this->isActivated()) $this->activate();
 		else $this->deactivate();
 		return true;
