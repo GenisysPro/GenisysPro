@@ -30,6 +30,7 @@ use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
 class Sheep extends Animal implements Colorable {
+
 	const NETWORK_ID = 13;
 
 	const DATA_COLOR_INFO = 16;
@@ -123,7 +124,8 @@ class Sheep extends Animal implements Colorable {
 	 */
 	public function getDrops(){
 		$drops = [
-			ItemItem::get(ItemItem::WOOL, $this->getColor(), 1)
+			ItemItem::get(ItemItem::WOOL, $this->getColor(), 1),
+            ItemItem::get(ItemItem::RAW_MUTTON, 0, rand(1, 2))
 		];
 		return $drops;
 	}
