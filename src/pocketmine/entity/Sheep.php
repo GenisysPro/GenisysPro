@@ -2,22 +2,25 @@
 
 /*
  *
- *  _____   _____   __   _   _   _____  __    __  _____
- * /  ___| | ____| |  \ | | | | /  ___/ \ \  / / /  ___/
- * | |     | |__   |   \| | | | | |___   \ \/ /  | |___
- * | |  _  |  __|  | |\   | | | \___  \   \  /   \___  \
- * | |_| | | |___  | | \  | | |  ___| |   / /     ___| |
- * \_____/ |_____| |_|  \_| |_| /_____/  /_/     /_____/
+ *  _____            _               _____
+ * / ____|          (_)             |  __ \
+ *| |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___
+ *| | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \
+ *| |__| |  __/ | | | \__ \ |_| \__ \ |   | | | (_) |
+ * \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/
+ *                         __/ |
+ *                        |___/
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
+ * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * @author iTX Technologies
- * @link https://itxtech.org
+ * @author GenisysPro
+ * @link https://github.com/GenisysPro/GenisysPro
  *
- */
+ *
+*/
 
 namespace pocketmine\entity;
 
@@ -123,10 +126,15 @@ class Sheep extends Animal implements Colorable {
      * @return array
      */
     public function getDrops(){
-        $drops = [
-            ItemItem::get(ItemItem::WOOL, $this->getColor(), 1),
-            ItemItem::get(ItemItem::RAW_MUTTON, 0, rand(1, 2))
-        ];
-        return $drops;
+        $cause = $this->lastDamageCause;
+        if ($cause instanceof EntityDamageByEntityEvent) {
+            $damager = $cause->getDamager();
+            if ($damager instanceof Player) {
+                $lootingL = $damager->getItemInHand()->getEnchantmentLevel(Enchantment::TYPE_WEAPON_LOOTING);
+                $drops = [ItemItem::get(ItemItem::WOOL, $this->getColor(), 1)];
+                $drops[] = ItemItem::get(ItemItem::RAW_MUTTON, 0, mt_rand(1, 2 + $lootingL));
+                return $drops;
+            }
+        }
     }
 }
