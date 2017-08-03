@@ -21,14 +21,10 @@
 
 namespace pocketmine\command\defaults;
 
-
 use pocketmine\command\CommandSender;
-
-
 use pocketmine\event\TranslationContainer;
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\utils\TextFormat;
-
 
 class EnchantCommand extends VanillaCommand {
 
