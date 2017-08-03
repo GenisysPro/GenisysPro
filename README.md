@@ -356,7 +356,7 @@ GenisysPro krijgen
 * Installatie-instructies zijn te vinden in de [Wiki](https://github.com/GenisysPro/GenisysPro/wiki).
 
 
-OPMERKING: ** De `master`-fork is de enige officieel ondersteunde fork. **
+OPMERKING: **De `master`-fork is de enige officieel ondersteunde fork.**
 Alle andere takken zijn in het testen en kunnen instabiel zijn. Gebruik geen bouwwerken van andere takken, tenzij u zeker weet dat u de risico's begrijpt.
 
 Discussie
@@ -366,7 +366,7 @@ Discussie
 
 Het doneren
 -------------
-** Hoofdontwikkelaar QQ: 1912003473 **
+**Hoofdontwikkelaar QQ: 1912003473**
 GenisysPro is gratis software. We waarderen uw donatie, omdat het ons helpt om GenisysPro beter te maken.
 
 Te doen lijst
