@@ -25,6 +25,8 @@
 namespace pocketmine\entity;
 
 use pocketmine\block\Wool;
+use pocketmine\event\entity\EntityDamageByEntityEvent;
+use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\Item as ItemItem;
 use pocketmine\level\Level;
 use pocketmine\nbt\tag\ByteTag;
@@ -125,16 +127,17 @@ class Sheep extends Animal implements Colorable {
     /**
      * @return array
      */
-    public function getDrops(){
-        $cause = $this->lastDamageCause;
-        if ($cause instanceof EntityDamageByEntityEvent) {
-            $damager = $cause->getDamager();
-            if ($damager instanceof Player) {
-                $lootingL = $damager->getItemInHand()->getEnchantmentLevel(Enchantment::TYPE_WEAPON_LOOTING);
-                $drops = [ItemItem::get(ItemItem::WOOL, $this->getColor(), 1)];
+	public function getDrops(){
+		$cause = $this->lastDamageCause;
+		if($cause instanceof EntityDamageByEntityEvent){
+			$damager = $cause->getDamager();
+			if($damager instanceof Player){
+				$lootingL = $damager->getItemInHand()->getEnchantmentLevel(Enchantment::TYPE_WEAPON_LOOTING);
+				$drops = [ItemItem::get(ItemItem::WOOL, $this->getColor(), 1)];
                 $drops[] = ItemItem::get(ItemItem::RAW_MUTTON, 0, mt_rand(1, 2 + $lootingL));
-                return $drops;
-            }
-        }
-    }
+				return $drops;
+			}
+		}
+		return [];
+	}
 }
