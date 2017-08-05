@@ -2753,25 +2753,40 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 						if($this->lastBreak !== PHP_INT_MAX or $pos->distanceSquared($this) > 10000){
 							break;
 						}
+						
 						$target = $this->level->getBlock($pos);
 						$ev = new PlayerInteractEvent($this, $this->inventory->getItemInHand(), $target, $packet->face, $target->getId() === 0 ? PlayerInteractEvent::LEFT_CLICK_AIR : PlayerInteractEvent::LEFT_CLICK_BLOCK);
 						$this->getServer()->getPluginManager()->callEvent($ev);
+						
 						if(!$ev->isCancelled()){
 							$side = $target->getSide($packet->face);
 							if($side instanceof Fire){
 								$side->getLevel()->setBlock($side, new Air());
 								break;
 							}
+							
+							if(!$this->isCreative()){
+								$breakTime = ceil($target->getBreakTime($this->inventory->getItemInHand()) * 20);
+								if($breakTime > 0){
+									$this->level->broadcastLevelEvent($pos, LevelEventPacket::EVENT_BLOCK_START_BREAK, (int) (65535 / $breakTime));
+								}
+							}
+							
 							$this->lastBreak = microtime(true);
 						}else{
 							$this->inventory->sendHeldItem($this);
 						}
-						break;
+						break; 
+						
 					case PlayerActionPacket::ACTION_ABORT_BREAK:
 						$this->lastBreak = PHP_INT_MAX;
+						$this->level->broadcastLevelEvent($pos, LevelEventPacket::EVENT_BLOCK_STOP_BREAK);
 						break;
+						
 					case PlayerActionPacket::ACTION_STOP_BREAK:
+						$this->level->broadcastLevelEvent($pos, LevelEventPacket::EVENT_BLOCK_STOP_BREAK);
 						break;
+						
 					case PlayerActionPacket::ACTION_RELEASE_ITEM:
 						if($this->startAction > -1 and $this->getDataFlag(self::DATA_FLAGS, self::DATA_FLAG_ACTION)){
 							if($this->inventory->getItemInHand()->getId() === Item::BOW){
