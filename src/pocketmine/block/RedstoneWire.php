@@ -249,7 +249,6 @@ class RedstoneWire extends RedstoneSource {
 					$this->deactivateBlock($this->getSide(Vector3::SIDE_DOWN)->getSide($s));
 				}
 			}
-
 			if($side[0] == false) return;
 			$block = $this->getSide($side[0]);
 			$this->deactivateBlockWithoutWire($block);
