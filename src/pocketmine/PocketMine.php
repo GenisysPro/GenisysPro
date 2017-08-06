@@ -398,7 +398,7 @@ namespace pocketmine {
 	$errors = 0;
 
 	if(php_sapi_name() !== "cli"){
-		$logger->critical("You must run PocketMine-MP using the CLI.");
+		$logger->critical("You must run GenisysPro using the CLI.");
 		++$errors;
 	}
 
@@ -422,21 +422,16 @@ namespace pocketmine {
 
 	if(extension_loaded("pocketmine")){
 		if(version_compare(phpversion("pocketmine"), "0.0.1") < 0){
-			$logger->critical("You have the native PocketMine extension, but your version is lower than 0.0.1.");
+			$logger->critical("You have the native GenisysPro extension, but your version is lower than 0.0.1.");
 			++$errors;
 		}elseif(version_compare(phpversion("pocketmine"), "0.0.4") > 0){
-			$logger->critical("You have the native PocketMine extension, but your version is higher than 0.0.4.");
+			$logger->critical("You have the native GenisysPro extension, but your version is higher than 0.0.4.");
 			++$errors;
 		}
 	}
 
 	if(extension_loaded("xdebug")){
-		$logger->warning("
-
-
-	You are running PocketMine with xdebug enabled. This has a major impact on performance.
-
-		");
+		$logger->warning("You are running GenisysPro with Xdebug enabled. This has a major impact on performance.");
 	}
 
 	if(!extension_loaded("curl")){
@@ -455,7 +450,7 @@ namespace pocketmine {
 	}
 
 	if($errors > 0){
-		$logger->critical("Please update your PHP from itxtech.org/genisys/get/, or recompile PHP again.");
+		$logger->critical("Please update or recompile PHP.");
 		$logger->shutdown();
 		$logger->join();
 		exit(1); //Exit with error
