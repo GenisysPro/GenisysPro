@@ -88,7 +88,7 @@ GenisysPro still has a long way to go. We are pleased to receive help from every
 
 Help & Support
 -------------
-Official Doxygen-generated Documentation (unavailable yet)
+[Official Doxygen-generated Documentation](https://genisyspro.github.io/docs/)
 
 Other Tools
 -------------
@@ -165,7 +165,7 @@ GenisysPro 还有很长的一段路要走。我们欢迎贡献者，并希望能
 
 帮助与支持
 -------------
-Doxygen 生成的官方文档（暂无）
+[Doxygen 生成的官方文档](https://genisyspro.github.io/docs/)
 
 其它工具
 -------------
@@ -241,7 +241,7 @@ GenisysPro 還有很長的一段路要走。我們歡迎貢獻者，並希望得
 
 幫助與支援
 -------------
-由 Doxygen 產生的官方檔案（暫無）
+[由 Doxygen 產生的官方檔案](https://genisyspro.github.io/docs/)
 
 其它實用程式
 -------------
@@ -317,7 +317,7 @@ GenisysProはまだまだ道のりがあります。 皆様のご協力と寄付
 
 ヘルプ & サポート
 -------------
-Doxygenで生成された公式文書（まだ入手できません）
+[Doxygenで生成された公式文書](https://genisyspro.github.io/docs/)
 
 その他のツール
 -------------
@@ -367,7 +367,7 @@ GenisysPro krijgen
 * Installatie-instructies zijn te vinden in de [Wiki](https://github.com/GenisysPro/GenisysPro/wiki).
 
 
-OPMERKING: ** De `master`-fork is de enige officieel ondersteunde fork. **
+OPMERKING: **De `master`-fork is de enige officieel ondersteunde fork.**
 Alle andere takken zijn in het testen en kunnen instabiel zijn. Gebruik geen bouwwerken van andere takken, tenzij u zeker weet dat u de risico's begrijpt.
 
 Discussie
@@ -377,7 +377,7 @@ Discussie
 
 Het doneren
 -------------
-** Hoofdontwikkelaar QQ: 1912003473 **
+**Hoofdontwikkelaar QQ: 1912003473**
 GenisysPro is gratis software. We waarderen uw donatie, omdat het ons helpt om GenisysPro beter te maken.
 
 Te doen lijst
@@ -393,7 +393,7 @@ GenisysPro heeft nog een lange weg. We zijn blij om hulp van iedereen te ontvang
 
 Hulp & Ondersteuning
 -------------
-Officiële Doxygen-gegenereerde Documentatie (nog niet beschikbaar)
+[Officiële Doxygen-gegenereerde Documentatie](https://genisyspro.github.io/docs/)
 
 Overige gereedschappen
 -------------
@@ -463,8 +463,7 @@ GenisysPro еще предстоит пройти долгий путь. Мы р
 
 Помощь и Поддержка
 -------------
-Официальная документация, созданная Doxygen (пока недоступна)
-
+[]Официальная документация, созданная Doxygen](https://genisyspro.github.io/docs/)
 
 Другие Инструменты
 -------------

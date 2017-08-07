@@ -23,6 +23,8 @@ namespace pocketmine\block;
 
 use pocketmine\item\Item;
 use pocketmine\level\Level;
+use pocketmine\level\sound\ItemFrameAddItemSound;
+use pocketmine\level\sound\ItemFrameRotateItemSound;
 use pocketmine\nbt\tag\{
 	ByteTag, CompoundTag, FloatTag, IntTag, StringTag
 };
@@ -77,12 +79,14 @@ class ItemFrame extends Flowable {
 
 		if($tile->hasItem()){
 			$tile->setItemRotation(($tile->getItemRotation() + 1) % 8);
+			$this->getLevel()->addSound(new ItemFrameRotateItemSound($this));
 		}else{
 			if($item->getCount() > 0){
 				$frameItem = clone $item;
 				$frameItem->setCount(1);
 				$item->setCount($item->getCount() - 1);
 				$tile->setItem($frameItem);
+				$this->getLevel()->addSound(new ItemFrameAddItemSound($this));
 				if($item->getId() === Item::FILLED_MAP){
 					$tile->SetMapID($item->getMapId());
 				}
