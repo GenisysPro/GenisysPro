@@ -43,7 +43,7 @@ class KillCommand extends VanillaCommand {
 			["suicide"]
 		);
 		//$this->setPermission("pocketmine.command.kill.self;pocketmine.command.kill.other");
-		/kill    is everybody can use
+		/*  /kill    is everybody can use*/
 	}
 
 	/**
