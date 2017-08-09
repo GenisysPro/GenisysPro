@@ -245,13 +245,24 @@ class Vector3 {
 	 *
 	 * @throws \InvalidArgumentException if an invalid side is supplied
 	 */
-	public static function getOppositeSide(int $side) : int{
-		if($side >= 0 and $side <= 5){
-			return $side ^ 0x01;
+	public static function getOppositeSide($side){
+ 		switch((int) $side){
+ 			case Vector3::SIDE_DOWN:
+ 				return Vector3::SIDE_UP;
+ 			case Vector3::SIDE_UP:
+ 				return Vector3::SIDE_DOWN;
+ 			case Vector3::SIDE_NORTH:
+ 				return Vector3::SIDE_SOUTH;
+ 			case Vector3::SIDE_SOUTH:
+ 				return Vector3::SIDE_NORTH;
+ 			case Vector3::SIDE_WEST:
+ 				return Vector3::SIDE_EAST;
+ 			case Vector3::SIDE_EAST:
+ 				return Vector3::SIDE_WEST;
+ 			default:
+ 				return -1;
 		}
-
-		throw new \InvalidArgumentException("Invalid side $side given to getOppositeSide");
-	}
+ 	}
 
 	/**
 	 * @param Vector3 $pos
