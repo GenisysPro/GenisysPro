@@ -740,11 +740,17 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	public function sendCommandData(){
 		$data = new \stdClass();
 		$count = 0;
+		
+		
 		foreach($this->server->getCommandMap()->getCommands() as $command){
-			if($this->hasPermission($command->getPermission()) or $command->getPermission() == null) {
+			/*if($this->hasPermission($command->getPermission()) or $command->getPermission() == null) {
 				if (($cmdData = $command->generateCustomCommandData($this)) !== null){
 					++$count;
-					$data->{$command->getName()}->versions[0] = $cmdData;
+					$data->{$command->getName()}->versions[0] = $cmdData;*/
+					if(($cmdData = $command->generateCustomCommandData($this)) !== null){
+-				++$count;
+-				$data->{$command->getName()}->versions[0] = $cmdData;
+					
 				}
 			}
 		}
