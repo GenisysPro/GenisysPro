@@ -30,7 +30,7 @@ class AnimatePacket extends DataPacket {
 
 	public $action;
 	public $eid;
-	public $float;
+	public $float = 0.0; //TODO (Boat rowing time)
 
 	/**
 	 *
