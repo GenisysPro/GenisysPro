@@ -3254,7 +3254,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				}
 				$this->craftingType = 0;
 				$commandText = $packet->command;
-				if($packet->inputJson !== null and is_array($packet->inputJson)){
+				if($packet->inputJson !== null){
 					foreach($packet->inputJson as $arg){ //command ordering will be an issue
 						if(is_string($arg)) //anti bot
 							$commandText .= " " . $arg;
