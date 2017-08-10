@@ -952,7 +952,7 @@ abstract class Entity extends Location implements Metadatable {
 				$this->setNameTagVisible($this->namedtag["CustomNameVisible"] > 0);
 			}
 			if(isset($this->namedtag->CustomNameAlwaysVisible)){
-				$this->setNameTagOlwaysVisible($this->namedtag["CustomNameAlwaysVisible"] > 0);
+				$this->setNameTagAlwaysVisible($this->namedtag["CustomNameAlwaysVisible"] > 0);
 			}
 		}
 
