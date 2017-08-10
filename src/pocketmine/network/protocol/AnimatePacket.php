@@ -36,8 +36,8 @@ class AnimatePacket extends DataPacket {
 	 *
 	 */
 	public function decode(){
-		$this->action = $this->getVarInt();
-		$this->eid = $this->getEntityId();
+		$this->action = (int) $this->getUnsignedVarInt();
+		$this->eid = $this->getVarLong();
 		if($this->float & 0x80){
 			$this->float = $this->getLFloat();
 		}
@@ -48,8 +48,8 @@ class AnimatePacket extends DataPacket {
 	 */
 	public function encode(){
 		$this->reset();
-		$this->putVarInt($this->action);
-		$this->putEntityId($this->eid);
+		$this->putUnsignedVarInt($this->action);
+		$this->putVarLong($this->eid);
 		if($this->float & 0x80){
 			$this->putLFloat($this->float);
 		}
