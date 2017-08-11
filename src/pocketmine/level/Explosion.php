@@ -39,6 +39,7 @@ use pocketmine\nbt\tag\DoubleTag;
 use pocketmine\nbt\tag\FloatTag;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\network\protocol\ExplodePacket;
+use pocketmine\network\protocol\LevelSoundEventPacket;
 use pocketmine\utils\Random;
 
 class Explosion {
@@ -238,6 +239,7 @@ class Explosion {
 		$this->level->addChunkPacket($source->x >> 4, $source->z >> 4, $pk);
 
 		$this->level->addParticle(new HugeExplodeSeedParticle($source));
+		$this->level->broadcastLevelSoundEvent($source, LevelSoundEventPacket::SOUND_EXPLODE);
 
 		return true;
 	}
