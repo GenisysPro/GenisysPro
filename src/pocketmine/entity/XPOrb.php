@@ -23,7 +23,7 @@ namespace pocketmine\entity;
 
 use pocketmine\event\player\PlayerPickupExpOrbEvent;
 use pocketmine\level\sound\ExpPickupSound;
-use pocketmine\network\protocol\AddEntityPacket;
+use pocketmine\network\mcpe\protocol\AddEntityPacket;
 use pocketmine\Player;
 
 class XPOrb extends Entity {

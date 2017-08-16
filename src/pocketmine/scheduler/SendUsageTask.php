@@ -21,7 +21,7 @@
 
 namespace pocketmine\scheduler;
 
-use pocketmine\network\protocol\Info;
+use pocketmine\network\mcpe\protocol\Info;
 use pocketmine\Server;
 use pocketmine\utils\Utils;
 use pocketmine\utils\UUID;

@@ -24,7 +24,7 @@ namespace pocketmine\entity;
 use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityRegainHealthEvent;
 use pocketmine\event\player\PlayerExhaustEvent;
-use pocketmine\network\protocol\MobEffectPacket;
+use pocketmine\network\mcpe\protocol\MobEffectPacket;
 use pocketmine\Player;
 
 class Effect {

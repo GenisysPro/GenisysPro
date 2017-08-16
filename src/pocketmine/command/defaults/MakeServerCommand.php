@@ -26,7 +26,7 @@ namespace pocketmine\command\defaults;
 
 use pocketmine\command\CommandSender;
 use pocketmine\Server;
-use pocketmine\network\protocol\Info;
+use pocketmine\network\mcpe\protocol\Info;
 
 class MakeServerCommand extends VanillaCommand {
 
