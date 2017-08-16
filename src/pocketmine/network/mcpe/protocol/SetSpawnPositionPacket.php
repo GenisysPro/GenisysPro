@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class SetSpawnPositionPacket extends DataPacket {
 
-	const NETWORK_ID = Info::SET_SPAWN_POSITION_PACKET;
+	const NETWORK_ID = ProtocolInfo::SET_SPAWN_POSITION_PACKET;
 
 	public $unknown;
 	public $x;

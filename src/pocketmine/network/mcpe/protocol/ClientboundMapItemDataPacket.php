@@ -21,7 +21,7 @@
 namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
-use pocketmine\network\mcpe\protocol\Info as ProtocolInfo;
+use pocketmine\network\mcpe\protocol\ProtocolInfo;
 use pocketmine\utils\Color;
 
 class ClientboundMapItemDataPacket extends DataPacket {

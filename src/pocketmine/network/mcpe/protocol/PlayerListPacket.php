@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class PlayerListPacket extends DataPacket {
 
-	const NETWORK_ID = Info::PLAYER_LIST_PACKET;
+	const NETWORK_ID = ProtocolInfo::PLAYER_LIST_PACKET;
 
 	const TYPE_ADD = 0;
 	const TYPE_REMOVE = 1;

@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class TakeItemEntityPacket extends DataPacket {
 
-	const NETWORK_ID = Info::TAKE_ITEM_ENTITY_PACKET;
+	const NETWORK_ID = ProtocolInfo::TAKE_ITEM_ENTITY_PACKET;
 
 	public $target;
 	public $eid;

@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class EntityFallPacket extends DataPacket {
 
-	const NETWORK_ID = Info::ENTITY_FALL_PACKET;
+	const NETWORK_ID = ProtocolInfo::ENTITY_FALL_PACKET;
 
 	public $entityRuntimeId;
 	public $fallDistance;

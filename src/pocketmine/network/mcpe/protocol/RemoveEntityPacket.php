@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class RemoveEntityPacket extends DataPacket {
 
-	const NETWORK_ID = Info::REMOVE_ENTITY_PACKET;
+	const NETWORK_ID = ProtocolInfo::REMOVE_ENTITY_PACKET;
 
 	public $eid;
 

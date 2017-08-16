@@ -25,7 +25,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class AvailableCommandsPacket extends DataPacket {
 
-	const NETWORK_ID = Info::AVAILABLE_COMMANDS_PACKET;
+	const NETWORK_ID = ProtocolInfo::AVAILABLE_COMMANDS_PACKET;
 
 	public $commands; //JSON-encoded command data
 	public $unknown;

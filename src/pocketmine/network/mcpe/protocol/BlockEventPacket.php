@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class BlockEventPacket extends DataPacket {
 
-	const NETWORK_ID = Info::BLOCK_EVENT_PACKET;
+	const NETWORK_ID = ProtocolInfo::BLOCK_EVENT_PACKET;
 
 	public $x;
 	public $y;

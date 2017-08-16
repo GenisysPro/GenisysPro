@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class ContainerSetContentPacket extends DataPacket {
 
-	const NETWORK_ID = Info::CONTAINER_SET_CONTENT_PACKET;
+	const NETWORK_ID = ProtocolInfo::CONTAINER_SET_CONTENT_PACKET;
 
 	const SPECIAL_INVENTORY = 0;
 	const SPECIAL_ARMOR = 0x78;

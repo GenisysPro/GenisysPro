@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class MoveEntityPacket extends DataPacket {
 
-	const NETWORK_ID = Info::MOVE_ENTITY_PACKET;
+	const NETWORK_ID = ProtocolInfo::MOVE_ENTITY_PACKET;
 
 	public $eid;
 	public $x;

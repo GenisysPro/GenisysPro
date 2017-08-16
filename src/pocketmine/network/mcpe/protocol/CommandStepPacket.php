@@ -25,7 +25,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class CommandStepPacket extends DataPacket {
 
-	const NETWORK_ID = Info::COMMAND_STEP_PACKET;
+	const NETWORK_ID = ProtocolInfo::COMMAND_STEP_PACKET;
 
 	public $command;
 	public $overload;

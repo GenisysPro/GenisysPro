@@ -28,7 +28,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class ChangeDimensionPacket extends DataPacket {
 
-	const NETWORK_ID = Info::CHANGE_DIMENSION_PACKET;
+	const NETWORK_ID = ProtocolInfo::CHANGE_DIMENSION_PACKET;
 
 	const DIMENSION_NORMAL = 0;
 	const DIMENSION_NETHER = 1;

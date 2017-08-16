@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class ReplaceItemInSlotPacket extends DataPacket {
 
-	const NETWORK_ID = Info::REPLACE_ITEM_IN_SLOT_PACKET;
+	const NETWORK_ID = ProtocolInfo::REPLACE_ITEM_IN_SLOT_PACKET;
 
 	public $item;
 

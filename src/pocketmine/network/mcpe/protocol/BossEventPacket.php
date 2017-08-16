@@ -27,7 +27,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class BossEventPacket extends DataPacket {
 
-	const NETWORK_ID = Info::BOSS_EVENT_PACKET;
+	const NETWORK_ID = ProtocolInfo::BOSS_EVENT_PACKET;
 
 	public $eid;
 	public $type;

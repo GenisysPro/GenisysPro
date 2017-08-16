@@ -25,7 +25,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 
 class ClientToServerHandshakePacket extends DataPacket {
-	const NETWORK_ID = Info::CLIENT_TO_SERVER_HANDSHAKE_PACKET;
+	const NETWORK_ID = ProtocolInfo::CLIENT_TO_SERVER_HANDSHAKE_PACKET;
 
 	/**
 	 * @return bool

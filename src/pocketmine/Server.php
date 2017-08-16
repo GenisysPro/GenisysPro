@@ -80,7 +80,7 @@ use pocketmine\network\CompressBatchedTask;
 use pocketmine\network\Network;
 use pocketmine\network\mcpe\protocol\BatchPacket;
 use pocketmine\network\mcpe\protocol\DataPacket;
-use pocketmine\network\mcpe\protocol\Info as ProtocolInfo;
+use pocketmine\network\mcpe\protocol\ProtocolInfo;
 use pocketmine\network\mcpe\protocol\PlayerListPacket;
 use pocketmine\network\query\QueryHandler;
 use pocketmine\network\mcpe\RakLibInterface;

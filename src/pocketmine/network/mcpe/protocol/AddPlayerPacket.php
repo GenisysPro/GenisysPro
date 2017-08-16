@@ -23,7 +23,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class AddPlayerPacket extends DataPacket {
 
-	const NETWORK_ID = Info::ADD_PLAYER_PACKET;
+	const NETWORK_ID = ProtocolInfo::ADD_PLAYER_PACKET;
 
 	public $uuid;
 	public $username;

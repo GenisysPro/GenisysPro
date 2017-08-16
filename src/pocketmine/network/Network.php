@@ -60,7 +60,7 @@ use pocketmine\network\mcpe\protocol\EntityEventPacket;
 use pocketmine\network\mcpe\protocol\ExplodePacket;
 use pocketmine\network\mcpe\protocol\FullChunkDataPacket;
 use pocketmine\network\mcpe\protocol\HurtArmorPacket;
-use pocketmine\network\mcpe\protocol\Info as ProtocolInfo;
+use pocketmine\network\mcpe\protocol\ProtocolInfo;
 use pocketmine\network\mcpe\protocol\InteractPacket;
 use pocketmine\network\mcpe\protocol\InventoryActionPacket;
 use pocketmine\network\mcpe\protocol\ItemFrameDropItemPacket;

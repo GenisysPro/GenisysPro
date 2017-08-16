@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class FullChunkDataPacket extends DataPacket {
 
-	const NETWORK_ID = Info::FULL_CHUNK_DATA_PACKET;
+	const NETWORK_ID = ProtocolInfo::FULL_CHUNK_DATA_PACKET;
 
 	public $chunkX;
 	public $chunkZ;

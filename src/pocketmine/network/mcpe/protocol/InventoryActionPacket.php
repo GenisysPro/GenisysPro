@@ -25,7 +25,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class InventoryActionPacket extends DataPacket {
 
-	const NETWORK_ID = Info::INVENTORY_ACTION_PACKET;
+	const NETWORK_ID = ProtocolInfo::INVENTORY_ACTION_PACKET;
 
 	const ACTION_GIVE_ITEM = 0;
 	const ACTION_ENCHANT_ITEM = 2;

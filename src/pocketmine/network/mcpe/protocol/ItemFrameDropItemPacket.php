@@ -25,7 +25,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class ItemFrameDropItemPacket extends DataPacket {
 
-	const NETWORK_ID = Info::ITEM_FRAME_DROP_ITEM_PACKET;
+	const NETWORK_ID = ProtocolInfo::ITEM_FRAME_DROP_ITEM_PACKET;
 
 	public $x;
 	public $y;

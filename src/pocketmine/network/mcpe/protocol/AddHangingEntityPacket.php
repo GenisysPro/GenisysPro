@@ -25,7 +25,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class AddHangingEntityPacket extends DataPacket {
 
-	const NETWORK_ID = Info::ADD_HANGING_ENTITY_PACKET;
+	const NETWORK_ID = ProtocolInfo::ADD_HANGING_ENTITY_PACKET;
 
 	public $entityUniqueId;
 	public $entityRuntimeId;

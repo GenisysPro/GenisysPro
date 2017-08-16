@@ -23,7 +23,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class RequestChunkRadiusPacket extends DataPacket {
 
-	const NETWORK_ID = Info::REQUEST_CHUNK_RADIUS_PACKET;
+	const NETWORK_ID = ProtocolInfo::REQUEST_CHUNK_RADIUS_PACKET;
 
 	public $radius;
 

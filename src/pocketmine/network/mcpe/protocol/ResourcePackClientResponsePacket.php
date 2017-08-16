@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class ResourcePackClientResponsePacket extends DataPacket {
 
-	const NETWORK_ID = Info::RESOURCE_PACK_CLIENT_RESPONSE_PACKET;
+	const NETWORK_ID = ProtocolInfo::RESOURCE_PACK_CLIENT_RESPONSE_PACKET;
 
 	const STATUS_REFUSED = 1;
 	const STATUS_SEND_PACKS = 2;

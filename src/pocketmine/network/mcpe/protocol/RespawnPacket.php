@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class RespawnPacket extends DataPacket {
 
-	const NETWORK_ID = Info::RESPAWN_PACKET;
+	const NETWORK_ID = ProtocolInfo::RESPAWN_PACKET;
 
 	public $x;
 	public $y;

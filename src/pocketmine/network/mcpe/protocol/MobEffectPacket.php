@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class MobEffectPacket extends DataPacket {
 
-	const NETWORK_ID = Info::MOB_EFFECT_PACKET;
+	const NETWORK_ID = ProtocolInfo::MOB_EFFECT_PACKET;
 
 	const EVENT_ADD = 1;
 	const EVENT_MODIFY = 2;

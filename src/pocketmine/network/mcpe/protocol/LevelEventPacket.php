@@ -25,7 +25,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class LevelEventPacket extends DataPacket {
 
-	const NETWORK_ID = Info::LEVEL_EVENT_PACKET;
+	const NETWORK_ID = ProtocolInfo::LEVEL_EVENT_PACKET;
 
 	const EVENT_SOUND_CLICK = 1000;
 	const EVENT_SOUND_CLICK_FAIL = 1001;

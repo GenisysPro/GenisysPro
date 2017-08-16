@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class DropItemPacket extends DataPacket {
 
-	const NETWORK_ID = Info::DROP_ITEM_PACKET;
+	const NETWORK_ID = ProtocolInfo::DROP_ITEM_PACKET;
 
 	public $type;
 	public $item;

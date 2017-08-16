@@ -4,7 +4,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class TransferPacket extends DataPacket {
 
-	const NETWORK_ID = Info::TRANSFER_PACKET;
+	const NETWORK_ID = ProtocolInfo::TRANSFER_PACKET;
 
 	public $address;
 	public $port = 19132; //default port

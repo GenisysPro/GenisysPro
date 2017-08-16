@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class ContainerClosePacket extends DataPacket {
 
-	const NETWORK_ID = Info::CONTAINER_CLOSE_PACKET;
+	const NETWORK_ID = ProtocolInfo::CONTAINER_CLOSE_PACKET;
 
 	public $windowid;
 

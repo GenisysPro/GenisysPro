@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class EntityEventPacket extends DataPacket {
 
-	const NETWORK_ID = Info::ENTITY_EVENT_PACKET;
+	const NETWORK_ID = ProtocolInfo::ENTITY_EVENT_PACKET;
 
 	const HURT_ANIMATION = 2;
 	const DEATH_ANIMATION = 3;

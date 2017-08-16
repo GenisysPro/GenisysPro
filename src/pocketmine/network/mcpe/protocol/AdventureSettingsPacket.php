@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class AdventureSettingsPacket extends DataPacket {
 
-	const NETWORK_ID = Info::ADVENTURE_SETTINGS_PACKET;
+	const NETWORK_ID = ProtocolInfo::ADVENTURE_SETTINGS_PACKET;
 
 	const PERMISSION_NORMAL = 0;
 	const PERMISSION_OPERATOR = 1;

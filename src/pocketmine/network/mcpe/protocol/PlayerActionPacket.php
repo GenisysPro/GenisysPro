@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class PlayerActionPacket extends DataPacket {
 
-	const NETWORK_ID = Info::PLAYER_ACTION_PACKET;
+	const NETWORK_ID = ProtocolInfo::PLAYER_ACTION_PACKET;
 
 	const ACTION_START_BREAK = 0;
 	const ACTION_ABORT_BREAK = 1;

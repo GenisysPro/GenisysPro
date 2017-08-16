@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class MobEquipmentPacket extends DataPacket {
 
-	const NETWORK_ID = Info::MOB_EQUIPMENT_PACKET;
+	const NETWORK_ID = ProtocolInfo::MOB_EQUIPMENT_PACKET;
 
 	public $eid;
 	public $item;

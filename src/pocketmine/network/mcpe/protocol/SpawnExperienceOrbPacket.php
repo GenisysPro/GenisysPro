@@ -7,7 +7,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class SpawnExperienceOrbPacket extends DataPacket {
 
-	const NETWORK_ID = Info::SPAWN_EXPERIENCE_ORB_PACKET;
+	const NETWORK_ID = ProtocolInfo::SPAWN_EXPERIENCE_ORB_PACKET;
 
 	public $x;
 	public $y;

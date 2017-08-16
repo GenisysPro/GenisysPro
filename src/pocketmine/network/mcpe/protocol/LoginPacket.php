@@ -28,7 +28,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 
 class LoginPacket extends DataPacket {
-	const NETWORK_ID = Info::LOGIN_PACKET;
+	const NETWORK_ID = ProtocolInfo::LOGIN_PACKET;
 
 	const MOJANG_PUBKEY = "MHYwEAYHKoZIzj0CAQYFK4EEACIDYgAE8ELkixyLcwlZryUQcu1TvPOmI2B7vX83ndnWRUaXm74wFfa5f/lwQNTfrLVHa2PmenpGI6JhIMUJaWZrjmMj90NoKNFSNBuKdm8rYiXsfaz3K36x/1U26HpG0ZxK/V1V";
 
@@ -56,7 +56,7 @@ class LoginPacket extends DataPacket {
 	 */
 	public function decode(){
 		$this->protocol = $this->getInt();
-		if(!in_array($this->protocol, Info::ACCEPTED_PROTOCOLS)){
+		if(!in_array($this->protocol, ProtocolInfo::ACCEPTED_PROTOCOLS)){
 			$this->buffer = null;
 			return;
 		}

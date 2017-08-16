@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class UpdateBlockPacket extends DataPacket {
 
-	const NETWORK_ID = Info::UPDATE_BLOCK_PACKET;
+	const NETWORK_ID = ProtocolInfo::UPDATE_BLOCK_PACKET;
 
 	const FLAG_NONE = 0b0000;
 	const FLAG_NEIGHBORS = 0b0001;

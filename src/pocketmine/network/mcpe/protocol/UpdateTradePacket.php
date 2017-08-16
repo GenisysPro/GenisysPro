@@ -4,7 +4,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class UpdateTradePacket extends DataPacket {
 
-	const NETWORK_ID = Info::UPDATE_TRADE_PACKET;
+	const NETWORK_ID = ProtocolInfo::UPDATE_TRADE_PACKET;
 
 	public $byte1;
 	public $byte2;

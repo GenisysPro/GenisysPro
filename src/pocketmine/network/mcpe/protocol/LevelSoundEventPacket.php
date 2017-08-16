@@ -25,7 +25,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class LevelSoundEventPacket extends DataPacket {
 
-	const NETWORK_ID = Info::LEVEL_SOUND_EVENT_PACKET;
+	const NETWORK_ID = ProtocolInfo::LEVEL_SOUND_EVENT_PACKET;
 
 	const SOUND_ITEM_USE_ON = 0;
 	const SOUND_HIT = 1;

@@ -25,7 +25,7 @@ namespace pocketmine\network\mcpe\protocol;
 #include <rules/DataPacket.h>
 
 class ResourcePackDataInfoPacket extends DataPacket {
-	const NETWORK_ID = Info::RESOURCE_PACK_DATA_INFO_PACKET;
+	const NETWORK_ID = ProtocolInfo::RESOURCE_PACK_DATA_INFO_PACKET;
 
 	public $packId;
 	public $maxChunkSize;

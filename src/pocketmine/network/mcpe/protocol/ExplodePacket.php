@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class ExplodePacket extends DataPacket {
 
-	const NETWORK_ID = Info::EXPLODE_PACKET;
+	const NETWORK_ID = ProtocolInfo::EXPLODE_PACKET;
 
 	public $x;
 	public $y;

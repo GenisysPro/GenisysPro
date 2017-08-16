@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class PlayerInputPacket extends DataPacket {
 
-	const NETWORK_ID = Info::PLAYER_INPUT_PACKET;
+	const NETWORK_ID = ProtocolInfo::PLAYER_INPUT_PACKET;
 
 	public $motionX;
 	public $motionY;

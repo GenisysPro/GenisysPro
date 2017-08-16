@@ -25,7 +25,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class SetTitlePacket extends DataPacket {
 
-	const NETWORK_ID = Info::SET_TITLE_PACKET;
+	const NETWORK_ID = ProtocolInfo::SET_TITLE_PACKET;
 
 	const TYPE_CLEAR = 0;
 	const TYPE_RESET = 1;

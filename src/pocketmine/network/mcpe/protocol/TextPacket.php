@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class TextPacket extends DataPacket {
 
-	const NETWORK_ID = Info::TEXT_PACKET;
+	const NETWORK_ID = ProtocolInfo::TEXT_PACKET;
 
 	const TYPE_RAW = 0;
 	const TYPE_CHAT = 1;

@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class AddPaintingPacket extends DataPacket {
 
-	const NETWORK_ID = Info::ADD_PAINTING_PACKET;
+	const NETWORK_ID = ProtocolInfo::ADD_PAINTING_PACKET;
 
 	public $eid;
 	public $x;

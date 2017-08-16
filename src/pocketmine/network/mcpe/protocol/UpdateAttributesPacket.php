@@ -27,7 +27,7 @@ use pocketmine\entity\Attribute;
 
 class UpdateAttributesPacket extends DataPacket {
 
-	const NETWORK_ID = Info::UPDATE_ATTRIBUTES_PACKET;
+	const NETWORK_ID = ProtocolInfo::UPDATE_ATTRIBUTES_PACKET;
 
 	public $entityId;
 

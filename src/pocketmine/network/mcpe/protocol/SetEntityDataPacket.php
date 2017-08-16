@@ -23,7 +23,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class SetEntityDataPacket extends DataPacket {
 
-	const NETWORK_ID = Info::SET_ENTITY_DATA_PACKET;
+	const NETWORK_ID = ProtocolInfo::SET_ENTITY_DATA_PACKET;
 
 	public $eid;
 	public $metadata;

@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class SetCommandsEnabledPacket extends DataPacket {
 
-	const NETWORK_ID = Info::SET_COMMANDS_ENABLED_PACKET;
+	const NETWORK_ID = ProtocolInfo::SET_COMMANDS_ENABLED_PACKET;
 
 	public $enabled;
 

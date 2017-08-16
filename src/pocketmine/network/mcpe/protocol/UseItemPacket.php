@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class UseItemPacket extends DataPacket {
 
-	const NETWORK_ID = Info::USE_ITEM_PACKET;
+	const NETWORK_ID = ProtocolInfo::USE_ITEM_PACKET;
 
 	public $x;
 	public $y;

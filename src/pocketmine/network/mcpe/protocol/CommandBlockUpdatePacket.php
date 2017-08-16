@@ -25,7 +25,7 @@ namespace pocketmine\network\mcpe\protocol;
 #include <rules/DataPacket.h>
 
 class CommandBlockUpdatePacket extends DataPacket {
-	const NETWORK_ID = Info::COMMAND_BLOCK_UPDATE_PACKET;
+	const NETWORK_ID = ProtocolInfo::COMMAND_BLOCK_UPDATE_PACKET;
 
 	public $isBlock;
 

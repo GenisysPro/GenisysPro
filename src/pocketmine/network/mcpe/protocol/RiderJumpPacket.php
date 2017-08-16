@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 
 class RiderJumpPacket extends DataPacket {
-	const NETWORK_ID = Info::RIDER_JUMP_PACKET;
+	const NETWORK_ID = ProtocolInfo::RIDER_JUMP_PACKET;
 
 	public $unknown;
 

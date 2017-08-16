@@ -26,7 +26,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class BlockEntityDataPacket extends DataPacket {
 
-	const NETWORK_ID = Info::BLOCK_ENTITY_DATA_PACKET;
+	const NETWORK_ID = ProtocolInfo::BLOCK_ENTITY_DATA_PACKET;
 
 	public $x;
 	public $y;

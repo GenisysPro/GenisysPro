@@ -27,7 +27,7 @@ namespace pocketmine\network\mcpe\protocol;
 
 class CameraPacket extends DataPacket {
 
-	const NETWORK_ID = Info::CAMERA_PACKET;
+	const NETWORK_ID = ProtocolInfo::CAMERA_PACKET;
 	public $eid;
 
 	/**

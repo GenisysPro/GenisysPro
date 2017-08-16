@@ -31,7 +31,7 @@ use pocketmine\entity\Attribute;
 
 class AddEntityPacket extends DataPacket {
 
-	const NETWORK_ID = Info::ADD_ENTITY_PACKET;
+	const NETWORK_ID = ProtocolInfo::ADD_ENTITY_PACKET;
 
 	public $eid;
 	public $type;
