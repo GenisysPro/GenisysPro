@@ -16,7 +16,7 @@
 #false (ложь) - выключено
 
 #Хотите улучшить перевод?
-#Создайте пулл на github или напишите мне в Telegramcls
+#Создайте пулл на github или напишите мне в Telegram
 
 #Github: https://github.com/GenisysPro/GenisysPro/pulls
 #Telegram: https://t.me/Yarvoy
@@ -111,31 +111,30 @@ redstone:
  #Установите частоту импульса. По умолчанию = 1 сек
  pulse-frequency: 1
 
-#//todo: перевод этого куска
 dserver:
- #The count of all multi-server unified
+ #Разрешает использовать мульти сервера
  enable: false
- #Update Query automatically
+ #Обновление query автоматически
  query-auto-update: false
- #Update Query periodically
+ #Периодически обновлять query
  query-tick-update: true
- #The max players' on the MOTD
+ #Отображает максимум игроков в MOTD. 0 = По умолчанию
  motd-max-players: 0
- #The max players' on the Query. 0=Default
+ #Отображает максимум игроков в Query. 0 = По умолчанию
  query-max-players: 0
- #Show the number of all players on MOTD
+ #Отображает всех игроков в MOTD
  motd-all-players: false
- #Show the number of all players on Query
+ #Отображает количество всех игроков в Query
  query-all-players: false
- #Show the number of online players on MOTD
+ #Отображает количество онлайн игроков в MOTD
  motd-players: false
- #Show the number of online players on Query
+ #Отображает количество онлайн игроков в Query
  query-players: false
- #Update Frequency. 20=1s
+ #Частота обновления. 20 = 1 сек
  time: 40
- #Auto-retry # of times when server fails
+ #Авто-повтор N раз при сбое сервера
  retry-times: 3
- #the server list，Separate by ';'，e.g. 1.example.com:19132;2.example.com:19133
+ #Список серверов, отделяйте через ';', пример: 1.example.com:19132;2.example.com:19133
  server-list: ""
 
 inventory:
