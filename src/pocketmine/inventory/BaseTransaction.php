@@ -85,6 +85,13 @@ class BaseTransaction implements Transaction {
 	public function getTargetItem(){
 		return clone $this->targetItem;
 	}
+	
+	/**
+	 * @return Item
+	 */
+	public function getSourceItem(){
+		return clone $this->inventory->getItem($this->slot);
+	}
 
 	/**
 	 * @param Item $item
