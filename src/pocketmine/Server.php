@@ -1597,7 +1597,7 @@ class Server{
 
 		$this->allowInventoryCheats = $this->getAdvancedProperty("inventory.allow-cheats", false);
 		$this->folderpluginloader = $this->getAdvancedProperty("developer.folder-plugin-loader", true);
-		$this->absorbWater = $this->getAdvancedProperty("server.absorb-water", true);
+		$this->absorbWater = $this->getAdvancedProperty("server.absorb-water", false);
 
 	}
 
