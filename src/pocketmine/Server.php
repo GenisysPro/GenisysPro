@@ -315,6 +315,7 @@ class Server{
 	public $enderEnabled = true;
 	public $enderName = "ender";
 	public $enderLevel = null;
+	public $absorbWater = false;
 
 	/**
 	 * @return string
@@ -1596,6 +1597,7 @@ class Server{
 
 		$this->allowInventoryCheats = $this->getAdvancedProperty("inventory.allow-cheats", false);
 		$this->folderpluginloader = $this->getAdvancedProperty("developer.folder-plugin-loader", true);
+		$this->absorbWater = $this->getAdvancedProperty("server.absorb-water", true);
 
 	}
 
