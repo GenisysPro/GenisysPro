@@ -40,9 +40,9 @@ class Sheep extends Animal implements Colorable {
 
     const DATA_COLOR_INFO = 16;
 
-    public $width = 0.625;
-    public $length = 1.4375;
-    public $height = 1.8;
+    public $width = 0.0;
+    public $length = 1.3;
+    public $height = 0.9;
 
     /**
      * @return string
