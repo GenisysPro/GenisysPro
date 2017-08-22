@@ -39,7 +39,7 @@ class Ocelot extends Animal {
 
 	public $width = 0.312;
 	public $length = 2.188;
-	public $height = 0.75;
+	public $height = 0;
 
 	public $dropExp = [1, 3];
 
