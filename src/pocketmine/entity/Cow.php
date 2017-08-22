@@ -32,7 +32,7 @@ class Cow extends Animal {
 
 	public $width = 0.3;
 	public $length = 0.9;
-	public $height = 1.8;
+	public $height = 1.4;
 
 	public $dropExp = [1, 3];
 
