@@ -2377,6 +2377,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		}
 
 		switch($packet::NETWORK_ID){
+			case ProtocolInfo::LEVEL_SOUND_EVENT_PACKET:
+			    $this->level->addChunkPacket($this->x >> 4, $this->z >> 4, $packet);
+			    break;
 			case ProtocolInfo::PLAYER_INPUT_PACKET:
 				break;
 			case ProtocolInfo::LOGIN_PACKET:
