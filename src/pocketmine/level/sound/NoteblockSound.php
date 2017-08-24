@@ -25,8 +25,8 @@
 namespace pocketmine\level\sound;
 
 use pocketmine\math\Vector3;
-use pocketmine\network\mcpe\protocol\BlockEventPacket;
-use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
+use pocketmine\network\protocol\BlockEventPacket;
+use pocketmine\network\protocol\LevelSoundEventPacket;
 
 class NoteblockSound extends GenericSound {
 

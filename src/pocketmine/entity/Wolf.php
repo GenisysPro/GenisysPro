@@ -21,7 +21,7 @@
 
 namespace pocketmine\entity;
 
-use pocketmine\network\mcpe\protocol\AddEntityPacket;
+use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 
 class Wolf extends Animal {
@@ -29,7 +29,7 @@ class Wolf extends Animal {
 
 	public $width = 0.3;
 	public $length = 0.9;
-	public $height = 0;
+	public $height = 1.8;
 
 	public $dropExp = [1, 3];
 

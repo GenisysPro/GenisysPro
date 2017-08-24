@@ -40,7 +40,7 @@ use pocketmine\nbt\tag\FloatTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\StringTag;
-use pocketmine\network\mcpe\protocol\AddPlayerPacket;
+use pocketmine\network\protocol\AddPlayerPacket;
 use pocketmine\Player;
 use pocketmine\utils\UUID;
 

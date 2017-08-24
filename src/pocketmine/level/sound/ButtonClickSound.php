@@ -22,7 +22,7 @@
 namespace pocketmine\level\sound;
 
 use pocketmine\math\Vector3;
-use pocketmine\network\mcpe\protocol\LevelEventPacket;
+use pocketmine\network\protocol\LevelEventPacket;
 
 class ButtonClickSound extends GenericSound {
 	/**

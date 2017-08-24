@@ -21,7 +21,7 @@
 
 namespace pocketmine\scheduler;
 
-use pocketmine\network\mcpe\protocol\ProtocolInfo;
+use pocketmine\network\protocol\Info;
 use pocketmine\Server;
 use pocketmine\utils\Utils;
 use pocketmine\utils\UUID;
@@ -65,7 +65,7 @@ class SendUsageTask extends AsyncTask {
 					"build" => $version->getBuild(),
 					"api" => $server->getApiVersion(),
 					"minecraftVersion" => $server->getVersion(),
-					"protocol" => ProtocolInfo::CURRENT_PROTOCOL
+					"protocol" => Info::CURRENT_PROTOCOL
 				];
 
 				$data["system"] = [

@@ -27,7 +27,7 @@ use pocketmine\block\Portal;
 use pocketmine\block\Solid;
 use pocketmine\level\Level;
 use pocketmine\math\Vector3;
-use pocketmine\network\mcpe\protocol\LevelSoundEventPacket;
+use pocketmine\network\protocol\LevelSoundEventPacket;
 use pocketmine\Player;
 
 class FlintSteel extends Tool {

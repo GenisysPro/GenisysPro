@@ -78,12 +78,12 @@ use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\network\CompressBatchedTask;
 use pocketmine\network\Network;
-use pocketmine\network\mcpe\protocol\BatchPacket;
-use pocketmine\network\mcpe\protocol\DataPacket;
-use pocketmine\network\mcpe\protocol\ProtocolInfo;
-use pocketmine\network\mcpe\protocol\PlayerListPacket;
+use pocketmine\network\protocol\BatchPacket;
+use pocketmine\network\protocol\DataPacket;
+use pocketmine\network\protocol\Info as ProtocolInfo;
+use pocketmine\network\protocol\PlayerListPacket;
 use pocketmine\network\query\QueryHandler;
-use pocketmine\network\mcpe\RakLibInterface;
+use pocketmine\network\RakLibInterface;
 use pocketmine\network\rcon\RCON;
 use pocketmine\network\upnp\UPnP;
 use pocketmine\permission\BanList;
@@ -315,30 +315,12 @@ class Server{
 	public $enderEnabled = true;
 	public $enderName = "ender";
 	public $enderLevel = null;
-	public $absorbWater = false;
 
 	/**
 	 * @return string
 	 */
 	public function getName() : string{
-		$class = $this->get_calling_class();
-        if(strchr($class,"SpoonDetector")){
-            $this->logger->debug("HAHA! BYPASSED " . $class . "'s SPOON DETECTOR!");
-            return "PocketMine-MP"; // lol
-        }
-        return "GenisysPro";
-	}
-	
-	private function get_calling_class() : string {
-		// tnx https://stackoverflow.com/a/6927569/7126351
-		$trace = debug_backtrace();
-		$class = $trace[1]['class'];
-		for ( $i=1; $i<count( $trace ); $i++ ) {
-			if ( isset( $trace[$i] ) )
-				if ( $class != $trace[$i]['class'] )
-					return $trace[$i]['class'];
-		}
-		return "null";
+		return "GenisysPro";
 	}
 
 	/**
@@ -1614,7 +1596,6 @@ class Server{
 
 		$this->allowInventoryCheats = $this->getAdvancedProperty("inventory.allow-cheats", false);
 		$this->folderpluginloader = $this->getAdvancedProperty("developer.folder-plugin-loader", true);
-		$this->absorbWater = $this->getAdvancedProperty("server.absorb-water", false);
 
 	}
 

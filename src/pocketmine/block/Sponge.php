@@ -47,7 +47,10 @@ class Sponge extends Solid {
 		return 0.6;
 	}
 
-	public function absorbWater(){
+	/**
+	 * @param null $block
+	 */
+	public function absorbWater($block = null){
 		if(Server::getInstance()->absorbWater){
 			$range = $this->absorbRange / 2;
 			for($xx = -$range; $xx <= $range; $xx++){
@@ -84,7 +87,7 @@ class Sponge extends Solid {
 					$blockEast === Block::WATER ||
 					$blockWest === Block::WATER
 				){
-					$this->absorbWater();
+					$this->absorbWater($this);
 					$this->getLevel()->setBlock($this, Block::get(Block::SPONGE, 1), true, true);
 					return Level::BLOCK_UPDATE_NORMAL;
 				}
@@ -95,7 +98,7 @@ class Sponge extends Solid {
 					$blockEast === Block::STILL_WATER ||
 					$blockWest === Block::STILL_WATER
 				){
-					$this->absorbWater();
+					$this->absorbWater($this);
 					$this->getLevel()->setBlock($this, Block::get(Block::SPONGE, 1), true, true);
 					return Level::BLOCK_UPDATE_NORMAL;
 				}

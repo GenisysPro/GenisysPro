@@ -24,7 +24,7 @@
 
 namespace pocketmine\command\defaults;
 
-use pocketmine\network\mcpe\protocol\TransferPacket;
+use pocketmine\network\protocol\TransferPacket;
 use pocketmine\command\CommandSender;
 use pocketmine\Player;
 use pocketmine\Server;
