@@ -32,7 +32,7 @@ use pocketmine\Player;
 class ThrownPotion extends Projectile {
 	const NETWORK_ID = 86;
 
-	const DATA_POTION_ID = 16;
+	const DATA_POTION_ID = 37;
 
 	public $width = 0.25;
 	public $length = 0.25;
