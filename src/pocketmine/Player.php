@@ -3990,7 +3990,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	public final function close($message = "", $reason = "generic reason", $notify = true){
 		if($this->connected and !$this->closed){
 			if($notify and strlen((string) $reason) > 0){
-				$pk = new DisconnectPacket;
+				$pk = new DisconnectPacket();
 				$pk->hideDisconnectionScreen = null;
 				$pk->message = $reason;
 				$this->dataPacket($pk);
