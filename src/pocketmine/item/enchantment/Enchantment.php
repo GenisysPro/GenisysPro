@@ -21,6 +21,7 @@
 
 namespace pocketmine\item\enchantment;
 
+use pocketmine\Server;
 use pocketmine\item\ChainBoots;
 use pocketmine\item\ChainChestplate;
 use pocketmine\item\ChainHelmet;
