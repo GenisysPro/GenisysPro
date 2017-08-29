@@ -3263,7 +3263,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$commandText = $packet->command;
 				if($packet->inputJson !== null){
 					foreach($packet->inputJson as $arg){ //command ordering will be an issue
-						if(is_string($arg)) //anti bot
+						if(!is_object($arg)) //anti bot
 							$commandText .= " " . $arg;
 					}
 				}
