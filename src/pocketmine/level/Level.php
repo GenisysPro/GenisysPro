@@ -3069,7 +3069,7 @@ class Level implements ChunkManager, Metadatable
     }
 
     public function unloadChunks(bool $force = false) {
-        if (count($this->unloadQueue) > 0) {
+        if (!is_null($this->unloadQueue) && count($this->unloadQueue) > 0) {
             $maxUnload = 96;
             $now = microtime(true);
             foreach ($this->unloadQueue as $index => $time) {
