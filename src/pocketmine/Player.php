@@ -2045,7 +2045,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				}else{
 					if($this->getInventory()->getItem($this->getInventory()->getSize() + 1)->getId() == "444"){
 						#enable use of elytra. todo: check if it is open
-						return;
+						$this->inAirTicks = 0;
 					}
 					if(!$this->allowFlight and $this->inAirTicks > 10 and !$this->isSleeping() and !$this->isImmobile()){
 						$expectedVelocity = (-$this->gravity) / $this->drag - ((-$this->gravity) / $this->drag) * exp(-$this->drag * ($this->inAirTicks - $this->startAirTicks));
@@ -2054,7 +2054,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
                         if(!$this->hasEffect(Effect::JUMP) and $diff > 0.6 and $expectedVelocity < $this->speed->y and !$this->server->getAllowFlight()){
 							if($this->inAirTicks < 1000){
 								$this->setMotion(new Vector3(0, $expectedVelocity, 0));
-							}elseif($this->kick("Flying is not enabled on this server")){
+							}elseif($this->kick("Flying is not enabled on this server", false)){
 								$this->timings->stopTiming();
 								
 								return false;
