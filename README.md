@@ -18,6 +18,7 @@ GenisysPro
 [日本語](#日本語)   
 [Dutch](#dutch)  
 [Русский](#Русский)  
+[Ελληνικά](#Ελληνικά)
 
 # English
 
@@ -473,3 +474,84 @@ GenisysPro еще предстоит пройти долгий путь. Мы р
 
 	Вы должны были получить копию общедоступной лицензии GNU
 	Наряду с этой программой. Если нет, см. <http://www.gnu.org/licenses/>.
+	
+# Ελληνικά
+
+Εισαγωγή
+-------------
+
+__Το πρόγραμμα GenisysPro είναι ένα πλούσιο λογισμικό διακομιστή (server) για τα παιχνίδια *Minecraft: Pocket Edition* και *Minecraft: Windows 10 Edition*.__  
+Το πρόγραμμα GenisysPro είναι βασισμένο στο **[Genisys](https://github.com/iTXTech/Genisys)** με επιπλέον λειτουργίες. Το μεγαλύτερο μέρος του κώδικα γράφτηκε απο την **[iTXTech](https://github.com/orgs/iTXTech/people)**.  
+
+Μερικές λειτουργίες που παρέχει το Genisys:
+* Υποστηρίζει πολλαπλά version του Minecraft PE την ίδια στιγμή 
+* Εκτεταμένο API για plugins (GeniAPI)
+* Προαιρετική σήνδεση Xbox Live
+* Υποστήριξη του Minecraft: Windows 10 Edition
+* Global resource packs
+* Δηνατότητα δημιουργίας για **ΟΛΟΥΣ** τους κόσμους π.χ, **Overworld**, **Nether** και **Ender**
+* Ενσωματωμένο plugin 'DevTools'
+
+Υποστηριζόμενη έκδοση Minecarft PE
+-------------
+Εκδώσεις παιχνιδιού που υποστηρίζονται απο τον κλάδο `master`:
+- [x] Minecraft PE/Windows 10 v1.1.x
+
+Απόκτηση του GenisysPro
+-------------
+* Κατέβασε τον τελευτέο κώδικα απο [GitHub](https://genisyspro.github.io/GenisysPro/GenisysPro.phar).  
+* Κατέβασε τα [PHP αρχεία](https://genisys.pro/info/download/) και άλλα απαραίτητα στοιχεία.
+* Μπορείτε να βρείτε οδηγίες εγκατάστασης στο [Wiki](https://github.com/GenisysPro/GenisysPro/wiki).
+
+
+ΣΗΜΕΙΩΣΗ: **Ο κλάδος `master`  είανι ο μόνος επίσημα-υποστηριζόμενος κλάδος.**  
+Όλοι οι άλοι κλάδοι μπορεί να είναι ασταθής. Μην χρησιμοποιείτε 'builds' από άλλους κλάδους εκτός αν καταλαβαίνετε τους κινδύνους.
+
+
+Κοινοτήτες
+-------------
+* [Επίσημα Φόρουμ GenisysPro](https://genisys.pro/forums/)
+* [Ομάδα Discord](https://discord.gg/WrKzRNn)
+* [Ομάδα QQ](https://jq.qq.com/?_wv=1027&k=46Xjsfo)
+
+Προσφορές
+-------------
+**Το QQ του επικεφαλή προγραμματιστή: 1912003473**  
+Το GenisysPro είναι ένα δωρεάν λογισμικό. Εκτιμούμε τις δωρεές σας επειδή μας βοηθά να βελτιώσουμε το GenisysPro.
+
+Πράγματα που πρέπει να γίνουν
+-------------
+
+- [x] Αλαγή τοποθεσείας αρχείων σε `/src/pocketmine/network/mcpe/` για επεκταμένη υποστήριξη plugins.
+- [ ] Ανακάλύψη όλων των πιθανοτήτων τροποποιήσεων που μπορούν να βελτιώσουν την συμβατότητα plugins.
+- [ ] Re-work how async workers perform tasks to prevent them from hanging and not performing other tasks. (help with translation!)
+- [ ] Tροποποιήσεις ώστε η χείριση των κόσμων 'Anvil' να γίνει πιο αποτελεσματικά ώστε να μειωθεί η χρήση των πόρων.
+- [x] Δηνατότητα δημιουργίας κόσμων 'Ender'.
+- [ ] Προσθήκη/Βελτίωση του 'Mob AI' με επιλογή στο 'yaml'.
+
+Το GenisysPro έχει ακόμα πολύ δρόμο μπροστά του. Είμαστε στην ευχάριστη θέση να λάβουμε βοήθεια από όλους!
+
+Βοήθεια και υποστήριξη
+-------------
+[Επίσημη τεκμηρίωση Doxygen-generated Documentation](https://genisyspro.github.io/docs/)
+
+Άλλα εργαλεία
+-------------
+* [Pocket Server](https://github.com/fengberd/MinecraftPEServer) - Εκτελέστε το PocketMine-MP σε συσκευές Android
+
+Αδεια
+-------------
+    This program is free software: you can redistribute it and/or modify
+  	it under the terms of the GNU General Public License as published by
+  	the Free Software Foundation, either version 3 of the License, or
+  	(at your option) any later version.
+
+  	This program is distributed in the hope that it will be useful,
+  	but WITHOUT ANY WARRANTY; without even the implied warranty of
+  	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  	GNU General Public License for more details.
+
+  	You should have received a copy of the GNU General Public License
+  	along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	
+(There is no official translation of the law on the website)/(Δεν υπάρχει επίσημη μετάφραση του νόμου στη ιστοσελίδα)
