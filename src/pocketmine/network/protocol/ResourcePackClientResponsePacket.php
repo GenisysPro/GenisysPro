@@ -40,6 +40,7 @@ class ResourcePackClientResponsePacket extends DataPacket {
 	 *
 	 */
 	public function decode(){
+		$this->offset = 3;
 		$this->status = $this->getByte();
 		$entryCount = $this->getLShort();
 		while($entryCount-- > 0){
