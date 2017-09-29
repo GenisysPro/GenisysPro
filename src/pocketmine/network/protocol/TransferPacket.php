@@ -1,16 +1,27 @@
 <?php
 
-// ---------- CREDITS ----------
-// Mirrored from pocketmine\network\mcpe\protocol\TransferPacket.php
-// Mirroring was done by @CortexPE of @LeverylTeam :D
-// 
-// NOTE: We know that this was hacky... But It's here to still provide support for old plugins
-// ---------- CREDITS ----------
+namespace pocketmine\network\protocol;
 
-namespace pocketmine\network\protocol; 
+class TransferPacket extends DataPacket {
 
-use pocketmine\network\mcpe\protocol\TransferPacket as Original; 
+	const NETWORK_ID = Info::TRANSFER_PACKET;
 
-class TransferPacket extends Original { 
+	public $address;
+	public $port = 19132; //default port
 
-} 
+	/**
+	 *
+	 */
+	public function decode(){
+
+	}
+
+	/**
+	 *
+	 */
+	public function encode(){
+		$this->reset();
+		$this->putString($this->address);
+		$this->putLShort($this->port);
+	}
+}

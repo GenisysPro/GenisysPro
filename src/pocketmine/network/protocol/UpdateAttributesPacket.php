@@ -1,16 +1,67 @@
 <?php
+/*
+ *
+ *  ____            _        _   __  __ _                  __  __ ____  
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * @author PocketMine Team
+ * @link http://www.pocketmine.net/
+ * 
+ *
+*/
 
-// ---------- CREDITS ----------
-// Mirrored from pocketmine\network\mcpe\protocol\UpdateAttributesPacket.php
-// Mirroring was done by @CortexPE of @LeverylTeam :D
-// 
-// NOTE: We know that this was hacky... But It's here to still provide support for old plugins
-// ---------- CREDITS ----------
+namespace pocketmine\network\protocol;
 
-namespace pocketmine\network\protocol; 
+#include <rules/DataPacket.h>
 
-use pocketmine\network\mcpe\protocol\UpdateAttributesPacket as Original; 
+use pocketmine\entity\Attribute;
 
-class UpdateAttributesPacket extends Original { 
 
-} 
+class UpdateAttributesPacket extends DataPacket {
+
+	const NETWORK_ID = Info::UPDATE_ATTRIBUTES_PACKET;
+
+	public $entityId;
+
+	/** @var Attribute[] */
+	public $entries = [];
+
+	/**
+	 *
+	 */
+	public function decode(){
+
+	}
+
+	/**
+	 *
+	 */
+	public function encode(){
+		$this->reset();
+		$this->putEntityId($this->entityId);
+		$this->putUnsignedVarInt(count($this->entries));
+		foreach($this->entries as $entry){
+			$this->putLFloat($entry->getMinValue());
+			$this->putLFloat($entry->getMaxValue());
+			$this->putLFloat($entry->getValue());
+			$this->putLFloat($entry->getDefaultValue());
+			$this->putString($entry->getName());
+		}
+	}
+
+	/**
+	 * @return PacketName|string
+	 */
+	public function getName(){
+		return "UpdateAttributesPacket";
+	}
+
+}

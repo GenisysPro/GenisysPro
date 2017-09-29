@@ -1,16 +1,56 @@
 <?php
 
-// ---------- CREDITS ----------
-// Mirrored from pocketmine\network\mcpe\protocol\ShowCreditsPacket.php
-// Mirroring was done by @CortexPE of @LeverylTeam :D
-// 
-// NOTE: We know that this was hacky... But It's here to still provide support for old plugins
-// ---------- CREDITS ----------
+/*
+ *
+ *  ____            _        _   __  __ _                  __  __ ____  
+ * |  _ \ ___   ___| | _____| |_|  \/  (_)_ __   ___      |  \/  |  _ \ 
+ * | |_) / _ \ / __| |/ / _ \ __| |\/| | | '_ \ / _ \_____| |\/| | |_) |
+ * |  __/ (_) | (__|   <  __/ |_| |  | | | | | |  __/_____| |  | |  __/ 
+ * |_|   \___/ \___|_|\_\___|\__|_|  |_|_|_| |_|\___|     |_|  |_|_| 
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * @author PocketMine Team
+ * @link http://www.pocketmine.net/
+ * 
+ *
+*/
 
-namespace pocketmine\network\protocol; 
+namespace pocketmine\network\protocol;
 
-use pocketmine\network\mcpe\protocol\ShowCreditsPacket as Original; 
+#include <rules/DataPacket.h>
 
-class ShowCreditsPacket extends Original { 
+class ShowCreditsPacket extends DataPacket {
 
-} 
+	const NETWORK_ID = Info::SHOW_CREDITS_PACKET;
+
+	public $eid;
+	public $type;
+
+	/**
+	 *
+	 */
+	public function decode(){
+
+	}
+
+	/**
+	 *
+	 */
+	public function encode(){
+		$this->reset();
+		$this->putEntityId($this->eid);
+		$this->putVarInt($this->type);
+	}
+
+	/**
+	 * @return PacketName|string
+	 */
+	public function getName(){
+		return "ShowCreditsPacket";
+	}
+
+}

@@ -1,16 +1,40 @@
 <?php
 
-// ---------- CREDITS ----------
-// Mirrored from pocketmine\network\mcpe\protocol\SpawnExperienceOrbPacket.php
-// Mirroring was done by @CortexPE of @LeverylTeam :D
-// 
-// NOTE: We know that this was hacky... But It's here to still provide support for old plugins
-// ---------- CREDITS ----------
+namespace pocketmine\network\protocol;
 
-namespace pocketmine\network\protocol; 
+#include <rules/DataPacket.h>
 
-use pocketmine\network\mcpe\protocol\SpawnExperienceOrbPacket as Original; 
 
-class SpawnExperienceOrbPacket extends Original { 
+class SpawnExperienceOrbPacket extends DataPacket {
 
-} 
+	const NETWORK_ID = Info::SPAWN_EXPERIENCE_ORB_PACKET;
+
+	public $x;
+	public $y;
+	public $z;
+	public $amount;
+
+	/**
+	 *
+	 */
+	public function decode(){
+
+	}
+
+	/**
+	 *
+	 */
+	public function encode(){
+		$this->reset();
+		$this->putVector3f($this->x, $this->y, $this->z);
+		$this->putVarInt($this->amount);
+	}
+
+	/**
+	 * @return PacketName|string
+	 */
+	public function getName(){
+		return "SpawnExperienceOrbPacket";
+	}
+
+}
