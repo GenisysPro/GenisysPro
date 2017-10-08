@@ -19,36 +19,44 @@
  *
 */
 
-
 namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
+use pocketmine\network\protocol\types\ContainerIds;
+#ifndef COMPILE
+use pocketmine\utils\Binary;
+#endif
 
-class BlockPickRequestPacket extends DataPacket{
-	const NETWORK_ID = Info::BLOCK_PICK_REQUEST_PACKET;
+class PlayerHotbarPacket extends DataPacket{
+	const NETWORK_ID = Info::PLAYER_HOTBAR_PACKET;
 
 	/** @var int */
-	public $blockX;
+	public $selectedHotbarSlot;
 	/** @var int */
-	public $blockY;
-	/** @var int */
-	public $blockZ;
+	public $windowId = ContainerIds::INVENTORY;
+	/** @var int[] */
+	public $slots = [];
 	/** @var bool */
-	public $addUserData = false;
-	/** @var int */
-	public $hotbarSlot;
+	public $selectHotbarSlot = true;
 
 	protected function decode(){
-		$this->getSignedBlockPosition($this->blockX, $this->blockY, $this->blockZ);
-		$this->addUserData = $this->getBool();
-		$this->hotbarSlot = $this->getByte();
+		$this->selectedHotbarSlot = $this->getUnsignedVarInt();
+		$this->windowId = $this->getByte();
+		$count = $this->getUnsignedVarInt();
+		for($i = 0; $i < $count; ++$i){
+			$this->slots[$i] = Binary::signInt($this->getUnsignedVarInt());
+		}
+		$this->selectHotbarSlot = $this->getBool();
 	}
 
 	protected function encode(){
-		$this->reset();
-		$this->putSignedBlockPosition($this->blockX, $this->blockY, $this->blockZ);
-		$this->putBool($this->addUserData);
-		$this->putByte($this->hotbarSlot);
+		$this->putUnsignedVarInt($this->selectedHotbarSlot);
+		$this->putByte($this->windowId);
+		$this->putUnsignedVarInt(count($this->slots));
+		foreach($this->slots as $slot){
+			$this->putUnsignedVarInt($slot);
+		}
+		$this->putBool($this->selectHotbarSlot);
 	}
 }

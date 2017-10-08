@@ -19,35 +19,13 @@
  *
 */
 
-namespace pocketmine\network\protocol;
+namespace pocketmine\network\protocol\types;
 
-#include <rules/DataPacket.h>
+interface PlayerPermissions{
 
+	const CUSTOM = 3;
+	const OPERATOR = 2;
+	const MEMBER = 1;
+	const VISITOR = 0;
 
-class ServerToClientHandshakePacket extends DataPacket {
-	const NETWORK_ID = Info::SERVER_TO_CLIENT_HANDSHAKE_PACKET;
-
-	public $jwt;
-
-	/**
-	 * @return bool
-	 */
-	public function canBeSentBeforeLogin() : bool{
-		return true;
-	}
-
-	/**
-	 *
-	 */
-	public function decode(){
-		$this->jwt = $this->getString();
-	}
-
-	/**
-	 *
-	 */
-	public function encode(){
-		$this->reset();
-		$this->putString($this->jwt);
-	}
 }

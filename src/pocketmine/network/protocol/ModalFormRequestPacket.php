@@ -19,36 +19,27 @@
  *
 */
 
-
 namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
 
-class BlockPickRequestPacket extends DataPacket{
-	const NETWORK_ID = Info::BLOCK_PICK_REQUEST_PACKET;
+class ModalFormRequestPacket extends DataPacket{
+	const NETWORK_ID = Info::MODAL_FORM_REQUEST_PACKET;
 
 	/** @var int */
-	public $blockX;
-	/** @var int */
-	public $blockY;
-	/** @var int */
-	public $blockZ;
-	/** @var bool */
-	public $addUserData = false;
-	/** @var int */
-	public $hotbarSlot;
+	public $formId;
+	/** @var string */
+	public $formData; //json
 
 	protected function decode(){
-		$this->getSignedBlockPosition($this->blockX, $this->blockY, $this->blockZ);
-		$this->addUserData = $this->getBool();
-		$this->hotbarSlot = $this->getByte();
+		$this->formId = $this->getUnsignedVarInt();
+		$this->formData = $this->getString();
 	}
 
 	protected function encode(){
 		$this->reset();
-		$this->putSignedBlockPosition($this->blockX, $this->blockY, $this->blockZ);
-		$this->putBool($this->addUserData);
-		$this->putByte($this->hotbarSlot);
+		$this->putUnsignedVarInt($this->formId);
+		$this->putString($this->formData);
 	}
 }

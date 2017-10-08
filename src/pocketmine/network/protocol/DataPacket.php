@@ -52,7 +52,7 @@ abstract class DataPacket extends BinaryStream {
 	abstract public function decode();
 
 	public function reset(){
-		$this->buffer = chr($this::NETWORK_ID);
+		$this->buffer = Binary::writeUnsignedVarInt(static::NETWORK_ID);
 		$this->offset = 0;
 	}
 
@@ -189,6 +189,260 @@ abstract class DataPacket extends BinaryStream {
 					$this->putVector3f($d[1][0], $d[1][1], $d[1][2]); //x, y, z
 			}
 		}
+	}
+
+	/**
+	 * Reads an block position with unsigned Y coordinate.
+	 * @param int &$x
+	 * @param int &$y
+	 * @param int &$z
+	 */
+	public function getBlockPosition(&$x, &$y, &$z){
+		$x = $this->getVarInt();
+		$y = $this->getUnsignedVarInt();
+		$z = $this->getVarInt();
+	}
+
+	/**
+	 * Writes a block position with unsigned Y coordinate.
+	 * @param int $x
+	 * @param int $y
+	 * @param int $z
+	 */
+	public function putBlockPosition(int $x, int $y, int $z){
+		$this->putVarInt($x);
+		$this->putUnsignedVarInt($y);
+		$this->putVarInt($z);
+	}
+
+	/**
+	 * Reads a block position with a signed Y coordinate.
+	 * @param int &$x
+	 * @param int &$y
+	 * @param int &$z
+	 */
+	public function getSignedBlockPosition(&$x, &$y, &$z){
+		$x = $this->getVarInt();
+		$y = $this->getVarInt();
+		$z = $this->getVarInt();
+	}
+
+	/**
+	 * Writes a block position with a signed Y coordinate.
+	 * @param int $x
+	 * @param int $y
+	 * @param int $z
+	 */
+	public function putSignedBlockPosition(int $x, int $y, int $z){
+		$this->putVarInt($x);
+		$this->putVarInt($y);
+		$this->putVarInt($z);
+	}
+
+	/**
+	 * Reads a floating-point vector3 rounded to 4dp.
+	 * @param float $x
+	 * @param float $y
+	 * @param float $z
+	 */
+	public function getVector3f(&$x, &$y, &$z){
+		$x = $this->getLFloat(4);
+		$y = $this->getLFloat(4);
+		$z = $this->getLFloat(4);
+	}
+
+	/**
+	 * Writes a floating-point vector3
+	 * @param float $x
+	 * @param float $y
+	 * @param float $z
+	 */
+	public function putVector3f(float $x, float $y, float $z){
+		$this->putLFloat($x);
+		$this->putLFloat($y);
+		$this->putLFloat($z);
+	}
+
+	/**
+	 * Reads a floating-point Vector3 object
+	 * TODO: get rid of primitive methods and replace with this
+	 *
+	 * @return Vector3
+	 */
+	public function getVector3Obj() : Vector3{
+		return new Vector3(
+			$this->getLFloat(4),
+			$this->getLFloat(4),
+			$this->getLFloat(4)
+		);
+	}
+
+	/**
+	 * Writes a floating-point Vector3 object, or 3x zero if null is given.
+	 *
+	 * Note: ONLY use this where it is reasonable to allow not specifying the vector.
+	 * For all other purposes, use {@link DataPacket#putVector3Obj}
+	 *
+	 * @param Vector3|null $vector
+	 */
+	public function putVector3ObjNullable(Vector3 $vector = null){
+		if($vector){
+			$this->putVector3Obj($vector);
+		}else{
+			$this->putLFloat(0.0);
+			$this->putLFloat(0.0);
+			$this->putLFloat(0.0);
+		}
+	}
+
+	/**
+	 * Writes a floating-point Vector3 object
+	 * TODO: get rid of primitive methods and replace with this
+	 *
+	 * @param Vector3 $vector
+	 */
+	public function putVector3Obj(Vector3 $vector){
+		$this->putLFloat($vector->x);
+		$this->putLFloat($vector->y);
+		$this->putLFloat($vector->z);
+	}
+
+	public function getByteRotation() : float{
+		return (float) ($this->getByte() * (360 / 256));
+	}
+
+	public function putByteRotation(float $rotation){
+		$this->putByte((int) ($rotation / (360 / 256)));
+	}
+
+	/**
+	 * Reads gamerules
+	 * TODO: implement this properly
+	 *
+	 * @return array
+	 */
+	public function getGameRules() : array{
+		$count = $this->getUnsignedVarInt();
+		$rules = [];
+		for($i = 0; $i < $count; ++$i){
+			$name = $this->getString();
+			$type = $this->getUnsignedVarInt();
+			$value = null;
+			switch($type){
+				case 1:
+					$value = $this->getBool();
+					break;
+				case 2:
+					$value = $this->getUnsignedVarInt();
+					break;
+				case 3:
+					$value = $this->getLFloat();
+					break;
+			}
+
+			$rules[$name] = [$type, $value];
+		}
+
+		return $rules;
+	}
+
+	/**
+	 * Writes a gamerule array
+	 * TODO: implement this properly
+	 *
+	 * @param array $rules
+	 */
+	public function putGameRules(array $rules){
+		$this->putUnsignedVarInt(count($rules));
+		foreach($rules as $name => $rule){
+			$this->putString($name);
+			$this->putUnsignedVarInt($rule[0]);
+			switch($rule[0]){
+				case 1:
+					$this->putBool($rule[1]);
+					break;
+				case 2:
+					$this->putUnsignedVarInt($rule[1]);
+					break;
+				case 3:
+					$this->putLFloat($rule[1]);
+					break;
+			}
+		}
+	}
+
+	/**
+	 * Reads gamerules
+	 * TODO: implement this properly
+	 *
+	 * @return array
+	 */
+	public function getGameRules() : array{
+		$count = $this->getUnsignedVarInt();
+		$rules = [];
+		for($i = 0; $i < $count; ++$i){
+			$name = $this->getString();
+			$type = $this->getUnsignedVarInt();
+			$value = null;
+			switch($type){
+				case 1:
+					$value = $this->getBool();
+					break;
+				case 2:
+					$value = $this->getUnsignedVarInt();
+					break;
+				case 3:
+					$value = $this->getLFloat();
+					break;
+			}
+
+			$rules[$name] = [$type, $value];
+		}
+
+		return $rules;
+	}
+
+	/**
+	 * Writes a gamerule array
+	 * TODO: implement this properly
+	 *
+	 * @param array $rules
+	 */
+	public function putGameRules(array $rules){
+		$this->putUnsignedVarInt(count($rules));
+		foreach($rules as $name => $rule){
+			$this->putString($name);
+			$this->putUnsignedVarInt($rule[0]);
+			switch($rule[0]){
+				case 1:
+					$this->putBool($rule[1]);
+					break;
+				case 2:
+					$this->putUnsignedVarInt($rule[1]);
+					break;
+				case 3:
+					$this->putLFloat($rule[1]);
+					break;
+			}
+		}
+	}
+
+	/**
+	 * @return array
+	 */
+	protected function getEntityLink() : array{
+		return [$this->getEntityUniqueId(), $this->getEntityUniqueId(), $this->getByte(), $this->getByte()];
+	}
+
+	/**
+	 * @param array $link
+	 */
+	protected function putEntityLink(array $link){
+		$this->putEntityUniqueId($link[0]);
+		$this->putEntityUniqueId($link[1]);
+		$this->putByte($link[2]);
+		$this->putByte($link[3]);
+
 	}
 
 	/**

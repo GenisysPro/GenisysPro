@@ -19,36 +19,32 @@
  *
 */
 
-
 namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
+use pocketmine\item\Item;
 
-class BlockPickRequestPacket extends DataPacket{
-	const NETWORK_ID = Info::BLOCK_PICK_REQUEST_PACKET;
+class InventorySlotPacket extends DataPacket{
+	const NETWORK_ID = Info::INVENTORY_SLOT_PACKET;
 
 	/** @var int */
-	public $blockX;
+	public $windowId;
 	/** @var int */
-	public $blockY;
-	/** @var int */
-	public $blockZ;
-	/** @var bool */
-	public $addUserData = false;
-	/** @var int */
-	public $hotbarSlot;
+	public $inventorySlot;
+	/** @var Item */
+	public $item;
 
 	protected function decode(){
-		$this->getSignedBlockPosition($this->blockX, $this->blockY, $this->blockZ);
-		$this->addUserData = $this->getBool();
-		$this->hotbarSlot = $this->getByte();
+		$this->windowId = $this->getUnsignedVarInt();
+		$this->inventorySlot = $this->getUnsignedVarInt();
+		$this->item = $this->getSlot();
 	}
 
 	protected function encode(){
 		$this->reset();
-		$this->putSignedBlockPosition($this->blockX, $this->blockY, $this->blockZ);
-		$this->putBool($this->addUserData);
-		$this->putByte($this->hotbarSlot);
+		$this->putUnsignedVarInt($this->windowId);
+		$this->putUnsignedVarInt($this->inventorySlot);
+		$this->putSlot($this->item);
 	}
 }

@@ -50,11 +50,13 @@ use pocketmine\network\protocol\CameraPacket;
 use pocketmine\network\protocol\DataPacket;
 use pocketmine\network\protocol\DisconnectPacket;
 use pocketmine\network\protocol\EntityEventPacket;
+use pocketmine\network\protocol\EntityPickRequestPacket;
 use pocketmine\network\protocol\ExplodePacket;
 use pocketmine\network\protocol\FullChunkDataPacket;
 use pocketmine\network\protocol\HurtArmorPacket;
 use pocketmine\network\protocol\Info as ProtocolInfo;
 use pocketmine\network\protocol\InteractPacket;
+use pocketmine\network\protocol\InventoryTransactionPacket;
 use pocketmine\network\protocol\ItemFrameDropItemPacket;
 use pocketmine\network\protocol\LevelEventPacket;
 use pocketmine\network\protocol\LevelSoundEventPacket;
@@ -100,6 +102,9 @@ use pocketmine\network\protocol\TextPacket;
 use pocketmine\network\protocol\TransferPacket;
 use pocketmine\network\protocol\UpdateBlockPacket;
 use pocketmine\network\protocol\UpdateTradePacket;
+
+use pocketmine\network\protocol\{BookEditPacket, InventoryTransactionPacket, EntityPickRequestPacket, PlayerHotbarPacket, InventoryContentPacket, InventorySlotPacket, GuiDataPickItemPacket, CommandRequestPacket, CommandOutputPacket, PlayerSkinPacket, SubClientLoginPacket, WSConnectPacket, SetLastHurtByPacket, NpcRequestPacket, PhotoTransferPacket, ModalFormRequestPacket, ModalFormResponsePacket};
+
 use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\utils\BinaryStream;
@@ -355,6 +360,7 @@ class Network {
 		$this->registerPacket(ProtocolInfo::ANIMATE_PACKET, AnimatePacket::class);
 		$this->registerPacket(ProtocolInfo::AVAILABLE_COMMANDS_PACKET, AvailableCommandsPacket::class);
 		$this->registerPacket(0xfe, BatchPacket::class);
+		$this->registerPacket(ProtocolInfo::BOOK_EDIT_PACKET, BookEditPacket::class);
 		$this->registerPacket(ProtocolInfo::BOSS_EVENT_PACKET, BossEventPacket::class);
 		$this->registerPacket(ProtocolInfo::CAMERA_PACKET, CameraPacket::class);
 		$this->registerPacket(ProtocolInfo::CHANGE_DIMENSION_PACKET, ChangeDimensionPacket::class);
@@ -368,10 +374,15 @@ class Network {
 		$this->registerPacket(ProtocolInfo::CRAFTING_EVENT_PACKET, CraftingEventPacket::class);
 		$this->registerPacket(ProtocolInfo::DISCONNECT_PACKET, DisconnectPacket::class);
 		$this->registerPacket(ProtocolInfo::ENTITY_EVENT_PACKET, EntityEventPacket::class);
+		$this->registerPacket(ProtocolInfo::ENTITY_PICK_REQUEST_PACKET, EntityPickRequestPacket::class);
 		$this->registerPacket(ProtocolInfo::EXPLODE_PACKET, ExplodePacket::class);
 		$this->registerPacket(ProtocolInfo::FULL_CHUNK_DATA_PACKET, FullChunkDataPacket::class);
+		$this->registerPacket(ProtocolInfo::GUI_DATA_PICK_ITEM_PACKET, GuiDataPickItemPacket::class);
 		$this->registerPacket(ProtocolInfo::HURT_ARMOR_PACKET, HurtArmorPacket::class);
 		$this->registerPacket(ProtocolInfo::INTERACT_PACKET, InteractPacket::class);
+		$this->registerPacket(ProtocolInfo::INVENTORY_CONTENT_PACKET, InventoryContentPacket::class);
+		$this->registerPacket(ProtocolInfo::INVENTORY_SLOT_PACKET, InventorySlotPacket::class);
+		$this->registerPacket(ProtocolInfo::INVENTORY_TRANSACTION_PACKET, InventoryTransactionPacket::class);
 		$this->registerPacket(ProtocolInfo::ITEM_FRAME_DROP_ITEM_PACKET, ItemFrameDropItemPacket::class);
 		$this->registerPacket(ProtocolInfo::LEVEL_EVENT_PACKET, LevelEventPacket::class);
 		$this->registerPacket(ProtocolInfo::LEVEL_SOUND_EVENT_PACKET, LevelSoundEventPacket::class);
@@ -379,9 +390,12 @@ class Network {
 		$this->registerPacket(ProtocolInfo::MAP_INFO_REQUEST_PACKET, MapInfoRequestPacket::class);
 		$this->registerPacket(ProtocolInfo::MOB_ARMOR_EQUIPMENT_PACKET, MobArmorEquipmentPacket::class);
 		$this->registerPacket(ProtocolInfo::MOB_EQUIPMENT_PACKET, MobEquipmentPacket::class);
+		$this->registerPacket(ProtocolInfo::MODAL_FORM_REQUEST_PACKET, ModalFormRequestPacket::class);
+		$this->registerPacket(ProtocolInfo::MODAL_FORM_RESPONSE_PACKET, ModalFormResponsePacket::class);
 		$this->registerPacket(ProtocolInfo::MOVE_ENTITY_PACKET, MoveEntityPacket::class);
 		$this->registerPacket(ProtocolInfo::MOVE_PLAYER_PACKET, MovePlayerPacket::class);
-		$this->registerPacket(ProtocolInfo::ENTITY_FALL_PACKET, EntityFallPacket::class);
+		$this->registerPacket(ProtocolInfo::NPC_REQUEST_PACKET, NpcRequestPacket::class);
+		$this->registerPacket(ProtocolInfo::ENTITY_FALL_PACKET, EntityFallPacket::class);$this->registerPacket(ProtocolInfo::PHOTO_TRANSFER_PACKET, PhotoTransferPacket::class);
 		$this->registerPacket(ProtocolInfo::PLAYER_ACTION_PACKET, PlayerActionPacket::class);
 		$this->registerPacket(ProtocolInfo::PLAYER_INPUT_PACKET, PlayerInputPacket::class);
 		$this->registerPacket(ProtocolInfo::PLAYER_LIST_PACKET, PlayerListPacket::class);
@@ -414,10 +428,17 @@ class Network {
 		$this->registerPacket(ProtocolInfo::TRANSFER_PACKET, TransferPacket::class);
 		$this->registerPacket(ProtocolInfo::UPDATE_BLOCK_PACKET, UpdateBlockPacket::class);
 		$this->registerPacket(ProtocolInfo::UPDATE_TRADE_PACKET, UpdateTradePacket::class);
+		$this->registerPacket(ProtocolInfo::W_S_CONNECT_PACKET, WSConnectPacket::class);
 		$this->registerPacket(ProtocolInfo::BLOCK_PICK_REQUEST_PACKET, BlockPickRequestPacket::class);
 		$this->registerPacket(ProtocolInfo::COMMAND_BLOCK_UPDATE_PACKET, CommandBlockUpdatePacket::class);
+		$this->registerPacket(ProtocolInfo::COMMAND_OUTPUT_PACKET, CommandOutputPacket::class);
+		$this->registerPacket(ProtocolInfo::COMMAND_REQUEST_PACKET, CommandRequestPacket::class);
 		$this->registerPacket(ProtocolInfo::PLAY_SOUND_PACKET, PlaySoundPacket::class);
+		$this->registerPacket(ProtocolInfo::PLAYER_HOTBAR_PACKET, PlayerHotbarPacket::class);
+		$this->registerPacket(ProtocolInfo::PLAYER_SKIN_PACKET, PlayerSkinPacket::class);
+		$this->registerPacket(ProtocolInfo::SET_LAST_HURT_BY_PACKET, SetLastHurtByPacket::class);
 		$this->registerPacket(ProtocolInfo::SET_TITLE_PACKET, SetTitlePacket::class);
 		$this->registerPacket(ProtocolInfo::STOP_SOUND_PACKET, StopSoundPacket::class);
+		$this->registerPacket(ProtocolInfo::SUB_CLIENT_LOGIN_PACKET, SubClientLoginPacket::class);
 	}
 }

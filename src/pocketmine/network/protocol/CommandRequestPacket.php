@@ -19,36 +19,25 @@
  *
 */
 
-
-namespace pocketmine\network\protocol;
+namespace pocketmine\network\mcpe\protocol;
 
 #include <rules/DataPacket.h>
 
 
-class BlockPickRequestPacket extends DataPacket{
-	const NETWORK_ID = Info::BLOCK_PICK_REQUEST_PACKET;
+class CommandRequestPacket extends DataPacket{
+	const NETWORK_ID = Info::COMMAND_REQUEST_PACKET;
 
-	/** @var int */
-	public $blockX;
-	/** @var int */
-	public $blockY;
-	/** @var int */
-	public $blockZ;
-	/** @var bool */
-	public $addUserData = false;
-	/** @var int */
-	public $hotbarSlot;
+	/** @var string */
+	public $command;
 
 	protected function decode(){
-		$this->getSignedBlockPosition($this->blockX, $this->blockY, $this->blockZ);
-		$this->addUserData = $this->getBool();
-		$this->hotbarSlot = $this->getByte();
+		$this->command = $this->getString();
+		//TODO: everything else
 	}
 
 	protected function encode(){
 		$this->reset();
-		$this->putSignedBlockPosition($this->blockX, $this->blockY, $this->blockZ);
-		$this->putBool($this->addUserData);
-		$this->putByte($this->hotbarSlot);
+		$this->putString($this->command);
+		//TODO
 	}
 }

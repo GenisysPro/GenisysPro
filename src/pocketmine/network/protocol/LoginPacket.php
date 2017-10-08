@@ -39,7 +39,6 @@ class LoginPacket extends DataPacket {
 
 	public $username;
 	public $protocol;
-	public $gameEdition;
 	public $clientUUID;
 	public $clientId;
 	public $identityPublicKey;

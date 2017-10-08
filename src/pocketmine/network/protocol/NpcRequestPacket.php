@@ -19,36 +19,35 @@
  *
 */
 
-
 namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
 
-class BlockPickRequestPacket extends DataPacket{
-	const NETWORK_ID = Info::BLOCK_PICK_REQUEST_PACKET;
+class NpcRequestPacket extends DataPacket{
+	const NETWORK_ID = Info::NPC_REQUEST_PACKET;
 
 	/** @var int */
-	public $blockX;
+	public $entityRuntimeId;
 	/** @var int */
-	public $blockY;
+	public $requestType;
+	/** @var string */
+	public $commandString;
 	/** @var int */
-	public $blockZ;
-	/** @var bool */
-	public $addUserData = false;
-	/** @var int */
-	public $hotbarSlot;
+	public $actionType;
 
 	protected function decode(){
-		$this->getSignedBlockPosition($this->blockX, $this->blockY, $this->blockZ);
-		$this->addUserData = $this->getBool();
-		$this->hotbarSlot = $this->getByte();
+		$this->entityRuntimeId = $this->getEntityId();
+		$this->requestType = $this->getByte();
+		$this->commandString = $this->getString();
+		$this->actionType = $this->getByte();
 	}
 
 	protected function encode(){
 		$this->reset();
-		$this->putSignedBlockPosition($this->blockX, $this->blockY, $this->blockZ);
-		$this->putBool($this->addUserData);
-		$this->putByte($this->hotbarSlot);
+		$this->putEntityId($this->entityRuntimeId);
+		$this->putByte($this->requestType);
+		$this->putString($this->commandString);
+		$this->putByte($this->actionType);
 	}
 }

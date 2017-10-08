@@ -23,6 +23,7 @@ namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
+use pocketmine\network\protocol\types\PlayerPermissions;
 
 class StartGamePacket extends DataPacket {
 
@@ -31,11 +32,14 @@ class StartGamePacket extends DataPacket {
 	public $entityUniqueId;
 	public $entityRuntimeId;
 	public $playerGamemode;
+
 	public $x;
 	public $y;
 	public $z;
+
 	public $pitch;
 	public $yaw;
+
 	public $seed;
 	public $dimension;
 	public $generator = 1; //default infinite - 0 old, 1 infinite, 2 flat
@@ -44,16 +48,29 @@ class StartGamePacket extends DataPacket {
 	public $spawnX;
 	public $spawnY;
 	public $spawnZ;
-	public $hasAchievementsDisabled = 1;
-	public $dayCycleStopTime = -1; //-1 = not stopped, any positive value = stopped at that time
-	public $eduMode = 0;
+	public $hasAchievementsDisabled = true;
+	public $time = -1;
+	public $eduMode = false;
 	public $rainLevel;
 	public $lightningLevel;
+	public $isMultiplayerGame = true;
+	public $hasLANBroadcast = true;
+	public $hasXboxLiveBroadcast = false;
 	public $commandsEnabled;
-	public $isTexturePacksRequired = 0;
+	public $isTexturePacksRequired = true;
+	public $gameRules = [];
+	public $hasBonusChestEnabled = false;
+	public $hasTrustPlayersEnabled = false;
+	public $defaultPlayerPermission = PlayerPermissions::MEMBER; //TODO
+	public $xboxLiveBroadcastMode = 0; //TODO: find values
+
 	public $levelId = "";
 	public $worldName;
 	public $premiumWorldTemplateId = "";
+	public $unknownBool = false;
+	public $currentTick = 0;
+
+	public $enchantmentSeed = 0;
 
 	/**
 	 *
@@ -80,16 +97,28 @@ class StartGamePacket extends DataPacket {
 		$this->putVarInt($this->difficulty);
 		$this->putBlockCoords($this->spawnX, $this->spawnY, $this->spawnZ);
 		$this->putBool($this->hasAchievementsDisabled);
-		$this->putVarInt($this->dayCycleStopTime);
+		$this->putVarInt($this->time);
 		$this->putBool($this->eduMode);
 		$this->putLFloat($this->rainLevel);
 		$this->putLFloat($this->lightningLevel);
+		$this->putBool($this->isMultiplayerGame);
+		$this->putBool($this->hasLANBroadcast);
+		$this->putBool($this->hasXboxLiveBroadcast);
 		$this->putBool($this->commandsEnabled);
 		$this->putBool($this->isTexturePacksRequired);
-		$this->putUnsignedVarInt(0); //TODO: gamerules
+		$this->putGameRules($this->gameRules);
+		$this->putBool($this->hasBonusChestEnabled);
+		$this->putBool($this->hasStartWithMapEnabled);
+		$this->putBool($this->hasTrustPlayersEnabled);
+		$this->putVarInt($this->defaultPlayerPermission);
+		$this->putVarInt($this->xboxLiveBroadcastMode);
 		$this->putString($this->levelId);
 		$this->putString($this->worldName);
 		$this->putString($this->premiumWorldTemplateId);
+		$this->putBool($this->unknownBool);
+		$this->putLLong($this->currentTick);
+
+		$this->putVarInt($this->enchantmentSeed);
 	}
 
 }
