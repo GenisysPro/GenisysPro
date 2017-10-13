@@ -19,7 +19,7 @@
  *
 */
 
-namespace pocketmine\network\mcpe\protocol;
+namespace pocketmine\network\protocol;
 
 #include <rules/DataPacket.h>
 
