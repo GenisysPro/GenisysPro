@@ -32,12 +32,12 @@ class EntityPickRequestPacket extends DataPacket{
 	/** @var int */
 	public $hotbarSlot;
 
-	protected function decode(){
+	public function decode(){
 		$this->entityTypeId = $this->getLLong();
 		$this->hotbarSlot = $this->getByte();
 	}
 
-	protected function encode(){
+	public function encode(){
 		$this->reset();
 		$this->putLLong($this->entityTypeId);
 		$this->putByte($this->hotbarSlot);

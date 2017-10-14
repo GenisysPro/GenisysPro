@@ -60,7 +60,7 @@ class InventoryTransactionPacket extends DataPacket{
 	/** @var \stdClass */
 	public $trData;
 
-	protected function decode(){
+	public function decode(){
 		$this->transactionType = $this->getUnsignedVarInt();
 
 		for($i = 0, $count = $this->getUnsignedVarInt(); $i < $count; ++$i){
@@ -102,7 +102,7 @@ class InventoryTransactionPacket extends DataPacket{
 		}
 	}
 
-	protected function encode(){
+	public function encode(){
 		$this->reset();
 		$this->putUnsignedVarInt($this->transactionType);
 

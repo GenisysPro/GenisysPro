@@ -27,11 +27,11 @@ namespace pocketmine\network\protocol;
 class CommandOutputPacket extends DataPacket{
 	const NETWORK_ID = Info::COMMAND_OUTPUT_PACKET;
 
-	protected function decode(){
+	public function decode(){
 		//TODO
 	}
 
-	protected function encode(){
+	public function encode(){
 		//TODO
 	}
 }

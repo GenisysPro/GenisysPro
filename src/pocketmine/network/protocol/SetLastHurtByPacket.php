@@ -30,11 +30,11 @@ class SetLastHurtByPacket extends DataPacket{
 	/** @var int */
 	public $entityTypeId;
 
-	protected function decode(){
+	public function decode(){
 		$this->entityTypeId = $this->getVarInt();
 	}
 
-	protected function encode(){
+	public function encode(){
 		$this->reset();
 		$this->putVarInt($this->entityTypeId);
 	}

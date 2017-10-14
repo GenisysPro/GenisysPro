@@ -30,11 +30,11 @@ class WSConnectPacket extends DataPacket{
 	/** @var string */
 	public $string1;
 
-	protected function decode(){
+	public function decode(){
 		$this->string1 = $this->getString();
 	}
 
-	protected function encode(){
+	public function encode(){
 		$this->reset();
 		$this->putString($this->string1);
 	}

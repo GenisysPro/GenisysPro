@@ -40,7 +40,7 @@ class PlayerHotbarPacket extends DataPacket{
 	/** @var bool */
 	public $selectHotbarSlot = true;
 
-	protected function decode(){
+	public function decode(){
 		$this->selectedHotbarSlot = $this->getUnsignedVarInt();
 		$this->windowId = $this->getByte();
 		$count = $this->getUnsignedVarInt();
@@ -50,7 +50,7 @@ class PlayerHotbarPacket extends DataPacket{
 		$this->selectHotbarSlot = $this->getBool();
 	}
 
-	protected function encode(){
+	public function encode(){
 		$this->putUnsignedVarInt($this->selectedHotbarSlot);
 		$this->putByte($this->windowId);
 		$this->putUnsignedVarInt(count($this->slots));

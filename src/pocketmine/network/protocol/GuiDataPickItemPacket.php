@@ -30,11 +30,11 @@ class GuiDataPickItemPacket extends DataPacket{
 	/** @var int */
 	public $hotbarSlot;
 
-	protected function decode(){
+	public function decode(){
 		$this->hotbarSlot = $this->getLInt();
 	}
 
-	protected function encode(){
+	public function encode(){
 		$this->reset();
 		$this->putLInt($this->hotbarSlot);
 	}

@@ -39,7 +39,7 @@ class PlayerSkinPacket extends DataPacket{
 	public $skin;
 
 
-	protected function decode(){
+	public function decode(){
 		$this->uuid = $this->getUUID();
 
 		$skinId = $this->getString();
@@ -53,7 +53,7 @@ class PlayerSkinPacket extends DataPacket{
 		#$this->skin = new Skin($skinId, $skinData, $capeData, $geometryModel, $geometryData);
 	}
 
-	protected function encode(){
+	public function encode(){
 		$this->reset();
 		$this->putUUID($this->uuid);
 

@@ -33,7 +33,7 @@ class InventoryContentPacket extends DataPacket{
 	/** @var Item[] */
 	public $items = [];
 
-	protected function decode(){
+	public function decode(){
 		$this->windowId = $this->getUnsignedVarInt();
 		$count = $this->getUnsignedVarInt();
 		for($i = 0; $i < $count; ++$i){
@@ -41,7 +41,7 @@ class InventoryContentPacket extends DataPacket{
 		}
 	}
 
-	protected function encode(){
+	public function encode(){
 		$this->reset();
 		$this->putUnsignedVarInt($this->windowId);
 		$this->putUnsignedVarInt(count($this->items));
