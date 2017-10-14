@@ -258,7 +258,7 @@ abstract class DataPacket extends BinaryStream {
 	 * @param float $y
 	 * @param float $z
 	 */
-	public function putVector3f(float $x, float $y, float $z){
+	public function putVector3f($x, $y, $z){
 		$this->putLFloat($x);
 		$this->putLFloat($y);
 		$this->putLFloat($z);

@@ -66,9 +66,9 @@ class PlayerListPacket extends DataPacket {
 				$this->putString($d[2]);
 				$this->putString($d[3]);
 				$this->putString($d[4]);
-				$this->putString($d[5]);
-				$this->putString($d[6]);
-				$this->putString($d[7]);
+				// $this->putString($d[5]);
+				// $this->putString($d[6]);
+				// $this->putString($d[7]);
 			}else{
 				$this->putUUID($d[0]);
 			}

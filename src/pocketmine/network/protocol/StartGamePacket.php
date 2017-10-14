@@ -108,7 +108,7 @@ class StartGamePacket extends DataPacket {
 		$this->putBool($this->isTexturePacksRequired);
 		$this->putGameRules($this->gameRules);
 		$this->putBool($this->hasBonusChestEnabled);
-		$this->putBool($this->hasStartWithMapEnabled);
+		// $this->putBool($this->hasStartWithMapEnabled);
 		$this->putBool($this->hasTrustPlayersEnabled);
 		$this->putVarInt($this->defaultPlayerPermission);
 		$this->putVarInt($this->xboxLiveBroadcastMode);

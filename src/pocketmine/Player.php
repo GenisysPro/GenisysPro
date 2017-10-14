@@ -2463,9 +2463,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$infoPacket->mustAccept = $this->server->getResourcePackManager()->resourcePacksRequired();
 				$this->directDataPacket($infoPacket);
 
-				/*if($this->isConnected()){
+				if($this->isConnected()){
 					$this->processLogin();
-				}*/
+				}
 				break;
 
 			case ProtocolInfo::RESOURCE_PACK_CLIENT_RESPONSE_PACKET:
