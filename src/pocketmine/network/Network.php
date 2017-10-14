@@ -103,7 +103,7 @@ use pocketmine\network\protocol\TransferPacket;
 use pocketmine\network\protocol\UpdateBlockPacket;
 use pocketmine\network\protocol\UpdateTradePacket;
 
-use pocketmine\network\protocol\{BookEditPacket, InventoryTransactionPacket, EntityPickRequestPacket, PlayerHotbarPacket, InventoryContentPacket, InventorySlotPacket, GuiDataPickItemPacket, CommandRequestPacket, CommandOutputPacket, PlayerSkinPacket, SubClientLoginPacket, WSConnectPacket, SetLastHurtByPacket, NpcRequestPacket, PhotoTransferPacket, ModalFormRequestPacket, ModalFormResponsePacket};
+use pocketmine\network\protocol\{BookEditPacket, PlayerHotbarPacket, InventoryContentPacket, InventorySlotPacket, GuiDataPickItemPacket, CommandRequestPacket, CommandOutputPacket, PlayerSkinPacket, SubClientLoginPacket, WSConnectPacket, SetLastHurtByPacket, NpcRequestPacket, PhotoTransferPacket, ModalFormRequestPacket, ModalFormResponsePacket};
 
 use pocketmine\Player;
 use pocketmine\Server;
