@@ -23,6 +23,7 @@ namespace pocketmine\block;
 
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\Item;
+use pocketmine\item\Tool;
 
 class Snow extends Solid {
 
@@ -42,6 +43,10 @@ class Snow extends Solid {
 	 */
 	public function getHardness(){
 		return 0.2;
+	}
+
+	public function getToolType(){
+		return Tool::TYPE_SHOVEL;
 	}
 
 	/**

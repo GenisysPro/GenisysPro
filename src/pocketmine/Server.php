@@ -60,7 +60,7 @@ use pocketmine\level\generator\Generator;
 use pocketmine\level\generator\hell\Nether;
 use pocketmine\level\generator\normal\Normal;
 use pocketmine\level\generator\normal\Normal2;
-use pocketmine\level\generator\Void;
+use pocketmine\level\generator\VoidGenerator;
 use pocketmine\level\Level;
 use pocketmine\level\LevelException;
 use pocketmine\metadata\EntityMetadataStore;
@@ -78,12 +78,12 @@ use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\network\CompressBatchedTask;
 use pocketmine\network\Network;
-use pocketmine\network\protocol\BatchPacket;
-use pocketmine\network\protocol\DataPacket;
-use pocketmine\network\protocol\Info as ProtocolInfo;
-use pocketmine\network\protocol\PlayerListPacket;
+use pocketmine\network\mcpe\protocol\BatchPacket;
+use pocketmine\network\mcpe\protocol\DataPacket;
+use pocketmine\network\mcpe\protocol\ProtocolInfo;
+use pocketmine\network\mcpe\protocol\PlayerListPacket;
 use pocketmine\network\query\QueryHandler;
-use pocketmine\network\RakLibInterface;
+use pocketmine\network\mcpe\RakLibInterface;
 use pocketmine\network\rcon\RCON;
 use pocketmine\network\upnp\UPnP;
 use pocketmine\permission\BanList;
@@ -315,12 +315,13 @@ class Server{
 	public $enderEnabled = true;
 	public $enderName = "ender";
 	public $enderLevel = null;
+	public $absorbWater = false;
 
 	/**
 	 * @return string
 	 */
 	public function getName() : string{
-		return "GenisysPro";
+        return "GenisysPro";
 	}
 
 	/**
@@ -1596,6 +1597,7 @@ class Server{
 
 		$this->allowInventoryCheats = $this->getAdvancedProperty("inventory.allow-cheats", false);
 		$this->folderpluginloader = $this->getAdvancedProperty("developer.folder-plugin-loader", true);
+		$this->absorbWater = $this->getAdvancedProperty("server.absorb-water", false);
 
 	}
 
@@ -1911,7 +1913,7 @@ class Server{
 			Generator::addGenerator(Normal::class, "default");
 			Generator::addGenerator(Nether::class, "hell");
 			Generator::addGenerator(Nether::class, "nether");
-			Generator::addGenerator(Void::class, "void");
+			Generator::addGenerator(VoidGenerator::class, "void");
 			Generator::addGenerator(Normal2::class, "normal2");
 			Generator::addGenerator(Ender::class, "ender");
 

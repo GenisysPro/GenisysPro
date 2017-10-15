@@ -62,10 +62,10 @@ use pocketmine\nbt\tag\FloatTag;
 use pocketmine\nbt\tag\IntTag;
 use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
-use pocketmine\network\protocol\MobEffectPacket;
-use pocketmine\network\protocol\RemoveEntityPacket;
-use pocketmine\network\protocol\SetEntityDataPacket;
-use pocketmine\network\protocol\SetEntityLinkPacket;
+use pocketmine\network\mcpe\protocol\MobEffectPacket;
+use pocketmine\network\mcpe\protocol\RemoveEntityPacket;
+use pocketmine\network\mcpe\protocol\SetEntityDataPacket;
+use pocketmine\network\mcpe\protocol\SetEntityLinkPacket;
 use pocketmine\Player;
 use pocketmine\plugin\Plugin;
 use pocketmine\Server;
@@ -892,9 +892,11 @@ abstract class Entity extends Location implements Metadatable {
 			if($this->getNameTag() !== ""){
 				$this->namedtag->CustomName = new StringTag("CustomName", $this->getNameTag());
 				$this->namedtag->CustomNameVisible = new StringTag("CustomNameVisible", $this->isNameTagVisible());
+				$this->namedtag->CustomNameAlwaysVisible = new StringTag("CustomNameAlwaysVisible", $this->isNameTagAlwaysVisible());
 			}else{
 				unset($this->namedtag->CustomName);
 				unset($this->namedtag->CustomNameVisible);
+				unset($this->namedtag->CustomNameAlwaysVisible);
 			}
 		}
 
@@ -948,6 +950,9 @@ abstract class Entity extends Location implements Metadatable {
 			$this->setNameTag($this->namedtag["CustomName"]);
 			if(isset($this->namedtag->CustomNameVisible)){
 				$this->setNameTagVisible($this->namedtag["CustomNameVisible"] > 0);
+			}
+			if(isset($this->namedtag->CustomNameAlwaysVisible)){
+				$this->setNameTagAlwaysVisible($this->namedtag["CustomNameAlwaysVisible"] > 0);
 			}
 		}
 
@@ -2125,8 +2130,8 @@ abstract class Entity extends Location implements Metadatable {
 	 */
 	public function teleport(Vector3 $pos, $yaw = null, $pitch = null){
 		if($pos instanceof Location){
-			$yaw = $yaw ?? $pos->yaw;
-			$pitch = $pitch ?? $pos->pitch;
+			$yaw = $yaw === null ? $pos->yaw : $yaw;
+			$pitch = $pitch === null ? $pos->pitch : $pitch;
 		}
 		$from = Position::fromObject($this, $this->level);
 		$to = Position::fromObject($pos, $pos instanceof Position ? $pos->getLevel() : $this->level);
@@ -2138,7 +2143,7 @@ abstract class Entity extends Location implements Metadatable {
 		$pos = $ev->getTo();
 
 		$this->setMotion($this->temporalVector->setComponents(0, 0, 0));
-		if($this->setPositionAndRotation($pos, $yaw ?? $this->yaw, $pitch ?? $this->pitch) !== false){
+		if($this->setPositionAndRotation($pos, $yaw === null ? $this->yaw : $yaw, $pitch === null ? $this->pitch : $pitch) !== false){
 			$this->resetFallDistance();
 			$this->onGround = true;
 

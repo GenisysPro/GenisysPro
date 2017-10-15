@@ -26,7 +26,7 @@ namespace pocketmine;
 
 use pocketmine\event\block\ItemFrameDropItemEvent;
 use pocketmine\inventory\CraftingManager;
-use pocketmine\network\protocol\LevelEventPacket;
+use pocketmine\network\mcpe\protocol\LevelEventPacket;
 use pocketmine\block\Air;
 use pocketmine\block\Block;
 use pocketmine\block\Fire;
@@ -120,39 +120,39 @@ use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\LongTag;
 use pocketmine\nbt\tag\ShortTag;
 use pocketmine\nbt\tag\StringTag;
-use pocketmine\network\protocol\AdventureSettingsPacket;
-use pocketmine\network\protocol\AnimatePacket;
-use pocketmine\network\protocol\AvailableCommandsPacket;
-use pocketmine\network\protocol\BatchPacket;
-use pocketmine\network\protocol\ChangeDimensionPacket;
-use pocketmine\network\protocol\ChunkRadiusUpdatedPacket;
-use pocketmine\network\protocol\ContainerSetContentPacket;
-use pocketmine\network\protocol\DataPacket;
-use pocketmine\network\protocol\DisconnectPacket;
-use pocketmine\network\protocol\EntityEventPacket;
-use pocketmine\network\protocol\FullChunkDataPacket;
-use pocketmine\network\protocol\Info as ProtocolInfo;
-use pocketmine\network\protocol\InteractPacket;
-use pocketmine\network\protocol\MovePlayerPacket;
-use pocketmine\network\protocol\PlayerActionPacket;
-use pocketmine\network\protocol\PlayStatusPacket;
-use pocketmine\network\protocol\ResourcePackChunkDataPacket;
-use pocketmine\network\protocol\ResourcePackClientResponsePacket;
-use pocketmine\network\protocol\ResourcePackDataInfoPacket;
-use pocketmine\network\protocol\ResourcePacksInfoPacket;
-use pocketmine\network\protocol\ResourcePackStackPacket;
-use pocketmine\network\protocol\RespawnPacket;
-use pocketmine\network\protocol\SetEntityMotionPacket;
-use pocketmine\network\protocol\SetPlayerGameTypePacket;
-use pocketmine\network\protocol\SetSpawnPositionPacket;
-use pocketmine\network\protocol\SetTimePacket;
-use pocketmine\network\protocol\SetTitlePacket;
-use pocketmine\network\protocol\StartGamePacket;
-use pocketmine\network\protocol\TakeItemEntityPacket;
-use pocketmine\network\protocol\TextPacket;
-use pocketmine\network\protocol\UpdateAttributesPacket;
-use pocketmine\network\protocol\UpdateBlockPacket;
-use pocketmine\network\protocol\TransferPacket;
+use pocketmine\network\mcpe\protocol\AdventureSettingsPacket;
+use pocketmine\network\mcpe\protocol\AnimatePacket;
+use pocketmine\network\mcpe\protocol\AvailableCommandsPacket;
+use pocketmine\network\mcpe\protocol\BatchPacket;
+use pocketmine\network\mcpe\protocol\ChangeDimensionPacket;
+use pocketmine\network\mcpe\protocol\ChunkRadiusUpdatedPacket;
+use pocketmine\network\mcpe\protocol\ContainerSetContentPacket;
+use pocketmine\network\mcpe\protocol\DataPacket;
+use pocketmine\network\mcpe\protocol\DisconnectPacket;
+use pocketmine\network\mcpe\protocol\EntityEventPacket;
+use pocketmine\network\mcpe\protocol\FullChunkDataPacket;
+use pocketmine\network\mcpe\protocol\ProtocolInfo;
+use pocketmine\network\mcpe\protocol\InteractPacket;
+use pocketmine\network\mcpe\protocol\MovePlayerPacket;
+use pocketmine\network\mcpe\protocol\PlayerActionPacket;
+use pocketmine\network\mcpe\protocol\PlayStatusPacket;
+use pocketmine\network\mcpe\protocol\ResourcePackChunkDataPacket;
+use pocketmine\network\mcpe\protocol\ResourcePackClientResponsePacket;
+use pocketmine\network\mcpe\protocol\ResourcePackDataInfoPacket;
+use pocketmine\network\mcpe\protocol\ResourcePacksInfoPacket;
+use pocketmine\network\mcpe\protocol\ResourcePackStackPacket;
+use pocketmine\network\mcpe\protocol\RespawnPacket;
+use pocketmine\network\mcpe\protocol\SetEntityMotionPacket;
+use pocketmine\network\mcpe\protocol\SetPlayerGameTypePacket;
+use pocketmine\network\mcpe\protocol\SetSpawnPositionPacket;
+use pocketmine\network\mcpe\protocol\SetTimePacket;
+use pocketmine\network\mcpe\protocol\SetTitlePacket;
+use pocketmine\network\mcpe\protocol\StartGamePacket;
+use pocketmine\network\mcpe\protocol\TakeItemEntityPacket;
+use pocketmine\network\mcpe\protocol\TextPacket;
+use pocketmine\network\mcpe\protocol\UpdateAttributesPacket;
+use pocketmine\network\mcpe\protocol\UpdateBlockPacket;
+use pocketmine\network\mcpe\protocol\TransferPacket;
 use pocketmine\network\SourceInterface;
 use pocketmine\permission\PermissibleBase;
 use pocketmine\permission\PermissionAttachment;
@@ -212,6 +212,10 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 	protected $protocol;
 
+	/** @var Vector3 */
+	protected $forceMovement = null;
+	/** @var Vector3 */
+	protected $teleportPosition = null;
 	protected $connected = true;
 	protected $ip;
 	protected $removeFormat = false;
@@ -741,12 +745,12 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$data = new \stdClass();
 		$count = 0;
 		foreach($this->server->getCommandMap()->getCommands() as $command){
-			if($this->hasPermission($command->getPermission()) or $command->getPermission() == null) {
+			//if($this->hasPermission($command->getPermission()) or $command->getPermission() == null) {
 				if (($cmdData = $command->generateCustomCommandData($this)) !== null){
 					++$count;
 					$data->{$command->getName()}->versions[0] = $cmdData;
 				}
-			}
+			//}
 		}
 
 		if($count > 0){
@@ -1031,7 +1035,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$this->level->requestChunk($X, $Z, $this);
 		}
 
-		if($this->chunkLoadCount >= $this->spawnThreshold and $this->spawned === false){
+		if($this->chunkLoadCount >= $this->spawnThreshold and $this->spawned === false and $this->teleportPosition === null){
 			$this->doFirstSpawn();
 		}
 
@@ -1115,9 +1119,10 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$pk->z = $pos->z;
 			$this->dataPacket($pk);
 		}
-
-		$this->inventory->sendContents($this);
+		
+	    $this->inventory->sendContents($this);
 		$this->inventory->sendArmorContents($this);
+		
 	}
 
 	/**
@@ -1611,8 +1616,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	protected function checkGroundState($movX, $movY, $movZ, $dx, $dy, $dz){
 		if(!$this->onGround or $movY != 0){
 			$bb = clone $this->boundingBox;
-			$bb->minY = $this->y - 0.01;
-			$bb->maxY = $this->y + 0.01;
+			$bb->maxY = $bb->minY + 0.5;
+			$bb->minY -= 1;
 			if(count($this->level->getCollisionBlocks($bb, true)) > 0){
 				$this->onGround = true;
 			}else{
@@ -1725,7 +1730,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	 * @param $tickDiff
 	 */
 	protected function processMovement($tickDiff){
-		if(!$this->isAlive() or !$this->spawned or $this->newPosition === null or $this->isSleeping()){
+		if(!$this->isAlive() or !$this->spawned or $this->newPosition === null or $this->teleportPosition !== null or $this->isSleeping()){
 			return;
 		}
 
@@ -1823,7 +1828,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					if($to->distanceSquared($ev->getTo()) > 0.01){ //If plugins modify the destination
 						$this->teleport($ev->getTo());
 					}else{
-						$this->level->addEntityMovement($this->x >> 4, $this->z >> 4, $this->getId(), $this->x, $this->y + $this->baseOffset, $this->z, $this->yaw, $this->pitch, $this->yaw);
+						$this->level->addEntityMovement($this->x >> 4, $this->z >> 4, $this->getId(), $this->x, $this->y + $this->getEyeHeight(), $this->z, $this->yaw, $this->pitch, $this->yaw);
 					}
 
 					if($this->fishingHook instanceof FishingHook){
@@ -1854,7 +1859,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			$this->lastPitch = $from->pitch;
 
 			$this->sendPosition($from, $from->yaw, $from->pitch, MovePlayerPacket::MODE_RESET);
+			$this->forceMovement = new Vector3($from->x, $from->y, $from->z);
 		}else{
+			$this->forceMovement = null;
 			if($distanceSquared != 0 and $this->nextChunkOrderRun > 20){
 				$this->nextChunkOrderRun = 20;
 			}
@@ -2027,6 +2034,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 			}
 
 			if(!$this->isSpectator() and $this->speed !== null){
+			    if($this->hasEffect(Effect::LEVITATION)){
+			        $this->inAirTicks = 0;
+                }
 				if($this->onGround){
 					if($this->inAirTicks !== 0){
 						$this->startAirTicks = 5;
@@ -2035,17 +2045,18 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				}else{
 					if($this->getInventory()->getItem($this->getInventory()->getSize() + 1)->getId() == "444"){
 						#enable use of elytra. todo: check if it is open
-						return;
+						$this->inAirTicks = 0;
 					}
 					if(!$this->allowFlight and $this->inAirTicks > 10 and !$this->isSleeping() and !$this->isImmobile()){
 						$expectedVelocity = (-$this->gravity) / $this->drag - ((-$this->gravity) / $this->drag) * exp(-$this->drag * ($this->inAirTicks - $this->startAirTicks));
 						$diff = ($this->speed->y - $expectedVelocity) ** 2;
 
-                        if(!$this->hasEffect(Effect::JUMP) and !$this->hasEffect(Effect::LEVITATION) and $diff > 0.6 and $expectedVelocity < $this->speed->y and !$this->server->getAllowFlight()){
-							if($this->inAirTicks < 100){
+                        if(!$this->hasEffect(Effect::JUMP) and $diff > 0.6 and $expectedVelocity < $this->speed->y and !$this->server->getAllowFlight()){
+							if($this->inAirTicks < 1000){
 								$this->setMotion(new Vector3(0, $expectedVelocity, 0));
-							}elseif($this->kick("Flying is not enabled on this server")){
+							}elseif($this->kick("Flying is not enabled on this server", false)){
 								$this->timings->stopTiming();
+								
 								return false;
 							}
 						}
@@ -2059,6 +2070,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$this->getTransactionQueue()->execute();
 			}
 		}
+
+		$this->checkTeleportPosition();
 
 		$this->timings->stopTiming();
 
@@ -2260,7 +2273,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$pk->entityRuntimeId = $this->id;
 		$pk->playerGamemode = Player::getClientFriendlyGamemode($this->gamemode);
 		$pk->x = $this->x;
-		$pk->y = $this->y + $this->baseOffset;
+		$pk->y = $this->y;
 		$pk->z = $this->z;
 		$pk->pitch = $this->pitch;
 		$pk->yaw = $this->yaw;
@@ -2325,6 +2338,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		$this->sendCommandData();
 
 		$this->level->getWeather()->sendWeather($this);
+		$this->forceMovement = $this->teleportPosition = $this->getPosition();
 	}
 
 	/**
@@ -2366,6 +2380,9 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		}
 
 		switch($packet::NETWORK_ID){
+			case ProtocolInfo::LEVEL_SOUND_EVENT_PACKET:
+			    $this->level->addChunkPacket($packet->x >> 4, $packet->z >> 4, $packet);
+			    break;
 			case ProtocolInfo::PLAYER_INPUT_PACKET:
 				break;
 			case ProtocolInfo::LOGIN_PACKET:
@@ -2535,15 +2552,20 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 					}*/
 				}
 
-				$newPos = new Vector3($packet->x, $packet->y - $this->baseOffset, $packet->z);
+				$newPos = new Vector3($packet->x, $packet->y - $this->getEyeHeight(), $packet->z);
 
 				if($newPos->distanceSquared($this) == 0 and ($packet->yaw % 360) === $this->yaw and ($packet->pitch % 360) === $this->pitch){ //player hasn't moved, just client spamming packets
 					break;
 				}
 
-				if((!$this->isAlive() or $this->spawned !== true) and $newPos->distanceSquared($this) > 0.01){
-					$this->sendPosition($this, null, null, MovePlayerPacket::MODE_RESET);
-					$this->server->getLogger()->debug("Reverted movement of " . $this->getName() . " due to not alive or not spawned, received " . $newPos . ", locked at " . $this->asVector3());
+				$revert = false;
+				if(!$this->isAlive() or $this->spawned !== true){
+					$revert = true;
+					$this->forceMovement = new Vector3($this->x, $this->y, $this->z);
+				}
+
+				if($this->teleportPosition !== null or ($this->forceMovement instanceof Vector3 and ($newPos->distanceSquared($this->forceMovement) > 0.1 or $revert))){
+					$this->sendPosition($this->forceMovement, $packet->yaw, $packet->pitch, MovePlayerPacket::MODE_RESET);
 				}else{
 					$packet->yaw %= 360;
 					$packet->pitch %= 360;
@@ -2554,6 +2576,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 
 					$this->setRotation($packet->yaw, $packet->pitch);
 					$this->newPosition = $newPos;
+					$this->forceMovement = null;
 				}
 
 				break;
@@ -3246,7 +3269,8 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$commandText = $packet->command;
 				if($packet->inputJson !== null){
 					foreach($packet->inputJson as $arg){ //command ordering will be an issue
-						$commandText .= " " . $arg;
+						if(!is_object($arg)) //anti bot
+							$commandText .= " " . $arg;
 					}
 				}
 				$this->server->getPluginManager()->callEvent($ev = new PlayerCommandPreprocessEvent($this, "/" . $commandText));
@@ -3972,7 +3996,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	public final function close($message = "", $reason = "generic reason", $notify = true){
 		if($this->connected and !$this->closed){
 			if($notify and strlen((string) $reason) > 0){
-				$pk = new DisconnectPacket;
+				$pk = new DisconnectPacket();
 				$pk->hideDisconnectionScreen = null;
 				$pk->message = $reason;
 				$this->dataPacket($pk);
@@ -4231,6 +4255,7 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				break;
 
 			default:
+				break;
 
 		}
 
@@ -4244,6 +4269,10 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 		if(!$ev->getKeepInventory()){
 			foreach($ev->getDrops() as $item){
 				$this->level->dropItem($this, $item);
+			}
+
+			if($this->floatingInventory !== null){		
+				$this->floatingInventory->clearAll();		
 			}
 
 			if($this->inventory !== null){
@@ -4328,14 +4357,14 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	 * @param int        $mode
 	 * @param array|null $targets
 	 */
-	public function sendPosition(Vector3 $pos, float $yaw = null, float $pitch = null, int $mode = MovePlayerPacket::MODE_NORMAL, array $targets = null, float $baseOffsetOverride = null){
-		$yaw = $yaw ?? $this->yaw;
-		$pitch = $pitch ?? $this->pitch;
+	public function sendPosition(Vector3 $pos, $yaw = null, $pitch = null, $mode = MovePlayerPacket::MODE_NORMAL, array $targets = null){
+		$yaw = $yaw === null ? $this->yaw : $yaw;
+		$pitch = $pitch === null ? $this->pitch : $pitch;
 
 		$pk = new MovePlayerPacket();
 		$pk->eid = $this->getId();
 		$pk->x = $pos->x;
-		$pk->y = $pos->y + ($baseOffsetOverride ?? $this->baseOffset);
+		$pk->y = $pos->y + $this->getEyeHeight();
 		$pk->z = $pos->z;
 		$pk->bodyYaw = $yaw;
 		$pk->pitch = $pitch;
@@ -4387,6 +4416,33 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	}
 
 	/**
+	 * @return bool
+	 */
+	protected function checkTeleportPosition(){
+		if($this->teleportPosition !== null){
+			$chunkX = $this->teleportPosition->x >> 4;
+			$chunkZ = $this->teleportPosition->z >> 4;
+
+			for($X = -1; $X <= 1; ++$X){
+				for($Z = -1; $Z <= 1; ++$Z){
+					if(!isset($this->usedChunks[$index = Level::chunkHash($chunkX + $X, $chunkZ + $Z)]) or $this->usedChunks[$index] === false){
+						return false;
+					}
+				}
+			}
+
+			$this->sendPosition($this, null, null, MovePlayerPacket::MODE_RESET);
+			$this->spawnToAll();
+			$this->forceMovement = $this->teleportPosition;
+			$this->teleportPosition = null;
+
+			return true;
+		}
+
+		return true;
+	}
+
+	/**
 	 * @param Vector3|Position|Location $pos
 	 * @param float                     $yaw
 	 * @param float                     $pitch
@@ -4408,10 +4464,14 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 				$this->removeWindow($window);
 			}
 
-			$this->sendPosition($this, $this->yaw, $this->pitch, MovePlayerPacket::MODE_ROTATION, null, 0.0);
-			$this->sendPosition($this, $this->yaw, $this->pitch, MovePlayerPacket::MODE_ROTATION, $this->getViewers(), 0.0);
+			$this->teleportPosition = new Vector3($this->x, $this->y, $this->z);
 
-			$this->spawnToAll();
+			if(!$this->checkTeleportPosition()){
+				$this->forceMovement = $oldPos;
+			}else{
+				$this->spawnToAll();
+			}
+
 
 			$this->resetFallDistance();
 			$this->nextChunkOrderRun = 0;
@@ -4423,16 +4483,32 @@ class Player extends Human implements CommandSender, InventoryHolder, ChunkLoade
 	}
 
 	/**
-	 * @deprecated This functionality is now performed in {@link Player#teleport}.
+	 * This method may not be reliable. Clients don't like to be moved into unloaded chunks.
+	 * Use teleport() for a delayed teleport after chunks have been sent.
 	 *
-	 * @param Vector3    $pos
-	 * @param float|null $yaw
-	 * @param float|null $pitch
-	 *
-	 * @return bool
+	 * @param Vector3 $pos
+	 * @param float   $yaw
+	 * @param float   $pitch
 	 */
 	public function teleportImmediate(Vector3 $pos, $yaw = null, $pitch = null){
-		return $this->teleport($pos, $yaw, $pitch);
+		if(parent::teleport($pos, $yaw, $pitch)){
+
+			foreach($this->windowIndex as $window){
+				if($window === $this->inventory){
+					continue;
+				}
+				$this->removeWindow($window);
+			}
+
+			$this->forceMovement = new Vector3($this->x, $this->y, $this->z);
+			$this->sendPosition($this, $this->yaw, $this->pitch, MovePlayerPacket::MODE_RESET);
+
+
+			$this->resetFallDistance();
+			$this->orderChunks();
+			$this->nextChunkOrderRun = 0;
+			$this->newPosition = null;
+		}
 	}
 
 

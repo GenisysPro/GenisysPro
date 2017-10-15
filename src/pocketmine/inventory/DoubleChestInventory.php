@@ -23,7 +23,7 @@ namespace pocketmine\inventory;
 
 use pocketmine\item\Item;
 use pocketmine\level\Level;
-use pocketmine\network\protocol\BlockEventPacket;
+use pocketmine\network\mcpe\protocol\BlockEventPacket;
 use pocketmine\Player;
 use pocketmine\tile\Chest;
 
@@ -69,29 +69,32 @@ class DoubleChestInventory extends ChestInventory implements InventoryHolder {
 		return $index < $this->left->getSize() ? $this->left->getItem($index) : $this->right->getItem($index - $this->right->getSize());
 	}
 
-	/**
-	 * @param int  $index
-	 * @param Item $item
-	 *
-	 * @return bool
-	 */
-	public function setItem($index, Item $item){
+    /**
+     * @param int $index
+     * @param Item $item
+     *
+     * @param bool $send
+     * @return bool
+     */
+	public function setItem($index, Item $item, $send = true){
 		return $index < $this->left->getSize() ? $this->left->setItem($index, $item) : $this->right->setItem($index - $this->right->getSize(), $item);
 	}
 
-	/**
-	 * @param int $index
-	 *
-	 * @return bool
-	 */
-	public function clear($index){
+    /**
+     * @param int $index
+     *
+     * @param bool $send
+     * @return bool
+     */
+	public function clear($index, $send = true){
 		return $index < $this->left->getSize() ? $this->left->clear($index) : $this->right->clear($index - $this->right->getSize());
 	}
 
-	/**
-	 * @return array
-	 */
-	public function getContents(){
+    /**
+     * @param bool $withAir
+     * @return array
+     */
+	public function getContents($withAir = false){
 		$contents = [];
 		for($i = 0; $i < $this->getSize(); ++$i){
 			$contents[$i] = $this->getItem($i);
@@ -100,10 +103,11 @@ class DoubleChestInventory extends ChestInventory implements InventoryHolder {
 		return $contents;
 	}
 
-	/**
-	 * @param Item[] $items
-	 */
-	public function setContents(array $items){
+    /**
+     * @param Item[] $items
+     * @param bool $send
+     */
+	public function setContents(array $items, $send = true){
 		if(count($items) > $this->size){
 			$items = array_slice($items, 0, $this->size, true);
 		}

@@ -26,7 +26,7 @@ namespace pocketmine\block;
 
 use pocketmine\item\Item;
 
-class DragonEgg extends Solid {
+class DragonEgg extends Fallable {
 	protected $id = self::DRAGON_EGG;
 
 	/**

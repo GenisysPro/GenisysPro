@@ -25,7 +25,7 @@ namespace pocketmine\entity;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\Item as ItemItem;
-use pocketmine\network\protocol\AddEntityPacket;
+use pocketmine\network\mcpe\protocol\AddEntityPacket;
 use pocketmine\Player;
 
 class Zombie extends Monster {
@@ -33,7 +33,7 @@ class Zombie extends Monster {
 
 	public $width = 0.6;
 	public $length = 0.6;
-	public $height = 1.8;
+	public $height = 1.95;
 
 	public $dropExp = [5, 5];
 

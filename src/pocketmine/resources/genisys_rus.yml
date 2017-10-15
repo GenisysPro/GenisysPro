@@ -1,0 +1,142 @@
+#
+#   _____            _               _____
+#  / ____|          (_)             |  __ \
+# | |  __  ___ _ __  _ ___ _   _ ___| |__) | __ ___
+# | | |_ |/ _ \ '_ \| / __| | | / __|  ___/ '__/ _ \
+# | |__| |  __/ | | | \__ \ |_| \__ \ |   | | | (_) |
+#  \_____|\___|_| |_|_|___/\__, |___/_|   |_|  \___/
+#                          __/ |
+#                         |___/
+#
+#
+#
+#Расширенный файл конфигурации GenisysPro
+
+#true (прада) - включено
+#false (ложь) - выключено
+
+#Хотите улучшить перевод?
+#Создайте пулл на github или напишите мне в Telegram
+
+#Github: https://github.com/GenisysPro/GenisysPro/pulls
+#Telegram: https://t.me/Yarvoy
+
+#Версия этого файла
+config:
+ version: 28
+
+level:
+ #Выберите, включена ли погода (дождь может вызвать лаги на старых устройствах)
+ weather: true
+ #Случаная продолжительность погоды
+ weather-random-duration-min: 6000
+ weather-random-duration-max: 12000
+ #Случайный интервал молнии, по умолчанию как 10 сек, 0 = отключить
+ lightning-time: 200
+ #Пожег при ударе молнии
+ lightning-fire: false
+ #Распространение огня
+ fire-spread: false
+
+player:
+ #Выберите, включена ли система голода
+ hunger: true
+ #Выберите, включена ли система опыта
+ experience: true
+ #Сохранение инвентаря после смерти
+ keep-inventory: false
+ #Очистка инвентаря при смене режима игры
+ auto-clear-inventory : true
+ #Сохранение опыта после смерти
+ keep-experience: false
+
+developer:
+  #Этот параметр позволяет серверу загружать плагины из исходников
+  #Рекомендуется, чтобы он оставался "ложным"
+  folder-plugin-loader: true
+  #Этот параметр отключает проверку API версии плагинов
+  #Рекомендуется, чтобы он оставался "ложным"
+  load-incompatible-api: true
+
+nether:
+ #Нижний мир (ад)
+ allow-nether: true
+ #Имя мира
+ level-name: "nether"
+
+ender:
+ #Край
+ allow-ender: true
+ #Имя мира
+ level-name: "ender"
+
+server:
+ #Разрешает спавн железных големов
+ allow-iron-golem: false
+ #Разрешает спавн снежных големов
+ allow-snow-golem: false
+ #Отключает ведение лога (server.log)
+ disable-log: false
+ #Выберите, как напомнить игрокам, когда кто-то присоединяется к игре
+ #0 = Message, 1 = Tip, 2 = Popup
+ player-msg-type: 0
+ login-msg: "§3@player joined the game"
+ logout-msg: "§3@player left the game"
+ #Ограниченный творческий режим
+ limited-creative: false
+ #Отображает частицы блока при разрушении
+ destroy-block-particle: true
+ #Взрывающиеся зелья
+ allow-splash-potion: true
+ #Эта настройка решает, включен ли расширенный выбор команд
+ advanced-command-selector: false
+ #Выберите, разрешены ли ресурспаки
+ enable-resource: false
+ #Этот параметр включает или отключает поглощение воды губкой
+ absorb-water: false
+
+enchantment:
+ #Выберите, разрешены ли наковальни
+ enable-anvil: true
+ #Выберите, включены ли столы зачарования
+ enable-enchanting-table: true
+ #Вы можете включить улучшение от книжных полок (если выключено, используется рандомное количество от 0 до 15), рекомендуется этого не делать, это может быть причиной нагрузки
+ count-bookshelf: false
+
+redstone:
+ #Выберите, включена ли система редстоуна
+ enable: false
+ #Выберите, если включены импульсы частоты
+ frequency-pulse: false
+ #Установите частоту импульса. По умолчанию = 1 сек
+ pulse-frequency: 1
+
+dserver:
+ #Разрешает использовать мульти сервера
+ enable: false
+ #Обновление query автоматически
+ query-auto-update: false
+ #Периодически обновлять query
+ query-tick-update: true
+ #Отображает максимум игроков в MOTD. 0 = По умолчанию
+ motd-max-players: 0
+ #Отображает максимум игроков в Query. 0 = По умолчанию
+ query-max-players: 0
+ #Отображает всех игроков в MOTD
+ motd-all-players: false
+ #Отображает количество всех игроков в Query
+ query-all-players: false
+ #Отображает количество онлайн игроков в MOTD
+ motd-players: false
+ #Отображает количество онлайн игроков в Query
+ query-players: false
+ #Частота обновления. 20 = 1 сек
+ time: 40
+ #Авто-повтор N раз при сбое сервера
+ retry-times: 3
+ #Список серверов, отделяйте через ';', пример: 1.example.com:19132;2.example.com:19133
+ server-list: ""
+
+inventory:
+ #Установите значение true, если у вас проблемы с наковальнями. Это будет обрабатывать транзакции инвентаризации ванильным способом без анти-читов или проверки.
+ allow-cheats: false

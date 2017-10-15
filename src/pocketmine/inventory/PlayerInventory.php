@@ -27,10 +27,10 @@ use pocketmine\event\entity\EntityInventoryChangeEvent;
 use pocketmine\event\player\PlayerItemHeldEvent;
 use pocketmine\item\Item;
 use pocketmine\nbt\tag\ListTag;
-use pocketmine\network\protocol\ContainerSetContentPacket;
-use pocketmine\network\protocol\ContainerSetSlotPacket;
-use pocketmine\network\protocol\MobArmorEquipmentPacket;
-use pocketmine\network\protocol\MobEquipmentPacket;
+use pocketmine\network\mcpe\protocol\ContainerSetContentPacket;
+use pocketmine\network\mcpe\protocol\ContainerSetSlotPacket;
+use pocketmine\network\mcpe\protocol\MobArmorEquipmentPacket;
+use pocketmine\network\mcpe\protocol\MobEquipmentPacket;
 use pocketmine\Player;
 use pocketmine\Server;
 
@@ -481,7 +481,7 @@ class PlayerInventory extends BaseInventory {
 		return $armor;
 	}
 
-	public function clearAll(){
+	public function clearAll($send = true){
 		$limit = $this->getSize() + 4;
 		for($index = 0; $index < $limit; ++$index){
 			$this->clear($index, false);

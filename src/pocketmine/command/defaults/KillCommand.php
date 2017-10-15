@@ -43,6 +43,12 @@ class KillCommand extends VanillaCommand {
 			["suicide"]
 		);
 		$this->setPermission("pocketmine.command.kill.self;pocketmine.command.kill.other");
+		/*  
+		fix in Player.php
+		/kill    is everybody can use
+		
+		*/
+		
 	}
 
 	/**

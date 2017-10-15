@@ -25,7 +25,7 @@
 
 namespace pocketmine\network;
 
-use pocketmine\network\protocol\DataPacket;
+use pocketmine\network\mcpe\protocol\DataPacket;
 use pocketmine\Player;
 
 /**

@@ -44,6 +44,11 @@ interface Transaction {
 	 * @return Item
 	 */
 	public function getTargetItem();
+	
+	/**
+	 * @return Item
+	 */
+	public function getSourceItem();
 
 	/**
 	 * @return float

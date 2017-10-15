@@ -25,7 +25,7 @@
 namespace pocketmine\level\sound;
 
 use pocketmine\math\Vector3;
-use pocketmine\network\protocol\LevelEventPacket;
+use pocketmine\network\mcpe\protocol\LevelEventPacket;
 
 class ItemFrameAddItemSound extends GenericSound {
 	/**
